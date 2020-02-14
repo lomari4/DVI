@@ -17,19 +17,19 @@ Este juego está inspirado en un minijuego llamado Jack Frost, en el que el obje
 
 # 2. Personajes
 
-### 2.1. Personaje principal
+## 2.1. Personaje principal
 
 
 
-### 2.2. Enemigos
+## 2.2. Enemigos
 
-#### 2.2.1.
+### 2.2.1.
 
-#### 2.2.2. 
+### 2.2.2. 
 
-#### 2.2.3. 
+### 2.2.3. 
 
-#### 2.2.4. Jefe Final
+### 2.2.4. Jefe Final
 
 //....//
 
