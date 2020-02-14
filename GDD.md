@@ -2,8 +2,9 @@
 Proyecto de la asignatura Desarrollo de Videojuegos mediante Tecnologías Web de la Universidad Complutense de Madrid.
 
 # 1. Introducción
-
 //hablar sobre: Trama, Genero, Plataforma, Rating, inspiracion de Jack Frost
+Intro....
+Este juego está inspirado en un minijuego llamado Jack Frost, en el que el objetivo era lo contrario: congelar todo. 
 
 
 ## 1.2. Objetivo del juego
@@ -12,7 +13,7 @@ Proyecto de la asignatura Desarrollo de Videojuegos mediante Tecnologías Web de
 ## 1.3. Principales mecánicas
 
 
-## 2. Personajes
+# 2. Personajes
 
 ### 2.1. Personaje principal
 
