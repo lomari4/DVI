@@ -59,7 +59,7 @@ Un javalí que embestirá al personaje. Puede correr hacia el jugador. Si el jug
 
 ### 2.2.4. Jefe Final
 
-Una especie de golem volador, responsable de prolongar el invierno eternamente. Por ahora, tiene un ataque a rango. Para derrotarle, hay que atacarle hasta que se le acabe su vida, que se le mostrará al jugador en la parte de arriba a la derecha.
+Una especie de golem volador, responsable de prolongar el invierno eternamente. Por ahora, tiene un ataque de rango. Para derrotarle, hay que atacarle hasta que se le acabe su vida, que se le mostrará al jugador en la parte de arriba a la derecha.
 
 ![boss](https://vignette.wikia.nocookie.net/maplestory/images/6/62/Mob_Opachu.png/revision/latest?cb=20080126055504)
 
