@@ -53,7 +53,7 @@ Un yeti que ataca a melee y quita dos vidas al personaje. Anda lentamente de un 
 
 ### 2.2.4. Ice boar
 
-Un javalí que embestirá al personaje. Puede andar y correr hacia el jugador.
+Un javalí que embestirá al personaje. Puede correr hacia el jugador. Si el jugador no está cerca, se queda quieto.
 
 ![boar](https://www.spriters-resource.com/resources/sheet_icons/20/22087.png)
 
