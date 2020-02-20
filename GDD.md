@@ -40,7 +40,7 @@ Enemigo que podrá andar de un lado a otro y escupir hielo. Será un ataque de r
 
 ### 2.2.2. Swub
 
-Monstruito peludo que se arrastra sobre el suelo y puede volver a congelarlo. No ataca, pero si el personaje lo toca, se hace daño, y esto pasa con todos los demás enemigos.
+Monstruito peludo que se arrastra sobre el suelo y puede volver a congelarlo, deshaciendo todo el trabajo de nuestro personaje. No ataca, pero si el personaje lo toca, se hace daño, y esto pasa con todos los demás enemigos.
 
 ![swub](https://cdn.wikimg.net/en/strategywiki/images/9/9e/MS_Monster_Murukun.png)
 
