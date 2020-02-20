@@ -75,7 +75,7 @@ Aparecerán todos los enemigos. Cuatro niveles de plataformas.
 Aparecerá el boss final. Mecánicas todavía por ver.
 
 # 4. Arte
-Los escenarios de este juego serán bosques nevados que evolucionarán segun el personaje vaya completando el nivel. 
+Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel. 
 ![transicion](https://i.imgur.com/8KxuMYj.png)
 
 Por ahora, el background de los niveles será este:
