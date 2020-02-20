@@ -10,7 +10,7 @@ Everlasting Winter está inspirado en un minijuego llamado Jack Frost, en el que
 
 ## 1.2. Objetivo del juego
 
-El objetivo principal es derretir toda la nieve del nivel para poder pasar al siguiente nivel. Nuestro personaje podrá hacer esto solo con pisar el suelo, y derretirá la nieve alrededor de él.
+El objetivo principal es derretir toda la nieve del nivel para poder pasar al siguiente nivel. Nuestro personaje podrá hacer esto solo con pisar el suelo, derretirá la nieve alrededor de él y hará que salga hierba.
 
 ## 1.3. Principales mecánicas
 
