@@ -1,6 +1,3 @@
-
-<![endif]-->
-
 # Everlasting Winter
 
 Proyecto de la asignatura Desarrollo de Videojuegos mediante Tecnologías Web de la Universidad Complutense de Madrid.
@@ -38,6 +35,7 @@ Gif del zorro:
 ### 2.2.1. Ice Drake
 
 Enemigo que podrá andar de un lado a otro y escupir hielo. Será un ataque de rango y llegará hasta el final del nivel o hasta que golpee al personaje.
+
 ![ice drake](https://vignette.wikia.nocookie.net/maplestory/images/9/94/Mob_Ice_Drake.png/revision/latest/scale-to-width-down/340?cb=20080126051117)
 
 ### 2.2.2. Swub
