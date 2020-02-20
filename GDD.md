@@ -52,7 +52,7 @@ Un yeti que atacará a melee y quita dos vidas al personaje. Anda lentamente de 
 
 ### 2.2.4. Ice boar
 
-Un javalí que embestirá al personaje. Si no está el jugador cerca, se queda quieto.
+Un javalí que embestirá al personaje. Puede andar y correr hacia el jugador.
 
 ![boar](https://www.spriters-resource.com/resources/sheet_icons/20/22087.png)
 
@@ -74,9 +74,11 @@ Aparecerán todos los enemigos. Cuatro niveles de plataformas.
 Aparecerá el boss final. Mecánicas todavía por ver.
 
 # 4. Arte
-transicion entre tiles de nieve y de hierba
-background
-setting de invierno
+Los escenarios de este juego serán bosques nevados que evolucionarán segun el personaje vaya completando el nivel. 
+![transicion](https://i.imgur.com/8KxuMYj.png)
+
+Por ahora, el background de los niveles será este:
+![bg](https://i.imgur.com/JnFCODm.png)
 
 # 5. Música y sonidos
 
