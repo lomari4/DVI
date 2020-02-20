@@ -24,11 +24,11 @@ Para pasar al siguiente nivel, el personaje tendrá que recorrerlo entero para p
 
 ## 2.1. Personaje principal
 
-Al ser un espíritu del bosque, el personaje principal será un animal que habita en el bosque. Tenemos pensado un zorro o un ciervo.
+Al ser un espíritu del bosque, el personaje principal será un animal que habita en el bosque. Nos hemos inspirado en estas imagenes para diseñar al personaje:
+![wolf](https://i.pinimg.com/originals/da/0d/80/da0d8009e3c466226912df902d827c6e.jpg)
+![wolf2](https://images.alphacoders.com/665/665364.png)
 
-Concept art del ciervo:
-
-Gif del zorro:
+En un futuro se harán los sprites.
 
 ## 2.2. Enemigos
 
