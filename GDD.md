@@ -31,6 +31,7 @@ Al ser un espíritu del bosque, el personaje principal será un animal que habit
 En un futuro se harán los sprites.
 
 ## 2.2. Enemigos
+Como norma general, tocar a los enemigos daña al personaje.
 
 ### 2.2.1. Ice Drake
 
@@ -40,13 +41,13 @@ Enemigo que podrá andar de un lado a otro y escupir hielo. Será un ataque de r
 
 ### 2.2.2. Swub
 
-Monstruito peludo que se arrastra sobre el suelo y puede volver a congelarlo, deshaciendo todo el trabajo de nuestro personaje. No ataca, pero si el personaje lo toca, se hace daño, y esto pasa con todos los demás enemigos.
+Monstruito peludo que se arrastra sobre el suelo y puede volver a congelarlo, deshaciendo todo el trabajo de nuestro personaje. No ataca.
 
 ![swub](https://cdn.wikimg.net/en/strategywiki/images/9/9e/MS_Monster_Murukun.png)
 
 ### 2.2.3. Yeti
 
-Un yeti que atacará a melee y quita dos vidas al personaje. Anda lentamente de un lado a otro.
+Un yeti que ataca a melee y quita dos vidas al personaje. Anda lentamente de un lado a otro.
 
 ![yeti](https://vignette.wikia.nocookie.net/maplestory/images/b/bd/Mob_Yeti.png/revision/latest/scale-to-width-down/340?cb=20100814143115)
 
