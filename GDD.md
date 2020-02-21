@@ -90,8 +90,10 @@ Por ahora, el background de los niveles será este:
 
 # 5. Música y sonidos
 
+# 6. Desarrolladores
+Marina López Osorio y Jin Tao Peng Zhou, estudiantes de la Universidad Complutense de Madrid.
 
-# 6. Recursos
+# 7. Recursos
 
 * [Kenney.nl](https://www.kenney.nl/)
 
