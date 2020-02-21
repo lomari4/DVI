@@ -3,11 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
-    <link rel="stylesheet" href="src/game.css">
     <link rel="stylesheet" href="index.css">
-    <script src="src/phaser.min.js"></script>
+    <!--<script src="src/phaser.min.js"></script>
+    	<script src="src/phaser.min.js"></script>-->
+    
 
     <title>Everlasting Winter</title>
 </head>
@@ -15,19 +16,19 @@
 <body>
     <div class="menu">
         <ul>
+        <li><a href="#SobreNosostros">Sobre Nosostros</a></li>
+        <li><a href="#ControlesBásicos">Controles Básicos</a></li>
          <li><a href="#Descripción">Descripción</a></li>
+         	<h1>Everlasting Winter</h1>
         </ul>
-       <h1>Everlasting Winter</h1>
-    </div>
-    <div>
-        <h2 id="Descripción">Descripción</h2>
-    </div>
-    <!--<script type="module">
+       
+   </div>
+    <canvas id="canvas" width="1280" height="640"></canvas>
+
+    <script src="juego.js"></script>
+    <!--<div>
+  	<script type="module">
         import Game from './src/game.js';
-
-        console.log('holaaaaaaaa45544aa');
-        
-
         var config = {
             type: Phaser.AUTO,
             width: 1400,
@@ -44,7 +45,17 @@
             physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: false } }
         };
         new Phaser.Game(config);
-    </script>-->
+    </script>
+    </div>-->
+     <h2 id="Descripción">Descripción</h2>
+     <p>El jugador tiene que recorrer el bosque y derretir toda la nieve, pero no será tan fácil, ya que el monstruo ha enviado a sus lacayos para detener a nuestro personaje.</p>
+     <h2 id="ControlesBásicos">Controles Básicos</h2>
+     <h4>Botones:</h4>
+     <p>W para saltar</p>
+     <p>A para moverse a la izquierda</p>
+     <p>D para moverse a la derecha</p>
+     <p>SPACE para atacar</p>
+     <h2 id="SobreNosostros">SobreNosostros</h2> 
 </body>
 
 </html>

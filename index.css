@@ -1,12 +1,11 @@
 body {
-	background-image: url("backgroundForest.png");
-
+  background-color: lightblue;
 }
+
 h1{
 color: #003EC0;
-
+text-align: center;
 }
-
 
 ul {
   list-style-type: none;
@@ -17,7 +16,7 @@ ul {
 }
 
 li {
-  float: left;
+  float: right;
 }
 
 li a {
@@ -28,7 +27,13 @@ li a {
   text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: white;
+}
+
+canvas {
+  width: 95%;
+  height: 95%;
+  border: 2px solid #000000; 
+  background-image: url("assets/backgrounds/backgroundForest.png");
 }
