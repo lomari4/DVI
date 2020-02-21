@@ -6,7 +6,7 @@ Proyecto de la asignatura Desarrollo de Videojuegos mediante Tecnologías Web de
 
 Everlasting Winter es un videojuego de plataformas 2D hecho con pixel art y diseñado para ser jugado en una página web con ordenador y teclado. El rating de este juego es PEGI 7, siendo apto para todos los públicos, pero con imágenes que podrían asustar a niños más pequeños.
 
-Everlasting Winter está inspirado en un minijuego llamado Jack Frost, en el que el personaje es un hombre de hielo y el objetivo es congelar todo el nivel. Nosotros le hemos dado una vuelta a este concepto. El jugador es un espíritu del bosque cuyo propósito es protegerlo y asegurarse de que todos sus habitantes viven en harmonía. Todo esto se ve en peligro cuando un monstruo de hielo congela todo y amenaza con sumir al mundo entero en un invierno eterno, de ahí el nombre del juego, 'Everlasting Winter' . El jugador tiene que recorrer el bosque y derretir toda la nieve, pero no será tan fácil, ya que el monstruo ha enviado a sus lacayos para detener a nuestro personaje.
+Everlasting Winter está inspirado en un minijuego llamado Jack Frost, en el que el personaje es un hombre de hielo y el objetivo es congelar todo el nivel. Nosotros le hemos dado una vuelta a este concepto. El jugador es un guardián del bosque cuyo propósito es protegerlo y asegurarse de que todos sus habitantes viven en harmonía. Todo esto se ve en peligro cuando un monstruo de hielo congela todo y amenaza con sumir al mundo entero en un invierno eterno, de ahí el nombre del juego, 'Everlasting Winter' . El jugador tiene que recorrer el bosque y derretir toda la nieve, pero no será tan fácil, ya que el monstruo ha enviado a sus lacayos para detener a nuestro personaje.
 
 ## 1.2. Objetivo del juego
 
@@ -28,7 +28,7 @@ Se juega con el teclado, usando las teclas WAD o las flechas para moverte de un 
 
 ## 2.1. Personaje principal
 
-Al ser un espíritu del bosque, el personaje principal será un animal que habita en el bosque. Nos hemos inspirado en estas imagenes para diseñar al personaje:
+Al ser un guardián del bosque, el personaje principal será un animal que habita en el bosque. Nos hemos inspirado en estas imagenes para diseñar al personaje:
 ![wolf](https://i.pinimg.com/originals/da/0d/80/da0d8009e3c466226912df902d827c6e.jpg)
 ![wolf2](https://images.alphacoders.com/665/665364.png)
 
