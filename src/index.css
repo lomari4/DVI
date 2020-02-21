@@ -3,8 +3,17 @@ body {
 }
 
 h1{
+font-size: 500%;
 color: #003EC0;
 text-align: center;
+}
+
+h2 {
+  font-family: impact;
+}
+
+p {
+  font-family: comic sans ms;
 }
 
 ul {
@@ -17,6 +26,7 @@ ul {
 
 li {
   float: right;
+  font-family: comic sans ms;
 }
 
 li a {
@@ -35,5 +45,15 @@ canvas {
   width: 95%;
   height: 95%;
   border: 2px solid #000000; 
+  margin: 2rem;
+ 
   background-image: url("../assets/backgrounds/backgroundForest.png");
+}
+
+.div{
+  background-color: #6699ff;
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px solid #ccc;
+  text-align: center;
 }
