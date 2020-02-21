@@ -79,7 +79,7 @@ Aparecerá el boss final. Mecánicas todavía por ver.
 
 # 4. Arte
 Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel.  Los assets de los enemigos los hemos sacado de 'The Spriters Resource' y los demás de Kenney.nl, aunque hemos tenido que hacer modificaciones para que todo esté mismo estilo de arte, dibujándoles contornos negros.
-![transicion](https://i.imgur.com/FbhusJJ.png)
+![transicion](https://i.imgur.com/CrBIkVa.png)
 
 Por ahora, el background de los niveles será este:
 ![bg](https://i.imgur.com/JnFCODm.png)
