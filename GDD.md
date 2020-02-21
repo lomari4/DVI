@@ -22,7 +22,7 @@ Para pasar al siguiente nivel, el personaje tendrá que recorrerlo entero para p
 
 ## 1.4. Controles básicos
 
-Se juega con teclado, usando las teclas WAD o las flechas para moverte de un lado a otro y saltar.
+Se juega con el teclado, usando las teclas WAD o las flechas para moverte de un lado a otro y saltar. Se usará el espacio para atacar.
 
 # 2. Personajes
 
