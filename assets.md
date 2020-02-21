@@ -10,4 +10,4 @@ Descripción de todas las carpetas dentro de assets:
 
 Todos los escenarios del juego son bosques, ya que el juego sucede en un bosque, ya sea nevado o sin nieve, dependiendo del progreso del jugador. Como el juego tiene una temática invernal, los enemigos son de hielo o son animales con mucho pelaje para aguantar el frío. 
 
-Como el personaje puede derretir la nieve o el hielo, es importante su aspecto. Hemos decidido hacerlo un lobo con un toque místico para que simbolice la naturaleza y el bosque. 
+Como el personaje principal puede derretir la nieve o el hielo, es importante su aspecto. Hemos decidido hacerlo un lobo con un toque místico para que simbolice la naturaleza y el bosque. 
