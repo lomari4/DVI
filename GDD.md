@@ -76,7 +76,7 @@ Aparecerá el boss final. Mecánicas todavía por ver.
 
 # 4. Arte
 Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel. 
-![transicion](https://i.imgur.com/8KxuMYj.png)
+![transicion](https://i.imgur.com/FbhusJJ.png)
 
 Por ahora, el background de los niveles será este:
 ![bg](https://i.imgur.com/JnFCODm.png)
