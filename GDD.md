@@ -4,7 +4,7 @@ Proyecto de la asignatura Desarrollo de Videojuegos mediante Tecnologías Web de
 
 # 1. Introducción
 
-El juego Everlasting Winter es un juego de plataformas 2D hecho con pixel art diseñado para ser jugado en una página web con ordenador y teclado. El rating de este juego es PEGI 7, siendo apto para todos los públicos, pero con imágenes que podrían asustar a niños más pequeños.
+El juego Everlasting Winter es un juego de plataformas 2D hecho con pixel art, diseñado para ser jugado en una página web con ordenador y teclado. El rating de este juego es PEGI 7, siendo apto para todos los públicos, pero con imágenes que podrían asustar a niños más pequeños.
 
 Everlasting Winter está inspirado en un minijuego llamado Jack Frost, en el que el personaje es un hombre de hielo y el objetivo es congelar todo el nivel. Nosotros le hemos dado una vuelta a este concepto. El jugador es un espíritu del bosque cuyo propósito es protegerlo y asegurarse de que todos sus habitantes viven en harmonía. Todo esto se ve en peligro cuando un monstruo de hielo congela todo y amenaza con sumir al mundo entero en un invierno eterno, de ahí el nombre del juego, 'Everlasting Winter' . El jugador tiene que recorrer el bosque y derretir toda la nieve, pero no será tan fácil, ya que el monstruo ha enviado a sus lacayos para detener a nuestro personaje.
 
