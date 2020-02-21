@@ -55,11 +55,11 @@ Un yeti que ataca a melee y quita dos vidas al personaje. Anda lentamente de un 
 
 ![yeti](https://vignette.wikia.nocookie.net/maplestory/images/b/bd/Mob_Yeti.png/revision/latest/scale-to-width-down/340?cb=20100814143115)
 
-### 2.2.4. Ice boar
+### 2.2.4. Boar
 
 Un javalí que embestirá al personaje. Puede correr hacia el jugador. Si el jugador no está cerca, se queda quieto.
 
-![boar](https://www.spriters-resource.com/resources/sheet_icons/20/22087.png)
+![boar](https://www.spriters-resource.com/resources/sheet_icons/20/21685.png)
 
 ### 2.2.4. Jefe Final
 
