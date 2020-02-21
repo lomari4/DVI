@@ -64,18 +64,21 @@ Una especie de golem volador, responsable de prolongar el invierno eternamente. 
 ![boss](https://vignette.wikia.nocookie.net/maplestory/images/6/62/Mob_Opachu.png/revision/latest?cb=20080126055504)
 
 # 3. Niveles
-Por ahora serán cuatro niveles, el ultimo siendo el del boss final.
+Por ahora serán cuatro niveles, el ultimo siendo el del boss final. Cada nivel tendrá diferentes alturas y la cámara seguirá al jugador por todas ellas:
+
+![levelexample](https://i.imgur.com/AoEkvVk.png)
+
 ## Primer nivel
-Aparecerán los enemigos Swub y Ice Drake. Dos niveles de plataformas. 
+Aparecerán los enemigos Swub y Ice Drake. Dos alturas. 
 ## Segundo nivel
-Aparecerán Swub, Ice Drake y Yeti. Tres niveles de plataformas. 
+Aparecerán Swub, Ice Drake y Yeti. Tres alturas. 
 ## Tercer nivel
-Aparecerán todos los enemigos. Cuatro niveles de plataformas. 
+Aparecerán todos los enemigos. Cuatro alturas 
 ## Nivel final
 Aparecerá el boss final. Mecánicas todavía por ver.
 
 # 4. Arte
-Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel. 
+Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel.  Los assets de los enemigos los hemos sacado de 'The Spriters Resource' y los demás de Kenney.nl, aunque hemos tenido que hacer modificaciones para que todo esté mismo estilo de arte, dibujándoles contornos negros.
 ![transicion](https://i.imgur.com/FbhusJJ.png)
 
 Por ahora, el background de los niveles será este:
