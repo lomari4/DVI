@@ -20,6 +20,10 @@ Nuestro personaje podrá saltar, como es lo normal en los juegos de plataformas,
 
 Para pasar al siguiente nivel, el personaje tendrá que recorrerlo entero para poder descongelarlo, evitando a los enemigos. Si las 3 vidas del personaje se acaban, el jugador tendrá que volver al principio y el nivel se reiniciará.
 
+## 1.4. Controles básicos
+
+Se juega con teclado, usando las teclas WAD o las flechas para moverte de un lado a otro y saltar.
+
 # 2. Personajes
 
 ## 2.1. Personaje principal
