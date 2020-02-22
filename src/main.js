@@ -1,5 +1,3 @@
-let game;
-
 window.onload= function(){
     var config = {
         type: Phaser.AUTO,
@@ -18,5 +16,5 @@ window.onload= function(){
         physics: { default: 'arcade', arcade: { /*gravity: { y: 400 },*/ debug: true } }
         
     };
-    game = new Phaser.Game(config);
+    let game = new Phaser.Game(config);
 }
