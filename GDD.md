@@ -57,7 +57,7 @@ Un yeti que ataca a melee y quita dos vidas al personaje. Anda lentamente de un 
 
 ### 2.2.4. Boar
 
-Un jabalí que embestirá al personaje. Puede correr hacia el jugador. Si el jugador no está cerca, se queda quieto.
+Un jabalí que embestirá al personaje. Corre hacia el jugador.
 
 ![boar](https://www.spriters-resource.com/resources/sheet_icons/20/21685.png)
 
