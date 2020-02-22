@@ -3,8 +3,8 @@ let game;
 window.onload= function(){
     var config = {
         type: Phaser.AUTO,
-        width: 100,
-        height: 100,
+        width: 1024,
+        height: 1024,
         pixelArt: true,
         parent: 'mains',
         input: {
@@ -14,8 +14,8 @@ window.onload= function(){
             /*mode: Phaser.Scale.FIT,*/
             autoCenter: Phaser.Scale.CENTER_BOTH
         },
-        scene: [ Game ]
-        /*physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: false } }*/
+        scene: [ Game ],
+        physics: { default: 'arcade', arcade: { /*gravity: { y: 400 },*/ debug: true } }
         
     };
     game = new Phaser.Game(config);
