@@ -12,12 +12,15 @@ const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 
 cargarImagen('assets/tiles/snow_middle.png').then(
-	imagen => { 
-		for (let i = 0; i < 40; i++) { 
-			context.drawImage(imagen, 0, 0, 32, 32 , i * 32, 608, 32, 32);
-		}
+imagen => { 
+	for (let i = 0; i < 40; i++) { 
+		context.drawImage(imagen, 0, 0, 32, 32 , i * 32, 608, 32, 32);
 	}
+}
 );
+
+
+
 
 /*cargarImagen('assets/tiles/sheetFont.png').then(
 	imagen => { 

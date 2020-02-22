@@ -42,12 +42,11 @@ li a:hover {
 }
 
 canvas {
-  width: 95%;
+  /*width: 95%;
   height: 95%;
-  border: 2px solid #000000; 
+  border: 2px solid #000000; */
   margin: 2rem;
- 
-  background-image: url("../assets/backgrounds/backgroundForest.png");
+  /*background-image: url("../assets/backgrounds/backgroundForest.png");*/
 }
 
 .div{

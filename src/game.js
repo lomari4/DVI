@@ -1,11 +1,12 @@
-export default class Game extends Phaser.Scene {
+class Game extends Phaser.Scene {
   constructor() {
-    super({ key: 'main' });
+    super('Game');
   }
   preload() {  
   }
 
   create() {
+  	console.log("gaifj");
   }
 
   update(time, delta) {    
