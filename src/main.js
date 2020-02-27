@@ -1,8 +1,11 @@
-window.onload= function(){
+//import Menu from './src/scenes/menu.js'
+//import Game from './src/scenes/game.js'
+
+window.onload = function() {
     var config = {
         type: Phaser.AUTO,
-        width: 1024,
-        height: 1024,
+        width: 1600, //2046
+        height: 960, //1028 
         pixelArt: true,
         parent: 'mains',
         input: {
@@ -12,9 +15,10 @@ window.onload= function(){
             /*mode: Phaser.Scale.FIT,*/
             autoCenter: Phaser.Scale.CENTER_BOTH
         },
-        scene: [ Game ],
-        physics: { default: 'arcade', arcade: { /*gravity: { y: 400 },*/ debug: true } }
-        
+        //scene: [Menu, Game],
+        scene: [Game],
+        physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: true } }
+
     };
     let game = new Phaser.Game(config);
 }

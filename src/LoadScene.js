@@ -1,6 +1,6 @@
-class Game extends Phaser.Scene {
+class LoadScene extends Phaser.Scene {
     constructor() {
-        super('Game');
+        super('LoadScene');
     }
     preload() {
         this.load.image("title_bg", "./assets/backgrounds/backgroundForest_extended.png");
@@ -9,15 +9,9 @@ class Game extends Phaser.Scene {
     }
 
     create() {
-
-        console.log("gaifj");
-        /*this.aGrid=new AlignGrid({scene:this, rows:11, cols:11});
-        this.aGrid.showNumbers();*/
         this.add.image(0, 0, "title_bg").setOrigin(0);
-        this.clickButton = this.add.image(100, 100, "playButton")
-            .setInteractive().setOrigin(0);
+        this.add.image(100, 100, "playButton").setOrigin(0);
     }
 
     update(time, delta) {}
-
 }

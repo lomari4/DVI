@@ -1,58 +1,59 @@
 body {
-  background-color: lightblue;
+    background-color: lightblue;
 }
 
-h1{
-font-size: 500%;
-color: #003EC0;
-text-align: center;
+h1 {
+    font-size: 500%;
+    color: #003EC0;
+    text-align: center;
 }
 
 h2 {
-  font-family: impact;
+    font-family: impact;
 }
 
-p, a {
-  font-family: comic sans ms;
+p,
+a {
+    font-family: Helvetica;
 }
 
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #77A3FF;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #77A3FF;
 }
 
 li {
-  float: right;
-  font-family: comic sans ms;
+    float: right;
+    font-family: Helvetica;
 }
 
 li a {
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 li a:hover {
-  background-color: white;
+    background-color: white;
 }
 
 canvas {
-  /*width: 95%;
+    /*width: 95%;
   height: 95%;
   border: 2px solid #000000; */
-  margin: 2rem;
-  /*background-image: url("../assets/backgrounds/backgroundForest.png");*/
+    margin: 2rem;
+    /*background-image: url("../assets/backgrounds/backgroundForest.png");*/
 }
 
-.div{
-  background-color: #6699ff;
-  margin: 1rem;
-  padding: 1rem;
-  border: 2px solid #ccc;
-  text-align: center;
+.div {
+    background-color: #6699ff;
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    text-align: center;
 }
