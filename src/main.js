@@ -1,11 +1,11 @@
 //import Menu from './src/scenes/menu.js'
 //import Game from './src/scenes/game.js'
-
+let game
 window.onload = function() {
     var config = {
         type: Phaser.AUTO,
-        width: 1600, //2046
-        height: 960, //1028 
+        width: 1200, //2046
+        height: 700, //1028 
         pixelArt: true,
         parent: 'mains',
         input: {
@@ -16,9 +16,9 @@ window.onload = function() {
             autoCenter: Phaser.Scale.CENTER_BOTH
         },
         //scene: [Menu, Game],
-        scene: [Game],
+        scene: [Game, Play],
         physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: true } }
 
     };
-    let game = new Phaser.Game(config);
+    game = new Phaser.Game(config);
 }

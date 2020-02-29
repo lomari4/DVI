@@ -1,4 +1,23 @@
-function cargarImagen(url) {
+class Play extends Phaser.Scene {
+    constructor() {
+        super('Play');
+    }
+    preload() {
+        this.load.image("boar", "./assets/enemies/boar.png");
+
+
+    }
+
+    create() {
+		this.add.image(0, 0, "boar").setOrigin(0).setDepth(0);
+    }
+
+    update(time, delta) {}
+
+}
+
+
+/*function cargarImagen(url) {
 	return new Promise(
 		resolve => {
 		const imagen = new Image();
@@ -22,7 +41,7 @@ imagen => {
 
 
 
-/*cargarImagen('assets/tiles/sheetFont.png').then(
+cargarImagen('assets/tiles/sheetFont.png').then(
 	imagen => { 
 		for (let i = 0; i < 40; i++) {
 			for(let j = 0; j < 19; j++) 
