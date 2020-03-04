@@ -1,4 +1,3 @@
-Marina
-para el boss: bloodlust, this is not a drill
-para los niveles: wintry town, snow, touch the sky, world map(ehh), serenity, treacherous slopes
-main menu: night 2
+para el boss: bloodlust, this is not a drill, fire drill
+para los niveles: snow, wintry town, night 2, serenity, treacherous slopes
+main menu: rose petals
