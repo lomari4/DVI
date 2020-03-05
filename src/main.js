@@ -4,8 +4,8 @@ let game
 window.onload = function() {
     var config = {
         type: Phaser.AUTO,
-        width: 1200, //2046
-        height: 700, //1028 
+        width: 1760, 
+        height: 1024, 
         pixelArt: true,
         parent: 'mains',
         input: {

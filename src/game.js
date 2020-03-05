@@ -3,7 +3,7 @@ class Game extends Phaser.Scene {
         super('Game');
     }
     preload() {
-        this.load.image("title_bg", "./assets/winterBackground.jpg");
+        this.load.image("title_bg", "./assets/backgrounds/title_screen.png");
         this.load.image("logo", "./assets/logo.png");
         this.load.image("playButton", "./assets/play_button.png");
 
