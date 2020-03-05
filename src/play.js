@@ -3,13 +3,13 @@ class Play extends Phaser.Scene {
         super('Play');
     }
     preload() {
-        this.load.image("boar", "./assets/enemies/boar.png");
+        this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
 
 
     }
 
     create() {
-		this.add.image(0, 0, "boar").setOrigin(0).setDepth(0);
+		this.add.image(0, 0, "bg").setOrigin(0).setDepth(0);
     }
 
     update(time, delta) {}
