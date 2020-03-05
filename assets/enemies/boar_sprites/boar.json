@@ -1,0 +1,320 @@
+{
+	"textures": [
+		{
+			"image": "boar.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 449,
+				"h": 403
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "boar_12.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 147,
+						"h": 108
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 147,
+						"h": 108
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 147,
+						"h": 108
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_01.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 149,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 149,
+						"h": 96
+					},
+					"frame": {
+						"x": 150,
+						"y": 1,
+						"w": 149,
+						"h": 96
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_02.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 147,
+						"h": 98
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 147,
+						"h": 98
+					},
+					"frame": {
+						"x": 301,
+						"y": 1,
+						"w": 147,
+						"h": 98
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_07.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 149,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 149,
+						"h": 96
+					},
+					"frame": {
+						"x": 150,
+						"y": 99,
+						"w": 149,
+						"h": 96
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_08.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 147,
+						"h": 98
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 147,
+						"h": 98
+					},
+					"frame": {
+						"x": 1,
+						"y": 111,
+						"w": 147,
+						"h": 98
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_04.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 147,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 147,
+						"h": 96
+					},
+					"frame": {
+						"x": 301,
+						"y": 101,
+						"w": 147,
+						"h": 96
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_06.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 149,
+						"h": 95
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 149,
+						"h": 95
+					},
+					"frame": {
+						"x": 150,
+						"y": 197,
+						"w": 149,
+						"h": 95
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 147,
+						"h": 95
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 147,
+						"h": 95
+					},
+					"frame": {
+						"x": 1,
+						"y": 211,
+						"w": 147,
+						"h": 95
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_05.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 147,
+						"h": 94
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 147,
+						"h": 94
+					},
+					"frame": {
+						"x": 301,
+						"y": 199,
+						"w": 147,
+						"h": 94
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_11.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 147,
+						"h": 94
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 147,
+						"h": 94
+					},
+					"frame": {
+						"x": 1,
+						"y": 308,
+						"w": 147,
+						"h": 94
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_03.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 144,
+						"h": 97
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 144,
+						"h": 97
+					},
+					"frame": {
+						"x": 150,
+						"y": 294,
+						"w": 144,
+						"h": 97
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "boar_09.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 144,
+						"h": 97
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 144,
+						"h": 97
+					},
+					"frame": {
+						"x": 296,
+						"y": 295,
+						"w": 144,
+						"h": 97
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:753b38af1155c5619da1c83728d4c0b9:cc673de1a568f846c4cbe2ef0e926fe7:f8dd998f930e3f3f2e0af4923bbe11e5$"
+	}
+}

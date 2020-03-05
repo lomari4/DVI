@@ -1,0 +1,195 @@
+{
+	"textures": [
+		{
+			"image": "swub.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 79,
+				"h": 491
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "swub_07.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 77,
+						"h": 82
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 77,
+						"h": 82
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 77,
+						"h": 82
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "swub_03.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 77,
+						"h": 66
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 77,
+						"h": 66
+					},
+					"frame": {
+						"x": 1,
+						"y": 85,
+						"w": 77,
+						"h": 66
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "swub_05.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 77,
+						"h": 66
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 77,
+						"h": 66
+					},
+					"frame": {
+						"x": 1,
+						"y": 153,
+						"w": 77,
+						"h": 66
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "swub_04.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 76,
+						"h": 66
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 76,
+						"h": 66
+					},
+					"frame": {
+						"x": 1,
+						"y": 221,
+						"w": 76,
+						"h": 66
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "swub_02.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 73,
+						"h": 66
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 73,
+						"h": 66
+					},
+					"frame": {
+						"x": 1,
+						"y": 289,
+						"w": 73,
+						"h": 66
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "swub_06.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 73,
+						"h": 66
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 73,
+						"h": 66
+					},
+					"frame": {
+						"x": 1,
+						"y": 357,
+						"w": 73,
+						"h": 66
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				},
+				{
+					"filename": "swub_01.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 69,
+						"h": 65
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 69,
+						"h": 65
+					},
+					"frame": {
+						"x": 1,
+						"y": 425,
+						"w": 69,
+						"h": 65
+					},
+					"anchor": {
+						"x": 0,
+						"y": 1
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:7a684247e7cc7203e29dd98f93aab861:0955a0e334c52450c25ad9dd66b5afa0:f8671bb9b8aee5e2bce8f209ff742a34$"
+	}
+}
