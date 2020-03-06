@@ -11,6 +11,9 @@ window.onload = function() {
         input: {
             gamepad: true
         },
+        audio: {
+            disableWebAudio: true
+        },
         scale: {
             /*mode: Phaser.Scale.FIT,*/
             autoCenter: Phaser.Scale.CENTER_BOTH
