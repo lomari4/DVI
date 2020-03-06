@@ -12,7 +12,7 @@ window.onload = function() {
             gamepad: true
         },
         audio: {
-            disableWebAudio: true
+            disableWebAudio: false
         },
         scale: {
             /*mode: Phaser.Scale.FIT,*/

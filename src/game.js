@@ -17,11 +17,8 @@ class Game extends Phaser.Scene {
         this.add.image(this.game.renderer.width / 2, this.game.renderer.width * 0.2, "logo").setDepth(1);
         let clickButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 + 250, "playButton").setDepth(1).setInteractive();
         this.sound.pauseOnBlur = false;
-        this.sound.play("menuSound", {loop:true});
-
-        clickButton.on("pointerover", () => {
-            console.log("ASDAS");
-        })
+        let sounds = this.sound.add("menuSound");
+        sounds.play();
 
         clickButton.on("pointerup", () => {
             this.scene.start("Play");
