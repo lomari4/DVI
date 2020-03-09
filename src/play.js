@@ -3,13 +3,16 @@ class Play extends Phaser.Scene {
         super('Play');
     }
     preload() {
-        this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
-
-
+		this.add.audio("gameSound", "./assets/music/soundtrack/snow.mp3")
+		this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
     }
 
     create() {
 		this.add.image(0, 0, "bg").setOrigin(0).setDepth(0);
+		
+		let soundsGame = this.sound.add("gameSound");
+		soundsGame.setLoop(true);
+        soundsGame.play();
     }
 
     update(time, delta) {}
