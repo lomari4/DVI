@@ -22,6 +22,7 @@ class Game extends Phaser.Scene {
 
         clickButton.on("pointerup", () => {
             this.scene.start("Play");
+            sounds.stop();
         })
 
         clickButton.on("pointerout", () => {
