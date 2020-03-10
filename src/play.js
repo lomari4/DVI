@@ -27,7 +27,6 @@ class Play extends Phaser.Scene {
 		this.add.image(0, 0, "bg").setOrigin(0).setDepth(0);
 		//añadimos el mapa
 		let map = this.make.tilemap({key:'map'});
-		console.log(map);
 		//añadimos los tiles 64x64 al map
 		let tileset = map.addTilesetImage('tilemap', 'tiles', 64, 64);
 		//añadimos las capas del mapa. Asegurarse de que los args coinciden con los nombres de las layers en tiled
