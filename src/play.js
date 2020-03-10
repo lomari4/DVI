@@ -3,16 +3,38 @@ class Play extends Phaser.Scene {
         super('Play');
     }
     preload() {
-		this.load.audio("gameSound", "./assets/music/soundtrack/Snow.mp3")
+		//cargamos el audio
+		this.load.audio("gameSound", "./assets/music/soundtrack/Snow.mp3");
 		this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
+		//cargamos el tileset
+		this.load.image('tiles', './assets/tiles/tilemap.png');
+		//cargamos las plantas
+		this.load.image('bush', './assets/environment/bush.png');
+		this.load.image('bushFrozen', './assets/environment/bushFrozen.png');
+		this.load.image('treePine', './assets/environment/treePine.png');
+		this.load.image('treePineFrozen', './assets/environment/treePineFrozen.png');
+		//cargamos el mapa de tiled en json
+		this.load.tilemapTiledJSON('map', './assets/levels/nivel1.json');
+
     }
 
     create() {
-		this.add.image(0, 0, "bg").setOrigin(0).setDepth(0);
-		
+		//añadimos el sonido
 		let soundsGame = this.sound.add("gameSound");
 		soundsGame.setLoop(true);
         soundsGame.play();
+		//añadimos el background
+		this.add.image(0, 0, "bg").setOrigin(0).setDepth(0);
+		//añadimos el mapa
+		let map = this.make.tilemap({key:'map'});
+		console.log(map);
+		//añadimos los tiles 64x64 al map
+		let tileset = map.addTilesetImage('tilemap', 'tiles', 64, 64);
+		//añadimos las capas del mapa. Asegurarse de que los args coinciden con los nombres de las layers en tiled
+		let ground = map.createStaticLayer('ground', tileset); //sera layer dinamica en un futuro
+		let plants = map.createStaticLayer('plants', plantmap); //sera layer dinamica en un futuro
+		//ground.setCollisionFromCollisionGroup() //colision por grupo de tiled collision editor
+		
     }
 
     update(time, delta) {}
