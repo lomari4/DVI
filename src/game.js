@@ -11,7 +11,6 @@ class Game extends Phaser.Scene {
         this.load.image("logo", "./assets/logo_small.png");
         //Cargamos el boton
         this.load.image("playButton", "./assets/play_button.png");
-
     }
 
     create() {
@@ -26,12 +25,9 @@ class Game extends Phaser.Scene {
 
         //Si se pulsa el botón de play
         clickButton.on("pointerup", () => {
+            this.scale.startFullscreen();
             this.scene.start("Play");
             sounds.stop();
-        })
-
-        clickButton.on("pointerout", () => {
-            console.log("dasdaasdas");
         })
     }
 

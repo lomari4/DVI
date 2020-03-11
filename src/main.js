@@ -15,7 +15,7 @@ window.onload = function() {
             disableWebAudio: false
         },
         scale: {
-            /*mode: Phaser.Scale.FIT,*/
+            mode: Phaser.Scale.FIT,
             autoCenter: Phaser.Scale.CENTER_BOTH
         },
         //scene: [Menu, Game],

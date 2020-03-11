@@ -15,7 +15,7 @@ class Play extends Phaser.Scene {
 		this.load.image('treePineFrozen', './assets/environment/treePineFrozen.png');
 		//cargamos el mapa de tiled en json
 		this.load.tilemapTiledJSON('map', './assets/levels/nivel1.json');
-
+		this.load.image('fullscreen', './assets/fullscreen.png');
     }
 
     create() {
@@ -25,6 +25,24 @@ class Play extends Phaser.Scene {
         soundsGame.play();
 		//añadimos el background
 		this.add.image(0, 0, "bg").setOrigin(0).setDepth(0);
+		
+		var button = this.add.image(1472-16, 16, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
+
+        button.on('pointerup', function () {
+
+            if (this.scale.isFullscreen)
+            {
+                this.scale.stopFullscreen();
+            }
+            else
+            {
+                this.scale.startFullscreen();
+            }
+
+		}, this);
+
+		//Lo he comentado porque no iba
+		/*
 		//añadimos el mapa
 		let map = this.make.tilemap({key:'map'});
 		//añadimos los tiles 64x64 al map
@@ -34,6 +52,7 @@ class Play extends Phaser.Scene {
 		let plants = map.createStaticLayer('plants', plantmap); //sera layer dinamica en un futuro
 		//ground.setCollisionFromCollisionGroup() //colision por grupo de tiled collision editor
 		
+       */
     }
 
     update(time, delta) {}

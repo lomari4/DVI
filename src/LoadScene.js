@@ -5,7 +5,6 @@ class LoadScene extends Phaser.Scene {
     preload() {
         this.load.image("title_bg", "./assets/backgrounds/backgroundForest_extended.png");
         this.load.image("playButton", "./assets/play_button.png");
-
     }
 
     create() {
