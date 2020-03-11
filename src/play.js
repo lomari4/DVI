@@ -26,7 +26,7 @@ class Play extends Phaser.Scene {
 		//añadimos el background
 		this.add.image(0, 0, "bg").setOrigin(0).setDepth(0);
 		
-		var button = this.add.image(1472-16, 16, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
+		let button = this.add.image(1472-16, 16, 'fullscreen', 0).setOrigin(0).setInteractive();
 
         button.on('pointerup', function () {
 
