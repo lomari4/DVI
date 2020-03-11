@@ -15,7 +15,7 @@ class Play extends Phaser.Scene {
 		this.load.image('treePineFrozen', './assets/environment/treePineFrozen.png');
 		//cargamos el mapa de tiled en json
 		this.load.tilemapTiledJSON('map', './assets/levels/nivel1.json');
-		this.load.image('fullscreen', './assets/fullscreen.png');
+		this.load.image('fullscreen', './assets/fullScreen.png');
     }
 
     create() {
