@@ -7,7 +7,7 @@ class Play extends Phaser.Scene {
 		this.load.audio("gameSound", "./assets/music/soundtrack/Snow.mp3");
 		this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
 
-		//cargamos el tileset
+		//cargamos el tilemap
 		this.load.image('tiles', './assets/tiles/tilemap.png');
 		//cargamos las plantas
 		this.load.image('bush', './assets/environment/bush.png');
