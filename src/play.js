@@ -6,6 +6,9 @@ class Play extends Phaser.Scene {
 		//cargamos el audio
 		this.load.audio("gameSound", "./assets/music/soundtrack/Snow.mp3");
 		this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
+		
+		//cargamos el icono de fullscreen
+		this.load.image('fullscreen', './assets/fullScreen.png');
 
 		//cargamos el tilemap
 		this.load.image('tiles', './assets/tiles/tilemap.png');
@@ -17,7 +20,7 @@ class Play extends Phaser.Scene {
 
 		//cargamos el mapa de tiled en json
 		this.load.tilemapTiledJSON('map', './assets/levels/nivel1.json');
-		this.load.image('fullscreen', './assets/fullScreen.png');
+		
     }
 
     create() {
