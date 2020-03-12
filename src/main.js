@@ -1,5 +1,6 @@
 //import Menu from './src/scenes/menu.js'
 //import Game from './src/scenes/game.js'
+let game
 window.onload = function() {
     var config = {
         type: Phaser.AUTO,
@@ -22,5 +23,5 @@ window.onload = function() {
         physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: true } }
 
     };
-    let game = new Phaser.Game(config);
+    game = new Phaser.Game(config);
 }
