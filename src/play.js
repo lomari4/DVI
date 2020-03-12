@@ -38,6 +38,7 @@ class Play extends Phaser.Scene {
             	this.scale.startFullscreen();
 		}, this);
 		
+		/* NO FUNCIONA
 		//añadimos el mapa
 		let map = this.make.tilemap({ 
 			key: 'map', 
@@ -52,7 +53,7 @@ class Play extends Phaser.Scene {
 		let groundLayer = map.createStaticLayer('ground', tileset); //sera layer dinamica en un futuro
 		let plantLayer = map.createStaticLayer('plants', plantmap); //sera layer dinamica en un futuro
 		//ground.setCollisionFromCollisionGroup() //colision por grupo de tiled collision editor
-		
+		*/
        
     }
 
