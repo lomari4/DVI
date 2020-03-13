@@ -1,4 +1,4 @@
-var cursors; //PREGUNTAR
+
 class Play extends Phaser.Scene {
 	constructor() {
 		super('Play');
@@ -59,7 +59,7 @@ class Play extends Phaser.Scene {
 
 		//ESTO SE HARIA EN SU PROPIA CLASE APARTE
 		//JUGADOR//
-		this.wolf = this.physics.add.sprite(0, 0, 'wolf');
+		this.wolf = this.physics.add.sprite(0, 960, 'wolf');
 		this.wolf.setBounce(0.1);
 		this.wolf.setCollideWorldBounds(true);
 		this.physics.add.collider(groundLayer, this.wolf);
