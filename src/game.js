@@ -8,7 +8,7 @@ class Game extends Phaser.Scene {
         //Cargamos la imagen BackGround
         this.load.image("title_bg", "./assets/backgrounds/title_screen.png");
         //Cargamos el nombre del Juego
-        this.load.image("logo", "./assets/logo.png");
+        this.load.image("logo", "./assets/logo2.0.png");
         //Cargamos el boton
         this.load.image("playButton", "./assets/play_button.png");
     }
