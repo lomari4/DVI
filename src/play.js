@@ -64,7 +64,6 @@ export default class Play extends Phaser.Scene {
 		
 		//JUGADOR//
 		this.wolf = this.physics.add.sprite(0, 919, 'wolf', 'wolf_01.png').setFlipX(true);
-		this.wolf.setSize(0,97); //ajustar el collider
 		this.wolf.setCollideWorldBounds(true);
 		this.physics.add.collider(groundLayer, this.wolf);
 		//this.wolf.anchor.setTo(0.5,0.5);
@@ -132,6 +131,8 @@ export default class Play extends Phaser.Scene {
 	
 
 	update(time, delta) {
+
+		this.wolf.setSize(0,97); //ajustar el collider
 
 		//izquierda
 		if (this.cursors.A.isDown) {
