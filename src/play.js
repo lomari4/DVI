@@ -1,4 +1,4 @@
-import Wolf from './wolf.js';
+//import Wolf from './wolf.js';
 
 
 export default class Play extends Phaser.Scene {
@@ -22,6 +22,7 @@ export default class Play extends Phaser.Scene {
 		this.load.tilemapTiledJSON('map', './assets/levels/nivel1.json');
 
 		//cargamos el spritesheet del jugador
+		//this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
 		this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
 	}
 
@@ -60,10 +61,9 @@ export default class Play extends Phaser.Scene {
 		this.physics.world.bounds.width = bg.width;
 		this.physics.world.bounds.height = bg.height;
 
-
+		
 		//JUGADOR//
-		this.wolf = this.physics.add.sprite(0, 960, 'wolf', 'wolf_01.png');
-		this.wolf.setBounce(0.1);
+		this.wolf = this.physics.add.sprite(0, 919, 'wolf', 'wolf_01.png').setFlipX(true);
 		this.wolf.setCollideWorldBounds(true);
 		this.physics.add.collider(groundLayer, this.wolf);
 		//para que la camara siga al jugador
@@ -77,36 +77,39 @@ export default class Play extends Phaser.Scene {
 			frames: this.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
 			  suffix: '.png',
-			  start: 20,
-			  end: 26,
+			  start: 19,
+			  end: 25,
+			  zeroPad: 2
 			}),
 			frameRate: 10,
 			repeat: -1,
-			//zeroPad: 2
+			
 		});
 		this.anims.create({
 			key: 'attack',
 			frames: this.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
 			  suffix: '.png',
-			  start: 9,
-			  end: 15,
+			  start: 8,
+			  end: 14,
+			  zeroPad: 2
 			}),
-			frameRate: 10,
+			frameRate: 8,
 			repeat: -1,
-			//zeroPad: 2
+			
 		});
 		this.anims.create({
 			key: 'jump',
 			frames: this.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
 			  suffix: '.png',
-			  start: 18,
-			  end: 19,
+			  start: 17,
+			  end: 18,
+			  zeroPad: 2
 			}),
-			frameRate: 10,
+			frameRate: 5,
 			repeat: -1,
-			//zeroPad: 2
+			
 		});
 		this.anims.create({
 			key: 'idle',
@@ -114,11 +117,12 @@ export default class Play extends Phaser.Scene {
 			  prefix: 'wolf_',
 			  suffix: '.png',
 			  start: 1,
-			  end: 8,
+			  end: 7,
+			  zeroPad: 2
 			}),
-			frameRate: 10,
+			frameRate: 5,
 			repeat: -1,
-			//zeroPad: 2
+			
 		});
 		//this.wolf.play('run');
 		
@@ -127,79 +131,46 @@ export default class Play extends Phaser.Scene {
 
 	update(time, delta) {
 
-		
-		 //izquierda
-		 if (this.cursors.A.isDown) {
-            this.wolf.setVelocityX(-200); //moverse a la izquierda
-            this.wolf.play('run', true); //iniciar walk animation
-            this.wolf.flipX = false;
+		//izquierda
+		if (this.cursors.A.isDown) {
+			this.wolf.setVelocityX(-300);
+			if(this.wolf.body.onFloor())
+           		this.wolf.play('run', true); 
         }
         //derecha
-        if (this.cursors.D.isDown) {
-            this.wolf.setVelocityX(200); //moverse a la derecha 
-            this.wolf.play('run', true); //iniciar walk animation
-            this.wolf.flipX = true; // flip sprite xq el default esta hacia la izquierda
-        }
-        //saltar
-        if (this.cursors.W.isDown && this.wolf.body.onFloor()) {
-            this.wolf.setVelocityY(-350);
-            this.wolf.play('jump', true);
-        }
-        //atacar izquierda
-        if (this.cursors.SPACE.isDown && !this.wolf.flipX) {
-            this.wolf.setVelocityX(0);
-            this.wolf.play('attack', true);
-            this.wolf.flipX = false;
-        }
-        //atacar derecha
-        if (this.cursors.SPACE.isDown && this.wolf.flipX) {
-            this.wolf.setVelocityX(0);
-            this.wolf.play('attack', true);
-            this.wolf.flipX = true;
+        else if (this.cursors.D.isDown) {
+            this.wolf.setVelocityX(300); 
+			if(this.wolf.body.onFloor())
+				this.wolf.play('run', true); 
 		}
-		/*
-        //idle
-        else {
-            this.wolf.setVelocityX(0);
-            this.wolf.play('idle', true);
-        }
+		//atacar
+        else if (this.cursors.SPACE.isDown) {
+			this.wolf.setVelocityX(0);
+			if(this.wolf.body.onFloor())
+           		this.wolf.play('attack', true);
+		}
+		else {
+			this.wolf.setVelocityX(0);
+			//idle
+			if(this.wolf.body.onFloor())
+				this.wolf.play('idle', true);
+		}
+		//saltar
+		if(this.cursors.W.isDown && this.wolf.body.onFloor()) {
+			this.wolf.setVelocityY(-415);
+			this.wolf.play('jump', true);
+		}
+		
+		//fliperar el sprite (por default esta a la izquierda)
+		if (this.wolf.body.velocity.x > 0) 
+			this.wolf.setFlipX(true); //derecha
+		else if (this.wolf.body.velocity.x < 0) 
+			this.wolf.setFlipX(false); //izquierda
+		  
 		//falta animacion de hurt y morir
-		*/
+		
 		
 	}
 
 }
 
-
-/*function cargarImagen(url) {
-	return new Promise(
-		resolve => {
-		const imagen = new Image();
-		imagen.addEventListener('load', () => resolve(imagen));
-		imagen.src = url;
-	}
-	);
-}
-
-const canvas = document.getElementById('canvas');
-const context = canvas.getContext('2d');
-
-cargarImagen('assets/tiles/snow_middle.png').then(
-imagen => {
-	for (let i = 0; i < 40; i++) {
-		context.drawImage(imagen, 0, 0, 32, 32 , i * 32, 608, 32, 32);
-	}
-}
-);
-
-
-
-
-cargarImagen('assets/tiles/sheetFont.png').then(
-	imagen => {
-		for (let i = 0; i < 40; i++) {
-			for(let j = 0; j < 19; j++)
-			context.drawImage(imagen, 0, 0, 32, 32 , i * 32, j * 32, 32, 32);
-		}
-	}
-);*/

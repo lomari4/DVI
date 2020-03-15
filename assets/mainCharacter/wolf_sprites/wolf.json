@@ -1,670 +1,135 @@
 {
-	"textures": [
-		{
-			"image": "wolf.png",
-			"format": "RGBA8888",
-			"size": {
-				"w": 1251,
-				"h": 461
-			},
-			"scale": 1,
-			"frames": [
-				{
-					"filename": "wolf_24.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 207,
-						"h": 123
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 207,
-						"h": 123
-					},
-					"frame": {
-						"x": 1,
-						"y": 1,
-						"w": 207,
-						"h": 123
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_23.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 207,
-						"h": 107
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 207,
-						"h": 107
-					},
-					"frame": {
-						"x": 1,
-						"y": 126,
-						"w": 207,
-						"h": 107
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_25.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 199,
-						"h": 109
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 199,
-						"h": 109
-					},
-					"frame": {
-						"x": 1,
-						"y": 235,
-						"w": 199,
-						"h": 109
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_04.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 188,
-						"h": 112
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 188,
-						"h": 112
-					},
-					"frame": {
-						"x": 1,
-						"y": 346,
-						"w": 188,
-						"h": 112
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_06.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 188,
-						"h": 112
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 188,
-						"h": 112
-					},
-					"frame": {
-						"x": 191,
-						"y": 346,
-						"w": 188,
-						"h": 112
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_12.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 194,
-						"h": 106
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 194,
-						"h": 106
-					},
-					"frame": {
-						"x": 202,
-						"y": 235,
-						"w": 194,
-						"h": 106
-					},
-					"anchor": {
-						"x": 1,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_13.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 194,
-						"h": 106
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 194,
-						"h": 106
-					},
-					"frame": {
-						"x": 381,
-						"y": 343,
-						"w": 194,
-						"h": 106
-					},
-					"anchor": {
-						"x": 1,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_26.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 179,
-						"h": 114
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 179,
-						"h": 114
-					},
-					"frame": {
-						"x": 210,
-						"y": 1,
-						"w": 179,
-						"h": 114
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_05.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 188,
-						"h": 108
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 188,
-						"h": 108
-					},
-					"frame": {
-						"x": 210,
-						"y": 117,
-						"w": 188,
-						"h": 108
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_07.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 188,
-						"h": 108
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 188,
-						"h": 108
-					},
-					"frame": {
-						"x": 398,
-						"y": 227,
-						"w": 188,
-						"h": 108
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_22.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 197,
-						"h": 102
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 197,
-						"h": 102
-					},
-					"frame": {
-						"x": 391,
-						"y": 1,
-						"w": 197,
-						"h": 102
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_10.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 169,
-						"h": 120
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 169,
-						"h": 120
-					},
-					"frame": {
-						"x": 400,
-						"y": 105,
-						"w": 169,
-						"h": 120
-					},
-					"anchor": {
-						"x": 1,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_14.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 169,
-						"h": 120
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 169,
-						"h": 120
-					},
-					"frame": {
-						"x": 571,
-						"y": 105,
-						"w": 169,
-						"h": 120
-					},
-					"anchor": {
-						"x": 1,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_19.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 205,
-						"h": 90
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 205,
-						"h": 90
-					},
-					"frame": {
-						"x": 590,
-						"y": 1,
-						"w": 205,
-						"h": 90
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_09.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 160,
-						"h": 123
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 160,
-						"h": 123
-					},
-					"frame": {
-						"x": 577,
-						"y": 337,
-						"w": 160,
-						"h": 123
-					},
-					"anchor": {
-						"x": 1,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_11.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 182,
-						"h": 106
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 182,
-						"h": 106
-					},
-					"frame": {
-						"x": 588,
-						"y": 227,
-						"w": 182,
-						"h": 106
-					},
-					"anchor": {
-						"x": 1,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_15.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 160,
-						"h": 123
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 160,
-						"h": 123
-					},
-					"frame": {
-						"x": 742,
-						"y": 93,
-						"w": 160,
-						"h": 123
-					},
-					"anchor": {
-						"x": 1,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_18.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 201,
-						"h": 88
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 201,
-						"h": 88
-					},
-					"frame": {
-						"x": 797,
-						"y": 1,
-						"w": 201,
-						"h": 88
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_01.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 171,
-						"h": 112
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 171,
-						"h": 112
-					},
-					"frame": {
-						"x": 739,
-						"y": 335,
-						"w": 171,
-						"h": 112
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_03.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 171,
-						"h": 112
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 171,
-						"h": 112
-					},
-					"frame": {
-						"x": 772,
-						"y": 218,
-						"w": 171,
-						"h": 112
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_08.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 171,
-						"h": 112
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 171,
-						"h": 112
-					},
-					"frame": {
-						"x": 904,
-						"y": 91,
-						"w": 171,
-						"h": 112
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_17.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 203,
-						"h": 80
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 203,
-						"h": 80
-					},
-					"frame": {
-						"x": 1000,
-						"y": 1,
-						"w": 203,
-						"h": 80
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_21.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 179,
-						"h": 106
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 179,
-						"h": 106
-					},
-					"frame": {
-						"x": 912,
-						"y": 332,
-						"w": 179,
-						"h": 106
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_02.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 171,
-						"h": 108
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 171,
-						"h": 108
-					},
-					"frame": {
-						"x": 945,
-						"y": 205,
-						"w": 171,
-						"h": 108
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_20.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 166,
-						"h": 110
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 166,
-						"h": 110
-					},
-					"frame": {
-						"x": 1077,
-						"y": 83,
-						"w": 166,
-						"h": 110
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				},
-				{
-					"filename": "wolf_16.png",
-					"rotated": false,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 157,
-						"h": 116
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 157,
-						"h": 116
-					},
-					"frame": {
-						"x": 1093,
-						"y": 315,
-						"w": 157,
-						"h": 116
-					},
-					"anchor": {
-						"x": 0,
-						"y": 1
-					}
-				}
-			]
-		}
-	],
-	"meta": {
-		"app": "https://www.codeandweb.com/texturepacker",
-		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:ffe06a5a3090d87f9cd1747cd9b71940:6c662a468622fddba309ec8c66e0991a:6aa8f2d37925a18e990d23a498f81618$"
+"frames": {
+	"wolf_01.png": {
+		"frame": {"x":397, "y":0, "w":171, "h":112},
+		"spriteSourceSize": {"x":0,"y":0,"w":171,"h":112},
+		"sourceSize": {"w":171,"h":112}
+	},
+	"wolf_02.png": {
+		"frame": {"x":204, "y":323, "w":188, "h":112},
+		"spriteSourceSize": {"x":0,"y":0,"w":188,"h":112},
+		"sourceSize": {"w":188,"h":112}
+	},
+	"wolf_03.png": {
+		"frame": {"x":208, "y":0, "w":188, "h":112},
+		"spriteSourceSize": {"x":0,"y":0,"w":188,"h":112},
+		"sourceSize": {"w":188,"h":112}
+	},
+	"wolf_04.png": {
+		"frame": {"x":204, "y":323, "w":188, "h":112},
+		"spriteSourceSize": {"x":0,"y":0,"w":188,"h":112},
+		"sourceSize": {"w":188,"h":112}
+	},
+	"wolf_05.png": {
+		"frame": {"x":208, "y":0, "w":188, "h":112},
+		"spriteSourceSize": {"x":0,"y":0,"w":188,"h":112},
+		"sourceSize": {"w":188,"h":112}
+	},
+	"wolf_06.png": {
+		"frame": {"x":204, "y":323, "w":188, "h":112},
+		"spriteSourceSize": {"x":0,"y":0,"w":188,"h":112},
+		"sourceSize": {"w":188,"h":112}
+	},
+	"wolf_07.png": {
+		"frame": {"x":397, "y":0, "w":171, "h":112},
+		"spriteSourceSize": {"x":0,"y":0,"w":171,"h":112},
+		"sourceSize": {"w":171,"h":112}
+	},
+	"wolf_08.png": {
+		"frame": {"x":398, "y":465, "w":160, "h":123},
+		"spriteSourceSize": {"x":0,"y":0,"w":160,"h":123},
+		"sourceSize": {"w":160,"h":123}
+	},
+	"wolf_09.png": {
+		"frame": {"x":393, "y":233, "w":169, "h":120},
+		"spriteSourceSize": {"x":0,"y":0,"w":169,"h":120},
+		"sourceSize": {"w":169,"h":120}
+	},
+	"wolf_10.png": {
+		"frame": {"x":208, "y":113, "w":182, "h":106},
+		"spriteSourceSize": {"x":0,"y":0,"w":182,"h":106},
+		"sourceSize": {"w":182,"h":106}
+	},
+	"wolf_11.png": {
+		"frame": {"x":195, "y":608, "w":194, "h":106},
+		"spriteSourceSize": {"x":0,"y":0,"w":194,"h":106},
+		"sourceSize": {"w":194,"h":106}
+	},
+	"wolf_12.png": {
+		"frame": {"x":0, "y":608, "w":194, "h":106},
+		"spriteSourceSize": {"x":0,"y":0,"w":194,"h":106},
+		"sourceSize": {"w":194,"h":106}
+	},
+	"wolf_13.png": {
+		"frame": {"x":393, "y":233, "w":169, "h":120},
+		"spriteSourceSize": {"x":0,"y":0,"w":169,"h":120},
+		"sourceSize": {"w":169,"h":120}
+	},
+	"wolf_14.png": {
+		"frame": {"x":398, "y":465, "w":160, "h":123},
+		"spriteSourceSize": {"x":0,"y":0,"w":160,"h":123},
+		"sourceSize": {"w":160,"h":123}
+	},
+	"wolf_15.png": {
+		"frame": {"x":559, "y":465, "w":157, "h":116},
+		"spriteSourceSize": {"x":0,"y":0,"w":157,"h":116},
+		"sourceSize": {"w":157,"h":116}
+	},
+	"wolf_16.png": {
+		"frame": {"x":0, "y":323, "w":203, "h":80},
+		"spriteSourceSize": {"x":0,"y":0,"w":203,"h":80},
+		"sourceSize": {"w":203,"h":80}
+	},
+	"wolf_17.png": {
+		"frame": {"x":0, "y":404, "w":201, "h":88},
+		"spriteSourceSize": {"x":0,"y":0,"w":201,"h":88},
+		"sourceSize": {"w":201,"h":88}
+	},
+	"wolf_18.png": {
+		"frame": {"x":0, "y":232, "w":205, "h":90},
+		"spriteSourceSize": {"x":0,"y":0,"w":205,"h":90},
+		"sourceSize": {"w":205,"h":90}
+	},
+	"wolf_19.png": {
+		"frame": {"x":393, "y":354, "w":166, "h":110},
+		"spriteSourceSize": {"x":0,"y":0,"w":166,"h":110},
+		"sourceSize": {"w":166,"h":110}
+	},
+	"wolf_20.png": {
+		"frame": {"x":390, "y":606, "w":179, "h":106},
+		"spriteSourceSize": {"x":0,"y":0,"w":179,"h":106},
+		"sourceSize": {"w":179,"h":106}
+	},
+	"wolf_21.png": {
+		"frame": {"x":200, "y":493, "w":197, "h":112},
+		"spriteSourceSize": {"x":0,"y":0,"w":197,"h":112},
+		"sourceSize": {"w":197,"h":112}
+	},
+	"wolf_22.png": {
+		"frame": {"x":0, "y":0, "w":207, "h":107},
+		"spriteSourceSize": {"x":0,"y":0,"w":207,"h":107},
+		"sourceSize": {"w":207,"h":107}
+	},
+	"wolf_23.png": {
+		"frame": {"x":0, "y":108, "w":207, "h":123},
+		"spriteSourceSize": {"x":0,"y":0,"w":207,"h":123},
+		"sourceSize": {"w":207,"h":123}
+	},
+	"wolf_24.png": {
+		"frame": {"x":0, "y":493, "w":199, "h":114},
+		"spriteSourceSize": {"x":0,"y":0,"w":199,"h":114},
+		"sourceSize": {"w":199,"h":114}
+	},
+	"wolf_25.png": {
+		"frame": {"x":391, "y":113, "w":179, "h":119},
+		"spriteSourceSize": {"x":0,"y":0,"w":179,"h":119},
+		"sourceSize": {"w":179,"h":119}
 	}
+
+},
+"meta": {
+	"image": "wolf.png",
+	"size": {"w": 717, "h": 715},
+	"scale": "1"
+}
 }
