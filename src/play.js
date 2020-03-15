@@ -64,8 +64,10 @@ export default class Play extends Phaser.Scene {
 		
 		//JUGADOR//
 		this.wolf = this.physics.add.sprite(0, 919, 'wolf', 'wolf_01.png').setFlipX(true);
+		this.wolf.setSize(0,97); //ajustar el collider
 		this.wolf.setCollideWorldBounds(true);
 		this.physics.add.collider(groundLayer, this.wolf);
+		//this.wolf.anchor.setTo(0.5,0.5);
 		//para que la camara siga al jugador
 		this.cameras.main.setBounds(0, 0, bg.width, bg.height); //para que no se salga del mapa
 		this.cameras.main.startFollow(this.wolf);

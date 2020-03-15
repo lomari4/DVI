@@ -1,7 +1,7 @@
 {
 "frames": {
 	"wolf_01.png": {
-		"frame": {"x":388, "y":0, "w":171, "h":112},
+		"frame": {"x":387, "y":227, "w":171, "h":112},
 		"spriteSourceSize": {"x":0,"y":0,"w":171,"h":112},
 		"sourceSize": {"w":171,"h":112}
 	},
@@ -11,7 +11,7 @@
 		"sourceSize": {"w":171,"h":112}
 	},
 	"wolf_03.png": {
-		"frame": {"x":388, "y":113, "w":171, "h":112},
+		"frame": {"x":388, "y":0, "w":171, "h":112},
 		"spriteSourceSize": {"x":0,"y":0,"w":171,"h":112},
 		"sourceSize": {"w":171,"h":112}
 	},
@@ -21,7 +21,7 @@
 		"sourceSize": {"w":171,"h":112}
 	},
 	"wolf_05.png": {
-		"frame": {"x":388, "y":113, "w":171, "h":112},
+		"frame": {"x":388, "y":0, "w":171, "h":112},
 		"spriteSourceSize": {"x":0,"y":0,"w":171,"h":112},
 		"sourceSize": {"w":171,"h":112}
 	},
@@ -36,62 +36,62 @@
 		"sourceSize": {"w":171,"h":112}
 	},
 	"wolf_08.png": {
-		"frame": {"x":557, "y":574, "w":160, "h":123},
+		"frame": {"x":395, "y":453, "w":160, "h":123},
 		"spriteSourceSize": {"x":0,"y":0,"w":160,"h":123},
 		"sourceSize": {"w":160,"h":123}
 	},
 	"wolf_09.png": {
-		"frame": {"x":398, "y":453, "w":169, "h":120},
+		"frame": {"x":393, "y":595, "w":169, "h":120},
 		"spriteSourceSize": {"x":0,"y":0,"w":169,"h":120},
 		"sourceSize": {"w":169,"h":120}
 	},
 	"wolf_10.png": {
-		"frame": {"x":204, "y":323, "w":182, "h":106},
+		"frame": {"x":204, "y":318, "w":182, "h":106},
 		"spriteSourceSize": {"x":0,"y":0,"w":182,"h":106},
 		"sourceSize": {"w":182,"h":106}
 	},
 	"wolf_11.png": {
-		"frame": {"x":195, "y":608, "w":194, "h":106},
+		"frame": {"x":200, "y":488, "w":194, "h":106},
 		"spriteSourceSize": {"x":0,"y":0,"w":194,"h":106},
 		"sourceSize": {"w":194,"h":106}
 	},
 	"wolf_12.png": {
-		"frame": {"x":0, "y":608, "w":194, "h":106},
+		"frame": {"x":198, "y":603, "w":194, "h":106},
 		"spriteSourceSize": {"x":0,"y":0,"w":194,"h":106},
 		"sourceSize": {"w":194,"h":106}
 	},
 	"wolf_13.png": {
-		"frame": {"x":398, "y":453, "w":169, "h":120},
+		"frame": {"x":393, "y":595, "w":169, "h":120},
 		"spriteSourceSize": {"x":0,"y":0,"w":169,"h":120},
 		"sourceSize": {"w":169,"h":120}
 	},
 	"wolf_14.png": {
-		"frame": {"x":557, "y":574, "w":160, "h":123},
+		"frame": {"x":395, "y":453, "w":160, "h":123},
 		"spriteSourceSize": {"x":0,"y":0,"w":160,"h":123},
 		"sourceSize": {"w":160,"h":123}
 	},
 	"wolf_15.png": {
-		"frame": {"x":559, "y":226, "w":157, "h":116},
+		"frame": {"x":556, "y":453, "w":157, "h":116},
 		"spriteSourceSize": {"x":0,"y":0,"w":157,"h":116},
 		"sourceSize": {"w":157,"h":116}
 	},
 	"wolf_16.png": {
-		"frame": {"x":0, "y":323, "w":203, "h":80},
+		"frame": {"x":0, "y":318, "w":203, "h":80},
 		"spriteSourceSize": {"x":0,"y":0,"w":203,"h":80},
 		"sourceSize": {"w":203,"h":80}
 	},
 	"wolf_17.png": {
-		"frame": {"x":0, "y":404, "w":201, "h":88},
+		"frame": {"x":0, "y":399, "w":201, "h":88},
 		"spriteSourceSize": {"x":0,"y":0,"w":201,"h":88},
 		"sourceSize": {"w":201,"h":88}
 	},
 	"wolf_18.png": {
-		"frame": {"x":0, "y":232, "w":205, "h":90},
+		"frame": {"x":0, "y":227, "w":205, "h":90},
 		"spriteSourceSize": {"x":0,"y":0,"w":205,"h":90},
 		"sourceSize": {"w":205,"h":90}
 	},
 	"wolf_19.png": {
-		"frame": {"x":390, "y":606, "w":166, "h":110},
+		"frame": {"x":388, "y":113, "w":166, "h":110},
 		"spriteSourceSize": {"x":0,"y":0,"w":166,"h":110},
 		"sourceSize": {"w":166,"h":110}
 	},
@@ -101,22 +101,22 @@
 		"sourceSize": {"w":179,"h":106}
 	},
 	"wolf_21.png": {
-		"frame": {"x":200, "y":493, "w":197, "h":112},
+		"frame": {"x":0, "y":603, "w":197, "h":112},
 		"spriteSourceSize": {"x":0,"y":0,"w":197,"h":112},
 		"sourceSize": {"w":197,"h":112}
 	},
 	"wolf_22.png": {
-		"frame": {"x":0, "y":0, "w":207, "h":107},
-		"spriteSourceSize": {"x":0,"y":0,"w":207,"h":107},
-		"sourceSize": {"w":207,"h":107}
+		"frame": {"x":0, "y":0, "w":207, "h":105},
+		"spriteSourceSize": {"x":0,"y":0,"w":207,"h":105},
+		"sourceSize": {"w":207,"h":105}
 	},
 	"wolf_23.png": {
-		"frame": {"x":0, "y":108, "w":207, "h":123},
-		"spriteSourceSize": {"x":0,"y":0,"w":207,"h":123},
-		"sourceSize": {"w":207,"h":123}
+		"frame": {"x":0, "y":106, "w":207, "h":120},
+		"spriteSourceSize": {"x":0,"y":0,"w":207,"h":120},
+		"sourceSize": {"w":207,"h":120}
 	},
 	"wolf_24.png": {
-		"frame": {"x":0, "y":493, "w":199, "h":114},
+		"frame": {"x":0, "y":488, "w":199, "h":114},
 		"spriteSourceSize": {"x":0,"y":0,"w":199,"h":114},
 		"sourceSize": {"w":199,"h":114}
 	},
@@ -129,7 +129,7 @@
 },
 "meta": {
 	"image": "wolf.png",
-	"size": {"w": 718, "h": 717},
+	"size": {"w": 714, "h": 716},
 	"scale": "1"
 }
 }
