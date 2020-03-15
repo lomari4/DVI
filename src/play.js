@@ -62,61 +62,77 @@ export default class Play extends Phaser.Scene {
 
 
 		//JUGADOR//
-		this.cursors = this.input.keyboard.addKeys('W, A, D, SPACE');
-		this.wolf = this.physics.add.sprite(0, 960, 'wolf');
+		this.wolf = this.physics.add.sprite(0, 960, 'wolf', 'wolf_01.png');
 		this.wolf.setBounce(0.1);
 		this.wolf.setCollideWorldBounds(true);
-		this.physics.add.collider(this.wolf, groundLayer);
+		this.physics.add.collider(groundLayer, this.wolf);
+		//para que la camara siga al jugador
+		this.cameras.main.setBounds(0, 0, bg.width, bg.height); //para que no se salga del mapa
+		this.cameras.main.startFollow(this.wolf);
+		//CONTROLES//
+		this.cursors = this.input.keyboard.addKeys("W, A, D, SPACE");
+		
 		this.anims.create({
 			key: 'run',
 			frames: this.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
+			  suffix: '.png',
 			  start: 20,
 			  end: 26,
 			}),
 			frameRate: 10,
-			repeat: -1
+			repeat: -1,
+			//zeroPad: 2
 		});
 		this.anims.create({
 			key: 'attack',
 			frames: this.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
+			  suffix: '.png',
 			  start: 9,
 			  end: 15,
 			}),
 			frameRate: 10,
-			repeat: -1
+			repeat: -1,
+			//zeroPad: 2
 		});
 		this.anims.create({
 			key: 'jump',
 			frames: this.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
+			  suffix: '.png',
 			  start: 18,
 			  end: 19,
 			}),
 			frameRate: 10,
-			repeat: -1
+			repeat: -1,
+			//zeroPad: 2
 		});
 		this.anims.create({
 			key: 'idle',
 			frames: this.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
+			  suffix: '.png',
 			  start: 1,
 			  end: 8,
 			}),
 			frameRate: 10,
-			repeat: -1
+			repeat: -1,
+			//zeroPad: 2
 		});
-
+		//this.wolf.play('run');
+		
 	}
+	
 
 	update(time, delta) {
 
+		
 		 //izquierda
 		 if (this.cursors.A.isDown) {
             this.wolf.setVelocityX(-200); //moverse a la izquierda
             this.wolf.play('run', true); //iniciar walk animation
-            this.wolf.flipX = false; // 
+            this.wolf.flipX = false;
         }
         //derecha
         if (this.cursors.D.isDown) {
@@ -140,13 +156,16 @@ export default class Play extends Phaser.Scene {
             this.wolf.setVelocityX(0);
             this.wolf.play('attack', true);
             this.wolf.flipX = true;
-        }
+		}
+		/*
         //idle
         else {
-            wolf.setVelocityX(0);
-            wolf.play('idle', true);
+            this.wolf.setVelocityX(0);
+            this.wolf.play('idle', true);
         }
-        //falta animacion de hurt y morir
+		//falta animacion de hurt y morir
+		*/
+		
 	}
 
 }
