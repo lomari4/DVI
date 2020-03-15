@@ -1,7 +1,11 @@
+import Wolf from './wolf.js';
 
-class Play extends Phaser.Scene {
+
+export default class Play extends Phaser.Scene {
+
+	
 	constructor() {
-		super('Play');
+		super({ key: 'Play' });
 	}
 	preload() {
 		//cargamos el audio
@@ -19,7 +23,6 @@ class Play extends Phaser.Scene {
 
 		//cargamos el spritesheet del jugador
 		this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
-
 	}
 
 	create() {
@@ -57,45 +60,93 @@ class Play extends Phaser.Scene {
 		this.physics.world.bounds.width = bg.width;
 		this.physics.world.bounds.height = bg.height;
 
-		//ESTO SE HARIA EN SU PROPIA CLASE APARTE
+
 		//JUGADOR//
+		this.cursors = this.input.keyboard.addKeys('W, A, D, SPACE');
 		this.wolf = this.physics.add.sprite(0, 960, 'wolf');
 		this.wolf.setBounce(0.1);
 		this.wolf.setCollideWorldBounds(true);
-		this.physics.add.collider(groundLayer, this.wolf);
-		//para que la camara siga al jugador
-		this.cameras.main.setBounds(0, 0, bg.width, bg.height); //para que no se salga del mapa
-		this.cameras.main.startFollow(this.wolf);
-		//CONTROLES//
-		this.cursors = this.input.keyboard.addKeys("W, A, D, SPACE");
+		this.physics.add.collider(this.wolf, groundLayer);
+		this.anims.create({
+			key: 'run',
+			frames: this.anims.generateFrameNames('wolf', {
+			  prefix: 'wolf_',
+			  start: 20,
+			  end: 26,
+			}),
+			frameRate: 10,
+			repeat: -1
+		});
+		this.anims.create({
+			key: 'attack',
+			frames: this.anims.generateFrameNames('wolf', {
+			  prefix: 'wolf_',
+			  start: 9,
+			  end: 15,
+			}),
+			frameRate: 10,
+			repeat: -1
+		});
+		this.anims.create({
+			key: 'jump',
+			frames: this.anims.generateFrameNames('wolf', {
+			  prefix: 'wolf_',
+			  start: 18,
+			  end: 19,
+			}),
+			frameRate: 10,
+			repeat: -1
+		});
+		this.anims.create({
+			key: 'idle',
+			frames: this.anims.generateFrameNames('wolf', {
+			  prefix: 'wolf_',
+			  start: 1,
+			  end: 8,
+			}),
+			frameRate: 10,
+			repeat: -1
+		});
+
 	}
 
 	update(time, delta) {
 
-		/*EN CLASE WOLF APARTE
-		//izquierda
-		if (this.cursors.A.isDown) {
-			player.body.setVelocityX(-200); // move left
-			//player.anims.play('walk', true); // play walk animation
-			player.flipX = false; // 
-		}
-		//derecha
-		if (this.cursors.D.isDown) {
-			player.body.setVelocityX(200); // move right
-			//player.anims.play('walk', true); // play walk animatio
-			player.flipX = true; // flip to right
-		}
-		//idle
-		else {
-			player.body.setVelocityX(0);
-			player.anims.play('idle', true);
-		}
-		if (cursors.space.isDown || cursors.up.isDown && this.player.body.onFloor()) {
-			this.player.setVelocityY(-350);
-			//this.player.play('jump', true);
-		}
-		*/
-
+		 //izquierda
+		 if (this.cursors.A.isDown) {
+            this.wolf.setVelocityX(-200); //moverse a la izquierda
+            this.wolf.play('run', true); //iniciar walk animation
+            this.wolf.flipX = false; // 
+        }
+        //derecha
+        if (this.cursors.D.isDown) {
+            this.wolf.setVelocityX(200); //moverse a la derecha 
+            this.wolf.play('run', true); //iniciar walk animation
+            this.wolf.flipX = true; // flip sprite xq el default esta hacia la izquierda
+        }
+        //saltar
+        if (this.cursors.W.isDown && this.wolf.body.onFloor()) {
+            this.wolf.setVelocityY(-350);
+            this.wolf.play('jump', true);
+        }
+        //atacar izquierda
+        if (this.cursors.SPACE.isDown && !this.wolf.flipX) {
+            this.wolf.setVelocityX(0);
+            this.wolf.play('attack', true);
+            this.wolf.flipX = false;
+        }
+        //atacar derecha
+        if (this.cursors.SPACE.isDown && this.wolf.flipX) {
+            this.wolf.setVelocityX(0);
+            this.wolf.play('attack', true);
+            this.wolf.flipX = true;
+        }
+        //idle
+        else {
+            wolf.setVelocityX(0);
+            wolf.play('idle', true);
+        }
+        //falta animacion de hurt y morir
 	}
 
 }

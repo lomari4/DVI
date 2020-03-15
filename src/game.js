@@ -1,6 +1,6 @@
-class Game extends Phaser.Scene {
+export default class Game extends Phaser.Scene {
     constructor() {
-        super('Game');
+        super({ key: 'Game' });
     }
     preload() {
         //Cargamos el audio
@@ -31,6 +31,6 @@ class Game extends Phaser.Scene {
         })
     }
 
-    update(time, delta) {}
+    update(time, delta) { }
 
 }
