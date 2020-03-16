@@ -35,19 +35,15 @@ export default class Play extends Phaser.Scene {
 		let soundsGame = this.sound.add("gameSound");
 		soundsGame.setLoop(true);
 		soundsGame.play();
-
-		//añadimos el boton fullscreen con su funcionalidad
-		let button = this.add.image(1472 - 80, 16, 'fullscreen', 0).setOrigin(0).setInteractive();
-		button.on('pointerup', function () {
+		//MAPA//
+		//añadimos el background que tiene fullscreen de funcionalidad
+		let bg = this.add.image(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive();
+		bg.on('pointerup', function () {
 			if (this.scale.isFullscreen)
 				this.scale.stopFullscreen();
 			else
 				this.scale.startFullscreen();
 		}, this);
-
-		//MAPA//
-		//añadimos el background
-		let bg = this.add.image(0, 0, "bg").setOrigin(0).setDepth(-1);
 		//añadimos el mapa
 		let map = this.make.tilemap({
 			key: 'map',
