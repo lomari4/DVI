@@ -24,6 +24,9 @@ export default class Play extends Phaser.Scene {
 		//cargamos el spritesheet del jugador
 		//this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
 		this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
+
+		//audio de wolf
+		this.load.audio("wolf_attack", "./assets/music/effects/wolf_attack.wav");
 	}
 
 	create() {
@@ -138,25 +141,37 @@ export default class Play extends Phaser.Scene {
 		if (this.cursors.A.isDown) {
 			this.wolf.setVelocityX(-300);
 			if(this.wolf.body.onFloor())
-           		this.wolf.play('run', true); 
+				this.wolf.play('run', true);
         }
         //derecha
         else if (this.cursors.D.isDown) {
             this.wolf.setVelocityX(300); 
 			if(this.wolf.body.onFloor())
-				this.wolf.play('run', true); 
+				this.wolf.play('run', true);
 		}
 		//atacar
         else if (this.cursors.SPACE.isDown) {
 			this.wolf.setVelocityX(0);
 			if(this.wolf.body.onFloor())
-           		this.wolf.play('attack', true);
+			{
+				this.wolf.play('attack', true);
+				/*
+				let s = this.sound.add("wolf_attack");
+				s.play();
+				*/
+				
+			}
+           		
 		}
 		else {
 			this.wolf.setVelocityX(0);
 			//idle
 			if(this.wolf.body.onFloor())
 				this.wolf.play('idle', true);
+			/* a veces el sprite no toca el suelo cuando corre, por lo que no añadimos la animacion de caida
+			else
+				this.wolf.play('jump', true);
+			*/
 		}
 		//saltar
 		if(this.cursors.W.isDown && this.wolf.body.onFloor()) {
