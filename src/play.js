@@ -1,4 +1,5 @@
 import Wolf from './wolf.js';
+import Swub from './swub.js';
 
 
 export default class Play extends Phaser.Scene {
@@ -24,6 +25,8 @@ export default class Play extends Phaser.Scene {
 		//cargamos el spritesheet del jugador
 		//this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
 		this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
+		//cargamos el spritesheet de los enemigos
+		this.load.atlas('swub', 'assets/enemies/swub_sprites/swub.png', 'assets/enemies/swub_sprites/swub.json');
 
 		//audio de wolf
 		this.load.audio("wolf_attack", "./assets/music/effects/wolf_attack.wav");
@@ -69,12 +72,18 @@ export default class Play extends Phaser.Scene {
 		this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height); //para que no se salga del mapa
 		this.cameras.main.startFollow(this.wolf);
 
+		//SWUB
+		this.swub = new Swub(this,1000,919);
+		this.swub.createAnims(); 
+		this.physics.add.collider(this.swub, groundLayer);
 	}
 	
 
 	update(time, delta) {
 
 		this.wolf.update();
+		this.swub.update();
+
 	}
 
 }
