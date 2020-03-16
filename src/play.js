@@ -1,4 +1,4 @@
-//import Wolf from './wolf.js';
+import Wolf from './wolf.js';
 
 
 export default class Play extends Phaser.Scene {
@@ -66,128 +66,19 @@ export default class Play extends Phaser.Scene {
 
 		
 		//JUGADOR//
-		this.wolf = this.physics.add.sprite(0, 919, 'wolf', 'wolf_01.png').setFlipX(true);	
-		this.wolf.setCollideWorldBounds(true);
-		this.physics.add.collider(groundLayer, this.wolf);
+		this.wolf = new Wolf(this,0,919);
+		this.wolf.createAnims(); //crear las animaciones del wolf
+		this.physics.add.collider(this.wolf, groundLayer);
 		//para que la camara siga al jugador
 		this.cameras.main.setBounds(0, 0, bg.width, bg.height); //para que no se salga del mapa
 		this.cameras.main.startFollow(this.wolf);
-		//CONTROLES//
-		this.cursors = this.input.keyboard.addKeys("W, A, D, SPACE");
-		
-		this.anims.create({
-			key: 'run',
-			frames: this.anims.generateFrameNames('wolf', {
-			  prefix: 'wolf_',
-			  suffix: '.png',
-			  start: 19,
-			  end: 25,
-			  zeroPad: 2
-			}),
-			frameRate: 10,
-			repeat: -1,
-			
-		});
-		this.anims.create({
-			key: 'attack',
-			frames: this.anims.generateFrameNames('wolf', {
-			  prefix: 'wolf_',
-			  suffix: '.png',
-			  start: 8,
-			  end: 14,
-			  zeroPad: 2
-			}),
-			frameRate: 8,
-			repeat: -1,
-			
-		});
-		this.anims.create({
-			key: 'jump',
-			frames: this.anims.generateFrameNames('wolf', {
-			  prefix: 'wolf_',
-			  suffix: '.png',
-			  start: 17,
-			  end: 18,
-			  zeroPad: 2
-			}),
-			frameRate: 5,
-			repeat: -1,
-			
-		});
-		this.anims.create({
-			key: 'idle',
-			frames: this.anims.generateFrameNames('wolf', {
-			  prefix: 'wolf_',
-			  suffix: '.png',
-			  start: 1,
-			  end: 7,
-			  zeroPad: 2
-			}),
-			frameRate: 5,
-			repeat: -1,
-			
-		});
-		//this.wolf.play('run');
-		
+
 	}
 	
 
 	update(time, delta) {
 
-		this.wolf.setSize(0,97); //ajustar el collider
-		//this.wolf.setOrigin(0.5,0.5);
-
-		//izquierda
-		if (this.cursors.A.isDown) {
-			this.wolf.setVelocityX(-300);
-			if(this.wolf.body.onFloor())
-				this.wolf.play('run', true);
-        }
-        //derecha
-        else if (this.cursors.D.isDown) {
-            this.wolf.setVelocityX(300); 
-			if(this.wolf.body.onFloor())
-				this.wolf.play('run', true);
-		}
-		//atacar
-        else if (this.cursors.SPACE.isDown) {
-			this.wolf.setVelocityX(0);
-			if(this.wolf.body.onFloor())
-			{
-				this.wolf.play('attack', true);
-				/*
-				let s = this.sound.add("wolf_attack");
-				s.play();
-				*/
-				
-			}
-           		
-		}
-		else {
-			this.wolf.setVelocityX(0);
-			//idle
-			if(this.wolf.body.onFloor())
-				this.wolf.play('idle', true);
-			/* a veces el sprite no toca el suelo cuando corre, por lo que no añadimos la animacion de caida
-			else
-				this.wolf.play('jump', true);
-			*/
-		}
-		//saltar
-		if(this.cursors.W.isDown && this.wolf.body.onFloor()) {
-			this.wolf.setVelocityY(-415);
-			this.wolf.play('jump', true);
-		}
-		
-		//fliperar el sprite (por default esta a la izquierda)
-		if (this.wolf.body.velocity.x > 0) 
-			this.wolf.setFlipX(true); //derecha
-		else if (this.wolf.body.velocity.x < 0) 
-			this.wolf.setFlipX(false); //izquierda
-		  
-		//falta animacion de hurt y morir
-		
-		
+		this.wolf.update();
 	}
 
 }
