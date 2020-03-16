@@ -61,8 +61,8 @@ export default class Play extends Phaser.Scene {
 		//añadimos colision por grupo de tiled collision editor
 		groundLayer.setCollisionFromCollisionGroup()
 		//boundaries del mundo
-		this.physics.world.bounds.width = bg.width;
-		this.physics.world.bounds.height = bg.height;
+		this.physics.world.bounds.width = groundLayer.width;
+		this.physics.world.bounds.height = groundLayer.height;
 
 		
 		//JUGADOR//
@@ -70,7 +70,7 @@ export default class Play extends Phaser.Scene {
 		this.wolf.createAnims(); //crear las animaciones del wolf
 		this.physics.add.collider(this.wolf, groundLayer);
 		//para que la camara siga al jugador
-		this.cameras.main.setBounds(0, 0, bg.width, bg.height); //para que no se salga del mapa
+		this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height); //para que no se salga del mapa
 		this.cameras.main.startFollow(this.wolf);
 
 	}
