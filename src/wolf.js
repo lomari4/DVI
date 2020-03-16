@@ -73,15 +73,23 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
 
         //izquierda
         if (this.cursors.A.isDown) {
-            this.body.setVelocityX(-300);
-            if (this.body.onFloor())
+            if (this.body.onFloor()){
                 this.play('run', true);
+                this.body.setVelocityX(-300);
+            }
+            else{
+                this.body.setVelocityX(-200);
+            }
         }
         //derecha
         else if (this.cursors.D.isDown) {
-            this.body.setVelocityX(300);
-            if (this.body.onFloor())
+            if (this.body.onFloor()){
                 this.play('run', true);
+                this.body.setVelocityX(300);
+            }
+            else{
+                this.body.setVelocityX(-200); 
+            }
         }
         //atacar
         else if (this.cursors.SPACE.isDown) {
