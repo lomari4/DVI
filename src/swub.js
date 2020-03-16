@@ -41,10 +41,16 @@ export default class Swub extends Phaser.GameObjects.Sprite {
  
     update(time,delta) {
 
-        this.body.setSize(0, 97); //ajustar el collider
+        this.body.setSize(0, 70); //ajustar el collider
         //this.setOrigin(0.5,0.5);
+        //this.body.setVelocityX(-50);
         this.play('walk', true);
-        this.body.setVelocityX(-50);
+        
+        //this.play('unfreeze', true);
+
+        this.body.setVelocityX(50);
+        //this.play('walk', true);
+
 /*
         //izquierda
         if (this.cursors.A.isDown) {
@@ -83,7 +89,7 @@ export default class Swub extends Phaser.GameObjects.Sprite {
             this.body.setVelocityY(-400);
             this.play('jump', true);
         }
-
+*/
         //fliperar el sprite (por default esta a la izquierda)
         if (this.body.velocity.x > 0)
             this.setFlipX(true); //derecha
@@ -91,6 +97,6 @@ export default class Swub extends Phaser.GameObjects.Sprite {
             this.setFlipX(false); //izquierda
 
         //falta animacion de hurt y morir
-*/
+
     }
 }
