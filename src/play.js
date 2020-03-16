@@ -1,5 +1,6 @@
 import Wolf from './wolf.js';
 import Swub from './swub.js';
+import Icedrake from './icedrake.js';
 
 
 export default class Play extends Phaser.Scene {
@@ -24,10 +25,10 @@ export default class Play extends Phaser.Scene {
 
 		//cargamos el spritesheet del jugador
 		//this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
-		this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
+		this.load.atlas('wolf', './assets/mainCharacter/wolf_sprites/wolf.png', './assets/mainCharacter/wolf_sprites/wolf.json');
 		//cargamos el spritesheet de los enemigos
-		this.load.atlas('swub', 'assets/enemies/swub_sprites/swub.png', 'assets/enemies/swub_sprites/swub.json');
-
+		this.load.atlas('swub', './assets/enemies/swub_sprites/swub.png', './assets/enemies/swub_sprites/swub.json');
+		this.load.atlas('icedrake', './assets/enemies/icedrake_sprites/icedrake.png', './assets/enemies/icedrake_sprites/icedrake.json');
 		//audio de wolf
 		this.load.audio("wolf_attack", "./assets/music/effects/wolf_attack.wav");
 	}
@@ -62,7 +63,6 @@ export default class Play extends Phaser.Scene {
 		//boundaries del mundo
 		this.physics.world.bounds.width = groundLayer.width;
 		this.physics.world.bounds.height = groundLayer.height;
-
 		
 		//JUGADOR//
 		this.wolf = new Wolf(this,0,919);
@@ -72,18 +72,22 @@ export default class Play extends Phaser.Scene {
 		this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height); //para que no se salga del mapa
 		this.cameras.main.startFollow(this.wolf);
 
+		//ICEDRAKE
+		this.icedrake = new Icedrake(this,1300,919);
+		this.icedrake.createAnims(); 
+		this.physics.add.collider(this.icedrake, groundLayer);
+
 		//SWUB
 		this.swub = new Swub(this,1000,919);
-		this.swub.createAnims(); 
+		this.swub.createAnims();
 		this.physics.add.collider(this.swub, groundLayer);
 	}
 	
 
 	update(time, delta) {
-
 		this.wolf.update();
 		this.swub.update();
-
+		this.icedrake.update(); 
 	}
 
 }
