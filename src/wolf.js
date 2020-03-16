@@ -88,7 +88,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
                 this.body.setVelocityX(300);
             }
             else{
-                this.body.setVelocityX(-200); 
+                this.body.setVelocityX(200); 
             }
         }
         //atacar
