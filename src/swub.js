@@ -6,6 +6,7 @@ export default class Swub extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
+        this.body.setVelocityX(-50);
     }
 
     createAnims()
@@ -44,59 +45,24 @@ export default class Swub extends Phaser.GameObjects.Sprite {
         this.body.setSize(0, 70); //ajustar el collider
         //this.setOrigin(0.5,0.5);
         //this.body.setVelocityX(-50);
+ 
+        if (this.body.touching.right || this.body.blocked.right) {
+            this.body.setVelocityX(-50); // turn left
+        }
+        else if (this.body.touching.left || this.body.blocked.left) {
+            this.body.setVelocityX(50); // turn right
+        }
         this.play('walk', true);
         
         //this.play('unfreeze', true);
 
-        this.body.setVelocityX(50);
-        //this.play('walk', true);
-
-/*
-        //izquierda
-        if (this.cursors.A.isDown) {
-            this.body.setVelocityX(-300);
-            if (this.body.onFloor()){
-                this.play('run', true);
-            }
-
-        }
-        //derecha
-        else if (this.cursors.D.isDown) {
-            this.body.setVelocityX(300);
-            if (this.body.onFloor()){
-                this.play('run', true);
-            }
-        }
-        //atacar
-        else if (this.cursors.SPACE.isDown) {
-            this.body.setVelocityX(0);
-            if (this.body.onFloor()) {
-                this.play('attack', true);
-            }
-        }
-        else {
-            this.body.setVelocityX(0);
-            //idle
-            if (this.body.onFloor())
-                this.play('idle', true);
-            /* a veces el sprite no toca el suelo cuando corre, por lo que no añadimos la animacion de caida
-            else
-                this.play('jump', true);
-           
-        }
-        //saltar
-        if (this.cursors.W.isDown && this.body.onFloor()) {
-            this.body.setVelocityY(-400);
-            this.play('jump', true);
-        }
-*/
         //fliperar el sprite (por default esta a la izquierda)
         if (this.body.velocity.x > 0)
             this.setFlipX(true); //derecha
         else if (this.body.velocity.x < 0)
             this.setFlipX(false); //izquierda
 
-        //falta animacion de hurt y morir
+        //falta animacion de hurt y descongelar
 
     }
 }
