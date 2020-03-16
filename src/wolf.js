@@ -13,7 +13,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
     createAnims()
     {
         this.scene.anims.create({
-			key: 'run',
+			key: 'runwolf',
 			frames: this.scene.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
 			  suffix: '.png',
@@ -26,7 +26,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
 			
 		});
 		this.scene.anims.create({
-			key: 'attack',
+			key: 'attackwolf',
 			frames: this.scene.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
 			  suffix: '.png',
@@ -39,7 +39,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
 			
 		});
 		this.scene.anims.create({
-			key: 'jump',
+			key: 'jumpwolf',
 			frames: this.scene.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
 			  suffix: '.png',
@@ -52,7 +52,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
 			
 		});
 		this.scene.anims.create({
-			key: 'idle',
+			key: 'idlewolf',
 			frames: this.scene.anims.generateFrameNames('wolf', {
 			  prefix: 'wolf_',
 			  suffix: '.png',
@@ -75,7 +75,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         if (this.cursors.A.isDown) {
             this.body.setVelocityX(-300);
             if (this.body.onFloor()){
-                this.play('run', true);
+                this.play('runwolf', true);
             }
 
         }
@@ -83,14 +83,14 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         else if (this.cursors.D.isDown) {
             this.body.setVelocityX(300);
             if (this.body.onFloor()){
-                this.play('run', true);
+                this.play('runwolf', true);
             }
         }
         //atacar
         else if (this.cursors.SPACE.isDown) {
             this.body.setVelocityX(0);
             if (this.body.onFloor()) {
-                this.play('attack', true);
+                this.play('attackwolf', true);
 				/*
 				let s = this.scene.sound.add("wolf_attack");
                 s.play()
@@ -101,7 +101,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             //idle
             if (this.body.onFloor())
-                this.play('idle', true);
+                this.play('idlewolf', true);
             /* a veces el sprite no toca el suelo cuando corre, por lo que no añadimos la animacion de caida
             else
                 this.play('jump', true);
@@ -110,7 +110,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         //saltar
         if (this.cursors.W.isDown && this.body.onFloor()) {
             this.body.setVelocityY(-400);
-            this.play('jump', true);
+            this.play('jumpwolf', true);
         }
 
         //fliperar el sprite (por default esta a la izquierda)

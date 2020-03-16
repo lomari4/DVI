@@ -6,13 +6,12 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
-        this.body.setVelocityX(-100);
+        this.body.setVelocityX(100);
     }
-
     createAnims()
     {
         this.scene.anims.create({
-			key: 'walk',
+			key: 'walkicedrake',
 			frames: this.scene.anims.generateFrameNames('icedrake', {
 			  prefix: 'icedrake_',
 			  suffix: '.png',
@@ -25,7 +24,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			
 		});
 		this.scene.anims.create({
-			key: 'attack',
+			key: 'attackicedrake',
 			frames: this.scene.anims.generateFrameNames('icedrake', {
 			  prefix: 'icedrake_',
 			  suffix: '.png',
@@ -42,17 +41,17 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
  
     update(time,delta) {
 
-        this.body.setSize(0, 70); //ajustar el collider
+        this.body.setSize(0, 75); //ajustar el collider
         //this.setOrigin(0.5,0.5);
         //this.body.setVelocityX(-50);
  
         if (this.body.touching.right || this.body.blocked.right) {
-            this.body.setVelocityX(-50); // turn left
+            this.body.setVelocityX(-100); // turn left
         }
         else if (this.body.touching.left || this.body.blocked.left) {
-            this.body.setVelocityX(50); // turn right
+            this.body.setVelocityX(100); // turn right
         }
-        this.play('walk', true);
+        this.play('walkicedrake', true);
         
         //this.play('attack', true);
 

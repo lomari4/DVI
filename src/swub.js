@@ -12,7 +12,7 @@ export default class Swub extends Phaser.GameObjects.Sprite {
     createAnims()
     {
         this.scene.anims.create({
-			key: 'walk',
+			key: 'walkswub',
 			frames: this.scene.anims.generateFrameNames('swub', {
 			  prefix: 'swub_',
 			  suffix: '.png',
@@ -52,7 +52,7 @@ export default class Swub extends Phaser.GameObjects.Sprite {
         else if (this.body.touching.left || this.body.blocked.left) {
             this.body.setVelocityX(50); // turn right
         }
-        this.play('walk', true);
+        this.play('walkswub', true);
         
         //this.play('unfreeze', true);
 

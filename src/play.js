@@ -72,15 +72,15 @@ export default class Play extends Phaser.Scene {
 		this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height); //para que no se salga del mapa
 		this.cameras.main.startFollow(this.wolf);
 
-		//ICEDRAKE
-		this.icedrake = new Icedrake(this,1300,919);
-		this.icedrake.createAnims(); 
-		this.physics.add.collider(this.icedrake, groundLayer);
-
 		//SWUB
 		this.swub = new Swub(this,1000,919);
 		this.swub.createAnims();
 		this.physics.add.collider(this.swub, groundLayer);
+
+		//ICEDRAKE
+		this.icedrake = new Icedrake(this, 100, 919);
+		this.icedrake.createAnims(); 
+		this.physics.add.collider(this.icedrake, groundLayer);
 	}
 	
 
