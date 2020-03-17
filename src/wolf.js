@@ -63,6 +63,19 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
 			frameRate: 5,
 			repeat: -1,
 			
+        });
+        this.scene.anims.create({
+			key: 'hurtwolf',
+			frames: this.scene.anims.generateFrameNames('wolf', {
+			  prefix: 'wolf_',
+			  suffix: '.png',
+			  start: 15,
+			  end: 15,
+			  zeroPad: 2
+			}),
+			frameRate: 1,
+			repeat: -1,
+			
 		});
     }
  

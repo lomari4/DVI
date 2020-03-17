@@ -78,9 +78,37 @@ export default class Play extends Phaser.Scene {
 		this.physics.add.collider(this.swub, groundLayer);
 
 		//ICEDRAKE
-		this.icedrake = new Icedrake(this, 100, 919);
+		this.icedrake = new Icedrake(this, 900, 965);
 		this.icedrake.createAnims(); 
 		this.physics.add.collider(this.icedrake, groundLayer);
+
+		/* no funciona no se porque
+		//crear grupo con todos los enemigos para las fisicas
+		this.enemies = this.physics.add.group();
+		this.enemies.add(this.icedrake);
+		this.enemies.add(this.swub);
+		*/
+
+		//ATAQUES Y COLISIONES CON ENEMIGOS
+		//funcion overlap para colisiones con el jugador
+		//this.physics.add.overlap(this.wolf, this.enemies, this.hurtPlayer, null, this);
+		this.physics.add.overlap(this.wolf, this.swub, this.hurtPlayer, null, this);
+
+
+	}
+
+	hurtPlayer(player,enemy){
+		//knock-back al jugador
+		if(player.body.touching.left) {
+			player.body.velocity.x = 5;
+			player.body.velocity.y = 5;
+		} else if (player.body.touching.right) {
+			player.body.velocity.x = -5;
+			player.body.velocity.y = 5;
+		} else if (player.body.touching.up) {
+			player.body.velocity.y = 5;	
+		}
+		player.play('hurtwolf');
 	}
 	
 

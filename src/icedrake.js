@@ -6,7 +6,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
-        this.body.setVelocityX(100);
+        this.body.setVelocityX(70);
     }
     createAnims()
     {
@@ -15,11 +15,11 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			frames: this.scene.anims.generateFrameNames('icedrake', {
 			  prefix: 'icedrake_',
 			  suffix: '.png',
-			  start: 1,
+			  start: 4,
 			  end: 7,
 			  zeroPad: 2
 			}),
-			frameRate: 10,
+			frameRate: 4,
 			repeat: -1,
 			
 		});
@@ -36,20 +36,30 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			repeat: -1,
 			
 		});
-		//faltaria que le stuneasen
+		this.scene.anims.create({
+			key: 'hurticedrake',
+			frames: this.scene.anims.generateFrameNames('icedrake', {
+			  prefix: 'icedrake_',
+			  suffix: '.png',
+			  start: 8,
+			  end: 8,
+			  zeroPad: 2
+			}),
+			frameRate: 1,
+			repeat: -1,
+			
+		});
     }
  
     update(time,delta) {
 
-        this.body.setSize(0, 75); //ajustar el collider
-        //this.setOrigin(0.5,0.5);
-        //this.body.setVelocityX(-50);
+        this.body.setSize(0, 65); //ajustar el collider
  
         if (this.body.touching.right || this.body.blocked.right) {
-            this.body.setVelocityX(-100); // turn left
+            this.body.setVelocityX(-70); // turn left
         }
         else if (this.body.touching.left || this.body.blocked.left) {
-            this.body.setVelocityX(100); // turn right
+            this.body.setVelocityX(70); // turn right
         }
         this.play('walkicedrake', true);
         
