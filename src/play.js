@@ -2,10 +2,8 @@ import Wolf from './wolf.js';
 import Swub from './swub.js';
 import Icedrake from './icedrake.js';
 
-
 export default class Play extends Phaser.Scene {
 
-	
 	constructor() {
 		super({ key: 'Play' });
 	}
@@ -31,6 +29,9 @@ export default class Play extends Phaser.Scene {
 		this.load.atlas('icedrake', './assets/enemies/icedrake_sprites/icedrake.png', './assets/enemies/icedrake_sprites/icedrake.json');
 		//audio de wolf
 		this.load.audio("wolf_attack", "./assets/music/effects/wolf_attack.wav");
+		//añadimos imagen de las vidas
+		this.load.image('hudfull', 'assets/hud/heart_full.png');
+		this.load.image('hudempty', 'assets/hud/heart_empty.png');
 	}
 
 	create() {
@@ -63,6 +64,13 @@ export default class Play extends Phaser.Scene {
 		//boundaries del mundo
 		this.physics.world.bounds.width = groundLayer.width;
 		this.physics.world.bounds.height = groundLayer.height;
+
+		//Para las vidas, habra que mejorarlo
+		let i;
+		for(i = 0; i < 3; ++i){
+			this.hud = this.add.sprite( i * 70 + 10, 10, "hudfull").setOrigin(0).setInteractive();
+			this.hud.setScrollFactor(0);
+		}
 		
 		//JUGADOR//
 		this.wolf = new Wolf(this,0,919);
@@ -100,13 +108,13 @@ export default class Play extends Phaser.Scene {
 	hurtPlayer(player,enemy){
 		//knock-back al jugador
 		if(player.body.touching.left) {
-			player.body.velocity.x = 5;
-			player.body.velocity.y = 5;
+			player.body.setVelocityX(500);
+			player.body.setVelocityY(10);
 		} else if (player.body.touching.right) {
-			player.body.velocity.x = -5;
-			player.body.velocity.y = 5;
+			player.body.setVelocityX(-500);
+			player.body.setVelocityY(10);
 		} else if (player.body.touching.up) {
-			player.body.velocity.y = 5;	
+			player.body.setVelocityY(10);
 		}
 		player.play('hurtwolf');
 	}
