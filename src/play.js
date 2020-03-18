@@ -30,8 +30,10 @@ export default class Play extends Phaser.Scene {
 		//audio de wolf
 		this.load.audio("wolf_attack", "./assets/music/effects/wolf_attack.wav");
 		//añadimos imagen de las vidas
-		this.load.image('hudfull', 'assets/hud/heart_full.png');
-		this.load.image('hudempty', 'assets/hud/heart_empty.png');
+		this.load.image('hud_full', 'assets/hud/hud1.png');
+		this.load.image('hud_2left', 'assets/hud/hud2.png');
+		this.load.image('hud_1left', 'assets/hud/hud3.png');
+		this.load.image('hud_empty', 'assets/hud/hud4.png');
 	}
 
 	create() {
@@ -65,12 +67,9 @@ export default class Play extends Phaser.Scene {
 		this.physics.world.bounds.width = groundLayer.width;
 		this.physics.world.bounds.height = groundLayer.height;
 
-		//Para las vidas, habra que mejorarlo
-		let i;
-		for(i = 0; i < 3; ++i){
-			this.hud = this.add.sprite( i * 70 + 10, 10, "hudfull").setOrigin(0).setInteractive();
-			this.hud.setScrollFactor(0);
-		}
+		//HUD de vidas
+		this.hud = this.add.sprite(10, 10, "hud_full").setOrigin(0);
+		this.hud.setScrollFactor(0);
 		
 		//JUGADOR//
 		this.wolf = new Wolf(this,0,919);
@@ -80,50 +79,58 @@ export default class Play extends Phaser.Scene {
 		this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height); //para que no se salga del mapa
 		this.cameras.main.startFollow(this.wolf);
 
-		//SWUB
-		this.swub = new Swub(this,1000,919);
-		this.swub.createAnims();
-		this.physics.add.collider(this.swub, groundLayer);
-
-		//ICEDRAKE
-		this.icedrake = new Icedrake(this, 900, 965);
-		this.icedrake.createAnims(); 
-		this.physics.add.collider(this.icedrake, groundLayer);
-
-		/* no funciona no se porque
+		//ENEMIGOS//
 		//crear grupo con todos los enemigos para las fisicas
 		this.enemies = this.physics.add.group();
-		this.enemies.add(this.icedrake);
-		this.enemies.add(this.swub);
-		*/
+		this.spawnSwub(1300,919);
+		this.spawnIcedrake(900, 965);
+		this.physics.add.collider(this.enemies, groundLayer);
+		this.physics.add.collider(this.enemies, this.enemies); //no funciona bien la colision, spazzean mazo
+		
+	}
+	
+	spawnSwub(x,y){
+		let temp = new Swub(this, x, y);
+		temp.createAnims(); 
+        this.enemies.add(temp);
+	}
 
-		//ATAQUES Y COLISIONES CON ENEMIGOS
-		//funcion overlap para colisiones con el jugador
-		//this.physics.add.overlap(this.wolf, this.enemies, this.hurtPlayer, null, this);
-		this.physics.add.overlap(this.wolf, this.swub, this.hurtPlayer, null, this);
-
-
+	spawnIcedrake(x,y){
+		let temp = new Icedrake(this, x, y);
+		temp.createAnims(); 
+        this.enemies.add(temp);
 	}
 
 	hurtPlayer(player,enemy){
 		//knock-back al jugador
 		if(player.body.touching.left) {
-			player.body.setVelocityX(500);
-			player.body.setVelocityY(10);
+			player.body.setVelocityX(10);
+			player.body.setVelocityY(5);
 		} else if (player.body.touching.right) {
-			player.body.setVelocityX(-500);
-			player.body.setVelocityY(10);
+			player.body.setVelocityX(-10);
+			player.body.setVelocityY(5);
 		} else if (player.body.touching.up) {
 			player.body.setVelocityY(10);
 		}
 		player.play('hurtwolf');
+
+		//si health is 0, muere
 	}
 	
 
 	update(time, delta) {
+
+		//update del jugador
 		this.wolf.update();
-		this.swub.update();
-		this.icedrake.update(); 
+		//update de los enemigos
+		this.enemies.getChildren().forEach(function(item) {
+			item.update();
+		}, this);
+	
+		
+		//ATAQUES Y COLISIONES CON ENEMIGOS
+		//funcion overlap para colisiones con el jugador
+		this.physics.add.overlap(this.wolf, this.enemies, this.hurtPlayer, null, this); //tampoco funciona bien
 	}
 
 }

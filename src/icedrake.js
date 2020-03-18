@@ -6,7 +6,6 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
-        this.body.setVelocityX(70);
     }
     createAnims()
     {
@@ -53,6 +52,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
  
     update(time,delta) {
 
+		this.body.setVelocityX(70);
         this.body.setSize(0, 65); //ajustar el collider
  
         if (this.body.touching.right || this.body.blocked.right) {
