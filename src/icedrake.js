@@ -5,7 +5,8 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
         this.setFlipX(true);
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); //enable body
-        this.body.setCollideWorldBounds(true);
+		this.body.setCollideWorldBounds(true);
+		this.body.setVelocityX(70);
     }
     createAnims()
     {
@@ -50,9 +51,8 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		});
     }
  
-    update(time,delta) {
+    update() {
 
-		this.body.setVelocityX(70);
         this.body.setSize(0, 65); //ajustar el collider
  
         if (this.body.touching.right || this.body.blocked.right) {
@@ -60,7 +60,8 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
         }
         else if (this.body.touching.left || this.body.blocked.left) {
             this.body.setVelocityX(70); // turn right
-        }
+		}
+
         this.play('walkicedrake', true);
         
         //this.play('attack', true);

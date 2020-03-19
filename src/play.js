@@ -17,7 +17,8 @@ export default class Play extends Phaser.Scene {
 
 		//cargamos el tilemap
 		this.load.image('tiles', './assets/tiles/tilemap.png');
-
+		//cargamos imagen bloque collision
+		this.load.image('collision_tile', './assets/tiles/collision.png');
 		//cargamos el mapa de tiled en json
 		this.load.tilemapTiledJSON('map', './assets/levels/nivel1.json');
 
@@ -57,12 +58,16 @@ export default class Play extends Phaser.Scene {
 			tileWidth: 64,
 			tileHeight: 64
 		});
-		//añadimos el tileset al map
+		//añadimos los tileset al map
 		let tileset = map.addTilesetImage('tilemap', 'tiles', 64, 64);
+		let collisionset = map.addTilesetImage('collisions', 'collision_tile', 64, 64);
 		//añadimos la capa ground del mapa. Asegurarse de que el primer arg coincide con el nombre en tiled
 		let groundLayer = map.createStaticLayer('ground', tileset); //sera layer dinamica en un futuro
+		//añadimos capa enemyCollisions para las colisiones de enemigos en plataformas
+		let enemy_collisionLayer = map.createStaticLayer('enemyCollisions', collisionset).setVisible(false);
 		//añadimos colision por grupo de tiled collision editor
 		groundLayer.setCollisionFromCollisionGroup()
+		enemy_collisionLayer.setCollisionFromCollisionGroup()
 		//boundaries del mundo
 		this.physics.world.bounds.width = groundLayer.width;
 		this.physics.world.bounds.height = groundLayer.height;
@@ -81,17 +86,20 @@ export default class Play extends Phaser.Scene {
 
 		//ENEMIGOS//
 		//crear grupo con todos los enemigos para las fisicas
+		//PROBLEMA: por alguna razon en el grupo se salen del mapa por los lados y no toman ninguna velocidad, solo cuando los tocas
 		this.enemies = this.physics.add.group();
 		this.spawnSwub(1300,919);
 		this.spawnIcedrake(900, 965);
+		this.spawnIcedrake(900, 600);
 		this.physics.add.collider(this.enemies, groundLayer);
-		this.physics.add.collider(this.enemies, this.enemies); //no funciona bien la colision, spazzean mazo
+		this.physics.add.collider(this.enemies, enemy_collisionLayer);
+		this.physics.add.collider(this.enemies, this.enemies); 
 		
 	}
 	
 	spawnSwub(x,y){
 		let temp = new Swub(this, x, y);
-		temp.createAnims(); 
+		temp.createAnims();
         this.enemies.add(temp);
 	}
 
@@ -101,7 +109,7 @@ export default class Play extends Phaser.Scene {
         this.enemies.add(temp);
 	}
 
-	hurtPlayer(player,enemy){
+	hurtPlayer(player,enemy){ //no funciona bien
 		//knock-back al jugador
 		if(player.body.touching.left) {
 			player.body.setVelocityX(10);
@@ -130,7 +138,7 @@ export default class Play extends Phaser.Scene {
 		
 		//ATAQUES Y COLISIONES CON ENEMIGOS
 		//funcion overlap para colisiones con el jugador
-		this.physics.add.overlap(this.wolf, this.enemies, this.hurtPlayer, null, this); //tampoco funciona bien
+		this.physics.add.overlap(this.wolf, this.enemies, this.hurtPlayer, null, this); //no funciona bien
 	}
 
 }
