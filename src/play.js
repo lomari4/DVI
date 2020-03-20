@@ -86,12 +86,11 @@ export default class Play extends Phaser.Scene {
 
 		//ENEMIGOS//
 		//crear grupo con todos los enemigos para las fisicas
-		//PROBLEMA: por alguna razon en el grupo se salen del mapa por los lados y no toman ninguna velocidad, solo cuando los tocas
 		this.enemies = this.physics.add.group();
 		this.spawnSwub(1300,919);
 		this.spawnIcedrake(900, 965);
 		this.spawnIcedrake(900, 600);
-		this.enemies.getChildren().forEach(function(item) {
+		this.enemies.getChildren().forEach(function(item) { //necesario para crear cada enemigo con sus propiedades. Hacerlo antes de añadirlo al grupo no es correcto
 			item.create();
 		}, this);
 		this.physics.add.collider(this.enemies, groundLayer);
