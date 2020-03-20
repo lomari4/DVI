@@ -2,7 +2,8 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
     
     constructor(scene, x, y) {
         super(scene, x, y, 'icedrake');
-        this.setFlipX(true);
+	}
+	create(){
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); //enable body
 		this.body.setCollideWorldBounds(true);

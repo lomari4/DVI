@@ -91,6 +91,9 @@ export default class Play extends Phaser.Scene {
 		this.spawnSwub(1300,919);
 		this.spawnIcedrake(900, 965);
 		this.spawnIcedrake(900, 600);
+		this.enemies.getChildren().forEach(function(item) {
+			item.create();
+		}, this);
 		this.physics.add.collider(this.enemies, groundLayer);
 		this.physics.add.collider(this.enemies, enemy_collisionLayer);
 		this.physics.add.collider(this.enemies, this.enemies); 
@@ -138,7 +141,7 @@ export default class Play extends Phaser.Scene {
 		
 		//ATAQUES Y COLISIONES CON ENEMIGOS
 		//funcion overlap para colisiones con el jugador
-		this.physics.add.overlap(this.wolf, this.enemies, this.hurtPlayer, null, this); //no funciona bien
+		//this.physics.add.overlap(this.wolf, this.enemies, this.hurtPlayer, null, this); //no funciona bien
 	}
 
 }
