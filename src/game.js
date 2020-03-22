@@ -1,8 +1,14 @@
+import Wolf from './wolf.js';
+import Swub from './swub.js';
+import Icedrake from './icedrake.js';
+
+
 export default class Game extends Phaser.Scene {
     constructor() {
         super({ key: 'Game' });
     }
-    //PRELOAD DE TODO EL JUEGO
+
+    //PRELOAD DE TODO EL JUEGO//
     preload() {
         //TITLE SCREEN
         //Cargamos el audio
@@ -16,7 +22,7 @@ export default class Game extends Phaser.Scene {
 
         //LEVELS
         //cargamos el audio
-		this.load.audio("gameSound", "./assets/music/soundtrack/Snow.mp3");
+		this.load.audio("level1_sound", "./assets/music/soundtrack/Snow.mp3");
 		this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
 
 		//cargamos el icono de fullscreen
@@ -62,4 +68,91 @@ export default class Game extends Phaser.Scene {
         })
     }
 
+    //FUNCIONES GENERALES DEL JUEGO QUE COMPARTEN TODOS LOS NIVELES//
+
+    //MAPA//
+    addMap(scene){
+        //añadimos el background que tiene fullscreen de funcionalidad
+		let bg = scene.add.image(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive();
+		bg.on('pointerup', function () {
+			if (scene.scale.isFullscreen)
+            scene.scale.stopFullscreen();
+			else
+            scene.scale.startFullscreen();
+		}, scene);
+		//añadimos el mapa
+		let map = scene.make.tilemap({
+			key: 'map',
+			tileWidth: 64,
+			tileHeight: 64
+        });
+        return map;
+    }
+    addGround(scene,map){
+        //añadimos los tileset al map
+        let tileset = map.addTilesetImage('tilemap', 'tiles', 64, 64);
+        //añadimos la capa ground del mapa. Asegurarse de que el primer arg coincide con el nombre en tiled
+        let groundLayer = map.createStaticLayer('ground', tileset); //sera layer dinamica en un futuro
+        //añadimos colision por grupo de tiled collision editor
+        groundLayer.setCollisionFromCollisionGroup();
+        //boundaries del mundo
+		scene.physics.world.bounds.width = groundLayer.width;
+        scene.physics.world.bounds.height = groundLayer.height;
+        return groundLayer;
+    }
+    addEnemyCollision(map){
+        let collisionset = map.addTilesetImage('collisions', 'collision_tile', 64, 64);
+		//añadimos capa enemyCollisions para las colisiones de enemigos en plataformas
+		let enemy_collisionLayer = map.createStaticLayer('enemyCollisions', collisionset).setVisible(false);
+        enemy_collisionLayer.setCollisionFromCollisionGroup();
+        return enemy_collisionLayer;
+    }
+
+    //CAMARA//
+    addCamera(scene,player,groundLayer){
+        //para que la camara siga al jugador
+		scene.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height); //para que no se salga del mapa
+		scene.cameras.main.startFollow(player);
+    }
+
+    //HUD//
+    addHud(scene){
+        scene.hud = scene.add.sprite(10, 10, "hud_full").setOrigin(0);
+		scene.hud.setScrollFactor(0);
+    }
+
+    //HURT//
+    hurtPlayer(player,enemy){ //no funciona bien
+		//knock-back al jugador
+		if(player.body.touching.left) {
+			player.body.setVelocityX(10);
+			player.body.setVelocityY(5);
+		} else if (player.body.touching.right) {
+			player.body.setVelocityX(-10);
+			player.body.setVelocityY(5);
+		} else if (player.body.touching.up) {
+			player.body.setVelocityY(10);
+		}
+		player.play('hurtwolf');
+
+		//si health is 0, muere
+	}
+
+    //SPAWN//
+    spawnPlayer(scene,x,y,groundLayer){
+        let wolf = new Wolf(scene,0,919);
+        wolf.createAnims(); //crear las animaciones del wolf
+        scene.physics.add.collider(wolf, groundLayer);
+        return wolf;
+    }
+    spawnSwub(scene,x,y,enemies){
+		let temp = new Swub(scene, x, y);
+		temp.createAnims();
+        enemies.add(temp);
+	}
+    spawnIcedrake(scene,x,y,enemies){
+		let temp = new Icedrake(scene, x, y);
+		temp.createAnims(); 
+        enemies.add(temp);
+	}
 }
