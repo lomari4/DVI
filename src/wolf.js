@@ -1,6 +1,6 @@
 
 export default class Wolf extends Phaser.GameObjects.Sprite {
-    
+
     constructor(scene, x, y) {
         super(scene, x, y, 'wolf');
         this.setFlipX(true);
@@ -10,75 +10,74 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.cursors = this.scene.input.keyboard.addKeys('W, A, D, SPACE');
     }
 
-    createAnims()
-    {
+    createAnims() {
         this.scene.anims.create({
-			key: 'runwolf',
-			frames: this.scene.anims.generateFrameNames('wolf', {
-			  prefix: 'wolf_',
-			  suffix: '.png',
-			  start: 19,
-			  end: 25,
-			  zeroPad: 2
-			}),
-			frameRate: 10,
-			repeat: -1,
-			
-		});
-		this.scene.anims.create({
-			key: 'attackwolf',
-			frames: this.scene.anims.generateFrameNames('wolf', {
-			  prefix: 'wolf_',
-			  suffix: '.png',
-			  start: 8,
-			  end: 14,
-			  zeroPad: 2
-			}),
-			frameRate: 8,
-			repeat: -1,
-			
-		});
-		this.scene.anims.create({
-			key: 'jumpwolf',
-			frames: this.scene.anims.generateFrameNames('wolf', {
-			  prefix: 'wolf_',
-			  suffix: '.png',
-			  start: 17,
-			  end: 18,
-			  zeroPad: 2
-			}),
-			frameRate: 5,
-			repeat: -1,
-			
-		});
-		this.scene.anims.create({
-			key: 'idlewolf',
-			frames: this.scene.anims.generateFrameNames('wolf', {
-			  prefix: 'wolf_',
-			  suffix: '.png',
-			  start: 1,
-			  end: 7,
-			  zeroPad: 2
-			}),
-			frameRate: 5,
-			repeat: -1,
-			
+            key: 'runwolf',
+            frames: this.scene.anims.generateFrameNames('wolf', {
+                prefix: 'wolf_',
+                suffix: '.png',
+                start: 19,
+                end: 25,
+                zeroPad: 2
+            }),
+            frameRate: 10,
+            repeat: -1,
+
         });
         this.scene.anims.create({
-			key: 'hurtwolf',
-			frames: this.scene.anims.generateFrameNames('wolf', {
-			  prefix: 'wolf_',
-			  suffix: '.png',
-			  start: 15,
-			  end: 15,
-			  zeroPad: 2
-			}),
-			frameRate: 1,
-			repeat: -1,
-			
-		});
+            key: 'attackwolf',
+            frames: this.scene.anims.generateFrameNames('wolf', {
+                prefix: 'wolf_',
+                suffix: '.png',
+                start: 8,
+                end: 14,
+                zeroPad: 2
+            }),
+            frameRate: 14,
+            repeat: -1,
+
+        });
+        this.scene.anims.create({
+            key: 'jumpwolf',
+            frames: this.scene.anims.generateFrameNames('wolf', {
+                prefix: 'wolf_',
+                suffix: '.png',
+                start: 17,
+                end: 18,
+                zeroPad: 2
+            }),
+            frameRate: 5,
+            repeat: -1,
+
+        });
+        this.scene.anims.create({
+            key: 'idlewolf',
+            frames: this.scene.anims.generateFrameNames('wolf', {
+                prefix: 'wolf_',
+                suffix: '.png',
+                start: 1,
+                end: 7,
+                zeroPad: 2
+            }),
+            frameRate: 5,
+            repeat: -1,
+
+        });
+        this.scene.anims.create({
+            key: 'hurtwolf',
+            frames: this.scene.anims.generateFrameNames('wolf', {
+                prefix: 'wolf_',
+                suffix: '.png',
+                start: 15,
+                end: 15,
+                zeroPad: 2
+            }),
+            frameRate: 1,
+            repeat: -1,
+
+        });
     }
- 
+
     update() {
 
         this.body.setSize(0, 97); //ajustar el collider
@@ -87,7 +86,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         //izquierda
         if (this.cursors.A.isDown) {
             this.body.setVelocityX(-300);
-            if (this.body.onFloor()){
+            if (this.body.onFloor()) {
                 this.play('runwolf', true);
             }
 
@@ -95,7 +94,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         //derecha
         else if (this.cursors.D.isDown) {
             this.body.setVelocityX(300);
-            if (this.body.onFloor()){
+            if (this.body.onFloor()) {
                 this.play('runwolf', true);
             }
         }
@@ -104,10 +103,6 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             if (this.body.onFloor()) {
                 this.play('attackwolf', true);
-				/*
-				let s = this.scene.sound.add("wolf_attack");
-                s.play()
-                */
             }
         }
         else {

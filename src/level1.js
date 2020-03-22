@@ -3,47 +3,52 @@ export default class Level1 extends Phaser.Scene {
 	constructor() {
 		super({ key: 'Level1' });
 	}
-	preload() {}
+	preload() { }
 
+	//RECORDAR INDENTAR CON ALT+SHIFT+F
 	create() {
 		//GENERAL//
+		//añadimos el JUEGO (clase Game con todas las funciones que van a compartir todos los niveles)
+		let game = this.scene.get('Game');
+
 		//añadimos el sonido
 		let soundsGame = this.sound.add("level1_sound");
 		soundsGame.setLoop(true);
 		soundsGame.play();
-		//añadimos el JUEGO (clase Game con todas las funciones que van a compartir todos los niveles)
-		let game = this.scene.get('Game');
+		//añadimos el audio del jugador
+		game.audio_playerAttack(this);
+		game.audio_playerJump(this);
 
 		//MAPA//
 		let map = game.addMap(this);
-		let groundLayer = game.addGround(this,map);
+		let groundLayer = game.addGround(this, map);
 		let enemy_collisionLayer = game.addEnemyCollision(map)
 
 		//HUD de vidas
 		this.hud = game.addHud(this);
-		
+
 		//JUGADOR//
-		this.wolf = game.spawnPlayer(this,0,919,groundLayer);
-		
+		this.wolf = game.spawnPlayer(this, 0, 919, groundLayer);
+
 		//CAMARA//
-		game.addCamera(this,this.wolf,groundLayer);
+		game.addCamera(this, this.wolf, groundLayer);
 
 		//ENEMIGOS//
 		//crear grupo con todos los enemigos para las fisicas
 		this.enemies = this.physics.add.group();
 		//funciones de spawn de enemigos
-		game.spawnSwub(this,1300,919,this.enemies);
-		game.spawnIcedrake(this,900, 965,this.enemies);
-		game.spawnIcedrake(this,900, 600,this.enemies);
-		this.enemies.getChildren().forEach(function(item) { //necesario para crear cada enemigo con sus propiedades. Hacerlo antes de añadirlo al grupo no es correcto
+		game.spawnSwub(this, 1300, 919, this.enemies);
+		game.spawnIcedrake(this, 900, 965, this.enemies);
+		game.spawnIcedrake(this, 900, 600, this.enemies);
+		this.enemies.getChildren().forEach(function (item) { //necesario para crear cada enemigo con sus propiedades. Hacerlo antes de añadirlo al grupo no funciona
 			item.create();
 		}, this);
 		//colisiones
 		this.physics.add.collider(this.enemies, groundLayer);
 		this.physics.add.collider(this.enemies, enemy_collisionLayer);
-		this.physics.add.collider(this.enemies, this.enemies); 
-		
-		
+		this.physics.add.collider(this.enemies, this.enemies);
+
+
 
 	}
 
@@ -52,13 +57,13 @@ export default class Level1 extends Phaser.Scene {
 		let game = this.scene.get('Game');
 
 		//update del jugador
-		this.wolf.update();
+		this.wolf.update(game);
 		//update de los enemigos
-		this.enemies.getChildren().forEach(function(item) {
+		this.enemies.getChildren().forEach(function (item) {
 			item.update();
 		}, this);
-	
-		
+
+
 		//ATAQUES Y COLISIONES CON ENEMIGOS
 		//funcion overlap para colisiones con el jugador
 		this.physics.add.overlap(this.wolf, this.enemies, game.hurtPlayer, null, this); //no funciona bien
