@@ -1,5 +1,5 @@
 import Game from './game.js'
-import Play from './play.js'
+import Level1 from './level1.js'
 var config = {
     type: Phaser.AUTO,
     width: 1472,
@@ -17,7 +17,7 @@ var config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     //scene: [Menu, Game],
-    scene: [Game, Play],
+    scene: [Game, Level1],
     physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: true } }
 
 };

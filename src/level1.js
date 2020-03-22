@@ -1,41 +1,14 @@
+//import Game from './game.js';
 import Wolf from './wolf.js';
 import Swub from './swub.js';
 import Icedrake from './icedrake.js';
 
-export default class Play extends Phaser.Scene {
+export default class Level1 extends Phaser.Scene {
 
 	constructor() {
-		super({ key: 'Play' });
+		super({ key: 'Level1' });
 	}
-	preload() {
-		//cargamos el audio
-		this.load.audio("gameSound", "./assets/music/soundtrack/Snow.mp3");
-		this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
-
-		//cargamos el icono de fullscreen
-		this.load.image('fullscreen', './assets/hud/fullscreen.png');
-
-		//cargamos el tilemap
-		this.load.image('tiles', './assets/tiles/tilemap.png');
-		//cargamos imagen bloque collision
-		this.load.image('collision_tile', './assets/tiles/collision.png');
-		//cargamos el mapa de tiled en json
-		this.load.tilemapTiledJSON('map', './assets/levels/nivel1.json');
-
-		//cargamos el spritesheet del jugador
-		//this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
-		this.load.atlas('wolf', './assets/mainCharacter/wolf_sprites/wolf.png', './assets/mainCharacter/wolf_sprites/wolf.json');
-		//cargamos el spritesheet de los enemigos
-		this.load.atlas('swub', './assets/enemies/swub_sprites/swub.png', './assets/enemies/swub_sprites/swub.json');
-		this.load.atlas('icedrake', './assets/enemies/icedrake_sprites/icedrake.png', './assets/enemies/icedrake_sprites/icedrake.json');
-		//audio de wolf
-		this.load.audio("wolf_attack", "./assets/music/effects/wolf_attack.wav");
-		//añadimos imagen de las vidas
-		this.load.image('hud_full', 'assets/hud/hud1.png');
-		this.load.image('hud_2left', 'assets/hud/hud2.png');
-		this.load.image('hud_1left', 'assets/hud/hud3.png');
-		this.load.image('hud_empty', 'assets/hud/hud4.png');
-	}
+	preload() {}
 
 	create() {
 		//GENERAL//
