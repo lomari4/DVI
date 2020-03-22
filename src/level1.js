@@ -20,7 +20,7 @@ export default class Level1 extends Phaser.Scene {
 		game.audio_playerJump(this);
 
 		//MAPA//
-		let map = game.addMap(this);
+		let map = game.addMap(this,1); //hay que pasarle el nivel como segundo arg
 		let groundLayer = game.addGround(this, map);
 		let enemy_collisionLayer = game.addEnemyCollision(map)
 

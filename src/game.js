@@ -20,7 +20,8 @@ export default class Game extends Phaser.Scene {
         //Cargamos el boton
         this.load.image("playButton", "./assets/play_button.png");
 
-        //LEVELS
+        //LEVELS//
+        //AUDIO
         //cargamos el audio
         this.load.audio("level1_sound", "./assets/music/soundtrack/Snow.mp3");
         this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
@@ -28,27 +29,31 @@ export default class Game extends Phaser.Scene {
         this.load.audio("player_jump_sound", "./assets/music/effects/jump.wav");
         this.load.audio("player_attack_sound", "./assets/music/effects/wolf_attack.wav");
 
+        //GENERAL
         //cargamos el icono de fullscreen
         this.load.image('fullscreen', './assets/hud/fullscreen.png');
+        //añadimos imagen de las vidas
+        this.load.image('hud_full', 'assets/hud/hud1.png');
+        this.load.image('hud_2left', 'assets/hud/hud2.png');
+        this.load.image('hud_1left', 'assets/hud/hud3.png');
+        this.load.image('hud_empty', 'assets/hud/hud4.png');
 
+        //MAPA
         //cargamos el tilemap
         this.load.image('tiles', './assets/tiles/tilemap.png');
         //cargamos imagen bloque collision
         this.load.image('collision_tile', './assets/tiles/collision.png');
-        //cargamos el mapa de tiled en json
-        this.load.tilemapTiledJSON('map', './assets/levels/nivel1.json');
+        //cargamos el MAPA de tiled en json
+        this.load.tilemapTiledJSON('map1', './assets/levels/nivel1.json'); //nivel 1
 
+        //SPRITESHEETS
         //cargamos el spritesheet del jugador
         //this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
         this.load.atlas('wolf', './assets/mainCharacter/wolf_sprites/wolf.png', './assets/mainCharacter/wolf_sprites/wolf.json');
         //cargamos el spritesheet de los enemigos
         this.load.atlas('swub', './assets/enemies/swub_sprites/swub.png', './assets/enemies/swub_sprites/swub.json');
         this.load.atlas('icedrake', './assets/enemies/icedrake_sprites/icedrake.png', './assets/enemies/icedrake_sprites/icedrake.json');
-        //añadimos imagen de las vidas
-        this.load.image('hud_full', 'assets/hud/hud1.png');
-        this.load.image('hud_2left', 'assets/hud/hud2.png');
-        this.load.image('hud_1left', 'assets/hud/hud3.png');
-        this.load.image('hud_empty', 'assets/hud/hud4.png');
+        
     }
 
     create() {
@@ -72,7 +77,7 @@ export default class Game extends Phaser.Scene {
     //FUNCIONES GENERALES DEL JUEGO QUE COMPARTEN TODOS LOS NIVELES//
 
     //MAPA//
-    addMap(scene) {
+    addMap(scene,nivel) {
         //añadimos el background que tiene fullscreen de funcionalidad
         let bg = scene.add.image(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive();
         bg.on('pointerup', function () {
@@ -81,12 +86,17 @@ export default class Game extends Phaser.Scene {
             else
                 scene.scale.startFullscreen();
         }, scene);
-        //añadimos el mapa
-        let map = scene.make.tilemap({
-            key: 'map',
-            tileWidth: 64,
-            tileHeight: 64
-        });
+        //añadimos el mapa dependiendo del nivel
+        let map;
+        if(nivel===1)
+        {
+            map = scene.make.tilemap({
+                key: 'map1',
+                tileWidth: 64,
+                tileHeight: 64
+            });
+        }
+        
         return map;
     }
     addGround(scene, map) {
