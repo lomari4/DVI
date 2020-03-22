@@ -65,6 +65,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		this.play('walkicedrake', true);
 
 		//this.play('attack', true);
+		//this.anims.currentFrame.index === 1
 
 		//fliperar el sprite (por default esta a la izquierda)
 		if (this.body.velocity.x > 0)

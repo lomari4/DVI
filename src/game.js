@@ -128,14 +128,21 @@ export default class Game extends Phaser.Scene {
 
     //AUDIOS//
     audio_playerJump(scene) {
-        scene.input.keyboard.on('keydown-W', () => {
-            this.sound.add("player_jump_sound").play();
+        let s = this.sound.add("player_jump_sound", {
+            volume: 0.55,   
         });
+        s.play();
     }
     audio_playerAttack(scene) {
+        /*
         scene.input.keyboard.on('keydown-SPACE', () => {
             this.sound.add("player_attack_sound").play();
         });
+        */
+       let s = this.sound.add("player_attack_sound", {
+            volume: 0.55,   
+       });
+       s.play();
     }
 
     //HUD//
