@@ -111,7 +111,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         }
         //saltar
         if (this.cursors.W.isDown && this.body.onFloor()) {
-            this.body.setVelocityY(-400);
+            this.body.setVelocityY(-420);
             this.play('jumpwolf', true);
             if (this.body.onFloor())
                 game.audio_playerJump(scene);

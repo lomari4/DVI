@@ -154,10 +154,9 @@ export default class Game extends Phaser.Scene {
     //HURT//
     hurtPlayer(player, enemy) {
         //knock-back al jugador
-      
+       
         if(player.body.touching.down){
             player.body.setVelocityY(-300);
-            player.setY(player.body.y + 40);
         }
         else if(player.body.touching.right){
             player.body.setVelocityY(-200);
