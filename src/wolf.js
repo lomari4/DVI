@@ -21,7 +21,6 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
                 zeroPad: 2
             }),
             frameRate: 10,
-            repeat: -1,
 
         });
         this.animA = this.scene.anims.create({
@@ -34,7 +33,6 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
                 zeroPad: 2
             }),
             frameRate: 14,
-            repeat: -1,
 
         });
         this.scene.anims.create({
@@ -46,8 +44,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
                 end: 18,
                 zeroPad: 2
             }),
-            frameRate: 5,
-            repeat: -1,
+            frameRate: 14,
 
         });
         this.scene.anims.create({
@@ -73,8 +70,6 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
                 zeroPad: 2
             }),
             frameRate: 1,
-            repeat: -1,
-
         });
     }
 
@@ -105,7 +100,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE))
                 game.audio_playerAttack(scene);
         }
-        else {
+        else if (this.cursors.A.isUp && this.cursors.D.isUp && this.cursors.SPACE.isUp && this.cursors.W.isUp && (!this.anims.isPlaying || (this.anims.isPlaying && this.anims.currentAnim.key === 'runwolf'))){
             this.body.setVelocityX(0);
             //idle
             if (this.body.onFloor())
