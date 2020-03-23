@@ -22,7 +22,7 @@ Para pasar al siguiente nivel, el personaje tendrá que recorrerlo entero para p
 
 ## 1.4. Controles básicos
 
-Se juega con el teclado, usando las teclas WAD o las flechas para moverte de un lado a otro y saltar. Se usará el espacio para atacar. Todos los sprites de los enemigos son sacados de la página The Spriters Resource.
+Se juega con el teclado, usando las teclas WAD o las flechas para moverte de un lado a otro y saltar. Se usará el espacio para atacar. 
 
 # 2. Personajes
 
@@ -33,7 +33,7 @@ Elegimos un lobo que es medio árbol para caracterizar a la naturaleza, ya que e
 
 
 ## 2.2. Enemigos
-Como norma general, tocar a los enemigos daña al personaje.
+Como norma general, tocar a los enemigos daña al personaje. Todos los sprites de los enemigos son sacados de la página The Spriters Resource.
 
 ### 2.2.1. Ice Drake
 
