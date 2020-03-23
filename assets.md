@@ -6,6 +6,7 @@ Descripción de todas las carpetas dentro de assets:
 - **enemies**: Sprite sheets de los enemigos.
 - **mainCharacter**: Todo lo relacionado con el personaje que el jugador controla, ya sean texturas o sprite sheets.
 - **hud**: Head-Up Display o barra de estado, donde estará la vida del jugador y la vida del boss, además de otros elementos de la pantalla como un botón de fullscreen.
+- **levels**: Mapas del juego y patrones creados con la aplicación Tiled
 
 Todos los escenarios del juego son bosques, nevados o no, dependiendo del progreso del jugador. Como el juego tiene una temática invernal, los enemigos son de hielo (paleta de colores blanca y azul) o son animales con mucho pelaje para aguantar el frío. 
 
