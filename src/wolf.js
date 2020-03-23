@@ -69,7 +69,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
                 end: 15,
                 zeroPad: 2
             }),
-            frameRate: 1,
+            frameRate: 1.5,
         });
     }
 
