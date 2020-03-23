@@ -33,7 +33,7 @@ Elegimos un lobo que es medio árbol para caracterizar a la naturaleza, ya que e
 
 
 ## 2.2. Enemigos
-Como norma general, tocar a los enemigos daña al personaje. Los sprites de los enemigos fueron sacados de la página The Spriters Resource.
+Como norma general, tocar a los enemigos daña al personaje.
 
 ### 2.2.1. Ice Drake
 
@@ -80,7 +80,7 @@ Aparecerán todos los enemigos. Cuatro alturas
 Aparecerá el boss final. Mecánicas todavía por ver.
 
 # 4. Arte
-Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel.  Los assets de los enemigos los hemos sacado de 'The Spriters Resource' y los demás de Kenney.nl, aunque hemos tenido que hacer modificaciones para que todo esté mismo estilo de arte, dibujándoles contornos negros.
+Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel.  Los assets de los enemigos los hemos sacado de 'The Spriters Resource'y los tiles de Kenney.nl, aunque hemos tenido que hacer modificaciones para que todo esté mismo estilo de arte, dibujándoles contornos negros. El personaje principal lo hemos creado y animado nosotros.
 ![transicion](https://i.imgur.com/CrBIkVa.png)
 
 El background de los niveles será este:
