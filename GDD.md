@@ -33,7 +33,7 @@ Elegimos un lobo que es medio árbol para caracterizar a la naturaleza, ya que e
 
 
 ## 2.2. Enemigos
-Como norma general, tocar a los enemigos daña al personaje. Todos los sprites de los enemigos son sacados de la página The Spriters Resource.
+Como norma general, tocar a los enemigos daña al personaje. Los sprites de los enemigos fueron sacados de la página The Spriters Resource.
 
 ### 2.2.1. Ice Drake
 
