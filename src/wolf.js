@@ -44,7 +44,8 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
                 end: 18,
                 zeroPad: 2
             }),
-            frameRate: 14,
+            frameRate: 6,
+           
 
         });
         this.scene.anims.create({
