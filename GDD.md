@@ -28,11 +28,9 @@ Se juega con el teclado, usando las teclas WAD o las flechas para moverte de un 
 
 ## 2.1. Personaje principal
 
-Al ser un guardián del bosque, el personaje principal será un animal que habita en el bosque. Nos hemos inspirado en estas imagenes para diseñar al personaje:
-![wolf](https://i.pinimg.com/originals/da/0d/80/da0d8009e3c466226912df902d827c6e.jpg)
-![wolf2](https://images.alphacoders.com/665/665364.png)
+Elegimos un lobo que es medio árbol para caracterizar a la naturaleza, ya que es un guardián del bosque y tiene poderes para derretir la nieve y hacer que salga hierba del suelo. El sprite es original, hecho por nosotros.
+![wolf](https://s5.gifyu.com/images/wolf_run.gif)
 
-En un futuro se harán los sprites.
 
 ## 2.2. Enemigos
 Como norma general, tocar a los enemigos daña al personaje.
@@ -85,10 +83,16 @@ Aparecerá el boss final. Mecánicas todavía por ver.
 Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel.  Los assets de los enemigos los hemos sacado de 'The Spriters Resource' y los demás de Kenney.nl, aunque hemos tenido que hacer modificaciones para que todo esté mismo estilo de arte, dibujándoles contornos negros.
 ![transicion](https://i.imgur.com/CrBIkVa.png)
 
-Por ahora, el background de los niveles será este:
+El background de los niveles será este:
 ![bg](https://i.imgur.com/JnFCODm.png)
 
 # 5. Música y sonidos
+La música de este juego pertenece a [Aaron Krogh](https://www.youtube.com/user/amkrogh89/featured "Aaron Krogh"), un compositor que deja que cualquiera use su música, ya sea para proyectos comerciales o no. De su gran librería de pistas, hemos escogido 5, una para la pantalla de título, para los 3 niveles y para el jefe final:
+- Menú principal – Night 2
+- Nivel 1 – Snow
+- Nivel 2 – Serenity
+- Nivel 3 – Treacherous Slopes
+- Jefe final – Bloodlust
 
 # 6. Desarrolladores
 Marina López Osorio y Jin Tao Peng Zhou, estudiantes de la Universidad Complutense de Madrid.
