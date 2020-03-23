@@ -152,16 +152,20 @@ export default class Game extends Phaser.Scene {
     }
 
     //HURT//
-    hurtPlayer(player, enemy) { //no funciona bien
+    hurtPlayer(player, enemy) {
         //knock-back al jugador
-        player.setY(player.body.y + 40);
-        player.body.setVelocityY(-300);
-        player.setX(player.body.x + 80);
-        if(player.flipX == true){
-            player.body.setVelocityX(-60);
+      
+        if(player.body.touching.down){
+            player.body.setVelocityY(-300);
+            player.setY(player.body.y + 40);
+        }
+        else if(player.body.touching.right){
+            player.body.setVelocityY(-200);
+            player.body.setVelocityX(-200);
         }
         else{
-            player.body.setVelocityX(60);
+            player.body.setVelocityY(-200);
+            player.body.setVelocityX(200);
         }
 
         player.play('hurtwolf', false);
