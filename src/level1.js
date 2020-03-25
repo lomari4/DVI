@@ -15,10 +15,10 @@ export default class Level1 extends Phaser.Scene {
 		this.music = this.sound.add("level1_sound");
 		this.music.setLoop(true);
 		this.music.play();
-		
+
 
 		//MAPA//
-		let map = game.addMap(this,1); //hay que pasarle el nivel como segundo arg
+		let map = game.addMap(this, 1); //hay que pasarle el nivel como segundo arg
 		let groundLayer = game.addGround(this, map);
 		let enemy_collisionLayer = game.addEnemyCollision(map)
 
@@ -63,21 +63,21 @@ export default class Level1 extends Phaser.Scene {
 
 		//ATAQUES Y COLISIONES CON ENEMIGOS
 		//funcion overlap para colisiones con el jugador
-		this.physics.add.overlap(this.wolf, this.enemies, game.hurtPlayer, null, this); 
+		this.physics.add.overlap(this.wolf, this.enemies, game.hurtPlayer, null, this);
 
-		if(this.wolf.hurtflag == true){
-            this.wolf.health -= 1;
-        }
+		if (this.wolf.hurtflag == true) {
+			this.wolf.health -= 1;
+		}
 		game.updateHealthHud(this.wolf, this);
 		this.wolf.hurtflag = false;
-		
-		if(this.wolf.health == "0"){
+
+		if (this.wolf.health == "0") {
 			//this.scene.start("Lose");
 			//ha perdido. Al pulsar enter se resetea el juego
 			//....//
 			this.music.destroy();
 			this.scene.restart();
-        }
+		}
 	}
 
 }

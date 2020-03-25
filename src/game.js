@@ -54,7 +54,7 @@ export default class Game extends Phaser.Scene {
         //cargamos el spritesheet de los enemigos
         this.load.atlas('swub', './assets/enemies/swub_sprites/swub.png', './assets/enemies/swub_sprites/swub.json');
         this.load.atlas('icedrake', './assets/enemies/icedrake_sprites/icedrake.png', './assets/enemies/icedrake_sprites/icedrake.json');
-        
+
     }
 
     create() {
@@ -78,7 +78,7 @@ export default class Game extends Phaser.Scene {
     //FUNCIONES GENERALES DEL JUEGO QUE COMPARTEN TODOS LOS NIVELES//
 
     //MAPA//
-    addMap(scene,nivel) {
+    addMap(scene, nivel) {
         //añadimos el background que tiene fullscreen de funcionalidad
         let bg = scene.add.image(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive();
         bg.on('pointerup', function () {
@@ -89,15 +89,14 @@ export default class Game extends Phaser.Scene {
         }, scene);
         //añadimos el mapa dependiendo del nivel
         let map;
-        if(nivel===1)
-        {
+        if (nivel === 1) {
             map = scene.make.tilemap({
                 key: 'map1',
                 tileWidth: 64,
                 tileHeight: 64
             });
         }
-        
+
         return map;
     }
     addGround(scene, map) {
@@ -130,22 +129,17 @@ export default class Game extends Phaser.Scene {
     //AUDIOS//
     audio_playerJump() {
         let s = this.sound.add("player_jump_sound", {
-            volume: 0.47,   
+            volume: 0.47,
         });
         s.play();
     }
     audio_playerAttack() {
-        /*
-        scene.input.keyboard.on('keydown-SPACE', () => {
-            this.sound.add("player_attack_sound").play();
+        let s = this.sound.add("player_attack_sound", {
+            volume: 0.55,
         });
-        */
-       let s = this.sound.add("player_attack_sound", {
-            volume: 0.55,   
-       });
-       s.play();
+        s.play();
     }
- 
+
 
     //HUD//
     addHud(scene) {
@@ -175,23 +169,23 @@ export default class Game extends Phaser.Scene {
     hurtPlayer(player, enemy) {
         //knock-back al jugador
         player.hurtflag = true;
-        if(player.body.touching.down){
+        if (player.body.touching.down) {
             player.body.setVelocityY(-300);
         }
-        else if(player.body.touching.right){
+        else if (player.body.touching.right) {
             player.body.setVelocityY(-200);
             player.body.setVelocityX(-200);
         }
-        else{
+        else {
             player.body.setVelocityY(-200);
             player.body.setVelocityX(200);
         }
         player.play('hurtwolf', false);
 
-        if(player.health!==1) //no suena si va a morir
-        this.sound.add("player_hurt_sound", {
-            volume: 0.00070, //por lo que mas quieras no subas esto si quieres conservar tus oidos
-        }).play();
+        if (player.health !== 1) //no suena si va a morir
+            this.sound.add("player_hurt_sound", {
+                volume: 0.00070, //por lo que mas quieras no subas esto si quieres conservar tus oidos
+            }).play();
     }
 
     //SPAWN//
