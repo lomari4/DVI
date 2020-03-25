@@ -71,17 +71,12 @@ export default class Level1 extends Phaser.Scene {
 		game.updateHealthHud(this.wolf, this);
 		this.wolf.hurtflag = false;
 		
-		//NOSE porque siempre se mete al else
-		//deberia haber una escena para lose que te ponga qu has perdido
-		//no se hace la animacion como la del ejemplo del juego del conejo
-		//vale, él lo hace con la posicion y
-		console.log(this.wolf.health);
-        if(this.wolf.heath <= "0"){
-            this.scene.start("Lose");
+		if(this.wolf.health == "0"){
+			//this.scene.start("Lose");
+			//ha perdido. Al pulsar enter se resetea el juego
+			//....//
+			this.scene.restart();
         }
-        /*else{
-            this.scene.start("Level1");
-        }*/
 	}
 
 }

@@ -185,8 +185,6 @@ export default class Game extends Phaser.Scene {
             player.body.setVelocityX(200);
         }
         player.play('hurtwolf', false);
-        //si health is 0, muere
-
     }
 
     //SPAWN//
