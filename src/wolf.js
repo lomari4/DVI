@@ -76,7 +76,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         });
     }
 
-    update(game, scene) {
+    update(game) {
 
         this.body.setSize(0, 97); //ajustar el collider
         //this.setOrigin(0.5,0.5);
@@ -100,7 +100,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             this.play('attackwolf', true);
             if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE))
-                game.audio_playerAttack(scene);
+                game.audio_playerAttack();
         }
         else if (this.cursors.A.isUp && this.cursors.D.isUp && this.cursors.SPACE.isUp && this.cursors.W.isUp && (!this.anims.isPlaying || (this.anims.isPlaying && this.anims.currentAnim.key === 'runwolf'))){
             this.body.setVelocityX(0);
@@ -117,7 +117,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             this.body.setVelocityY(-420);
             this.play('jumpwolf', true);
             if (this.body.onFloor())
-                game.audio_playerJump(scene);
+                game.audio_playerJump();
         }
 
         //fliperar el sprite (por default esta a la izquierda)

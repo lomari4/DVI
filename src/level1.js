@@ -12,9 +12,9 @@ export default class Level1 extends Phaser.Scene {
 		let game = this.scene.get('Game');
 
 		//añadimos el sonido
-		let soundsGame = this.sound.add("level1_sound");
-		soundsGame.setLoop(true);
-		soundsGame.play();
+		this.music = this.sound.add("level1_sound");
+		this.music.setLoop(true);
+		this.music.play();
 		
 
 		//MAPA//
@@ -55,7 +55,7 @@ export default class Level1 extends Phaser.Scene {
 		let game = this.scene.get('Game');
 
 		//update del jugador
-		this.wolf.update(game,this);
+		this.wolf.update(game);
 		//update de los enemigos
 		this.enemies.getChildren().forEach(function (item) {
 			item.update();
@@ -75,6 +75,7 @@ export default class Level1 extends Phaser.Scene {
 			//this.scene.start("Lose");
 			//ha perdido. Al pulsar enter se resetea el juego
 			//....//
+			this.music.destroy();
 			this.scene.restart();
         }
 	}

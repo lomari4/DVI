@@ -28,6 +28,7 @@ export default class Game extends Phaser.Scene {
         //cargamos los efectos de sonido del jugador
         this.load.audio("player_jump_sound", "./assets/music/effects/jump.wav");
         this.load.audio("player_attack_sound", "./assets/music/effects/wolf_attack.wav");
+        this.load.audio("player_hurt_sound", "./assets/music/effects/wolf_hurt.wav");
 
         //GENERAL
         //cargamos el icono de fullscreen
@@ -127,13 +128,13 @@ export default class Game extends Phaser.Scene {
     }
 
     //AUDIOS//
-    audio_playerJump(scene) {
+    audio_playerJump() {
         let s = this.sound.add("player_jump_sound", {
-            volume: 0.55,   
+            volume: 0.47,   
         });
         s.play();
     }
-    audio_playerAttack(scene) {
+    audio_playerAttack() {
         /*
         scene.input.keyboard.on('keydown-SPACE', () => {
             this.sound.add("player_attack_sound").play();
@@ -144,6 +145,7 @@ export default class Game extends Phaser.Scene {
        });
        s.play();
     }
+ 
 
     //HUD//
     addHud(scene) {
@@ -185,6 +187,11 @@ export default class Game extends Phaser.Scene {
             player.body.setVelocityX(200);
         }
         player.play('hurtwolf', false);
+
+        if(player.health!==1) //no suena si va a morir
+        this.sound.add("player_hurt_sound", {
+            volume: 0.00070, //por lo que mas quieras no subas esto si quieres conservar tus oidos
+        }).play();
     }
 
     //SPAWN//
