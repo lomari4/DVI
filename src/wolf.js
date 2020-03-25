@@ -5,8 +5,10 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'wolf');
         this.setFlipX(true);
         this.scene.add.existing(this);
+        this.health = 3;
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
+        this.hurtflag = false;
         this.cursors = this.scene.input.keyboard.addKeys('W, A, D, SPACE');
     }
 

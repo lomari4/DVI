@@ -61,10 +61,27 @@ export default class Level1 extends Phaser.Scene {
 			item.update();
 		}, this);
 
-
 		//ATAQUES Y COLISIONES CON ENEMIGOS
 		//funcion overlap para colisiones con el jugador
-		this.physics.add.overlap(this.wolf, this.enemies, game.hurtPlayer, null, this); //no funciona bien
+		this.physics.add.overlap(this.wolf, this.enemies, game.hurtPlayer, null, this); 
+
+		if(this.wolf.hurtflag == true){
+            this.wolf.health -= 1;
+        }
+		game.updateHealthHud(this.wolf, this);
+		this.wolf.hurtflag = false;
+		
+		//NOSE porque siempre se mete al else
+		//deberia haber una escena para lose que te ponga qu has perdido
+		//no se hace la animacion como la del ejemplo del juego del conejo
+		//vale, él lo hace con la posicion y
+		console.log(this.wolf.health);
+        if(this.wolf.heath <= "0"){
+            this.scene.start("Lose");
+        }
+        /*else{
+            this.scene.start("Level1");
+        }*/
 	}
 
 }

@@ -147,14 +147,32 @@ export default class Game extends Phaser.Scene {
 
     //HUD//
     addHud(scene) {
-        scene.hud = scene.add.sprite(10, 10, "hud_full").setOrigin(0);
-        scene.hud.setScrollFactor(0);
+        this.hud = scene.add.sprite(10, 10, "hud_full").setOrigin(0);
+        this.hud.setTexture("hud_full");
+        this.hud.setScrollFactor(0);
+    }
+
+    updateHealthHud(player, scene) {
+        switch (player.health) {
+            case 3:
+                this.hud.setTexture("hud_full");
+                break;
+            case 2:
+                this.hud.setTexture("hud_2left");
+                break;
+            case 1:
+                this.hud.setTexture("hud_1left");
+                break;
+            default:
+                this.hud.setTexture("hud_empty");
+                break;
+        }
     }
 
     //HURT//
     hurtPlayer(player, enemy) {
         //knock-back al jugador
-       
+        player.hurtflag = true;
         if(player.body.touching.down){
             player.body.setVelocityY(-300);
         }
@@ -166,10 +184,9 @@ export default class Game extends Phaser.Scene {
             player.body.setVelocityY(-200);
             player.body.setVelocityX(200);
         }
-
         player.play('hurtwolf', false);
-
         //si health is 0, muere
+
     }
 
     //SPAWN//
