@@ -74,6 +74,17 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             }),
             frameRate: 1.5,
         });
+        this.scene.anims.create({
+            key: 'deadwolf',
+            frames: this.scene.anims.generateFrameNames('wolf', {
+                prefix: 'wolf_',
+                suffix: '.png',
+                start: 16,
+                end: 16,
+                zeroPad: 2
+            }),
+            frameRate: 1.5,
+        });
     }
 
     update(game) {

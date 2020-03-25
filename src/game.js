@@ -29,6 +29,8 @@ export default class Game extends Phaser.Scene {
         this.load.audio("player_jump_sound", "./assets/music/effects/jump.wav");
         this.load.audio("player_attack_sound", "./assets/music/effects/wolf_attack.wav");
         this.load.audio("player_hurt_sound", "./assets/music/effects/wolf_hurt.wav");
+        //efectos de sonido generales
+        this.load.audio("gameover_sound", "./assets/music/effects/game_over.wav");
 
         //GENERAL
         //cargamos el icono de fullscreen
@@ -139,6 +141,18 @@ export default class Game extends Phaser.Scene {
         });
         s.play();
     }
+    audio_playerHurt() {
+        let s = this.sound.add("player_hurt_sound", {
+            volume: 0.15,
+        });
+        s.play();
+    }
+    audio_gameOver() {
+        let s = this.sound.add("gameover_sound",{
+            volume: 0.55,
+        });
+        s.play();
+    }
 
 
     //HUD//
@@ -181,11 +195,6 @@ export default class Game extends Phaser.Scene {
             player.body.setVelocityX(200);
         }
         player.play('hurtwolf', false);
-
-        if (player.health !== 1) //no suena si va a morir
-            this.sound.add("player_hurt_sound", {
-                volume: 0.00070, //por lo que mas quieras no subas esto si quieres conservar tus oidos
-            }).play();
     }
 
     //SPAWN//
@@ -205,4 +214,24 @@ export default class Game extends Phaser.Scene {
         temp.createAnims();
         enemies.add(temp);
     }
+
+    //GAME OVER// 
+    gameOver(player,scene,enemies) { 
+        //cartel//
+
+        //animacion de muerto
+        player.body.setVelocityX(0);
+        player.play("deadwolf");
+        player.body.setSize(0, 50); //ajustar el collider
+
+        //destroy enemies
+        enemies.getChildren().forEach(function (item) {
+            item.destroy();
+        }, scene);
+
+        //restart cuando pulsas enter
+        //this.scene.restart();
+        //scene.music.destroy();
+    }
+
 }

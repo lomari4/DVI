@@ -56,6 +56,7 @@ export default class Level1 extends Phaser.Scene {
 
 		//update del jugador
 		this.wolf.update(game);
+
 		//update de los enemigos
 		this.enemies.getChildren().forEach(function (item) {
 			item.update();
@@ -65,19 +66,20 @@ export default class Level1 extends Phaser.Scene {
 		//funcion overlap para colisiones con el jugador
 		this.physics.add.overlap(this.wolf, this.enemies, game.hurtPlayer, null, this);
 
-		if (this.wolf.hurtflag == true) {
+		if (this.wolf.hurtflag === true) {
 			this.wolf.health -= 1;
+			game.audio_playerHurt();
 		}
 		game.updateHealthHud(this.wolf, this);
 		this.wolf.hurtflag = false;
 
-		if (this.wolf.health == "0") {
-			//this.scene.start("Lose");
-			//ha perdido. Al pulsar enter se resetea el juego
-			//....//
-			this.music.destroy();
+		if (this.wolf.health === 0) { //ha perdido. Al pulsar enter se resetea el juego
 			this.scene.restart();
+			this.music.destroy();
+			//game.audio_gameOver();
+			//game.gameOver(this.wolf,this,this.enemies);
 		}
+		
 	}
 
 }
