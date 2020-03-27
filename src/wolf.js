@@ -94,21 +94,21 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         //this.setOrigin(0.5,0.5);
 
         //izquierda
-        if (this.cursors.A.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf'))) {
+        if (this.cursors.A.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.health > 0) {
             this.body.setVelocityX(-300);
             if (this.body.onFloor()) {
                 this.play('runwolf', true);
             }
         }
         //derecha
-        else if (this.cursors.D.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf'))) {
+        else if (this.cursors.D.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.health > 0) {
             this.body.setVelocityX(300);
             if (this.body.onFloor()) {
                 this.play('runwolf', true);
             }
         }
         //atacar. No se puede spamear
-        else if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE) && this.body.onFloor()) {
+        else if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE) && this.body.onFloor() && this.health > 0) {
             this.body.setVelocityX(0);
             this.play('attackwolf', false);
             game.audio_playerAttack();
@@ -124,7 +124,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             */
         }
         //saltar
-        if (this.cursors.W.isDown && this.body.onFloor()) {
+        if (this.cursors.W.isDown && this.body.onFloor() && this.health > 0) {
             this.body.setVelocityY(-420);
             this.play('jumpwolf', true);
             if (this.body.onFloor())

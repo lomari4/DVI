@@ -4,6 +4,11 @@ export default class GameOver extends Phaser.Scene {
 		super({ key: 'GameOver' });
     }
 
+    init(dato){
+        //Level del argumento
+        this.level = dato.level;
+    }
+
     preload() {
         this.load.image("playButton", "./assets/play_button.png");
 
@@ -21,9 +26,12 @@ export default class GameOver extends Phaser.Scene {
         let botonLevel = this.add.image(this.game.renderer.width / 2 + 150, this.game.renderer.height / 2 + 250, "playButton").setDepth(1).setInteractive();
         botonLevel.on("pointerup", () => {
             this.scale.startFullscreen();
-            this.scene.start('Level1');
+            switch (this.level){
+                case 1: this.scene.start('Level1'); break;
+                case 2: break;
+                default: this.scene.start("Level1"); break;
+            }
         });
-
 
     }
     
