@@ -33,8 +33,6 @@ export default class Game extends Phaser.Scene {
         this.load.audio("gameover_sound", "./assets/music/effects/game_over.wav");
 
         //GENERAL
-        //cargamos el icono de fullscreen
-        this.load.image('fullscreen', './assets/hud/fullscreen.png');
         //añadimos imagen de las vidas
         this.load.image('hud_full', 'assets/hud/hud1.png');
         this.load.image('hud_2left', 'assets/hud/hud2.png');
@@ -220,23 +218,16 @@ export default class Game extends Phaser.Scene {
 
     //GAME OVER// 
     gameOver(player,scene,enemies) { 
-        //cartel//
-
         //animacion de muerto
         player.body.setVelocityX(0);
-
         player.play("deadwolf");
         player.body.setSize(0, 50); //ajustar el collider
-        //destroy enemies
-        /*enemies.getChildren().forEach(function (item) {
-            item.destroy();
-        }, scene);  */      
 
         scene.music.stop();
     }
 
     sceneGameOver(nivel){
-        this.scene.start('GameOver', { level : nivel });
+        this.scene.launch('GameOver', { level : nivel});
     }
 
     overlapcallback(player, enemy){

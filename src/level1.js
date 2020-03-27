@@ -78,17 +78,15 @@ export default class Level1 extends Phaser.Scene {
 			});
 			this.wolf.health -= 1;
 			this.wolf.hurtflag = false;
+
 			if (this.wolf.health <= 0)
-				game.audio_gameOver();
+				game.audio_gameOver(); //audio game over cuando matan al lobo
 
 			game.audio_playerHurt();
 			game.updateHealthHud(this.wolf, this);
 		}
 
 		if (this.wolf.health <= 0) { //ha perdido. Al pulsar enter se resetea el juego
-			//this.scene.restart();
-			this.wolf.alive = false;
-
 			game.gameOver(this.wolf,this,this.enemies);
 			//delay para la escena Game over
 			this.time.delayedCall(4500, game.sceneGameOver, [this.level], this);
