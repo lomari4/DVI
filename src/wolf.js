@@ -106,14 +106,13 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
                 this.play('runwolf', true);
             }
         }
-        //atacar
-        else if (this.cursors.SPACE.isDown && this.body.onFloor()) {
+        //atacar. No se puede spamear
+        else if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE) && this.body.onFloor()) {
             this.body.setVelocityX(0);
-            this.play('attackwolf', true);
-            if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE))
-                game.audio_playerAttack();
+            this.play('attackwolf', false);
+            game.audio_playerAttack();
         }
-        else if (this.cursors.A.isUp && this.cursors.D.isUp && this.cursors.SPACE.isUp && this.cursors.W.isUp && (!this.anims.isPlaying || (this.anims.isPlaying && this.anims.currentAnim.key === 'runwolf'))){
+        else if (this.cursors.A.isUp && this.cursors.D.isUp && this.cursors.W.isUp && (!this.anims.isPlaying || (this.anims.isPlaying && this.anims.currentAnim.key === 'runwolf'))){
             this.body.setVelocityX(0);
             //idle
             if (this.body.onFloor())
@@ -136,8 +135,6 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             this.setFlipX(true); //derecha
         else if (this.body.velocity.x < 0)
             this.setFlipX(false); //izquierda
-
-        //falta animacion de hurt y morir
 
     }
 }
