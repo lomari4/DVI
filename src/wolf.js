@@ -5,7 +5,8 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         super(scene, x, y, 'wolf');
         this.setFlipX(true);
         this.scene.add.existing(this);
-        this.health = 3;
+        this.health = 3; //vidas del lobo
+        this.alive = true; //boolean de si esta vivo o no
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
         this.hurtflag = false;
@@ -92,7 +93,9 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
 
         this.body.setSize(0, 97); //ajustar el collider
         //this.setOrigin(0.5,0.5);
-
+        if(!this.alive) {        
+            this.body.setCollideWorldBounds(false);
+        }
         //izquierda
         if (this.cursors.A.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf'))) {
             this.body.setVelocityX(-300);

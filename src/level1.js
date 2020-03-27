@@ -26,7 +26,9 @@ export default class Level1 extends Phaser.Scene {
 
 		//JUGADOR//
 		this.wolf = game.spawnPlayer(this, 0, 919, groundLayer);
-
+		//colisiones del jugador
+		this.collider = this.physics.add.collider(this.wolf, groundLayer);
+		
 		//CAMARA//
 		game.addCamera(this, this.wolf, groundLayer);
 
@@ -40,7 +42,7 @@ export default class Level1 extends Phaser.Scene {
 		this.enemies.getChildren().forEach(function (item) { //necesario para crear cada enemigo con sus propiedades. Hacerlo antes de añadirlo al grupo no funciona
 			item.create();
 		}, this);
-		//colisiones
+		//colisiones de los enemigos
 		this.physics.add.collider(this.enemies, groundLayer);
 		this.physics.add.collider(this.enemies, enemy_collisionLayer);
 		this.physics.add.collider(this.enemies, this.enemies);
@@ -74,6 +76,9 @@ export default class Level1 extends Phaser.Scene {
 			});
 			this.wolf.health -= 1;
 			this.wolf.hurtflag = false;
+			if (this.wolf.health <= 0)
+				game.audio_gameOver();
+
 			game.audio_playerHurt();
 			game.updateHealthHud(this.wolf, this);
 		}
@@ -81,7 +86,11 @@ export default class Level1 extends Phaser.Scene {
 		if (this.wolf.health <= 0) { //ha perdido. Al pulsar enter se resetea el juego
 			this.scene.restart();
 			this.music.destroy();
-			//game.audio_gameOver();
+			//remueve el collider del jugador
+			this.physics.world.removeCollider(this.collider);
+
+			this.wolf.alive = false;
+		
 			//game.gameOver(this.wolf,this,this.enemies);
 		}
 		

@@ -205,7 +205,6 @@ export default class Game extends Phaser.Scene {
     spawnPlayer(scene, x, y, groundLayer) {
         let wolf = new Wolf(scene, 0, 919);
         wolf.createAnims(); //crear las animaciones del wolf
-        scene.physics.add.collider(wolf, groundLayer);
         return wolf;
     }
     spawnSwub(scene, x, y, enemies) {
@@ -226,16 +225,13 @@ export default class Game extends Phaser.Scene {
         //animacion de muerto
         player.body.setVelocityX(0);
         player.play("deadwolf");
-        player.body.setSize(0, 50); //ajustar el collider
-
+        player.body.setSize(0, 70); //ajustar el collider
         //destroy enemies
         enemies.getChildren().forEach(function (item) {
             item.destroy();
-        }, scene);
+        }, scene);        
 
-        //restart cuando pulsas enter
-        //this.scene.restart();
-        //scene.music.destroy();
+        scene.music.stop();
     }
 
 }
