@@ -225,7 +225,7 @@ export default class Game extends Phaser.Scene {
         //animacion de muerto
         player.body.setVelocityX(0);
         player.play("deadwolf");
-        player.body.setSize(0, 70); //ajustar el collider
+        player.body.setSize(0, 50); //ajustar el collider
         //destroy enemies
         enemies.getChildren().forEach(function (item) {
             item.destroy();
