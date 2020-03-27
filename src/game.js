@@ -182,21 +182,25 @@ export default class Game extends Phaser.Scene {
     //HURT//
     hurtPlayer(player, enemy) {
         //knock-back al jugador
-        player.hurtflag = true;
-        if (player.body.touching.down) {
-            player.body.setVelocityY(-300);
+        if(!player.invincible)  {
+            player.hurtflag = true;
+            if (player.body.touching.down) {
+                player.body.setVelocityY(-300);
+            }
+            else if (player.body.touching.right) {
+                player.body.setVelocityY(-200);
+                player.body.setVelocityX(-200);
+            }
+            else {
+                player.body.setVelocityY(-200);
+                player.body.setVelocityX(200);
+            }
+            player.play('hurtwolf', false);
+            player.invincible = true;
         }
-        else if (player.body.touching.right) {
-            player.body.setVelocityY(-200);
-            player.body.setVelocityX(-200);
-        }
-        else {
-            player.body.setVelocityY(-200);
-            player.body.setVelocityX(200);
-        }
-        player.play('hurtwolf', false);
-    }
 
+    }
+    
     //SPAWN//
     spawnPlayer(scene, x, y, groundLayer) {
         let wolf = new Wolf(scene, 0, 919);
