@@ -224,6 +224,8 @@ export default class Game extends Phaser.Scene {
 
         //animacion de muerto
         player.body.setVelocityX(0);
+        //para que el lobo no pueda saltar
+        player.body.setVelocityY(200);
         player.play("deadwolf");
         player.body.setSize(0, 50); //ajustar el collider
         //destroy enemies
@@ -232,6 +234,10 @@ export default class Game extends Phaser.Scene {
         }, scene);        
 
         scene.music.stop();
+    }
+
+    sceneGameOver(){
+        this.scene.start('GameOver');
     }
 
 }

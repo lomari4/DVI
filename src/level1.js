@@ -84,14 +84,12 @@ export default class Level1 extends Phaser.Scene {
 		}
 
 		if (this.wolf.health <= 0) { //ha perdido. Al pulsar enter se resetea el juego
-			this.scene.restart();
-			this.music.destroy();
-			//remueve el collider del jugador
-			this.physics.world.removeCollider(this.collider);
-
+			//this.scene.restart();
 			this.wolf.alive = false;
-		
-			//game.gameOver(this.wolf,this,this.enemies);
+
+			game.gameOver(this.wolf,this,this.enemies);
+			//delay para la escena Game over
+			this.time.addEvent({ delay: 4500, callback: game.sceneGameOver, callbackScope: this, loop: false });
 		}
 		
 	}
