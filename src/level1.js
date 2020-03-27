@@ -86,7 +86,7 @@ export default class Level1 extends Phaser.Scene {
 			game.updateHealthHud(this.wolf, this);
 		}
 
-		if (this.wolf.health <= 0) { //ha perdido. Al pulsar enter se resetea el juego
+		if (this.wolf.health <= 0) { //ha perdido
 			game.gameOver(this.wolf,this,this.enemies);
 			//delay para la escena Game over
 			this.time.delayedCall(4500, game.sceneGameOver, [this.level], this);
