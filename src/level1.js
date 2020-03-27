@@ -27,7 +27,9 @@ export default class Level1 extends Phaser.Scene {
 
 		//JUGADOR//
 		this.wolf = game.spawnPlayer(this, 0, 919, groundLayer);
-
+		//colisiones del jugador
+		this.collider = this.physics.add.collider(this.wolf, groundLayer);
+		
 		//CAMARA//
 		game.addCamera(this, this.wolf, groundLayer);
 
@@ -41,7 +43,7 @@ export default class Level1 extends Phaser.Scene {
 		this.enemies.getChildren().forEach(function (item) { //necesario para crear cada enemigo con sus propiedades. Hacerlo antes de añadirlo al grupo no funciona
 			item.create();
 		}, this);
-		//colisiones
+		//colisiones de los enemigos
 		this.physics.add.collider(this.enemies, groundLayer);
 		this.physics.add.collider(this.enemies, enemy_collisionLayer);
 		this.physics.add.collider(this.enemies, this.enemies);
@@ -68,17 +70,29 @@ export default class Level1 extends Phaser.Scene {
 
 		if (this.wolf.hurtflag === true) {
 			this.wolf.health -= 1;
+			if (this.wolf.health <= 0)
+				game.audio_gameOver();
+
 			game.audio_playerHurt();
 		}
 		game.updateHealthHud(this.wolf, this);
 		this.wolf.hurtflag = false;
 
-		if (this.wolf.health === 0) { //ha perdido. Al pulsar enter se resetea el juego
-			this.scene.restart();
-			this.music.destroy();
-			//game.audio_gameOver();
-			//game.gameOver(this.wolf,this,this.enemies);
+		if (this.wolf.health <= 0) { //ha perdido. Al pulsar enter se resetea el juego
+			this.wolf.alive = false;
+			//remueve el collider del jugador
+			this.physics.world.removeCollider(this.collider);
+			game.gameOver(this.wolf,this,this.enemies);
 		}
+
+        //se va a la escena de gameover cuando se cumple la condicion
+		if (this.wolf.y > 3800) {
+			//deberia haber una escena game over con creditos o algo asi, lo que sea
+			//por el momento esta el menu
+			//esta creado el gameover.js pero habra que hacer algo parecido al menu 
+			this.scene.start("Game");
+			//this.scene.start("GameOver");
+        }
 		
 	}
 
