@@ -26,7 +26,11 @@ export default class GameOver extends Phaser.Scene {
 
         let botonLevel = this.add.image(this.game.renderer.width / 2 + 150, this.game.renderer.height / 2 + 250, "retryButton").setDepth(1).setInteractive();
         botonLevel.on("pointerup", () => {
-            this.scene.restart(this.level)
+            switch (this.level){
+                case 1: this.scene.start('Level1'); break;
+                case 2: break;
+                default: this.scene.start("Level1"); break;
+            }
         });
 
     }
