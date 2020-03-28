@@ -20,6 +20,11 @@ export default class Game extends Phaser.Scene {
         //Cargamos el boton
         this.load.image("playButton", "./assets/play_button.png");
 
+        //GAME OVER SCREEN
+        this.load.image("menu_Button", "./assets/menu_button.png");
+        this.load.image("retry_Button", "./assets/retry_button.png");
+        this.load.image("gameOver", "./assets/gameOverBoard.png");
+
         //LEVELS//
         //AUDIO
         //cargamos el audio
@@ -217,11 +222,11 @@ export default class Game extends Phaser.Scene {
     }
 
     //GAME OVER// 
-    gameOver(player,scene,enemies) { 
+    gameOver(player,scene) { 
         //animacion de muerto
         player.body.setVelocityX(0);
         player.play("deadwolf");
-        player.body.setSize(0, 50); //ajustar el collider
+        player.body.setSize(0, 52); //ajustar el collider
 
         scene.music.stop();
     }

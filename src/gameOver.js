@@ -9,30 +9,30 @@ export default class GameOver extends Phaser.Scene {
         this.level = dato.level;
     }
 
-    preload() {
-        this.load.image("menuButton", "./assets/menuButton.png");
-        this.load.image("retryButton", "./assets/retryButton.png");
-        this.load.image("bg", "./assets/backgrounds/title_screen.png");
-        this.load.image("gameOver", "./assets/game_over.png");
-    }
-
     create() {
-        this.add.image(0, 0, "title_bg").setOrigin(0).setDepth(0);
-        this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - 200, "gameOver").setDepth(1);
-        let botonMenu = this.add.image(this.game.renderer.width / 2 - 150, this.game.renderer.height / 2 + 250, "menuButton").setDepth(1).setInteractive();
+        this.checkLevel(); //ver que nivel ha llamado al game over
+		
+        this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - 55, "gameOver").setDepth(1);
+        let botonMenu = this.add.image(this.game.renderer.width / 2 - 150, this.game.renderer.height / 2 + 40, "menu_Button").setDepth(1).setInteractive();
         botonMenu.on("pointerup", () => {
-            this.scene.start("Game");
+            this.scene.stop(this.levelKey); //parar la escena del nivel
+            this.scene.start("Game"); //menu
         });
 
-        let botonLevel = this.add.image(this.game.renderer.width / 2 + 150, this.game.renderer.height / 2 + 250, "retryButton").setDepth(1).setInteractive();
+        let botonLevel = this.add.image(this.game.renderer.width / 2 + 150, this.game.renderer.height / 2 + 40, "retry_Button").setDepth(1).setInteractive();
         botonLevel.on("pointerup", () => {
-            switch (this.level){
-                case 1: this.scene.start('Level1'); break;
-                case 2: break;
-                default: this.scene.start("Level1"); break;
-            }
+            this.scene.start(this.levelKey);
         });
+		
 
+    }
+    checkLevel(){
+        switch (this.level){
+            case 1: this.levelKey = 'Level1'; break;
+            case 2: this.levelKey = 'Level2'; break;
+            case 3: this.levelKey = 'Level3'; break;
+            case 4: this.levelKey = 'Level4'; break;
+        }
     }
     
 }
