@@ -19,19 +19,19 @@ export default class Level1 extends Phaser.Scene {
 		//MAPA//
 		this.level = 1;
 		let map = game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
-		let groundLayer = game.addGround(this, map);
+		this.groundLayer = game.addGround(this, map);
 		let enemy_collisionLayer = game.addEnemyCollision(map)
 
 		//HUD de vidas
 		this.hud = game.addHud(this);
 
 		//JUGADOR//
-		this.wolf = game.spawnPlayer(this, 0, 919, groundLayer);
+		this.wolf = game.spawnPlayer(this, 0, 919, this.groundLayer);
 		//colisiones del jugador
-		this.collider = this.physics.add.collider(this.wolf, groundLayer);
+		this.collider = this.physics.add.collider(this.wolf, this.groundLayer);
 		
 		//CAMARA//
-		game.addCamera(this, this.wolf, groundLayer);
+		game.addCamera(this, this.wolf, this.groundLayer);
 
 		//ENEMIGOS//
 		//crear grupo con todos los enemigos para las fisicas
@@ -44,7 +44,7 @@ export default class Level1 extends Phaser.Scene {
 			item.create();
 		}, this);
 		//colisiones de los enemigos
-		this.physics.add.collider(this.enemies, groundLayer);
+		this.physics.add.collider(this.enemies, this.groundLayer);
 		this.physics.add.collider(this.enemies, enemy_collisionLayer);
 		this.physics.add.collider(this.enemies, this.enemies);
 
@@ -62,6 +62,11 @@ export default class Level1 extends Phaser.Scene {
 			item.update();
 		}, this);
 
+		//Para cambiar el terreno
+		if(this.wolf.body.onFloor()){
+			const tile = this.groundLayer.putTileAtWorldXY(2, this.wolf.x + 32, this.wolf.y + 64);
+			tile.setCollision(true);
+		}
 		//ATAQUES Y COLISIONES CON ENEMIGOS
 		//funcion overlap para colisiones con el jugador
 		if(this.wolf.health > 0)
