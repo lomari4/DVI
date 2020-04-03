@@ -63,8 +63,8 @@ export default class Level1 extends Phaser.Scene {
 		}, this);
 
 		//Para cambiar el terreno
-		if(this.wolf.body.onFloor() && this.groundLayer.hasTileAtWorldXY(this.wolf.x + 32, this.wolf.y + 64)){
-			const tile = this.groundLayer.putTileAtWorldXY(2, this.wolf.x + 32, this.wolf.y + 64);
+		if(this.wolf.body.onFloor() && this.groundLayer.hasTileAtWorldXY(this.wolf.x, this.wolf.y + 64) && this.wolf.health > 0){
+			let tile = this.groundLayer.putTileAtWorldXY(2, this.wolf.x, this.wolf.y + 64);
 			tile.setCollision(true);
 		}
 		//ATAQUES Y COLISIONES CON ENEMIGOS
