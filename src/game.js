@@ -109,6 +109,7 @@ export default class Game extends Phaser.Scene {
         let tileset = map.addTilesetImage('tilemap', 'tiles', 64, 64);
         //añadimos la capa ground del mapa. Asegurarse de que el primer arg coincide con el nombre en tiled
         let groundLayer = map.createDynamicLayer('ground', tileset);
+        console.log(map);
         //añadimos colision por grupo de tiled collision editor
         groundLayer.setCollisionFromCollisionGroup();
         //boundaries del mundo

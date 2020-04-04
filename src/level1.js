@@ -18,9 +18,9 @@ export default class Level1 extends Phaser.Scene {
 
 		//MAPA//
 		this.level = 1;
-		let map = game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
-		this.groundLayer = game.addGround(this, map);
-		let enemy_collisionLayer = game.addEnemyCollision(map)
+		this.map = game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
+		this.groundLayer = game.addGround(this, this.map);
+		let enemy_collisionLayer = game.addEnemyCollision(this.map)
 
 		//HUD de vidas
 		this.hud = game.addHud(this);
@@ -65,15 +65,45 @@ export default class Level1 extends Phaser.Scene {
 		//Para cambiar el terreno
 		if(this.wolf.body.onFloor() && this.wolf.health > 0){
 			if(this.groundLayer.hasTileAtWorldXY(this.wolf.x - 64, this.wolf.y + 64)){
-				let tile0 = this.groundLayer.putTileAtWorldXY(2, this.wolf.x - 64, this.wolf.y + 64);
+				let tile = this.groundLayer.getTileAtWorldXY(this.wolf.x - 64, this.wolf.y + 64); 
+				switch (tile.index){
+					case 7: tile.index -= 6; break;
+					case 8: tile.index -= 6; break;
+					case 9: tile.index -= 6; break;
+					case 10: tile.index -= 6; break;
+					case 11: tile.index -= 6; break;
+					case 12: tile.index -= 6; break;
+					default: break;
+				}
+				let tile0 = this.groundLayer.putTileAtWorldXY(tile.index, this.wolf.x - 64, this.wolf.y + 64);
 				tile0.setCollision(true);
 			}
 			if(this.groundLayer.hasTileAtWorldXY(this.wolf.x, this.wolf.y + 64)){
-				let tile1 = this.groundLayer.putTileAtWorldXY(2, this.wolf.x, this.wolf.y + 64);
+				let tile = this.groundLayer.getTileAtWorldXY(this.wolf.x, this.wolf.y + 64); 
+				switch (tile.index){
+					case 7: tile.index -= 6; break;
+					case 8: tile.index -= 6; break;
+					case 9: tile.index -= 6; break;
+					case 10: tile.index -= 6; break;
+					case 11: tile.index -= 6; break;
+					case 12: tile.index -= 6; break;
+					default: break;
+				}
+				let tile1 = this.groundLayer.putTileAtWorldXY(tile.index, this.wolf.x, this.wolf.y + 64);
 				tile1.setCollision(true);
 			}
 			if(this.groundLayer.hasTileAtWorldXY(this.wolf.x + 64, this.wolf.y + 64)){
-				let tile2 = this.groundLayer.putTileAtWorldXY(2, this.wolf.x + 64, this.wolf.y + 64);
+				let tile = this.groundLayer.getTileAtWorldXY(this.wolf.x + 64, this.wolf.y + 64); 
+				switch (tile.index){
+					case 7: tile.index -= 6; break;
+					case 8: tile.index -= 6; break;
+					case 9: tile.index -= 6; break;
+					case 10: tile.index -= 6; break;
+					case 11: tile.index -= 6; break;
+					case 12: tile.index -= 6; break;
+					default: break;
+				}
+				let tile2 = this.groundLayer.putTileAtWorldXY(tile.index, this.wolf.x + 64, this.wolf.y + 64);
 				tile2.setCollision(true);
 			}
 		}
