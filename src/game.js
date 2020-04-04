@@ -2,7 +2,7 @@ import Wolf from './wolf.js';
 import Swub from './swub.js';
 import Icedrake from './icedrake.js';
 
-
+//RECORDAR INDENTAR CON ALT+SHIFT+F
 export default class Game extends Phaser.Scene {
     constructor() {
         super({ key: 'Game' });
@@ -109,7 +109,6 @@ export default class Game extends Phaser.Scene {
         let tileset = map.addTilesetImage('tilemap', 'tiles', 64, 64);
         //añadimos la capa ground del mapa. Asegurarse de que el primer arg coincide con el nombre en tiled
         let groundLayer = map.createDynamicLayer('ground', tileset);
-        console.log(map);
         //añadimos colision por grupo de tiled collision editor
         groundLayer.setCollisionFromCollisionGroup();
         //boundaries del mundo
@@ -152,12 +151,25 @@ export default class Game extends Phaser.Scene {
         s.play();
     }
     audio_gameOver() {
-        let s = this.sound.add("gameover_sound",{
+        let s = this.sound.add("gameover_sound", {
             volume: 0.55,
         });
         s.play();
     }
 
+    //CAMBIAR EL TERRENO QUE EL JUGADOR PISE//
+    defrost(x, y, groundLayer) {
+        if (groundLayer.hasTileAtWorldXY(x, y)) {
+            let tile = groundLayer.getTileAtWorldXY(x, y);
+            if (tile.properties.frozen) //properties contiene la propiedad frozen. Si es true, se descongela el tile
+            {
+                tile.index -= 6; //-6 ya que en el tileset, los frozen estan a 6 posiciones de los no frozen
+                let tile0 = groundLayer.putTileAtWorldXY(tile.index, x, y);
+                tile0.setCollision(true);
+                tile0.properties.frozen = false;
+            }
+        }
+    }
 
     //HUD//
     addHud(scene) {
@@ -183,10 +195,10 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    //HURT//
-    hurtPlayer(player, enemy) {
+    //DAÑAR AL JUGADOR//
+    knockBack(player, enemy) {
         //knock-back al jugador
-        if(!player.invincible)  {
+        if (!player.invincible) {
             player.hurtflag = true;
             if (player.body.touching.down) {
                 player.body.setVelocityY(-300);
@@ -204,7 +216,18 @@ export default class Game extends Phaser.Scene {
         }
 
     }
-    
+    hurtPlayer(scene, player) {
+        //jugador invencible por tiempo
+        scene.time.addEvent({
+            delay: 1000,
+            callback: () => {
+                player.invincible = false;
+            },
+        });
+        player.health -= 1;
+        player.hurtflag = false;
+    }
+
     //SPAWN//
     spawnPlayer(scene, x, y, groundLayer) {
         let wolf = new Wolf(scene, 0, 919);
@@ -223,7 +246,7 @@ export default class Game extends Phaser.Scene {
     }
 
     //GAME OVER// 
-    gameOver(player,scene) { 
+    gameOver(player, scene) {
         //animacion de muerto
         player.body.setVelocityX(0);
         player.play("deadwolf");
@@ -232,12 +255,12 @@ export default class Game extends Phaser.Scene {
         scene.music.stop();
     }
 
-    sceneGameOver(nivel){
-        this.scene.launch('GameOver', { level : nivel});
+    sceneGameOver(nivel) {
+        this.scene.launch('GameOver', { level: nivel });
     }
 
-    overlapcallback(player, enemy){
-        if(player.health > 0)
+    overlapcallback(player, enemy) {
+        if (player.isAlive() > 0)
             return true;
         else
             return false;

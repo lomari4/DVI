@@ -2,10 +2,10 @@ export default class Level1 extends Phaser.Scene {
 
 	constructor() {
 		super({ key: 'Level1' });
+		this.level = 1;
 	}
 	preload() { }
 
-	//RECORDAR INDENTAR CON ALT+SHIFT+F
 	create() {
 		//GENERAL//
 		//añadimos el JUEGO (clase Game con todas las funciones que van a compartir todos los niveles)
@@ -17,7 +17,6 @@ export default class Level1 extends Phaser.Scene {
 		this.music.play();
 
 		//MAPA//
-		this.level = 1;
 		this.map = game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
 		this.groundLayer = game.addGround(this, this.map);
 		let enemy_collisionLayer = game.addEnemyCollision(this.map)
@@ -29,7 +28,7 @@ export default class Level1 extends Phaser.Scene {
 		this.wolf = game.spawnPlayer(this, 0, 919, this.groundLayer);
 		//colisiones del jugador
 		this.collider = this.physics.add.collider(this.wolf, this.groundLayer);
-		
+
 		//CAMARA//
 		game.addCamera(this, this.wolf, this.groundLayer);
 
@@ -62,82 +61,38 @@ export default class Level1 extends Phaser.Scene {
 			item.update();
 		}, this);
 
-		//Para cambiar el terreno
-		if(this.wolf.body.onFloor() && this.wolf.health > 0){
-			if(this.groundLayer.hasTileAtWorldXY(this.wolf.x - 64, this.wolf.y + 64)){
-				let tile = this.groundLayer.getTileAtWorldXY(this.wolf.x - 64, this.wolf.y + 64); 
-				switch (tile.index){
-					case 7: tile.index -= 6; break;
-					case 8: tile.index -= 6; break;
-					case 9: tile.index -= 6; break;
-					case 10: tile.index -= 6; break;
-					case 11: tile.index -= 6; break;
-					case 12: tile.index -= 6; break;
-					default: break;
-				}
-				let tile0 = this.groundLayer.putTileAtWorldXY(tile.index, this.wolf.x - 64, this.wolf.y + 64);
-				tile0.setCollision(true);
-			}
-			if(this.groundLayer.hasTileAtWorldXY(this.wolf.x, this.wolf.y + 64)){
-				let tile = this.groundLayer.getTileAtWorldXY(this.wolf.x, this.wolf.y + 64); 
-				switch (tile.index){
-					case 7: tile.index -= 6; break;
-					case 8: tile.index -= 6; break;
-					case 9: tile.index -= 6; break;
-					case 10: tile.index -= 6; break;
-					case 11: tile.index -= 6; break;
-					case 12: tile.index -= 6; break;
-					default: break;
-				}
-				let tile1 = this.groundLayer.putTileAtWorldXY(tile.index, this.wolf.x, this.wolf.y + 64);
-				tile1.setCollision(true);
-			}
-			if(this.groundLayer.hasTileAtWorldXY(this.wolf.x + 64, this.wolf.y + 64)){
-				let tile = this.groundLayer.getTileAtWorldXY(this.wolf.x + 64, this.wolf.y + 64); 
-				switch (tile.index){
-					case 7: tile.index -= 6; break;
-					case 8: tile.index -= 6; break;
-					case 9: tile.index -= 6; break;
-					case 10: tile.index -= 6; break;
-					case 11: tile.index -= 6; break;
-					case 12: tile.index -= 6; break;
-					default: break;
-				}
-				let tile2 = this.groundLayer.putTileAtWorldXY(tile.index, this.wolf.x + 64, this.wolf.y + 64);
-				tile2.setCollision(true);
-			}
+		//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
+		if (this.wolf.body.onFloor() && this.wolf.isAlive()) {
+			//rango de descongelacion del lobo: delante,medio,atras
+			game.defrost(this.wolf.x - 64, this.wolf.y + 64, this.groundLayer);
+			game.defrost(this.wolf.x, this.wolf.y + 64, this.groundLayer);
+			game.defrost(this.wolf.x + 64, this.wolf.y + 64, this.groundLayer);
 		}
+
 		//ATAQUES Y COLISIONES CON ENEMIGOS
 		//funcion overlap para colisiones con el jugador
-		if(this.wolf.health > 0)
-			this.physics.add.overlap(this.wolf, this.enemies, game.hurtPlayer, game.overlapcallback, this);
+		if (this.wolf.isAlive())
+			this.physics.add.overlap(this.wolf, this.enemies, game.knockBack, game.overlapcallback, this);
 
-		//jugador dañado
+		//jugador dañado por el knockBack
 		if (this.wolf.hurtflag === true) {
-			//jugador invencible por tiempo
-			this.time.addEvent({
-				delay: 1000,
-				callback: ()=>{
-					this.wolf.invincible=false;
-				},
-			});
-			this.wolf.health -= 1;
-			this.wolf.hurtflag = false;
+			game.hurtPlayer(this, this.wolf);
 			game.updateHealthHud(this.wolf, this);
 
-			if (this.wolf.health <= 0)
+			if (!this.wolf.isAlive())
 				game.audio_gameOver(); //audio game over cuando matan al lobo
 			else
 				game.audio_playerHurt();
-			
+
 		}
 
-		if (this.wolf.health <= 0) { //ha perdido
-			game.gameOver(this.wolf,this);
+		//GAME OVER
+		if (!this.wolf.isAlive()) { //ha perdido
+			game.gameOver(this.wolf, this);
 			//delay para la escena Game over
 			this.time.delayedCall(3000, game.sceneGameOver, [this.level], this);
 		}
-		
+
 	}
 
 }
