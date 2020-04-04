@@ -177,7 +177,6 @@ export default class Game extends Phaser.Scene {
         this.hud.setTexture("hud_full");
         this.hud.setScrollFactor(0);
     }
-
     updateHealthHud(player, scene) {
         switch (player.health) {
             case 3:
@@ -254,11 +253,9 @@ export default class Game extends Phaser.Scene {
 
         scene.music.stop();
     }
-
     sceneGameOver(nivel) {
         this.scene.launch('GameOver', { level: nivel });
     }
-
     overlapcallback(player, enemy) {
         if (player.isAlive() > 0)
             return true;
