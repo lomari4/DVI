@@ -159,6 +159,7 @@ export default class Game extends Phaser.Scene {
 
     //CAMBIAR EL TERRENO QUE EL JUGADOR PISE//
     defrost(x, y, groundLayer) {
+        let count = 0;
         if (groundLayer.hasTileAtWorldXY(x, y)) {
             let tile = groundLayer.getTileAtWorldXY(x, y);
             if (tile.properties.frozen) //properties contiene la propiedad frozen. Si es true, se descongela el tile
@@ -167,8 +168,10 @@ export default class Game extends Phaser.Scene {
                 let tile0 = groundLayer.putTileAtWorldXY(tile.index, x, y);
                 tile0.setCollision(true);
                 tile0.properties.frozen = false;
+                count += 1;
             }
         }
+        return count;
     }
 
     //HUD//

@@ -10,7 +10,8 @@ export default class Level1 extends Phaser.Scene {
 		//GENERAL//
 		//añadimos el JUEGO (clase Game con todas las funciones que van a compartir todos los niveles)
 		let game = this.scene.get('Game');
-
+		this.counter = 0; //contador del numero de tiles que has cambiado
+		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		//añadimos el sonido
 		this.music = this.sound.add("level1_sound");
 		this.music.setLoop(true);
@@ -19,7 +20,17 @@ export default class Level1 extends Phaser.Scene {
 		//MAPA//
 		this.map = game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
 		this.groundLayer = game.addGround(this, this.map);
-		let enemy_collisionLayer = game.addEnemyCollision(this.map)
+		let enemy_collisionLayer = game.addEnemyCollision(this.map);
+
+		//Cuenta el numero de tiles que hay en el mapa
+		let i , j;
+		for(j = 0; j < this.map.width; ++j){
+			for(i = 0; i < this.map.height; ++i){
+				if (this.groundLayer.hasTileAtWorldXY(j*64, i*64)) {
+					this.checkWin++;
+				}
+			}
+		}
 
 		//HUD de vidas
 		this.hud = game.addHud(this);
@@ -64,14 +75,14 @@ export default class Level1 extends Phaser.Scene {
 		//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
 		if (this.wolf.body.onFloor() && this.wolf.isAlive()) {
 			//rango de descongelacion del lobo: delante,medio,atras
-			game.defrost(this.wolf.x - 64, this.wolf.y + 64, this.groundLayer);
-			game.defrost(this.wolf.x, this.wolf.y + 64, this.groundLayer);
-			game.defrost(this.wolf.x + 64, this.wolf.y + 64, this.groundLayer);
+			this.counter += game.defrost(this.wolf.x - 64, this.wolf.y + 64, this.groundLayer);
+			this.counter += game.defrost(this.wolf.x, this.wolf.y + 64, this.groundLayer);
+			this.counter += game.defrost(this.wolf.x + 64, this.wolf.y + 64, this.groundLayer);
 		}
 
 		//ATAQUES Y COLISIONES CON ENEMIGOS
 		//funcion overlap para colisiones con el jugador
-		if (this.wolf.isAlive())
+		if (this.wolf.isAlive() && this.counter != this.checkWin)
 			this.physics.add.overlap(this.wolf, this.enemies, game.knockBack, game.overlapcallback, this);
 
 		//jugador dañado por el knockBack
@@ -84,6 +95,12 @@ export default class Level1 extends Phaser.Scene {
 			else
 				game.audio_playerHurt();
 
+		}
+
+		if(this.counter == this.checkWin){
+			//Esto hay que poner un cartel de victoria
+			game.gameOver(this.wolf, this);
+			this.time.delayedCall(3000, game.sceneGameOver, [this.level], this);
 		}
 
 		//GAME OVER
