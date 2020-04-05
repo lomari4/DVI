@@ -75,7 +75,7 @@ export default class Level1 extends Phaser.Scene {
 
 		//ATAQUES Y COLISIONES CON ENEMIGOS
 		//funcion overlap para colisiones con el jugador
-		if (this.wolf.isAlive() && this.counter != this.checkWin)
+		if (this.wolf.isAlive())
 			this.physics.add.overlap(this.wolf, this.enemies, game.knockBack, game.overlapcallback, this);
 
 		//jugador dañado por el knockBack
