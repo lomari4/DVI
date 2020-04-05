@@ -174,6 +174,18 @@ export default class Game extends Phaser.Scene {
         return count;
     }
 
+    //Cuenta el numero de tiles que hay en el mapa
+    countTotalTiles(map, groundLayer){
+        let i , j, counter = 0;
+        for(j = 0; j < map.width; ++j){
+            for(i = 0; i < map.height; ++i){
+                if (groundLayer.hasTileAtWorldXY(j*64, i*64)) {
+                    counter++;
+                }
+            }
+        }
+        return counter;
+    }
     //HUD//
     addHud(scene) {
         this.hud = scene.add.sprite(10, 10, "hud_full").setOrigin(0);

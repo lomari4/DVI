@@ -23,14 +23,7 @@ export default class Level1 extends Phaser.Scene {
 		let enemy_collisionLayer = game.addEnemyCollision(this.map);
 
 		//Cuenta el numero de tiles que hay en el mapa
-		let i , j;
-		for(j = 0; j < this.map.width; ++j){
-			for(i = 0; i < this.map.height; ++i){
-				if (this.groundLayer.hasTileAtWorldXY(j*64, i*64)) {
-					this.checkWin++;
-				}
-			}
-		}
+		this.checkWin = game.countTotalTiles(this.map, this.groundLayer);
 
 		//HUD de vidas
 		this.hud = game.addHud(this);
