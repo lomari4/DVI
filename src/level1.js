@@ -44,9 +44,9 @@ export default class Level1 extends Phaser.Scene {
 		//crear grupo con todos los enemigos para las fisicas
 		this.enemies = this.physics.add.group();
 		//funciones de spawn de enemigos
-		//game.spawnSwub(this, 1300, 919, this.enemies);
-		//game.spawnIcedrake(this, 900, 965, this.enemies);
-		//game.spawnIcedrake(this, 900, 580, this.enemies);
+		game.spawnSwub(this, 1300, 919, this.enemies);
+		game.spawnIcedrake(this, 900, 965, this.enemies);
+		game.spawnIcedrake(this, 900, 580, this.enemies);
 		this.enemies.getChildren().forEach(function (item) { //necesario para crear cada enemigo con sus propiedades. Hacerlo antes de añadirlo al grupo no funciona
 			item.create();
 		}, this);
