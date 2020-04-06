@@ -3,7 +3,6 @@ Descripción de todas las carpetas dentro de assets:
 - **backgrounds**: Fondos.
 - **tiles**: Plataformas y losas del suelo. 
 - **music**: Soundtrack del juego y efectos de sonido. 
-- **effects**: Efectos de sonido. 
 - **enemies**: Sprite sheets de los enemigos.
 - **mainCharacter**: Todo lo relacionado con el personaje que el jugador controla, ya sean texturas o sprite sheets.
 - **hud**: Head-Up Display o barra de estado, donde estará la vida del jugador y la vida del boss, además de otros elementos de la pantalla como un botón de fullscreen.
