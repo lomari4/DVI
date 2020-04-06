@@ -37,6 +37,7 @@ export default class Game extends Phaser.Scene {
         this.load.audio("player_hurt_sound", "./assets/music/effects/wolf_hurt.wav");
         //efectos de sonido generales
         this.load.audio("gameover_sound", "./assets/music/effects/game_over.wav");
+        this.load.audio("gamewin_sound", "./assets/music/effects/game_win.wav");
 
         //GENERAL
         //añadimos imagen de las vidas
@@ -162,6 +163,12 @@ export default class Game extends Phaser.Scene {
         });
         s.play();
     }
+    audio_gameWin() {
+        let s = this.sound.add("gamewin_sound", {
+            volume: 0.25,
+        });
+        s.play();
+    }
 
     //CAMBIAR EL TERRENO QUE EL JUGADOR PISE//
     defrost(x, y, groundLayer) {
@@ -179,7 +186,6 @@ export default class Game extends Phaser.Scene {
         }
         return count;
     }
-
     //Cuenta el numero de tiles que hay en el mapa
     countTotalTiles(map, groundLayer){
         let i , j, counter = 0;
@@ -192,6 +198,7 @@ export default class Game extends Phaser.Scene {
         }
         return counter;
     }
+
     //HUD//
     addHud(scene) {
         this.hud = scene.add.sprite(10, 10, "hud_full").setOrigin(0);
@@ -295,17 +302,17 @@ export default class Game extends Phaser.Scene {
             return false;
     }
 
-    //PROGESS OF GAME
+    //PROGESS OF GAME//
     textProgress(scene) {
-        this.texts = scene.add.text(10, 70);
+        this.texts = scene.add.text(10, 70, 'text', {
+            fontSize: '24px',
+            fontFamily: 'font1',
+        });
         this.texts.setScrollFactor(0);
     }
     showProgress(score, total) {
-        //this.score = scene.add.sprite(10, 10, "hud_full").setOrigin(0);
-        this.texts.setText("Progreso: " + score + "/" + total);
+        this.texts.setText("PROGRESS: " + score + "/" + total);
         this.texts.setFill("red");
-        this.texts.setFont("20px Arial");
-        //this.score.setScrollFactor(0);
     }
 
 }

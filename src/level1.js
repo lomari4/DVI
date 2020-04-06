@@ -3,6 +3,7 @@ export default class Level1 extends Phaser.Scene {
 	constructor() {
 		super({ key: 'Level1' });
 		this.level = 1;
+		this.winFlag = false;
 	}
 	preload() { }
 
@@ -30,7 +31,7 @@ export default class Level1 extends Phaser.Scene {
 		this.hud = game.addHud(this);
 
 		//Progreso en el juego
-		this.progress = game.textProgress(this);
+		game.textProgress(this);
 
 		//JUGADOR//
 		this.wolf = game.spawnPlayer(this, 0, 919, this.groundLayer);
@@ -103,6 +104,13 @@ export default class Level1 extends Phaser.Scene {
 			this.wolf.winGame = true;
 			this.time.delayedCall(3000, game.sceneGameOver, [this.level], this);
 		}
+		//audio de game win
+		if(this.wolf.winGame && !this.winFlag)
+		{
+			game.audio_gameWin();
+			this.winFlag = true;
+		}
+			
 
 		//GAME OVER
 		if (!this.wolf.isAlive()) { //ha perdido
