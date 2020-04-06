@@ -98,11 +98,12 @@ export default class Level1 extends Phaser.Scene {
 		game.showProgress(this.counter, this.checkWin);
 
 		//COMPRUEBA SI HA GANADO
-		if(this.counter == this.checkWin){
+		if(this.counter === this.checkWin){
 			//Esto hay que poner un cartel de victoria
 			game.winGame(this.wolf, this, this.enemies);
 			this.wolf.winGame = true;
-			this.time.delayedCall(3000, game.sceneGameOver, [this.level], this);
+			//delay para pasar al siguiente nivel para que de tiempo escuchar la musica y fade in
+			//this.time.delayedCall(10000, game.nextLevel, [this.level], this);
 		}
 		//audio de game win y fade in del nuevo bg
 		if(this.wolf.winGame && !this.winFlag)
@@ -112,7 +113,6 @@ export default class Level1 extends Phaser.Scene {
 			this.winFlag = true;
 		}
 			
-
 		//GAME OVER
 		if (!this.wolf.isAlive()) { //ha perdido
 			game.gameOver(this.wolf, this);

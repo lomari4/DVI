@@ -24,13 +24,14 @@ export default class Game extends Phaser.Scene {
         this.load.image("menu_Button", "./assets/menu_button.png");
         this.load.image("retry_Button", "./assets/retry_button.png");
         this.load.image("gameOver", "./assets/gameOverBoard.png");
+        //WIN SCREEN
+        this.load.image("bg2", "./assets/backgrounds/backgroundColorForest_extended.png");
+        this.load.image("gameWin", "./assets/gameWin.png");
 
         //LEVELS//
         //AUDIO
         //cargamos el audio
-        this.load.audio("level1_sound", "./assets/music/soundtrack/Snow.mp3");
-        this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
-        this.load.image("bg2", "./assets/backgrounds/backgroundColorForest_extended.png");
+        this.load.audio("level1_sound", "./assets/music/soundtrack/Snow.mp3")
         //cargamos los efectos de sonido del jugador
         this.load.audio("player_jump_sound", "./assets/music/effects/jump.wav");
         this.load.audio("player_attack_sound", "./assets/music/effects/wolf_attack.wav");
@@ -53,6 +54,8 @@ export default class Game extends Phaser.Scene {
         this.load.image('collision_tile', './assets/tiles/collision.png');
         //cargamos el MAPA de tiled en json
         this.load.tilemapTiledJSON('map1', './assets/levels/nivel1.json'); //nivel 1
+        //BG
+        this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
 
         //SPRITESHEETS
         //cargamos el spritesheet del jugador
@@ -278,7 +281,9 @@ export default class Game extends Phaser.Scene {
         enemies.getChildren().forEach(function (item) {
 			item.body.setVelocityX(0);
         }, this);
-    
+        let winLetters = scene.add.image(scene.game.renderer.width / 2, scene.game.renderer.height / 2 - 220, "gameWin").setDepth(1);
+        winLetters.setScrollFactor(0);
+
         scene.music.stop();
     }
     bgFadeIn(scene)
@@ -291,6 +296,14 @@ export default class Game extends Phaser.Scene {
             alphaBottomRight: { value: 1, duration: 10000, ease: 'Power1' },
             alphaBottomLeft: { value: 1, duration: 5000, ease: 'Power1', delay: 2100 },
         })
+    }
+    nextLevel(nivel) {
+        switch(nivel){
+            case 1:  this.scene.launch('Level2');
+            case 2:  this.scene.launch('Level3');
+            case 3:  this.scene.launch('Level4');
+            default: this.scene.launch('Game');
+        }
     }
 
     //GAME OVER// 
