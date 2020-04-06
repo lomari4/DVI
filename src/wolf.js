@@ -8,6 +8,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.health = 3; //vidas del lobo
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
+        this.winGame = false;
         this.hurtflag = false;
         this.cursors = this.scene.input.keyboard.addKeys('W, A, D, SPACE');
         this.invincible = false;
@@ -94,21 +95,21 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         //this.setOrigin(0.5,0.5);
 
         //izquierda
-        if (this.cursors.A.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.isAlive()) {
+        if (this.cursors.A.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.isAlive() && !this.winGame) {
             this.body.setVelocityX(-300);
             if (this.body.onFloor()) {
                 this.play('runwolf', true);
             }
         }
         //derecha
-        else if (this.cursors.D.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.isAlive()) {
+        else if (this.cursors.D.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.isAlive() && !this.winGame) {
             this.body.setVelocityX(300);
             if (this.body.onFloor()) {
                 this.play('runwolf', true);
             }
         }
         //atacar. No se puede spamear
-        else if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE) && this.body.onFloor() && this.isAlive()) {
+        else if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE) && this.body.onFloor() && this.isAlive() && !this.winGame) {
             this.body.setVelocityX(0);
             this.play('attackwolf', false);
             game.audio_playerAttack();
@@ -124,7 +125,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             */
         }
         //saltar
-        if (this.cursors.W.isDown && this.body.onFloor() && this.isAlive()) {
+        if (this.cursors.W.isDown && this.body.onFloor() && this.isAlive() && !this.winGame) {
             this.body.setVelocityY(-420);
             this.play('jumpwolf', true);
             if (this.body.onFloor())

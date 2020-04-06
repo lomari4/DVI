@@ -19,6 +19,7 @@ export default class Level1 extends Phaser.Scene {
 
 		//MAPA//
 		this.map = game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
+		this.background = game.addBackground(this);
 		this.groundLayer = game.addGround(this, this.map);
 		let enemy_collisionLayer = game.addEnemyCollision(this.map);
 
@@ -27,6 +28,9 @@ export default class Level1 extends Phaser.Scene {
 
 		//HUD de vidas
 		this.hud = game.addHud(this);
+
+		//Progreso en el juego
+		this.progress = game.textProgress(this);
 
 		//JUGADOR//
 		this.wolf = game.spawnPlayer(this, 0, 919, this.groundLayer);
@@ -40,9 +44,9 @@ export default class Level1 extends Phaser.Scene {
 		//crear grupo con todos los enemigos para las fisicas
 		this.enemies = this.physics.add.group();
 		//funciones de spawn de enemigos
-		game.spawnSwub(this, 1300, 919, this.enemies);
-		game.spawnIcedrake(this, 900, 965, this.enemies);
-		game.spawnIcedrake(this, 900, 580, this.enemies);
+		//game.spawnSwub(this, 1300, 919, this.enemies);
+		//game.spawnIcedrake(this, 900, 965, this.enemies);
+		//game.spawnIcedrake(this, 900, 580, this.enemies);
 		this.enemies.getChildren().forEach(function (item) { //necesario para crear cada enemigo con sus propiedades. Hacerlo antes de añadirlo al grupo no funciona
 			item.create();
 		}, this);
@@ -90,9 +94,13 @@ export default class Level1 extends Phaser.Scene {
 
 		}
 
+		game.showProgress(this.counter, this.checkWin);
+
+		//COMPRUEBA SI HA GANADO
 		if(this.counter == this.checkWin){
 			//Esto hay que poner un cartel de victoria
-			game.gameOver(this.wolf, this);
+			game.winGame(this.wolf, this, this.enemies);
+			this.wolf.winGame = true;
 			this.time.delayedCall(3000, game.sceneGameOver, [this.level], this);
 		}
 

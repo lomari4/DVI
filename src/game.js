@@ -30,6 +30,7 @@ export default class Game extends Phaser.Scene {
         //cargamos el audio
         this.load.audio("level1_sound", "./assets/music/soundtrack/Snow.mp3");
         this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
+        this.load.image("bg2", "./assets/backgrounds/backgroundColorForest_extended.png");
         //cargamos los efectos de sonido del jugador
         this.load.audio("player_jump_sound", "./assets/music/effects/jump.wav");
         this.load.audio("player_attack_sound", "./assets/music/effects/wolf_attack.wav");
@@ -84,14 +85,6 @@ export default class Game extends Phaser.Scene {
 
     //MAPA//
     addMap(scene, nivel) {
-        //añadimos el background que tiene fullscreen de funcionalidad
-        let bg = scene.add.image(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive();
-        bg.on('pointerup', function () {
-            if (scene.scale.isFullscreen)
-                scene.scale.stopFullscreen();
-            else
-                scene.scale.startFullscreen();
-        }, scene);
         //añadimos el mapa dependiendo del nivel
         let map;
         if (nivel === 1) {
@@ -104,6 +97,19 @@ export default class Game extends Phaser.Scene {
 
         return map;
     }
+    //BACKGROUND//
+    addBackground(scene){
+        //añadimos el background que tiene fullscreen de funcionalidad
+        this.bg = scene.add.sprite(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive();
+        this.bg.on('pointerup', function () {
+            if (scene.scale.isFullscreen)
+                scene.scale.stopFullscreen();
+            else
+                scene.scale.startFullscreen();
+        }, scene);
+    }
+
+
     addGround(scene, map) {
         //añadimos los tileset al map
         let tileset = map.addTilesetImage('tilemap', 'tiles', 64, 64);
@@ -258,6 +264,17 @@ export default class Game extends Phaser.Scene {
         temp.createAnims();
         enemies.add(temp);
     }
+    
+    //WIN GAME
+    winGame(player, scene, enemies){
+        player.body.setVelocityX(0);
+        this.bg.setTexture('bg2');
+        enemies.getChildren().forEach(function (item) {
+			item.body.setVelocityX(0);
+        }, this);
+    
+        scene.music.stop();
+    }
 
     //GAME OVER// 
     gameOver(player, scene) {
@@ -276,6 +293,19 @@ export default class Game extends Phaser.Scene {
             return true;
         else
             return false;
+    }
+
+    //PROGESS OF GAME
+    textProgress(scene) {
+        this.texts = scene.add.text(10, 70);
+        this.texts.setScrollFactor(0);
+    }
+    showProgress(score, total) {
+        //this.score = scene.add.sprite(10, 10, "hud_full").setOrigin(0);
+        this.texts.setText("Progreso: " + score + "/" + total);
+        this.texts.setFill("red");
+        this.texts.setFont("20px Arial");
+        //this.score.setScrollFactor(0);
     }
 
 }
