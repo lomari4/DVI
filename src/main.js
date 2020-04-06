@@ -1,4 +1,5 @@
 import Game from './game.js'
+import Help from './help.js'
 import Level1 from './level1.js'
 import GameOver from './gameOver.js'
 var config = {
@@ -18,7 +19,7 @@ var config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     //scene: [Menu, Game],
-    scene: [Game, Level1, GameOver],
+    scene: [Game, Help, Level1, GameOver],
     physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: true } }
 
 };

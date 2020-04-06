@@ -17,8 +17,11 @@ export default class Game extends Phaser.Scene {
         this.load.image("title_bg", "./assets/backgrounds/title_screen.png");
         //Cargamos el nombre del Juego
         this.load.image("logo", "./assets/logo2.0.png");
-        //Cargamos el boton
+        //Cargamos los botones
         this.load.image("playButton", "./assets/play_button.png");
+        this.load.image("helpButton", "./assets/help_button.png");
+        //seccion ayuda
+        this.load.image("helpBoard", "./assets/helpBoard.png");
 
         //GAME OVER SCREEN
         this.load.image("menu_Button", "./assets/menu_button.png");
@@ -71,7 +74,8 @@ export default class Game extends Phaser.Scene {
         //Añadimos las Imagenes y el sonido
         this.add.image(0, 0, "title_bg").setOrigin(0).setDepth(0);
         this.add.image(this.game.renderer.width / 2, this.game.renderer.width * 0.19, "logo").setDepth(1);
-        let clickButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 + 250, "playButton").setDepth(1).setInteractive();
+        let clickButton = this.add.image(this.game.renderer.width / 2 - 200, this.game.renderer.height / 2 + 250, "playButton").setDepth(1).setInteractive();
+        let helpButton = this.add.image(this.game.renderer.width / 2 + 200, this.game.renderer.height / 2 + 250, "helpButton").setDepth(1).setInteractive();
 
         this.sound.pauseOnBlur = false;
         let sounds = this.sound.add("menuSound");
@@ -81,6 +85,11 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             this.scale.startFullscreen();
             this.scene.start("Level1");
+            sounds.destroy();
+        })
+        //Si se pulsa el botón de help
+        helpButton.on("pointerup", () => {
+            this.scene.start("Help");
             sounds.destroy();
         })
     }
