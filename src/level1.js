@@ -104,10 +104,11 @@ export default class Level1 extends Phaser.Scene {
 			this.wolf.winGame = true;
 			this.time.delayedCall(3000, game.sceneGameOver, [this.level], this);
 		}
-		//audio de game win
+		//audio de game win y fade in del nuevo bg
 		if(this.wolf.winGame && !this.winFlag)
 		{
 			game.audio_gameWin();
+			game.bgFadeIn(this);
 			this.winFlag = true;
 		}
 			

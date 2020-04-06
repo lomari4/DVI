@@ -272,15 +272,25 @@ export default class Game extends Phaser.Scene {
         enemies.add(temp);
     }
     
-    //WIN GAME
+    //WIN GAME//
     winGame(player, scene, enemies){
         player.body.setVelocityX(0);
-        this.bg.setTexture('bg2');
         enemies.getChildren().forEach(function (item) {
 			item.body.setVelocityX(0);
         }, this);
     
         scene.music.stop();
+    }
+    bgFadeIn(scene)
+    {
+        //tween para el fade in del nuevo background
+        let bg2 = scene.add.image(0, 0, "bg2").setOrigin(0).setAlpha(0).setDepth(-1);
+        scene.tweens.add({
+            targets: bg2,
+            alphaTopLeft: { value: 1, duration: 5000, ease: 'Power1' },
+            alphaBottomRight: { value: 1, duration: 10000, ease: 'Power1' },
+            alphaBottomLeft: { value: 1, duration: 5000, ease: 'Power1', delay: 2100 },
+        })
     }
 
     //GAME OVER// 
