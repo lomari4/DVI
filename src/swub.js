@@ -58,8 +58,5 @@ export default class Swub extends Phaser.GameObjects.Sprite {
             this.setFlipX(true); //derecha
         else if (this.body.velocity.x < 0)
             this.setFlipX(false); //izquierda
-
-        //falta animacion de hurt y descongelar
-
     }
 }

@@ -70,6 +70,18 @@ export default class Level1 extends Phaser.Scene {
 			item.update();
 		}, this);
 
+		//FUNCION DE DESCONGELAR EL SUELO DE LOS SWUB
+		this.enemies.getChildren().forEach(function (item) {
+			if(item.texture.key === 'swub')
+			{
+				//solo congela el tile DETRAS de el
+				if(item.body.velocity.x > 0) //derecha
+					this.counter -= game.frost(item.x - 64, item.y + 64, this.groundLayer)
+				else //izquierda
+					this.counter -= game.frost(item.x + 64, item.y + 64, this.groundLayer)
+			}
+		}, this);
+		
 		//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
 		if (this.wolf.body.onFloor() && this.wolf.isAlive()) {
 			//rango de descongelacion del lobo: delante,medio,atras

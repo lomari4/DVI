@@ -182,7 +182,7 @@ export default class Game extends Phaser.Scene {
         s.play();
     }
 
-    //CAMBIAR EL TERRENO QUE EL JUGADOR PISE//
+    //DESCONGELAR TERRENO//
     defrost(x, y, groundLayer) {
         let count = 0;
         if (groundLayer.hasTileAtWorldXY(x, y)) {
@@ -198,6 +198,24 @@ export default class Game extends Phaser.Scene {
         }
         return count;
     }
+
+    //COGELAR TERRENO//
+    frost(x, y, groundLayer){
+        let count = 0;
+        if (groundLayer.hasTileAtWorldXY(x, y)) {
+            let tile = groundLayer.getTileAtWorldXY(x, y);
+            if (!tile.properties.frozen) //congela el tile
+            {
+                tile.index += 6;
+                let tile0 = groundLayer.putTileAtWorldXY(tile.index, x, y);
+                tile0.setCollision(true);
+                tile0.properties.frozen = true;
+                count += 1;
+            }
+        }
+        return count;
+    }
+
     //Cuenta el numero de tiles que hay en el mapa
     countTotalTiles(map, groundLayer){
         let i , j, counter = 0;
