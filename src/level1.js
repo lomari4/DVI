@@ -75,10 +75,10 @@ export default class Level1 extends Phaser.Scene {
 			if(item.texture.key === 'swub')
 			{
 				//solo congela el tile DETRAS de el
-				if(item.body.velocity.x > 0) //derecha
-					this.counter -= game.frost(item.x - 64, item.y + 64, this.groundLayer)
-				else //izquierda
-					this.counter -= game.frost(item.x + 64, item.y + 64, this.groundLayer)
+				if(item.body.velocity.x > 0 && !this.wolf.winGame) //derecha
+					this.counter -= game.frost(item.x - 64, item.y + 64, this.groundLayer);
+				else if(item.body.velocity.x < 0 && !this.wolf.winGame) //izquierda
+					this.counter -= game.frost(item.x + 64, item.y + 64, this.groundLayer);
 			}
 		}, this);
 		
