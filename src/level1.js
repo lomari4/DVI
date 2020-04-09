@@ -122,7 +122,7 @@ export default class Level1 extends Phaser.Scene {
 		}, this);
 
 		for(let i = 0; i < this.projectiles.getChildren().length; i++){
-			var beam = this.projectiles.getChildren()[i];
+			let beam = this.projectiles.getChildren()[i];
 			this.physics.add.overlap(this.wolf, beam, game.knockBack, game.overlapcallback, this);
 			beam.update(this.wolf);
 		}
