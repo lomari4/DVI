@@ -9,12 +9,14 @@ h1 {
 }
 
 h2 {
-    font-family: impact;
+	font-size: 200%;
+    font-family: font1;
 }
 
 p,
 a {
-    font-family: Helvetica;
+	font-size: 220%;
+    font-family: font2;
 }
 
 ul {
@@ -26,8 +28,9 @@ ul {
 }
 
 li {
+	font-size: 90%;
     float: right;
-    font-family: Helvetica;
+    font-family: font2;
 }
 
 li a {
