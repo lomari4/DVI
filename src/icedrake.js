@@ -20,7 +20,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 				zeroPad: 2
 			}),
 			frameRate: 4,
-			repeat: -1,
+			repeat: 0,
 
 		});
 		this.scene.anims.create({
@@ -33,7 +33,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 				zeroPad: 2
 			}),
 			frameRate: 8,
-			repeat: -1,
+			repeat: 0,
 
 		});
 		this.scene.anims.create({
@@ -46,7 +46,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 				zeroPad: 2
 			}),
 			frameRate: 1,
-			repeat: -1,
+			repeat: 0,
 
 		});
 	}
@@ -62,18 +62,11 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			this.body.setVelocityX(70); // turn right
 		}
 
-		this.play('walkicedrake', true);
-
-		//this.play('attack', true);
-		//this.anims.currentFrame.index === 1
-
 		//fliperar el sprite (por default esta a la izquierda)
 		if (this.body.velocity.x > 0)
 			this.setFlipX(true); //derecha
 		else if (this.body.velocity.x < 0)
 			this.setFlipX(false); //izquierda
-
-		//falta animacion de hurt y descongelar
 
 	}
 }

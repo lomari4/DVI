@@ -13,6 +13,7 @@ export default class Level1 extends Phaser.Scene {
 		let game = this.scene.get('Game');
 		this.counter = 0; //contador del numero de tiles que has cambiado
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
+		this.count = 500; //Contador que puede que haya que cambiar. Es el tiempo para que lance el dragon su ataque
 		//añadimos el sonido
 		this.music = this.sound.add("level1_sound");
 		this.music.setLoop(true);
@@ -56,6 +57,9 @@ export default class Level1 extends Phaser.Scene {
 		this.physics.add.collider(this.enemies, enemy_collisionLayer);
 		this.physics.add.collider(this.enemies, this.enemies);
 
+		//beam
+		this.projectiles = this.add.group();
+
 	}
 
 	update(time, delta) {
@@ -81,6 +85,47 @@ export default class Level1 extends Phaser.Scene {
 					this.counter -= game.frost(item.x + 32, item.y + 64, this.groundLayer);
 			}
 		}, this);
+
+		//FUNCION ATAQUE Y ANDAR DEL ICE DRAKE
+		this.enemies.getChildren().forEach(function (item) {
+			if(item.texture.key === 'icedrake')
+			{
+				if(item.x - this.wolf.x > 300 || this.wolf.x - item.x > 300){
+					item.play('walkicedrake', true);
+					if(item.flipX)
+						item.body.setVelocityX(70);
+					else
+						item.body.setVelocityX(-70);
+				}
+				else{
+					if(item.y == (this.wolf.y + 16) && ((item.x > this.wolf.x && !item.flipX) || (item.x < this.wolf.x && item.flipX))){
+							//Esta animacion no va bien
+							//item.play('attackicedrake', true);
+							//un mejor contador habria que hacer
+							if(this.count > 500){
+								let beam = game.spawnBeam(this, item.x, item.y, item);
+								beam.play('beamAnim', true);
+								this.count = 0;
+							}
+							item.body.setVelocityX(0);
+					}
+					else{
+						item.play('walkicedrake', true);
+						if(item.flipX)
+							item.body.setVelocityX(70);
+						else
+							item.body.setVelocityX(-70);
+					}
+				}
+			}
+			this.count++;	
+		}, this);
+
+		for(let i = 0; i < this.projectiles.getChildren().length; i++){
+			var beam = this.projectiles.getChildren()[i];
+			this.physics.add.overlap(this.wolf, beam, game.knockBack, game.overlapcallback, this);
+			beam.update(this.wolf);
+		}
 		
 		//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
 		if (this.wolf.body.onFloor() && this.wolf.isAlive()) {

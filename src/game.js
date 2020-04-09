@@ -1,6 +1,7 @@
 import Wolf from './wolf.js';
 import Swub from './swub.js';
 import Icedrake from './icedrake.js';
+import Beam from './beam.js';
 
 //RECORDAR INDENTAR CON ALT+SHIFT+F
 export default class Game extends Phaser.Scene {
@@ -22,6 +23,8 @@ export default class Game extends Phaser.Scene {
         this.load.image("helpButton", "./assets/help_button.png");
         //seccion ayuda
         this.load.image("helpBoard", "./assets/helpBoard.png");
+        //disparo iceDrake
+        //this.load.image("beam", "./assets/enemies/beam/beam_1.png");
 
         //GAME OVER SCREEN
         this.load.image("menu_Button", "./assets/menu_button.png");
@@ -264,7 +267,7 @@ export default class Game extends Phaser.Scene {
                 player.body.setVelocityY(-200);
                 player.body.setVelocityX(-200);
             }
-            else {
+            else if (player.body.touching.left) {
                 player.body.setVelocityY(-200);
                 player.body.setVelocityX(200);
             }
@@ -300,6 +303,12 @@ export default class Game extends Phaser.Scene {
         let temp = new Icedrake(scene, x, y);
         temp.createAnims();
         enemies.add(temp);
+    }
+
+    spawnBeam(scene, x, y, enemy){
+        let beam = new Beam(scene, x, y, enemy);
+        beam.createAnims();
+        return beam;
     }
     
     //WIN GAME//
