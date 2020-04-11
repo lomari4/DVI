@@ -315,7 +315,8 @@ export default class Game extends Phaser.Scene {
     winGame(player, scene, enemies){
         player.body.setVelocityX(0);
         enemies.getChildren().forEach(function (item) {
-			item.body.setVelocityX(0);
+            item.body.setVelocityX(0);
+            item.anims.stop();
         }, this);
         let winLetters = scene.add.image(scene.game.renderer.width / 2, scene.game.renderer.height / 2 - 220, "gameWin").setDepth(1);
         winLetters.setScrollFactor(0);
