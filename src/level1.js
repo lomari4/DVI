@@ -13,7 +13,6 @@ export default class Level1 extends Phaser.Scene {
 		let game = this.scene.get('Game');
 		this.counter = 0; //contador del numero de tiles que has cambiado
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
-		this.count = 500; //Contador que puede que haya que cambiar. Es el tiempo para que lance el dragon su ataque
 		//añadimos el sonido
 		this.music = this.sound.add("level1_sound");
 		this.music.setLoop(true);
@@ -72,6 +71,8 @@ export default class Level1 extends Phaser.Scene {
 		//update de los enemigos
 		this.enemies.getChildren().forEach(function (item) {
 			item.update();
+			//Funcion atacar
+			item.checkAttack(this.wolf, game);
 		}, this);
 
 		//FUNCION DE DESCONGELAR EL SUELO DE LOS SWUB
@@ -84,41 +85,6 @@ export default class Level1 extends Phaser.Scene {
 				else if(item.body.velocity.x < 0 && !this.wolf.winGame) //izquierda
 					this.counter -= game.frost(item.x + 32, item.y + 64, this.groundLayer);
 			}
-		}, this);
-
-		//FUNCION ATAQUE Y ANDAR DEL ICE DRAKE
-		this.enemies.getChildren().forEach(function (item) {
-			if(item.texture.key === 'icedrake')
-			{
-				if(item.x - this.wolf.x > 300 || this.wolf.x - item.x > 300){
-					item.play('walkicedrake', true);
-					if(item.flipX)
-						item.body.setVelocityX(70);
-					else
-						item.body.setVelocityX(-70);
-				}
-				else{
-					if(item.y == (this.wolf.y + 16) && ((item.x > this.wolf.x && !item.flipX) || (item.x < this.wolf.x && item.flipX))){
-							//Esta animacion no va bien
-							//item.play('attackicedrake', true);
-							//un mejor contador habria que hacer
-							if(this.count > 500){
-								let beam = game.spawnBeam(this, item.x, item.y, item);
-								beam.play('beamAnim', true);
-								this.count = 0;
-							}
-							item.body.setVelocityX(0);
-					}
-					else{
-						item.play('walkicedrake', true);
-						if(item.flipX)
-							item.body.setVelocityX(70);
-						else
-							item.body.setVelocityX(-70);
-					}
-				}
-			}
-			this.count++;	
 		}, this);
 
 		for(let i = 0; i < this.projectiles.getChildren().length; i++){

@@ -4,6 +4,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		super(scene, x, y, 'icedrake');
 	}
 	create() {
+		this.count = 500;
 		this.scene.add.existing(this);
 		this.scene.physics.add.existing(this); //enable body
 		this.body.setCollideWorldBounds(true);
@@ -28,7 +29,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			frames: this.scene.anims.generateFrameNames('icedrake', {
 				prefix: 'icedrake_',
 				suffix: '.png',
-				start: 10,
+				start: 19,
 				end: 23,
 				zeroPad: 2
 			}),
@@ -68,5 +69,36 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		else if (this.body.velocity.x < 0)
 			this.setFlipX(false); //izquierda
 
+	}
+
+	checkAttack(wolf, game){
+		if(this.x - wolf.x > 300 || wolf.x - this.x > 300){
+			this.play('walkicedrake', true);
+			if(this.flipX)
+				this.body.setVelocityX(70);
+			else
+				this.body.setVelocityX(-70);
+		}
+		else{
+			if(this.y == (wolf.y + 16) && ((this.x > wolf.x && !this.flipX) || (this.x < wolf.x && this.flipX))){
+					//Esta animacion no va bien
+					this.play('attackicedrake', true);
+					//un mejor contador habria que hacer
+					if(this.count > 500){
+						let beam = game.spawnBeam(this.scene, this.x, this.y, this);
+						beam.play('beamAnim', true);
+						this.count = 0;
+					}
+					this.body.setVelocityX(0);
+			}
+			else{
+				this.play('walkicedrake', true);
+				if(this.flipX)
+					this.body.setVelocityX(70);
+				else
+					this.body.setVelocityX(-70);
+			}
+		}
+		this.count++;
 	}
 }

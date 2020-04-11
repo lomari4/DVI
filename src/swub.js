@@ -59,4 +59,8 @@ export default class Swub extends Phaser.GameObjects.Sprite {
         else if (this.body.velocity.x < 0)
             this.setFlipX(false); //izquierda
     }
+
+    checkAttack(wolf, game){
+
+	}
 }
