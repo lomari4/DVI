@@ -1,132 +1,132 @@
 {
 "frames": {
 	"icedrake_01.png": {
-		"frame": {"x":0, "y":520, "w":129, "h":83},
+		"frame": {"x":152, "y":376, "w":129, "h":83},
 		"spriteSourceSize": {"x":0,"y":0,"w":129,"h":83},
 		"sourceSize": {"w":129,"h":83}
 	},
 	"icedrake_02.png": {
-		"frame": {"x":130, "y":520, "w":129, "h":82},
+		"frame": {"x":134, "y":470, "w":129, "h":82},
 		"spriteSourceSize": {"x":0,"y":0,"w":129,"h":82},
 		"sourceSize": {"w":129,"h":82}
 	},
 	"icedrake_03.png": {
-		"frame": {"x":0, "y":520, "w":129, "h":83},
+		"frame": {"x":152, "y":376, "w":129, "h":83},
 		"spriteSourceSize": {"x":0,"y":0,"w":129,"h":83},
 		"sourceSize": {"w":129,"h":83}
 	},
 	"icedrake_04.png": {
-		"frame": {"x":0, "y":443, "w":133, "h":76},
+		"frame": {"x":0, "y":470, "w":133, "h":76},
 		"spriteSourceSize": {"x":0,"y":0,"w":133,"h":76},
 		"sourceSize": {"w":133,"h":76}
 	},
 	"icedrake_05.png": {
-		"frame": {"x":176, "y":360, "w":127, "h":82},
+		"frame": {"x":165, "y":282, "w":127, "h":82},
 		"spriteSourceSize": {"x":0,"y":0,"w":127,"h":82},
 		"sourceSize": {"w":127,"h":82}
 	},
 	"icedrake_06.png": {
-		"frame": {"x":227, "y":84, "w":124, "h":78},
+		"frame": {"x":0, "y":547, "w":124, "h":78},
 		"spriteSourceSize": {"x":0,"y":0,"w":124,"h":78},
 		"sourceSize": {"w":124,"h":78}
 	},
 	"icedrake_07.png": {
-		"frame": {"x":227, "y":0, "w":126, "h":83},
+		"frame": {"x":187, "y":110, "w":126, "h":83},
 		"spriteSourceSize": {"x":0,"y":0,"w":126,"h":83},
 		"sourceSize": {"w":126,"h":83}
 	},
 	"icedrake_08.png": {
-		"frame": {"x":304, "y":291, "w":124, "h":97},
+		"frame": {"x":293, "y":194, "w":124, "h":97},
 		"spriteSourceSize": {"x":0,"y":0,"w":124,"h":97},
 		"sourceSize": {"w":124,"h":97}
 	},
 	"icedrake_09.png": {
-		"frame": {"x":189, "y":291, "w":19, "h":25},
+		"frame": {"x":187, "y":194, "w":19, "h":25},
 		"spriteSourceSize": {"x":0,"y":0,"w":19,"h":25},
 		"sourceSize": {"w":19,"h":25}
 	},
 	"icedrake_10.png": {
-		"frame": {"x":477, "y":110, "w":115, "h":109},
+		"frame": {"x":438, "y":0, "w":115, "h":109},
 		"spriteSourceSize": {"x":0,"y":0,"w":115,"h":109},
 		"sourceSize": {"w":115,"h":109}
 	},
 	"icedrake_11.png": {
-		"frame": {"x":226, "y":181, "w":127, "h":109},
+		"frame": {"x":187, "y":0, "w":127, "h":109},
 		"spriteSourceSize": {"x":0,"y":0,"w":127,"h":109},
 		"sourceSize": {"w":127,"h":109}
 	},
 	"icedrake_12.png": {
-		"frame": {"x":260, "y":443, "w":125, "h":109},
+		"frame": {"x":264, "y":460, "w":125, "h":109},
 		"spriteSourceSize": {"x":0,"y":0,"w":125,"h":109},
 		"sourceSize": {"w":125,"h":109}
 	},
 	"icedrake_13.png": {
-		"frame": {"x":354, "y":0, "w":124, "h":109},
+		"frame": {"x":293, "y":292, "w":124, "h":109},
 		"spriteSourceSize": {"x":0,"y":0,"w":124,"h":109},
 		"sourceSize": {"w":124,"h":109}
 	},
 	"icedrake_14.png": {
-		"frame": {"x":386, "y":506, "w":119, "h":109},
+		"frame": {"x":418, "y":118, "w":119, "h":109},
 		"spriteSourceSize": {"x":0,"y":0,"w":119,"h":109},
 		"sourceSize": {"w":119,"h":109}
 	},
 	"icedrake_15.png": {
-		"frame": {"x":506, "y":506, "w":114, "h":114},
+		"frame": {"x":511, "y":344, "w":114, "h":114},
 		"spriteSourceSize": {"x":0,"y":0,"w":114,"h":114},
 		"sourceSize": {"w":114,"h":114}
 	},
 	"icedrake_16.png": {
-		"frame": {"x":354, "y":110, "w":122, "h":117},
+		"frame": {"x":315, "y":0, "w":122, "h":117},
 		"spriteSourceSize": {"x":0,"y":0,"w":122,"h":117},
 		"sourceSize": {"w":122,"h":117}
 	},
 	"icedrake_17.png": {
-		"frame": {"x":386, "y":389, "w":120, "h":116},
+		"frame": {"x":390, "y":402, "w":120, "h":116},
 		"spriteSourceSize": {"x":0,"y":0,"w":120,"h":116},
 		"sourceSize": {"w":120,"h":116}
 	},
 	"icedrake_18.png": {
-		"frame": {"x":429, "y":228, "w":118, "h":115},
+		"frame": {"x":418, "y":228, "w":118, "h":115},
 		"spriteSourceSize": {"x":0,"y":0,"w":118,"h":115},
 		"sourceSize": {"w":118,"h":115}
 	},
 	"icedrake_19.png": {
-		"frame": {"x":0, "y":271, "w":188, "h":88},
-		"spriteSourceSize": {"x":0,"y":0,"w":188,"h":88},
-		"sourceSize": {"w":188,"h":88}
+		"frame": {"x":0, "y":282, "w":164, "h":93},
+		"spriteSourceSize": {"x":22,"y":0,"w":186,"h":93},
+		"sourceSize": {"w":186,"h":93}
 	},
 	"icedrake_20.png": {
-		"frame": {"x":0, "y":181, "w":225, "h":89},
-		"spriteSourceSize": {"x":0,"y":0,"w":225,"h":89},
-		"sourceSize": {"w":225,"h":89}
+		"frame": {"x":0, "y":0, "w":186, "h":93},
+		"spriteSourceSize": {"x":0,"y":0,"w":186,"h":93},
+		"sourceSize": {"w":186,"h":93}
 	},
 	"icedrake_21.png": {
-		"frame": {"x":0, "y":0, "w":226, "h":90},
-		"spriteSourceSize": {"x":0,"y":0,"w":226,"h":90},
-		"sourceSize": {"w":226,"h":90}
+		"frame": {"x":0, "y":188, "w":186, "h":93},
+		"spriteSourceSize": {"x":0,"y":0,"w":186,"h":93},
+		"sourceSize": {"w":186,"h":93}
 	},
 	"icedrake_22.png": {
-		"frame": {"x":0, "y":91, "w":226, "h":89},
-		"spriteSourceSize": {"x":0,"y":0,"w":226,"h":89},
-		"sourceSize": {"w":226,"h":89}
+		"frame": {"x":0, "y":94, "w":186, "h":93},
+		"spriteSourceSize": {"x":0,"y":0,"w":186,"h":93},
+		"sourceSize": {"w":186,"h":93}
 	},
 	"icedrake_23.png": {
-		"frame": {"x":0, "y":360, "w":175, "h":82},
-		"spriteSourceSize": {"x":0,"y":0,"w":175,"h":82},
-		"sourceSize": {"w":175,"h":82}
+		"frame": {"x":0, "y":376, "w":151, "h":93},
+		"spriteSourceSize": {"x":35,"y":0,"w":186,"h":93},
+		"sourceSize": {"w":186,"h":93}
 	},
 	"icedrake_24.png": {
-		"frame": {"x":134, "y":443, "w":102, "h":23},
+		"frame": {"x":125, "y":553, "w":102, "h":23},
 		"spriteSourceSize": {"x":0,"y":0,"w":102,"h":23},
 		"sourceSize": {"w":102,"h":23}
 	},
 	"icedrake_25.png": {
-		"frame": {"x":134, "y":467, "w":95, "h":23},
+		"frame": {"x":125, "y":577, "w":95, "h":23},
 		"spriteSourceSize": {"x":0,"y":0,"w":95,"h":23},
 		"sourceSize": {"w":95,"h":23}
 	},
 	"icedrake_26.png": {
-		"frame": {"x":134, "y":491, "w":90, "h":19},
+		"frame": {"x":125, "y":601, "w":90, "h":19},
 		"spriteSourceSize": {"x":0,"y":0,"w":90,"h":19},
 		"sourceSize": {"w":90,"h":19}
 	}
@@ -134,7 +134,7 @@
 },
 "meta": {
 	"image": "icedrake.png",
-	"size": {"w": 621, "h": 621},
+	"size": {"w": 626, "h": 626},
 	"scale": "1"
 }
 }
