@@ -2,13 +2,19 @@ export default class Swub extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y) {
         super(scene, x, y, 'swub');
+        this.vel = 40;
+        this.noVelocity = 0;
+        this.heightsizewalk = 53;
+        this.heightsizehurt = 69;
+        this.widthsize = 0;
     }
     create() {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
-        this.body.setVelocityX(-40);
+        this.body.setVelocityX(-this.vel);
         this.hurtflag = false;
+
     }
 
     createAnims() {
@@ -44,30 +50,30 @@ export default class Swub extends Phaser.GameObjects.Sprite {
     update() {
 
         if (this.body.touching.right || this.body.blocked.right) {
-            this.body.setVelocityX(-40); // turn left
+            this.body.setVelocityX(-this.vel); // turn left
         }
         else if (this.body.touching.left || this.body.blocked.left) {
-            this.body.setVelocityX(40); // turn right
+            this.body.setVelocityX(this.vel); // turn right
         }
         if(!this.hurtflag){
-            this.body.setSize(0, 53); //ajustar el collider
+            this.body.setSize(this.widthsize, this.heightsizewalk); //ajustar el collider
             this.play('walkswub', true);
-            if(this.body.velocity.x === 0)
+            if(this.body.velocity.x === this.noVelocity)
                 if(this.flipX)
-                    this.body.setVelocityX(40);
+                    this.body.setVelocityX(this.vel);
                 else
-                    this.body.setVelocityX(-40);
+                    this.body.setVelocityX(-this.vel);
         }
         else{
-            this.body.setSize(0, 69); //ajustar el collider
+            this.body.setSize(this.widthsize, this.heightsizehurt); //ajustar el collider
             this.play('hurtswub', false);
-            this.body.setVelocityX(0);
+            this.body.setVelocityX(this.noVelocity);
         }
 
         //fliperar el sprite (por default esta a la izquierda)
-        if (this.body.velocity.x > 0)
+        if (this.body.velocity.x > this.noVelocity)
             this.setFlipX(true); //derecha
-        else if (this.body.velocity.x < 0)
+        else if (this.body.velocity.x < this.noVelocity)
             this.setFlipX(false); //izquierda
     }
 

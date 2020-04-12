@@ -1,18 +1,21 @@
 export default class Beam extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, enemy) {
-
         super(scene, x, y, "beam");
+
+        this.minX = 70;
+        this.maxX = 3300;
+        this.vel = 150;
 
         this.scene.add.existing(this);
 
         this.scene.physics.add.existing(this); //enable body
         //this.body.setCollideWorldBounds(true);
         if (enemy.flipX) {
-            this.body.setVelocityX(150);
+            this.body.setVelocityX(this.vel);
             this.setFlipX(true);
         }
         else {
-            this.body.setVelocityX(-150);
+            this.body.setVelocityX(-this.vel);
             this.setFlipX(false);
         }
         this.body.allowGravity = false;
@@ -37,7 +40,7 @@ export default class Beam extends Phaser.GameObjects.Sprite {
 
     update(player) {
         this.body.setSize(85, 20);
-        if (this.x < -70 || this.x > 3300 || player.hurtflag)
+        if (this.x < -this.minX || this.x > this.maxX || player.hurtflag)
             this.destroy();
     }
 }

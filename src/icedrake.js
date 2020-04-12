@@ -2,13 +2,21 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 
 	constructor(scene, x, y) {
 		super(scene, x, y, 'icedrake');
+		this.count = 500;
+		this.shootBeamCount = 500;
+		this.vel = 70;
+		this.difDrakeandWolf = 16;
+		this.distancetowolf = 300;
+		this.noVelocity = 0;
+		this.heightsizewalk = 65;
+		this.heightsizehurt = 75;
+        this.widthsize = 0;
 	}
 	create() {
-		this.count = 500;
 		this.scene.add.existing(this);
 		this.scene.physics.add.existing(this); //enable body
 		this.body.setCollideWorldBounds(true);
-		this.body.setVelocityX(70);
+		this.body.setVelocityX(this.vel);
 		this.hurtflag = false;
 	}
 	createAnims() {
@@ -57,73 +65,72 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 	update() {
 
 		if (this.body.touching.right || this.body.blocked.right) {
-			this.body.setSize(0, 65); //ajustar el collider
-			this.body.setVelocityX(-70); // turn left
+			this.body.setSize(this.widthsize, this.heightsizewalk); //ajustar el collider
+			this.body.setVelocityX(-this.vel); // turn left
 		}
 		else if (this.body.touching.left || this.body.blocked.left) {
-			this.body.setSize(0, 65); //ajustar el collider
-			this.body.setVelocityX(70); // turn right
+			this.body.setSize(this.widthsize, this.heightsizewalk); //ajustar el collider
+			this.body.setVelocityX(this.vel); // turn right
 		}
 
 		if (!this.hurtflag) {
-			this.body.setSize(0, 65); //ajustar el collider
+			this.body.setSize(this.widthsize, this.heightsizewalk); //ajustar el collider
 			this.play('walkicedrake', true);
-			if (this.body.velocity.x === 0)
+			if (this.body.velocity.x === this.noVelocity)
 				if (this.flipX)
-					this.body.setVelocityX(70);
+					this.body.setVelocityX(this.vel);
 				else
-					this.body.setVelocityX(-70);
+					this.body.setVelocityX(-this.vel);
 		}
 		else {
-			this.body.setSize(0, 75); //ajustar el collider
+			this.body.setSize(this.widthsize, this.heightsizehurt); //ajustar el collider
 			this.play('hurticedrake', false);
-			this.body.setVelocityX(0);
+			this.body.setVelocityX(this.noVelocity);
 		}
 
 		//fliperar el sprite (por default esta a la izquierda)
-		if (this.body.velocity.x > 0)
+		if (this.body.velocity.x > this.noVelocity)
 			this.setFlipX(true); //derecha
-		else if (this.body.velocity.x < 0)
+		else if (this.body.velocity.x < this.noVelocity)
 			this.setFlipX(false); //izquierda
 
 	}
 
 	checkAttack(wolf, game) {
 		if (!this.hurtflag) {
-			if ((this.x - wolf.x > 300 || wolf.x - this.x > 300)) //si el jugador no esta en rango
+			if ((this.x - wolf.x > this.distancetowolf || wolf.x - this.x > this.distancetowolf)) //si el jugador no esta en rango
 			{
 				this.play('walkicedrake', true);
 				if (this.flipX)
-					this.body.setVelocityX(70);
+					this.body.setVelocityX(this.vel);
 				else
-					this.body.setVelocityX(-70);
+					this.body.setVelocityX(-this.vel);
 			}
 			else {
-				if (this.y == (wolf.y + 16) && ((this.x > wolf.x && !this.flipX) || (this.x < wolf.x && this.flipX))) { //esta en la misma altura y que este mirando al jugador
+				if (this.y == (wolf.y + this.difDrakeandWolf) && ((this.x > wolf.x && !this.flipX) || (this.x < wolf.x && this.flipX))) { //esta en la misma altura y que este mirando al jugador
 					//Esta animacion no va bien
 					//this.body.setSize(0, 75); //ajustar el collider
 					this.play('attackicedrake', true);
 					//un mejor contador habria que hacer
-					if (this.count > 500) {
+					if (this.count > this.shootBeamCount) {
 						let beam;
 						if (this.flipX)
-							beam = game.spawnBeam(this.scene, this.x + 70, this.y, this);
+							beam = game.spawnBeam(this.scene, this.x + this.vel, this.y, this);
 						else
-							beam = game.spawnBeam(this.scene, this.x - 70, this.y, this);
+							beam = game.spawnBeam(this.scene, this.x - this.vel, this.y, this);
 						beam.play('beamAnim', true);
 						this.count = 0;
 					}
-					this.body.setVelocityX(0);
+					this.body.setVelocityX(this.noVelocity);
 				}
 				else {
 					this.play('walkicedrake', true);
 					if (this.flipX)
-						this.body.setVelocityX(70);
+						this.body.setVelocityX(this.vel);
 					else
-						this.body.setVelocityX(-70);
+						this.body.setVelocityX(-this.vel);
 				}
 			}
-
 			this.count++;
 		}
 	}
