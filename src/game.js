@@ -207,7 +207,7 @@ export default class Game extends Phaser.Scene {
             let tile = groundLayer.getTileAtWorldXY(x, y);
             if (tile.properties.frozen) //properties contiene la propiedad frozen. Si es true, se descongela el tile
             {
-                tile.index -= 6; //-6 ya que en el tileset, los frozen estan a 6 posiciones de los no frozen
+                tile.index -= this.tileIndex; //-6 ya que en el tileset, los frozen estan a 6 posiciones de los no frozen
                 let tile0 = groundLayer.putTileAtWorldXY(tile.index, x, y);
                 tile0.setCollision(true);
                 tile0.properties.frozen = false;
@@ -273,21 +273,18 @@ export default class Game extends Phaser.Scene {
     //DAÑAR AL JUGADOR//
     knockBack(player, damage) {
         //knock-back al jugador
-        this.velocityWolfX = 200;
-        this.velocityWolfY = 200;
-        this.velocityWolfYUP = 300;
         if (!player.invincible) {
             player.hurtflag = true;
             if (player.body.touching.down) {
-                player.body.setVelocityY(-this.velocityWolfYUP);
+                player.body.setVelocityY(-player.knockBackUP);
             }
             else if (player.body.touching.right) {
-                player.body.setVelocityY(-this.velocityWolfY);
-                player.body.setVelocityX(-this.velocityWolfX);
+                player.body.setVelocityY(-player.knockBackSIDE);
+                player.body.setVelocityX(-player.knockBackSIDE);
             }
             else if (player.body.touching.left) {
-                player.body.setVelocityY(-this.velocityWolfY);
-                player.body.setVelocityX(this.velocityWolfX);
+                player.body.setVelocityY(-player.knockBackSIDE);
+                player.body.setVelocityX(player.knockBackSIDE);
             }
             player.play('hurtwolf', false);
             player.invincible = true;

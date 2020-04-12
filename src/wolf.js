@@ -17,9 +17,8 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.vel = 300;
         this.jumpvel = -420;
         this.heightsize = 97;
-        this.widthsize = 0;
-        this.noVelocity = 0;
-        this.noHealth = 0;
+        this.knockBackUP = 300;
+        this.knockBackSIDE = 200;
     }
 
     createAnims() {
@@ -99,7 +98,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
 
     update(game) {
 
-        this.body.setSize(this.widthsize, this.heightsize); //ajustar el collider
+        this.body.setSize(0, this.heightsize); //ajustar el collider
         //this.setOrigin(0.5,0.5);
 
         //izquierda
@@ -118,7 +117,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         }
         //atacar. No se puede spamear
         else if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE) && this.body.onFloor() && this.isAlive() && !this.winGame) {
-            this.body.setVelocityX(this.noVelocity);
+            this.body.setVelocityX(0);
             this.play('attackwolf', false);
             if (this.flipX)
                 game.spawnSlash(this.scene, this.x + this.slashWidth, this.y + this.slashHeight, this);
@@ -128,7 +127,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             game.audio_playerAttack();
         }
         else if (this.cursors.A.isUp && this.cursors.D.isUp && this.cursors.W.isUp && (!this.anims.isPlaying || (this.anims.isPlaying && this.anims.currentAnim.key === 'runwolf'))) {
-            this.body.setVelocityX(this.noVelocity);
+            this.body.setVelocityX(0);
             //idle
             if (this.body.onFloor())
                 this.play('idlewolf', true);
@@ -146,13 +145,13 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         }
 
         //fliperar el sprite (por default esta a la izquierda)
-        if (this.body.velocity.x > this.noVelocity)
+        if (this.body.velocity.x > 0)
             this.setFlipX(true); //derecha
-        else if (this.body.velocity.x < this.noVelocity)
+        else if (this.body.velocity.x < 0)
             this.setFlipX(false); //izquierda
 
     }
     isAlive() {
-        return this.health > this.noHealth;
+        return this.health > 0;
     }
 }
