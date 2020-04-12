@@ -112,7 +112,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         else if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE) && this.body.onFloor() && this.isAlive() && !this.winGame) {
             this.body.setVelocityX(0);
             this.play('attackwolf', false);
-            if(this.flipX)
+            if (this.flipX)
                 game.spawnSlash(this.scene, this.x + 120, this.y, this);
             else
                 game.spawnSlash(this.scene, this.x - 120, this.y, this);
