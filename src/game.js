@@ -2,6 +2,7 @@ import Wolf from './wolf.js';
 import Swub from './swub.js';
 import Icedrake from './icedrake.js';
 import Beam from './beam.js';
+import Slash from './slash.js';
 
 //RECORDAR INDENTAR CON ALT+SHIFT+F
 export default class Game extends Phaser.Scene {
@@ -23,8 +24,8 @@ export default class Game extends Phaser.Scene {
         this.load.image("helpButton", "./assets/help_button.png");
         //seccion ayuda
         this.load.image("helpBoard", "./assets/helpBoard.png");
-        //disparo iceDrake
-        //this.load.image("beam", "./assets/enemies/beam/beam_1.png");
+        //slash player
+        this.load.image("slash", "./assets/mainCharacter/attackWolf.png");
 
         //GAME OVER SCREEN
         this.load.image("menu_Button", "./assets/menu_button.png");
@@ -256,7 +257,7 @@ export default class Game extends Phaser.Scene {
     }
 
     //DAÑAR AL JUGADOR//
-    knockBack(player, enemy) {
+    knockBack(player, damage) {
         //knock-back al jugador
         if (!player.invincible) {
             player.hurtflag = true;
@@ -288,6 +289,19 @@ export default class Game extends Phaser.Scene {
         player.hurtflag = false;
     }
 
+    //DAÑAR AL ENEMIGO
+    stunEnemy(enemy, slash){
+        enemy.hurtflag = true;
+    }
+    delayStun(scene, enemy){
+        scene.time.addEvent({
+            delay: 1000,
+            callback: () => {
+                enemy.hurtflag = false;
+            },
+        });
+    }
+
     //SPAWN//
     spawnPlayer(scene, x, y, groundLayer) {
         let wolf = new Wolf(scene, 0, 919);
@@ -304,11 +318,14 @@ export default class Game extends Phaser.Scene {
         temp.createAnims();
         enemies.add(temp);
     }
-
     spawnBeam(scene, x, y, enemy){
         let beam = new Beam(scene, x, y, enemy);
         beam.createAnims();
         return beam;
+    }
+    spawnSlash(scene, x, y, player){
+        let slash = new Slash(scene, x, y, player);
+        return slash;
     }
     
     //WIN GAME//

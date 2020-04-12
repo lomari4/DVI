@@ -59,6 +59,9 @@ export default class Level1 extends Phaser.Scene {
 		//beam
 		this.projectiles = this.add.group();
 
+		//slash
+		this.slash = this.add.group();
+
 	}
 
 	update(time, delta) {
@@ -91,6 +94,15 @@ export default class Level1 extends Phaser.Scene {
 			let beam = this.projectiles.getChildren()[i];
 			this.physics.add.overlap(this.wolf, beam, game.knockBack, game.overlapcallback, this);
 			beam.update(this.wolf);
+		}
+
+		for(let i = 0; i < this.slash.getChildren().length; i++){
+			let slash = this.slash.getChildren()[i];
+			this.enemies.getChildren().forEach(function (item) {
+				this.physics.add.overlap(item, slash, game.stunEnemy, null, this);
+				game.delayStun(this, item);
+			}, this);
+			slash.update();
 		}
 		
 		//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR

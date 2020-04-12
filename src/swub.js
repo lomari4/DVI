@@ -8,6 +8,7 @@ export default class Swub extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
         this.body.setVelocityX(-40);
+        this.hurtflag = false;
     }
 
     createAnims() {
@@ -50,8 +51,18 @@ export default class Swub extends Phaser.GameObjects.Sprite {
         else if (this.body.touching.left || this.body.blocked.left) {
             this.body.setVelocityX(40); // turn right
         }
-
-        this.play('walkswub', true);
+        if(!this.hurtflag){
+            this.play('walkswub', true);
+            if(this.body.velocity.x === 0)
+                if(this.flipX)
+                    this.body.setVelocityX(40);
+                else
+                    this.body.setVelocityX(-40);
+        }
+        else{
+            this.play('hurtswub', false);
+            this.body.setVelocityX(0);
+        }
 
         //fliperar el sprite (por default esta a la izquierda)
         if (this.body.velocity.x > 0)
