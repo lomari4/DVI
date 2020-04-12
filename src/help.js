@@ -11,7 +11,7 @@ export default class Help extends Phaser.Scene {
         b.on("pointerup", () => {
             this.scene.start("Game"); //menu
         });
-        
+
     }
 
 }

@@ -115,7 +115,7 @@ export default class Game extends Phaser.Scene {
         return map;
     }
     //BACKGROUND//
-    addBackground(scene){
+    addBackground(scene) {
         //añadimos el background que tiene fullscreen de funcionalidad
         this.bg = scene.add.sprite(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive();
         this.bg.on('pointerup', function () {
@@ -204,7 +204,7 @@ export default class Game extends Phaser.Scene {
     }
 
     //COGELAR TERRENO//
-    frost(x, y, groundLayer){
+    frost(x, y, groundLayer) {
         let count = 0;
         if (groundLayer.hasTileAtWorldXY(x, y)) {
             let tile = groundLayer.getTileAtWorldXY(x, y);
@@ -221,11 +221,11 @@ export default class Game extends Phaser.Scene {
     }
 
     //Cuenta el numero de tiles que hay en el mapa
-    countTotalTiles(map, groundLayer){
-        let i , j, counter = 0;
-        for(j = 0; j < map.width; ++j){
-            for(i = 0; i < map.height; ++i){
-                if (groundLayer.hasTileAtWorldXY(j*64, i*64)) {
+    countTotalTiles(map, groundLayer) {
+        let i, j, counter = 0;
+        for (j = 0; j < map.width; ++j) {
+            for (i = 0; i < map.height; ++i) {
+                if (groundLayer.hasTileAtWorldXY(j * 64, i * 64)) {
                     counter++;
                 }
             }
@@ -290,10 +290,10 @@ export default class Game extends Phaser.Scene {
     }
 
     //DAÑAR AL ENEMIGO
-    stunEnemy(enemy, slash){
+    stunEnemy(enemy, slash) {
         enemy.hurtflag = true;
     }
-    delayStun(scene, enemy){
+    delayStun(scene, enemy) {
         scene.time.addEvent({
             delay: 3000,
             callback: () => {
@@ -318,18 +318,18 @@ export default class Game extends Phaser.Scene {
         temp.createAnims();
         enemies.add(temp);
     }
-    spawnBeam(scene, x, y, enemy){
+    spawnBeam(scene, x, y, enemy) {
         let beam = new Beam(scene, x, y, enemy);
         beam.createAnims();
         return beam;
     }
-    spawnSlash(scene, x, y, player){
+    spawnSlash(scene, x, y, player) {
         let slash = new Slash(scene, x, y, player);
         return slash;
     }
-    
+
     //WIN GAME//
-    winGame(player, scene, enemies){
+    winGame(player, scene, enemies) {
         player.body.setVelocityX(0);
         enemies.getChildren().forEach(function (item) {
             item.body.setVelocityX(0);
@@ -340,8 +340,7 @@ export default class Game extends Phaser.Scene {
 
         scene.music.stop();
     }
-    bgFadeIn(scene)
-    {
+    bgFadeIn(scene) {
         //tween para el fade in del nuevo background
         let bg2 = scene.add.image(0, 0, "bg2").setOrigin(0).setAlpha(0).setDepth(-1);
         scene.tweens.add({
@@ -352,10 +351,10 @@ export default class Game extends Phaser.Scene {
         })
     }
     nextLevel(nivel) {
-        switch(nivel){
-            case 1:  this.scene.launch('Level2');
-            case 2:  this.scene.launch('Level3');
-            case 3:  this.scene.launch('Level4');
+        switch (nivel) {
+            case 1: this.scene.launch('Level2');
+            case 2: this.scene.launch('Level3');
+            case 3: this.scene.launch('Level4');
             default: this.scene.launch('Game');
         }
     }

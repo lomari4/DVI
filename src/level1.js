@@ -47,7 +47,7 @@ export default class Level1 extends Phaser.Scene {
 		//funciones de spawn de enemigos
 		game.spawnSwub(this, 1300, 933, this.enemies);
 		game.spawnIcedrake(this, 900, 550, this.enemies);
-		game.spawnIcedrake(this, 900, 925, this.enemies);		
+		game.spawnIcedrake(this, 900, 925, this.enemies);
 		this.enemies.getChildren().forEach(function (item) { //necesario para crear cada enemigo con sus propiedades. Hacerlo antes de añadirlo al grupo no funciona
 			item.create();
 		}, this);
@@ -80,34 +80,32 @@ export default class Level1 extends Phaser.Scene {
 
 		//FUNCION DE DESCONGELAR EL SUELO DE LOS SWUB
 		this.enemies.getChildren().forEach(function (item) {
-			if(item.texture.key === 'swub')
-			{
+			if (item.texture.key === 'swub') {
 				//solo congela el tile DETRAS de el
-				if(item.body.velocity.x > 0 && !this.wolf.winGame) //derecha
+				if (item.body.velocity.x > 0 && !this.wolf.winGame) //derecha
 					this.counter -= game.frost(item.x - 32, item.y + 64, this.groundLayer);
-				else if(item.body.velocity.x < 0 && !this.wolf.winGame) //izquierda
+				else if (item.body.velocity.x < 0 && !this.wolf.winGame) //izquierda
 					this.counter -= game.frost(item.x + 32, item.y + 64, this.groundLayer);
 			}
 		}, this);
 
-		for(let i = 0; i < this.projectiles.getChildren().length; i++){
+		for (let i = 0; i < this.projectiles.getChildren().length; i++) {
 			let beam = this.projectiles.getChildren()[i];
 			this.physics.add.overlap(this.wolf, beam, game.knockBack, game.overlapcallback, this);
 			beam.update(this.wolf);
 		}
 
-		for(let i = 0; i < this.slash.getChildren().length; i++){
+		for (let i = 0; i < this.slash.getChildren().length; i++) {
 			let slash = this.slash.getChildren()[i];
 			this.enemies.getChildren().forEach(function (item) {
-				if(!item.hurtflag)
-				{
+				if (!item.hurtflag) {
 					this.physics.add.overlap(item, slash, game.stunEnemy, null, this);
 					game.delayStun(this, item);
 				}
 			}, this);
 			slash.update();
 		}
-		
+
 		//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
 		if (this.wolf.body.onFloor() && this.wolf.isAlive()) {
 			//rango de descongelacion del lobo: delante,medio,atras
@@ -136,7 +134,7 @@ export default class Level1 extends Phaser.Scene {
 		game.showProgress(this.counter, this.checkWin);
 
 		//COMPRUEBA SI HA GANADO
-		if(this.counter === this.checkWin){
+		if (this.counter === this.checkWin) {
 			//Esto hay que poner un cartel de victoria
 			game.winGame(this.wolf, this, this.enemies);
 			this.wolf.winGame = true;
@@ -144,13 +142,12 @@ export default class Level1 extends Phaser.Scene {
 			//this.time.delayedCall(10000, game.nextLevel, [this.level], this);
 		}
 		//audio de game win y fade in del nuevo bg
-		if(this.wolf.winGame && !this.winFlag)
-		{
+		if (this.wolf.winGame && !this.winFlag) {
 			game.audio_gameWin();
 			game.bgFadeIn(this);
 			this.winFlag = true;
 		}
-			
+
 		//GAME OVER
 		if (!this.wolf.isAlive()) { //ha perdido
 			game.gameOver(this.wolf, this);
