@@ -76,11 +76,9 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		}
 
 		if (this.body.touching.right || this.body.blocked.right) {
-			this.body.setSize(0, this.heightsizewalk); //ajustar el collider
 			this.body.setVelocityX(-this.vel); // turn left
 		}
 		else if (this.body.touching.left || this.body.blocked.left) {
-			this.body.setSize(0, this.heightsizewalk); //ajustar el collider
 			this.body.setVelocityX(this.vel); // turn right
 		}
 
