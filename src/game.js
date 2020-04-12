@@ -295,7 +295,7 @@ export default class Game extends Phaser.Scene {
     }
     delayStun(scene, enemy){
         scene.time.addEvent({
-            delay: 1000,
+            delay: 3000,
             callback: () => {
                 enemy.hurtflag = false;
             },
