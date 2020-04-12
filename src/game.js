@@ -388,7 +388,7 @@ export default class Game extends Phaser.Scene {
         this.scene.launch('GameOver', { level: nivel });
     }
     overlapcallback(player, enemy) {
-        if (player.isAlive() > 0)
+        if (player.isAlive())
             return true;
         else
             return false;
