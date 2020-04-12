@@ -99,8 +99,11 @@ export default class Level1 extends Phaser.Scene {
 		for(let i = 0; i < this.slash.getChildren().length; i++){
 			let slash = this.slash.getChildren()[i];
 			this.enemies.getChildren().forEach(function (item) {
-				this.physics.add.overlap(item, slash, game.stunEnemy, null, this);
-				game.delayStun(this, item);
+				if(!item.hurtflag)
+				{
+					this.physics.add.overlap(item, slash, game.stunEnemy, null, this);
+					game.delayStun(this, item);
+				}
 			}, this);
 			slash.update();
 		}

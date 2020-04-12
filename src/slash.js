@@ -17,8 +17,8 @@ export default class Slash extends Phaser.GameObjects.Sprite {
     }
 
     update(){
-        this.body.setSize(81, 97);
-        if(this.count === 70){
+        this.body.setSize(50, 81);
+        if(this.count === 50){
             this.destroy();
         }
         this.count++;

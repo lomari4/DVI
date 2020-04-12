@@ -25,7 +25,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			repeat: 0,
 
 		});
-		this.scene.anims.create({
+		this.animAttack = this.scene.anims.create({
 			key: 'attackicedrake',
 			frames: this.scene.anims.generateFrameNames('icedrake', {
 				prefix: 'icedrake_',
@@ -55,16 +55,17 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 
 	update() {
 
-		this.body.setSize(0, 65); //ajustar el collider
-
 		if (this.body.touching.right || this.body.blocked.right) {
+			this.body.setSize(0, 65); //ajustar el collider
 			this.body.setVelocityX(-70); // turn left
 		}
 		else if (this.body.touching.left || this.body.blocked.left) {
+			this.body.setSize(0, 65); //ajustar el collider
 			this.body.setVelocityX(70); // turn right
 		}
 
 		if(!this.hurtflag){
+			this.body.setSize(0, 65); //ajustar el collider
 			this.play('walkicedrake', true);
 			if(this.body.velocity.x === 0)
 				if(this.flipX)
@@ -73,6 +74,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 					this.body.setVelocityX(-70);
 		}
         else {
+			this.body.setSize(0, 75); //ajustar el collider
 			this.play('hurticedrake', false);
 			this.body.setVelocityX(0);
 		}
@@ -87,7 +89,8 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 
 	checkAttack(wolf, game){
 		if(!this.hurtflag){
-			if(this.x - wolf.x > 300 || wolf.x - this.x > 300){
+			if( (this.x - wolf.x > 300 || wolf.x - this.x > 300)) //si el jugador no esta en rango
+			{
 				this.play('walkicedrake', true);
 				if(this.flipX)
 					this.body.setVelocityX(70);
@@ -95,8 +98,9 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 					this.body.setVelocityX(-70);
 			}
 			else{
-				if(this.y == (wolf.y + 16) && ((this.x > wolf.x && !this.flipX) || (this.x < wolf.x && this.flipX))){
+				if(this.y == (wolf.y + 16) && ((this.x > wolf.x && !this.flipX) || (this.x < wolf.x && this.flipX))){ //esta en la misma altura y que este mirando al jugador
 						//Esta animacion no va bien
+						//this.body.setSize(0, 75); //ajustar el collider
 						this.play('attackicedrake', true);
 						//un mejor contador habria que hacer
 						if(this.count > 500){
@@ -114,7 +118,12 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 						this.body.setVelocityX(-70);
 				}
 			}
+			
 			this.count++;
 		}
+	}
+
+	isAttacking(){
+		return this.anims.currentFrame.index === 5;
 	}
 }
