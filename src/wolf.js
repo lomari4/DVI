@@ -12,6 +12,10 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.hurtflag = false;
         this.cursors = this.scene.input.keyboard.addKeys('W, A, D, SPACE');
         this.invincible = false;
+        this.slashHeight = 10;
+        this.slashWidth = 125;
+        this.vel = 300;
+        this.jumpvel = -420;
     }
 
     createAnims() {
@@ -96,14 +100,14 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
 
         //izquierda
         if (this.cursors.A.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.isAlive() && !this.winGame) {
-            this.body.setVelocityX(-300);
+            this.body.setVelocityX(-this.vel);
             if (this.body.onFloor()) {
                 this.play('runwolf', true);
             }
         }
         //derecha
         else if (this.cursors.D.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.isAlive() && !this.winGame) {
-            this.body.setVelocityX(300);
+            this.body.setVelocityX(this.vel);
             if (this.body.onFloor()) {
                 this.play('runwolf', true);
             }
@@ -113,9 +117,9 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(0);
             this.play('attackwolf', false);
             if (this.flipX)
-                game.spawnSlash(this.scene, this.x + 120, this.y, this);
+                game.spawnSlash(this.scene, this.x + this.slashWidth, this.y + this.slashHeight, this);
             else
-                game.spawnSlash(this.scene, this.x - 120, this.y, this);
+                game.spawnSlash(this.scene, this.x - this.slashWidth, this.y + this.slashHeight, this);
 
             game.audio_playerAttack();
         }
@@ -131,7 +135,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         }
         //saltar
         if (this.cursors.W.isDown && this.body.onFloor() && this.isAlive() && !this.winGame) {
-            this.body.setVelocityY(-420);
+            this.body.setVelocityY(this.jumpvel);
             this.play('jumpwolf', true);
             if (this.body.onFloor())
                 game.audio_playerJump();

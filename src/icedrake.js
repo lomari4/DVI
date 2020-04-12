@@ -30,7 +30,8 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			frames: this.scene.anims.generateFrameNames('icedrake', {
 				prefix: 'icedrake_',
 				suffix: '.png',
-				start: 19,
+				//start: 19,
+				start: 23,
 				end: 23,
 				zeroPad: 2
 			}),
@@ -104,7 +105,11 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 					this.play('attackicedrake', true);
 					//un mejor contador habria que hacer
 					if (this.count > 500) {
-						let beam = game.spawnBeam(this.scene, this.x, this.y, this);
+						let beam;
+						if (this.flipX)
+							beam = game.spawnBeam(this.scene, this.x + 70, this.y, this);
+						else
+							beam = game.spawnBeam(this.scene, this.x - 70, this.y, this);
 						beam.play('beamAnim', true);
 						this.count = 0;
 					}
@@ -123,7 +128,9 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		}
 	}
 
-	isAttacking() {
-		return this.anims.currentFrame.index === 5;
+	/*
+	playerInRange(wolf){
+		return this.x - wolf.x > 300 || wolf.x - this.x > 300;
 	}
+*/
 }

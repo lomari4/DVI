@@ -4,6 +4,9 @@ export default class Level1 extends Phaser.Scene {
 		super({ key: 'Level1' });
 		this.level = 1;
 		this.winFlag = false;
+		this.tileSize = 64;
+		this.counter = 0; //contador del numero de tiles que has cambiado
+		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 	}
 	preload() { }
 
@@ -11,8 +14,7 @@ export default class Level1 extends Phaser.Scene {
 		//GENERAL//
 		//añadimos el JUEGO (clase Game con todas las funciones que van a compartir todos los niveles)
 		let game = this.scene.get('Game');
-		this.counter = 0; //contador del numero de tiles que has cambiado
-		this.checkWin = 0; //contador del numero de tiles totales en el mapa
+
 		//añadimos el sonido
 		this.music = this.sound.add("level1_sound");
 		this.music.setLoop(true);
@@ -83,18 +85,29 @@ export default class Level1 extends Phaser.Scene {
 			if (item.texture.key === 'swub') {
 				//solo congela el tile DETRAS de el
 				if (item.body.velocity.x > 0 && !this.wolf.winGame) //derecha
-					this.counter -= game.frost(item.x - 32, item.y + 64, this.groundLayer);
+					this.counter -= game.frost(item.x - this.tileSize, item.y + this.tileSize, this.groundLayer);
 				else if (item.body.velocity.x < 0 && !this.wolf.winGame) //izquierda
-					this.counter -= game.frost(item.x + 32, item.y + 64, this.groundLayer);
+					this.counter -= game.frost(item.x + this.tileSize, item.y + this.tileSize, this.groundLayer);
 			}
 		}, this);
 
+		//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
+		if (this.wolf.body.onFloor() && this.wolf.isAlive()) {
+			//rango de descongelacion del lobo: delante,medio,atras
+			this.counter += game.defrost(this.wolf.x - this.tileSize, this.wolf.y + this.tileSize, this.groundLayer);
+			this.counter += game.defrost(this.wolf.x, this.wolf.y + this.tileSize, this.groundLayer);
+			this.counter += game.defrost(this.wolf.x + this.tileSize, this.wolf.y + this.tileSize, this.groundLayer);
+		}
+
+		//ATAQUES Y OVERLAPS
+		//overlap de los proyectiles del dragon
 		for (let i = 0; i < this.projectiles.getChildren().length; i++) {
 			let beam = this.projectiles.getChildren()[i];
 			this.physics.add.overlap(this.wolf, beam, game.knockBack, game.overlapcallback, this);
 			beam.update(this.wolf);
 		}
 
+		//overlap del ataque del jugador
 		for (let i = 0; i < this.slash.getChildren().length; i++) {
 			let slash = this.slash.getChildren()[i];
 			this.enemies.getChildren().forEach(function (item) {
@@ -106,15 +119,6 @@ export default class Level1 extends Phaser.Scene {
 			slash.update();
 		}
 
-		//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
-		if (this.wolf.body.onFloor() && this.wolf.isAlive()) {
-			//rango de descongelacion del lobo: delante,medio,atras
-			this.counter += game.defrost(this.wolf.x - 64, this.wolf.y + 64, this.groundLayer);
-			this.counter += game.defrost(this.wolf.x, this.wolf.y + 64, this.groundLayer);
-			this.counter += game.defrost(this.wolf.x + 64, this.wolf.y + 64, this.groundLayer);
-		}
-
-		//ATAQUES Y COLISIONES CON ENEMIGOS
 		//funcion overlap para colisiones con el jugador
 		if (this.wolf.isAlive())
 			this.physics.add.overlap(this.wolf, this.enemies, game.knockBack, game.overlapcallback, this);
@@ -131,6 +135,7 @@ export default class Level1 extends Phaser.Scene {
 
 		}
 
+		//MUESTRA EL PROGRESO AL JUGADOR
 		game.showProgress(this.counter, this.checkWin);
 
 		//COMPRUEBA SI HA GANADO

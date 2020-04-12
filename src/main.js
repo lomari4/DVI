@@ -20,7 +20,7 @@ var config = {
     },
     //scene: [Menu, Game],
     scene: [Game, Help, Level1, GameOver],
-    physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: false } }
+    physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: true } }
 
 };
 new Phaser.Game(config);
