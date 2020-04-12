@@ -43,6 +43,7 @@ export default class Game extends Phaser.Scene {
         this.load.audio("player_jump_sound", "./assets/music/effects/jump.wav");
         this.load.audio("player_attack_sound", "./assets/music/effects/wolf_attack.wav");
         this.load.audio("player_hurt_sound", "./assets/music/effects/wolf_hurt.wav");
+        this.load.audio("ice_splash_sound", "./assets/music/effects/ice_splash.wav");
         //efectos de sonido generales
         this.load.audio("gameover_sound", "./assets/music/effects/game_over.wav");
         this.load.audio("gamewin_sound", "./assets/music/effects/game_win.wav");
@@ -185,6 +186,12 @@ export default class Game extends Phaser.Scene {
         });
         s.play();
     }
+    audio_iceBeamHit() {
+        let s = this.sound.add("ice_splash_sound", {
+            volume: 0.55,
+        });
+        s.play();
+    }
 
     //DESCONGELAR TERRENO//
     defrost(x, y, groundLayer) {
@@ -311,11 +318,13 @@ export default class Game extends Phaser.Scene {
     spawnSwub(scene, x, y, enemies) {
         let temp = new Swub(scene, x, y);
         temp.createAnims();
+        temp.play('walkswub', true);
         enemies.add(temp);
     }
     spawnIcedrake(scene, x, y, enemies) {
         let temp = new Icedrake(scene, x, y);
         temp.createAnims();
+        temp.play('walkicedrake', true);
         enemies.add(temp);
     }
     spawnBeam(scene, x, y, enemy) {

@@ -4,7 +4,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		super(scene, x, y, 'icedrake');
 	}
 	create() {
-		this.count = 500;
+		this.coolDown = 500;
 		this.scene.add.existing(this);
 		this.scene.physics.add.existing(this); //enable body
 		this.body.setCollideWorldBounds(true);
@@ -30,8 +30,8 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			frames: this.scene.anims.generateFrameNames('icedrake', {
 				prefix: 'icedrake_',
 				suffix: '.png',
-				//start: 19,
-				start: 23,
+				start: 19,
+				//start: 23,
 				end: 23,
 				zeroPad: 2
 			}),
@@ -54,7 +54,20 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		});
 	}
 
+	walk() {
+		this.body.setSize(0, 65); //ajustar el collider
+		this.play('walkicedrake', true);
+		if (this.flipX)
+			this.body.setVelocityX(70);
+		else
+			this.body.setVelocityX(-70);
+	}
+
 	update() {
+
+		if (!this.hurtflag && this.anims.currentAnim.key !== 'attackicedrake') {
+			this.walk();
+		}
 
 		if (this.body.touching.right || this.body.blocked.right) {
 			this.body.setSize(0, 65); //ajustar el collider
@@ -65,17 +78,8 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			this.body.setVelocityX(70); // turn right
 		}
 
-		if (!this.hurtflag) {
-			this.body.setSize(0, 65); //ajustar el collider
-			this.play('walkicedrake', true);
-			if (this.body.velocity.x === 0)
-				if (this.flipX)
-					this.body.setVelocityX(70);
-				else
-					this.body.setVelocityX(-70);
-		}
-		else {
-			this.body.setSize(0, 75); //ajustar el collider
+		if (this.hurtflag) {
+			this.body.setSize(0, 83); //ajustar el collider
 			this.play('hurticedrake', false);
 			this.body.setVelocityX(0);
 		}
@@ -88,49 +92,29 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 
 	}
 
+	playerInRange(wolf) {
+		return Math.abs(this.x - wolf.x) <= 500 && this.y === wolf.y + 16;
+	}
+
 	checkAttack(wolf, game) {
-		if (!this.hurtflag) {
-			if ((this.x - wolf.x > 300 || wolf.x - this.x > 300)) //si el jugador no esta en rango
-			{
-				this.play('walkicedrake', true);
+		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y dragon mirandolo
+			if (this.coolDown > 500) {
+				this.body.setSize(0, 85); //ajustar el collider
+				this.play('attackicedrake', true);
+				let beam;
 				if (this.flipX)
-					this.body.setVelocityX(70);
+					beam = game.spawnBeam(this.scene, this.x + 70, this.y, this);
 				else
-					this.body.setVelocityX(-70);
+					beam = game.spawnBeam(this.scene, this.x - 70, this.y, this);
+				beam.play('beamAnim', true);
+				this.coolDown = 0;
+				this.body.setVelocityX(0);
 			}
-			else {
-				if (this.y == (wolf.y + 16) && ((this.x > wolf.x && !this.flipX) || (this.x < wolf.x && this.flipX))) { //esta en la misma altura y que este mirando al jugador
-					//Esta animacion no va bien
-					//this.body.setSize(0, 75); //ajustar el collider
-					this.play('attackicedrake', true);
-					//un mejor contador habria que hacer
-					if (this.count > 500) {
-						let beam;
-						if (this.flipX)
-							beam = game.spawnBeam(this.scene, this.x + 70, this.y, this);
-						else
-							beam = game.spawnBeam(this.scene, this.x - 70, this.y, this);
-						beam.play('beamAnim', true);
-						this.count = 0;
-					}
-					this.body.setVelocityX(0);
-				}
-				else {
-					this.play('walkicedrake', true);
-					if (this.flipX)
-						this.body.setVelocityX(70);
-					else
-						this.body.setVelocityX(-70);
-				}
-			}
-
-			this.count++;
 		}
+		else if (this.anims.currentFrame.index === 5) {
+			this.walk();
+		}
+		this.coolDown++;
 	}
 
-	/*
-	playerInRange(wolf){
-		return this.x - wolf.x > 300 || wolf.x - this.x > 300;
-	}
-*/
 }

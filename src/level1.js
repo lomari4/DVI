@@ -5,8 +5,6 @@ export default class Level1 extends Phaser.Scene {
 		this.level = 1;
 		this.winFlag = false;
 		this.tileSize = 64;
-		this.counter = 0; //contador del numero de tiles que has cambiado
-		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 	}
 	preload() { }
 
@@ -14,6 +12,8 @@ export default class Level1 extends Phaser.Scene {
 		//GENERAL//
 		//añadimos el JUEGO (clase Game con todas las funciones que van a compartir todos los niveles)
 		let game = this.scene.get('Game');
+		this.counter = 0; //contador del numero de tiles que has cambiado
+		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 
 		//añadimos el sonido
 		this.music = this.sound.add("level1_sound");
@@ -77,7 +77,8 @@ export default class Level1 extends Phaser.Scene {
 		this.enemies.getChildren().forEach(function (item) {
 			item.update();
 			//Funcion atacar
-			item.checkAttack(this.wolf, game);
+			if(!item.hurtflag)
+				item.checkAttack(this.wolf, game, this);
 		}, this);
 
 		//FUNCION DE DESCONGELAR EL SUELO DE LOS SWUB
@@ -104,7 +105,7 @@ export default class Level1 extends Phaser.Scene {
 		for (let i = 0; i < this.projectiles.getChildren().length; i++) {
 			let beam = this.projectiles.getChildren()[i];
 			this.physics.add.overlap(this.wolf, beam, game.knockBack, game.overlapcallback, this);
-			beam.update(this.wolf);
+			beam.update(this.wolf,game);
 		}
 
 		//overlap del ataque del jugador

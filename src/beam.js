@@ -17,6 +17,9 @@ export default class Beam extends Phaser.GameObjects.Sprite {
         }
         this.body.allowGravity = false;
         scene.projectiles.add(this);
+
+        this.mapBoundaryLeft = -70;
+        this.mapBoundaryRight = 3300;
     }
 
     createAnims() {
@@ -35,9 +38,15 @@ export default class Beam extends Phaser.GameObjects.Sprite {
         });
     }
 
-    update(player) {
-        this.body.setSize(85, 20);
-        if (this.x < -70 || this.x > 3300 || player.hurtflag)
+    update(player,game) {
+        this.body.setSize(80, 20);
+        if (player.hurtflag) //hits player
+        {
             this.destroy();
+            game.audio_iceBeamHit();
+        }
+        else if (this.x < this.mapBoundaryLeft || this.x > this.mapBoundaryRight) //se va del mapa
+            this.destroy();
+           
     }
 }
