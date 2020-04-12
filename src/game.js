@@ -8,6 +8,13 @@ import Slash from './slash.js';
 export default class Game extends Phaser.Scene {
     constructor() {
         super({ key: 'Game' });
+        this.tileSize = 64;
+        this.widthAdded = 200;
+        this.heightAdded = 250;
+        this.tileIndex = 6;
+        this.posHud = 10;
+        this.textProgressX = 10;
+        this.textProgressY = 70;
     }
 
     //PRELOAD DE TODO EL JUEGO//
@@ -79,8 +86,8 @@ export default class Game extends Phaser.Scene {
         //Añadimos las Imagenes y el sonido
         this.add.image(0, 0, "title_bg").setOrigin(0).setDepth(0);
         this.add.image(this.game.renderer.width / 2, this.game.renderer.width * 0.19, "logo").setDepth(1);
-        let clickButton = this.add.image(this.game.renderer.width / 2 - 200, this.game.renderer.height / 2 + 250, "playButton").setDepth(1).setInteractive();
-        let helpButton = this.add.image(this.game.renderer.width / 2 + 200, this.game.renderer.height / 2 + 250, "helpButton").setDepth(1).setInteractive();
+        let clickButton = this.add.image(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "playButton").setDepth(1).setInteractive();
+        let helpButton = this.add.image(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "helpButton").setDepth(1).setInteractive();
 
         this.sound.pauseOnBlur = false;
         let sounds = this.sound.add("menuSound");
@@ -130,7 +137,7 @@ export default class Game extends Phaser.Scene {
 
     addGround(scene, map) {
         //añadimos los tileset al map
-        let tileset = map.addTilesetImage('tilemap', 'tiles', 64, 64);
+        let tileset = map.addTilesetImage('tilemap', 'tiles', this.tileSize, this.tileSize);
         //añadimos la capa ground del mapa. Asegurarse de que el primer arg coincide con el nombre en tiled
         let groundLayer = map.createDynamicLayer('ground', tileset);
         //añadimos colision por grupo de tiled collision editor
@@ -141,7 +148,7 @@ export default class Game extends Phaser.Scene {
         return groundLayer;
     }
     addEnemyCollision(map) {
-        let collisionset = map.addTilesetImage('collisions', 'collision_tile', 64, 64);
+        let collisionset = map.addTilesetImage('collisions', 'collision_tile', this.tileSize, this.tileSize);
         //añadimos capa enemyCollisions para las colisiones de enemigos en plataformas
         let enemy_collisionLayer = map.createStaticLayer('enemyCollisions', collisionset).setVisible(false);
         enemy_collisionLayer.setCollisionFromCollisionGroup();
@@ -217,7 +224,7 @@ export default class Game extends Phaser.Scene {
             let tile = groundLayer.getTileAtWorldXY(x, y);
             if (!tile.properties.frozen) //congela el tile
             {
-                tile.index += 6;
+                tile.index += this.tileIndex;
                 let tile0 = groundLayer.putTileAtWorldXY(tile.index, x, y);
                 tile0.setCollision(true);
                 tile0.properties.frozen = true;
@@ -232,7 +239,7 @@ export default class Game extends Phaser.Scene {
         let i, j, counter = 0;
         for (j = 0; j < map.width; ++j) {
             for (i = 0; i < map.height; ++i) {
-                if (groundLayer.hasTileAtWorldXY(j * 64, i * 64)) {
+                if (groundLayer.hasTileAtWorldXY(j * this.tileSize, i * this.tileSize)) {
                     counter++;
                 }
             }
@@ -242,7 +249,7 @@ export default class Game extends Phaser.Scene {
 
     //HUD//
     addHud(scene) {
-        this.hud = scene.add.sprite(10, 10, "hud_full").setOrigin(0);
+        this.hud = scene.add.sprite(this.posHud, this.posHud, "hud_full").setOrigin(0);
         this.hud.setTexture("hud_full");
         this.hud.setScrollFactor(0);
     }
@@ -266,18 +273,21 @@ export default class Game extends Phaser.Scene {
     //DAÑAR AL JUGADOR//
     knockBack(player, damage) {
         //knock-back al jugador
+        this.velocityWolfX = 200;
+        this.velocityWolfY = 200;
+        this.velocityWolfYUP = 300;
         if (!player.invincible) {
             player.hurtflag = true;
             if (player.body.touching.down) {
-                player.body.setVelocityY(-300);
+                player.body.setVelocityY(-this.velocityWolfYUP);
             }
             else if (player.body.touching.right) {
-                player.body.setVelocityY(-200);
-                player.body.setVelocityX(-200);
+                player.body.setVelocityY(-this.velocityWolfY);
+                player.body.setVelocityX(-this.velocityWolfX);
             }
             else if (player.body.touching.left) {
-                player.body.setVelocityY(-200);
-                player.body.setVelocityX(200);
+                player.body.setVelocityY(-this.velocityWolfY);
+                player.body.setVelocityX(this.velocityWolfX);
             }
             player.play('hurtwolf', false);
             player.invincible = true;
@@ -389,7 +399,7 @@ export default class Game extends Phaser.Scene {
 
     //PROGESS OF GAME//
     textProgress(scene) {
-        this.texts = scene.add.text(10, 70, 'text', {
+        this.texts = scene.add.text(this.textProgressX, this.textProgressY, 'text', {
             fontSize: '24px',
             fontFamily: 'font1',
         });

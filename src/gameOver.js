@@ -2,6 +2,9 @@ export default class GameOver extends Phaser.Scene {
 
     constructor() {
         super({ key: 'GameOver' });
+        this.widthAdded = 150;
+        this.heightAdded = 40;
+        this.heighttoGameOver = 55;
     }
 
     init(dato) {
@@ -12,14 +15,14 @@ export default class GameOver extends Phaser.Scene {
     create() {
         this.checkLevel(); //ver que nivel ha llamado al game over
 
-        this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - 55, "gameOver").setDepth(1);
-        let botonMenu = this.add.image(this.game.renderer.width / 2 - 150, this.game.renderer.height / 2 + 40, "menu_Button").setDepth(1).setInteractive();
+        this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - this.heighttoGameOver, "gameOver").setDepth(1);
+        let botonMenu = this.add.image(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "menu_Button").setDepth(1).setInteractive();
         botonMenu.on("pointerup", () => {
             this.scene.stop(this.levelKey); //parar la escena del nivel
             this.scene.start("Game"); //menu
         });
 
-        let botonLevel = this.add.image(this.game.renderer.width / 2 + 150, this.game.renderer.height / 2 + 40, "retry_Button").setDepth(1).setInteractive();
+        let botonLevel = this.add.image(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "retry_Button").setDepth(1).setInteractive();
         botonLevel.on("pointerup", () => {
             this.scene.start(this.levelKey);
         });

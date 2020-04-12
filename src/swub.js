@@ -2,12 +2,14 @@ export default class Swub extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y) {
         super(scene, x, y, 'swub');
+        this.vel = 40;
+        this.heightsizewalk = 53;
+        this.heightsizehurt = 69;
     }
     create() {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
-        this.body.setVelocityX(-40);
         this.hurtflag = false;
     }
 
@@ -44,22 +46,22 @@ export default class Swub extends Phaser.GameObjects.Sprite {
     update() {
 
         if (this.body.touching.right || this.body.blocked.right) {
-            this.body.setVelocityX(-40); // turn left
+            this.body.setVelocityX(-this.vel); // turn left
         }
         else if (this.body.touching.left || this.body.blocked.left) {
-            this.body.setVelocityX(40); // turn right
+            this.body.setVelocityX(this.vel); // turn right
         }
         if(!this.hurtflag){
-            this.body.setSize(0, 53); //ajustar el collider
+            this.body.setSize(0, this.heightsizewalk); //ajustar el collider
             this.play('walkswub', true);
             if(this.body.velocity.x === 0)
                 if(this.flipX)
-                    this.body.setVelocityX(40);
+                    this.body.setVelocityX(this.vel);
                 else
-                    this.body.setVelocityX(-40);
+                    this.body.setVelocityX(-this.vel);
         }
         else{
-            this.body.setSize(0, 69); //ajustar el collider
+            this.body.setSize(0, this.heightsizehurt); //ajustar el collider
             this.play('hurtswub', false);
             this.body.setVelocityX(0);
         }
