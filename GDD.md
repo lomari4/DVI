@@ -29,6 +29,7 @@ Se juega con el teclado, usando las teclas WAD o las flechas para moverte de un 
 ## 2.1. Personaje principal
 
 Elegimos un lobo que es medio árbol para caracterizar a la naturaleza, ya que es un guardián del bosque y tiene poderes para derretir la nieve y hacer que salga hierba del suelo. El sprite es original, hecho por nosotros.
+
 ![wolf](https://s5.gifyu.com/images/wolf_run.gif)
 
 
