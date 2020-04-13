@@ -4,7 +4,7 @@ export default class Beam extends Phaser.GameObjects.Sprite {
 
         this.minX = 70;
         this.maxX = 3300;
-        this.vel = 150;
+        this.vel = 230;
 
         this.scene.add.existing(this);
  

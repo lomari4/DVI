@@ -48,8 +48,8 @@ export default class Level1 extends Phaser.Scene {
 		this.enemies = this.physics.add.group();
 		//funciones de spawn de enemigos
 		game.spawnSwub(this, 1300, 933, this.enemies);
-		game.spawnIcedrake(this, 900, 550, this.enemies);
-		game.spawnIcedrake(this, 900, 925, this.enemies);
+		game.spawnIcedrake(this, 1400, 550, this.enemies);
+		game.spawnIcedrake(this, 2900, 550, this.enemies);
 		this.enemies.getChildren().forEach(function (item) { //necesario para crear cada enemigo con sus propiedades. Hacerlo antes de añadirlo al grupo no funciona
 			item.create();
 		}, this);
@@ -70,70 +70,72 @@ export default class Level1 extends Phaser.Scene {
 		//cogemos el juego (nos lo podemos ahorrar si hacemos var global game, pero preferimos no tenerla)
 		let game = this.scene.get('Game');
 
-		//update del jugador
-		this.wolf.update(game);
+		if (!this.wolf.winGame) {
+			//update del jugador
+			this.wolf.update(game);
 
-		//update de los enemigos
-		this.enemies.getChildren().forEach(function (item) {
-			item.update();
-			//Funcion atacar
-			if(!item.hurtflag)
-				item.checkAttack(this.wolf, game, this);
-		}, this);
-
-		//FUNCION DE DESCONGELAR EL SUELO DE LOS SWUB
-		this.enemies.getChildren().forEach(function (item) {
-			if (item.texture.key === 'swub') {
-				//solo congela el tile DETRAS de el
-				if (item.body.velocity.x > 0 && !this.wolf.winGame) //derecha
-					this.counter -= game.frost(item.x - this.tileSize, item.y + this.tileSize, this.groundLayer);
-				else if (item.body.velocity.x < 0 && !this.wolf.winGame) //izquierda
-					this.counter -= game.frost(item.x + this.tileSize, item.y + this.tileSize, this.groundLayer);
-			}
-		}, this);
-
-		//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
-		if (this.wolf.body.onFloor() && this.wolf.isAlive()) {
-			//rango de descongelacion del lobo: delante,medio,atras
-			this.counter += game.defrost(this.wolf.x - this.tileSize, this.wolf.y + this.tileSize, this.groundLayer);
-			this.counter += game.defrost(this.wolf.x, this.wolf.y + this.tileSize, this.groundLayer);
-			this.counter += game.defrost(this.wolf.x + this.tileSize, this.wolf.y + this.tileSize, this.groundLayer);
-		}
-
-		//ATAQUES Y OVERLAPS
-		//update y overlap de los proyectiles del dragon
-		for (let i = 0; i < this.projectiles.getChildren().length; i++) {
-			let beam = this.projectiles.getChildren()[i];
-			this.physics.add.overlap(this.wolf, beam, game.knockBack, game.hitBeam, game.overlapcallback, this);
-			beam.update(this.wolf,game);
-		}
-
-		//overlap del ataque del jugador
-		for (let i = 0; i < this.slash.getChildren().length; i++) {
-			let slash = this.slash.getChildren()[i];
+			//update de los enemigos
 			this.enemies.getChildren().forEach(function (item) {
-				if (!item.hurtflag) {
-					this.physics.add.overlap(item, slash, game.stunEnemy, null, this);
-					game.delayStun(this, item);
+				item.update();
+				//Funcion atacar
+				if (!item.hurtflag)
+					item.checkAttack(this.wolf, game, this);
+			}, this);
+
+			//FUNCION DE DESCONGELAR EL SUELO DE LOS SWUB
+			this.enemies.getChildren().forEach(function (item) {
+				if (item.texture.key === 'swub') {
+					//solo congela el tile DETRAS de el
+					if (item.body.velocity.x > 0 && !this.wolf.winGame) //derecha
+						this.counter -= game.frost(item.x - this.tileSize, item.y + this.tileSize, this.groundLayer);
+					else if (item.body.velocity.x < 0 && !this.wolf.winGame) //izquierda
+						this.counter -= game.frost(item.x + this.tileSize, item.y + this.tileSize, this.groundLayer);
 				}
 			}, this);
-			slash.update();
-		}
 
-		//funcion overlap para colisiones con el jugador
-		if (this.wolf.isAlive())
-			this.physics.add.overlap(this.wolf, this.enemies, game.knockBack, game.overlapcallback, this);
+			//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
+			if (this.wolf.body.onFloor() && this.wolf.isAlive()) {
+				//rango de descongelacion del lobo: delante,medio,atras
+				this.counter += game.defrost(this.wolf.x - this.tileSize, this.wolf.y + this.tileSize, this.groundLayer);
+				this.counter += game.defrost(this.wolf.x, this.wolf.y + this.tileSize, this.groundLayer);
+				this.counter += game.defrost(this.wolf.x + this.tileSize, this.wolf.y + this.tileSize, this.groundLayer);
+			}
 
-		//jugador dañado por el knockBack
-		if (this.wolf.hurtflag === true) {
-			game.hurtPlayer(this, this.wolf);
-			game.updateHealthHud(this.wolf, this);
+			//ATAQUES Y OVERLAPS
+			//update y overlap de los proyectiles del dragon
+			for (let i = 0; i < this.projectiles.getChildren().length; i++) {
+				let beam = this.projectiles.getChildren()[i];
+				this.physics.add.overlap(this.wolf, beam, game.knockBack, game.hitBeam, game.overlapcallback, this);
+				beam.update(this.wolf, game);
+			}
 
-			if (!this.wolf.isAlive())
-				game.audio_gameOver(); //audio game over cuando matan al lobo
-			else
-				game.audio_playerHurt();
+			//overlap del ataque del jugador
+			for (let i = 0; i < this.slash.getChildren().length; i++) {
+				let slash = this.slash.getChildren()[i];
+				this.enemies.getChildren().forEach(function (item) {
+					if (!item.hurtflag) {
+						this.physics.add.overlap(item, slash, game.stunEnemy, null, this);
+						game.delayStun(this, item);
+					}
+				}, this);
+				slash.update();
+			}
 
+			//funcion overlap para colisiones con el jugador
+			if (this.wolf.isAlive())
+				this.physics.add.overlap(this.wolf, this.enemies, game.knockBack, game.overlapcallback, this);
+
+			//jugador dañado por el knockBack
+			if (this.wolf.hurtflag === true) {
+				game.hurtPlayer(this, this.wolf);
+				game.updateHealthHud(this.wolf, this);
+
+				if (!this.wolf.isAlive())
+					game.audio_gameOver(); //audio game over cuando matan al lobo
+				else
+					game.audio_playerHurt();
+
+			}
 		}
 
 		//MUESTRA EL PROGRESO AL JUGADOR
