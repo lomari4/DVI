@@ -7,6 +7,7 @@ export default class Beam extends Phaser.GameObjects.Sprite {
         this.vel = 150;
 
         this.scene.add.existing(this);
+ 
 
         this.scene.physics.add.existing(this); //enable body
         //this.body.setCollideWorldBounds(true);
@@ -43,13 +44,7 @@ export default class Beam extends Phaser.GameObjects.Sprite {
 
     update(player,game) {
         this.body.setSize(80, 20);
-        if (player.hurtflag) //hits player
-        {
-            this.destroy();
-            game.audio_iceBeamHit();
-        }
-        else if (this.x < this.mapBoundaryLeft || this.x > this.mapBoundaryRight) //se va del mapa
-            this.destroy();
-           
+        if (this.x < this.mapBoundaryLeft || this.x > this.mapBoundaryRight) //se va del mapa
+            this.destroy();  
     }
 }

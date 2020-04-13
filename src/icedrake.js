@@ -3,6 +3,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y) {
 		super(scene, x, y, 'icedrake');
 		this.coolDown = 500;
+		this.maxcoolDown = 500;
 		this.vel = 70;
 		this.difDrakeandWolf = 16;
 		this.distancetowolf = 500;
@@ -102,7 +103,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 
 	checkAttack(wolf, game) {
 		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y dragon mirandolo
-			if (this.coolDown > 500) {
+			if (this.coolDown > this.maxcoolDown) {
 				this.body.setSize(0, this.heightsizeattack); //ajustar el collider
 				this.play('attackicedrake', true);
 				let beam;

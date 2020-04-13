@@ -101,10 +101,10 @@ export default class Level1 extends Phaser.Scene {
 		}
 
 		//ATAQUES Y OVERLAPS
-		//overlap de los proyectiles del dragon
+		//update y overlap de los proyectiles del dragon
 		for (let i = 0; i < this.projectiles.getChildren().length; i++) {
 			let beam = this.projectiles.getChildren()[i];
-			this.physics.add.overlap(this.wolf, beam, game.knockBack, game.overlapcallback, this);
+			this.physics.add.overlap(this.wolf, beam, game.knockBack, game.hitBeam, game.overlapcallback, this);
 			beam.update(this.wolf,game);
 		}
 

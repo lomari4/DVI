@@ -50,7 +50,6 @@ export default class Game extends Phaser.Scene {
         this.load.audio("player_jump_sound", "./assets/music/effects/jump.wav");
         this.load.audio("player_attack_sound", "./assets/music/effects/wolf_attack.wav");
         this.load.audio("player_hurt_sound", "./assets/music/effects/wolf_hurt.wav");
-        this.load.audio("ice_splash_sound", "./assets/music/effects/ice_splash.wav");
         //efectos de sonido generales
         this.load.audio("gameover_sound", "./assets/music/effects/game_over.wav");
         this.load.audio("gamewin_sound", "./assets/music/effects/game_win.wav");
@@ -193,12 +192,6 @@ export default class Game extends Phaser.Scene {
         });
         s.play();
     }
-    audio_iceBeamHit() {
-        let s = this.sound.add("ice_splash_sound", {
-            volume: 0.55,
-        });
-        s.play();
-    }
 
     //DESCONGELAR TERRENO//
     defrost(x, y, groundLayer) {
@@ -271,7 +264,7 @@ export default class Game extends Phaser.Scene {
     }
 
     //DAÑAR AL JUGADOR//
-    knockBack(player, damage) {
+    knockBack(player) {
         //knock-back al jugador
         if (!player.invincible) {
             player.hurtflag = true;
@@ -290,6 +283,11 @@ export default class Game extends Phaser.Scene {
             player.invincible = true;
         }
 
+    }
+    hitBeam(player, beam){
+        if (!player.invincible) {
+            beam.destroy();
+        }
     }
     hurtPlayer(scene, player) {
         //jugador invencible por tiempo
