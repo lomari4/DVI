@@ -264,9 +264,9 @@ export default class Game extends Phaser.Scene {
     }
 
     //DAÑAR AL JUGADOR//
-    knockBack(player) {
+    knockBack(player, enemy) {
         //knock-back al jugador
-        if (!player.invincible) {
+        if (!player.invincible && !enemy.hurtflag) {
             player.hurtflag = true;
             if (player.body.touching.down) {
                 player.body.setVelocityY(-player.knockBackUP);
