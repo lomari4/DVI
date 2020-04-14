@@ -350,7 +350,7 @@ export default class Game extends Phaser.Scene {
             item.body.setVelocityX(0);
             item.anims.stop();
         }, this);
-        let winLetters = scene.add.image(scene.game.renderer.width / 2, scene.game.renderer.height / 2 - 220, "gameWin").setDepth(1);
+        let winLetters = scene.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - 220, "gameWin").setDepth(1);
         winLetters.setScrollFactor(0);
         scene.music.stop();
     }
