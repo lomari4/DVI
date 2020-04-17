@@ -320,6 +320,9 @@ export default class Game extends Phaser.Scene {
                 player.body.setVelocityY(-player.knockBackSIDE);
                 player.body.setVelocityX(player.knockBackSIDE);
             }
+            else{
+                player.body.setVelocityY(-player.knockBackUP);
+            }
             player.play('hurtwolf', false);
             player.invincible = true;
         }
