@@ -14,6 +14,7 @@ export default class Level1 extends Phaser.Scene {
 		this.counter = 0; //contador del numero de tiles que has cambiado
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		this.winFlag = false;
+		this.loseFlag = false;
 
 		//añadimos el sonido
 		this.music = this.sound.add("level1_sound");
@@ -84,7 +85,7 @@ export default class Level1 extends Phaser.Scene {
 			this.game.checkPlayerAttack(this,this.slash,this.enemies,this.game);
 
 			//funcion overlap para colisiones con el jugador
-			this.game.checkPlayerisAttacked(this,this.wolf,this.enemies,this.game)
+			this.game.checkPlayerisAttacked(this,this.wolf,this.enemies,this.game);
 		}
 
 		//MUESTRA EL PROGRESO AL JUGADOR
@@ -93,8 +94,12 @@ export default class Level1 extends Phaser.Scene {
 		//COMPRUEBA SI HA GANADO
 		this.game.checkIfWin(this,this.counter,this.checkWin,this.wolf,this.enemies,this.game,this.level);
 		
-		//COMPRUEBA SI HA PERDIDO
-		this.game.checkIfLose(this,this.wolf,this.game,this.level)
+		if(!this.wolf.loseGame)
+			//COMPRUEBA SI HA PERDIDO
+			this.game.checkIfLose(this,this.wolf,this.game,this.level);
+
+		if(this.wolf.loseGame)
+			this.game.gameOver(this.wolf, this);
 		
 		//si ha ganado, audio de game win y fade in del nuevo bg
 		//necesario hacerlo aqui por el winFlag

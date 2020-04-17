@@ -30,6 +30,8 @@ export default class Game extends Phaser.Scene {
         //Cargamos los botones
         this.load.image("playButton", "./assets/play_button.png");
         this.load.image("helpButton", "./assets/help_button.png");
+        this.load.image("playButton_hover", "./assets/play_button_hover.png");
+        this.load.image("helpButton_hover", "./assets/help_button_hover.png");
         //seccion ayuda
         this.load.image("helpBoard", "./assets/helpBoard.png");
         //slash player
@@ -38,6 +40,8 @@ export default class Game extends Phaser.Scene {
         //GAME OVER SCREEN
         this.load.image("menu_Button", "./assets/menu_button.png");
         this.load.image("retry_Button", "./assets/retry_button.png");
+        this.load.image("menu_Button_hover", "./assets/menu_button_hover.png");
+        this.load.image("retry_Button_hover", "./assets/retry_button_hover.png");
         this.load.image("gameOver", "./assets/gameOverBoard.png");
         //WIN SCREEN
         this.load.image("win1", "./assets/backgrounds/backgroundColorForest_level1.png");
@@ -86,24 +90,40 @@ export default class Game extends Phaser.Scene {
         //Añadimos las Imagenes y el sonido
         this.add.image(0, 0, "title_bg").setOrigin(0).setDepth(0);
         this.add.image(this.game.renderer.width / 2, this.game.renderer.width * 0.19, "logo").setDepth(1);
-        let clickButton = this.add.image(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "playButton").setDepth(1).setInteractive();
-        let helpButton = this.add.image(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "helpButton").setDepth(1).setInteractive();
+        let clickButton = this.add.sprite(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "playButton").setDepth(1).setInteractive();
+        let helpButton = this.add.sprite(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "helpButton").setDepth(1).setInteractive();
 
         this.sound.pauseOnBlur = false;
         let sounds = this.sound.add("menuSound");
         sounds.play();
+
+        clickButton.on("pointerover", () => {
+            clickButton.setTexture('playButton_hover');
+        });
+
+        clickButton.on("pointerout", () => {
+            clickButton.setTexture('playButton');
+        });
 
         //Si se pulsa el botón de play
         clickButton.on("pointerup", () => {
             this.scale.startFullscreen();
             this.scene.start("Level1");
             sounds.destroy();
-        })
+        });
         //Si se pulsa el botón de help
         helpButton.on("pointerup", () => {
             this.scene.start("Help");
             sounds.destroy();
-        })
+        });
+
+        helpButton.on("pointerover", () => {
+            helpButton.setTexture('helpButton_hover');
+        });
+
+        helpButton.on("pointerout", () => {
+            helpButton.setTexture('helpButton');
+        });
     }
 
     //FUNCIONES GENERALES DEL JUEGO QUE COMPARTEN TODOS LOS NIVELES//
@@ -521,7 +541,7 @@ export default class Game extends Phaser.Scene {
     //VER SI HA PERDIDO
     checkIfLose(scene,player,game,level){
         if (!player.isAlive()) { //ha perdido
-			game.gameOver(player, scene);
+            player.loseGame = true;
 			//delay para la escena Game over
 			scene.time.delayedCall(3000, game.sceneGameOver, [level], scene);
 		}

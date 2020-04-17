@@ -16,13 +16,25 @@ export default class GameOver extends Phaser.Scene {
         this.checkLevel(); //ver que nivel ha llamado al game over
 
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - this.heighttoGameOver, "gameOver").setDepth(1);
-        let botonMenu = this.add.image(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "menu_Button").setDepth(1).setInteractive();
+        let botonMenu = this.add.sprite(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "menu_Button").setDepth(1).setInteractive();
+        botonMenu.on("pointerover", () => {
+            botonMenu.setTexture('menu_Button_hover');
+        });
+        botonMenu.on("pointerout", () => {
+            botonMenu.setTexture('menu_Button');
+        });
         botonMenu.on("pointerup", () => {
             this.scene.stop(this.levelKey); //parar la escena del nivel
             this.scene.start("Game"); //menu
         });
 
-        let botonLevel = this.add.image(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "retry_Button").setDepth(1).setInteractive();
+        let botonLevel = this.add.sprite(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "retry_Button").setDepth(1).setInteractive();
+        botonLevel.on("pointerover", () => {
+            botonLevel.setTexture('retry_Button_hover');
+        });
+        botonLevel.on("pointerout", () => {
+            botonLevel.setTexture('retry_Button');
+        });
         botonLevel.on("pointerup", () => {
             this.scene.start(this.levelKey);
         });

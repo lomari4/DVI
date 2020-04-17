@@ -9,6 +9,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
         this.winGame = false;
+        this.loseGame = false;
         this.hurtflag = false;
         this.cursors = this.scene.input.keyboard.addKeys('W, A, D, SPACE');
         this.invincible = false;

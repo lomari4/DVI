@@ -14,6 +14,12 @@ export default class Help extends Phaser.Scene {
         b.on("pointerup", () => {
             this.scene.start("Game"); //menu
         });
+        b.on("pointerover", () => {
+            b.setTexture('menu_Button_hover');
+        });
+        b.on("pointerout", () => {
+            b.setTexture('menu_Button');
+        });
 
     }
 
