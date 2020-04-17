@@ -22,7 +22,7 @@ export default class Level1 extends Phaser.Scene {
 
 		//MAPA//
 		this.map = this.game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
-		this.background = this.game.addBackground(this);
+		this.background = this.game.addBackground(this,this.level);
 		this.groundLayer = this.game.addGround(this, this.map);
 		let enemy_collisionLayer = this.game.addEnemyCollision(this.map);
 
@@ -100,7 +100,7 @@ export default class Level1 extends Phaser.Scene {
 		//necesario hacerlo aqui por el winFlag
 		if (this.wolf.winGame && !this.winFlag) {
 			this.game.audio_gameWin();
-			this.game.bgFadeIn(this);
+			this.game.bgFadeIn(this,this.level);
 			this.winFlag = true;
 		}
 

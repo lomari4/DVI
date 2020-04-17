@@ -40,7 +40,7 @@ export default class Game extends Phaser.Scene {
         this.load.image("retry_Button", "./assets/retry_button.png");
         this.load.image("gameOver", "./assets/gameOverBoard.png");
         //WIN SCREEN
-        this.load.image("bg2", "./assets/backgrounds/backgroundColorForest_extended.png");
+        this.load.image("win1", "./assets/backgrounds/backgroundColorForest_level1.png");
         this.load.image("gameWin", "./assets/gameWin.png");
 
         //LEVELS//
@@ -70,7 +70,7 @@ export default class Game extends Phaser.Scene {
         //cargamos el MAPA de tiled en json
         this.load.tilemapTiledJSON('map1', './assets/levels/nivel1.json'); //nivel 1
         //BG
-        this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
+        this.load.image("bg1", "./assets/backgrounds/backgroundForest_level1.png");
 
         //SPRITESHEETS
         //cargamos el spritesheet del jugador
@@ -124,10 +124,16 @@ export default class Game extends Phaser.Scene {
     }
 
     //BACKGROUND//
-    addBackground(scene) {
+    addBackground(scene,level) {
         //añadimos el background que tiene fullscreen de funcionalidad
-        this.bg = scene.add.sprite(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive();
-        this.bg.on('pointerup', function () {
+        let bg;
+        switch(level){ //ver en que nivel estamos para elegir bg
+            case 1: bg = scene.add.sprite(0, 0, "bg1").setOrigin(0).setDepth(-1).setInteractive(); break;
+            case 2: bg = scene.add.sprite(0, 0, "bg1").setOrigin(0).setDepth(-1).setInteractive(); break;
+            case 3: bg = scene.add.sprite(0, 0, "bg1").setOrigin(0).setDepth(-1).setInteractive(); break;
+            case 4: bg = scene.add.sprite(0, 0, "bg1").setOrigin(0).setDepth(-1).setInteractive(); break;
+        }
+        bg.on('pointerup', function () {
             if (scene.scale.isFullscreen)
                 scene.scale.stopFullscreen();
             else
@@ -398,11 +404,17 @@ export default class Game extends Phaser.Scene {
         winLetters.setScrollFactor(0);
         scene.music.stop();
     }
-    bgFadeIn(scene) {
+    bgFadeIn(scene,level) {
         //tween para el fade in del nuevo background
-        let bg2 = scene.add.image(0, 0, "bg2").setOrigin(0).setAlpha(0).setDepth(-1);
+        let win;
+        switch(level){ //ver en que nivel estamos para elegir bg
+            case 1: win = scene.add.sprite(0, 0, "win1").setOrigin(0).setAlpha(0).setDepth(-1); break;
+            case 2: win = scene.add.sprite(0, 0, "bg1").setOrigin(0).setAlpha(0).setDepth(-1); break;
+            case 3: win = scene.add.sprite(0, 0, "bg1").setOrigin(0).setAlpha(0).setDepth(-1); break;
+            case 4: win = scene.add.sprite(0, 0, "bg1").setOrigin(0).setAlpha(0).setDepth(-1); break;
+        }
         scene.tweens.add({
-            targets: bg2,
+            targets: win,
             alphaTopLeft: { value: 1, duration: 5000, ease: 'Power1' },
             alphaBottomRight: { value: 1, duration: 10000, ease: 'Power1' },
             alphaBottomLeft: { value: 1, duration: 5000, ease: 'Power1', delay: 2100 },
