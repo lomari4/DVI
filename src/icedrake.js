@@ -11,13 +11,15 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		this.heightsizehurt = 84;
 		this.heightsizeattack = 85;
 		this.distSpawnBeam = 70;
+		this.hurtflag = false;
 	}
-	create() {
+	
+	addPhysics() {
 		this.scene.add.existing(this);
 		this.scene.physics.add.existing(this); //enable body
 		this.body.setCollideWorldBounds(true);
-		this.hurtflag = false;
 	}
+
 	createAnims() {
 		this.scene.anims.create({
 			key: 'walkicedrake',

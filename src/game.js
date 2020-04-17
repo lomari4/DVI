@@ -15,6 +15,7 @@ export default class Game extends Phaser.Scene {
         this.posHud = 10;
         this.textProgressX = 10;
         this.textProgressY = 70;
+        this.tileSize = 64;
     }
 
     //PRELOAD DE TODO EL JUEGO//
@@ -121,6 +122,7 @@ export default class Game extends Phaser.Scene {
 
         return map;
     }
+
     //BACKGROUND//
     addBackground(scene) {
         //añadimos el background que tiene fullscreen de funcionalidad
@@ -133,7 +135,7 @@ export default class Game extends Phaser.Scene {
         }, scene);
     }
 
-
+    //SUELO//
     addGround(scene, map) {
         //añadimos los tileset al map
         let tileset = map.addTilesetImage('tilemap', 'tiles', this.tileSize, this.tileSize);
@@ -146,12 +148,24 @@ export default class Game extends Phaser.Scene {
         scene.physics.world.bounds.height = groundLayer.height;
         return groundLayer;
     }
+
+    //AÑADIR CAPA DE ENEMYCOLLISIONS//
     addEnemyCollision(map) {
         let collisionset = map.addTilesetImage('collisions', 'collision_tile', this.tileSize, this.tileSize);
         //añadimos capa enemyCollisions para las colisiones de enemigos en plataformas
         let enemy_collisionLayer = map.createStaticLayer('enemyCollisions', collisionset).setVisible(false);
         enemy_collisionLayer.setCollisionFromCollisionGroup();
         return enemy_collisionLayer;
+    }
+
+    //COLISIONES DE LOS ENEMIGOS//
+    addEnemyPhysics(scene,enemies, groundLayer, enemy_collisionLayer){
+        scene.physics.add.collider(enemies, groundLayer);
+		scene.physics.add.collider(enemies, enemy_collisionLayer);
+        scene.physics.add.collider(enemies, enemies);
+        enemies.getChildren().forEach(function (item) { 
+			item.addPhysics();
+		}, scene);
     }
 
     //CAMARA//
@@ -236,6 +250,33 @@ export default class Game extends Phaser.Scene {
                     counter++;
                 }
             }
+        }
+        return counter;
+    }
+
+    //FUNCION SWUB VER SI CONGELA//
+    checkIfFreeze(scene,enemies,player,game,groundLayer){
+        let counter = 0;
+        enemies.getChildren().forEach(function (item) {
+            if (item.texture.key === 'swub') {
+                //solo congela el tile DETRAS de el
+                if (item.body.velocity.x > 0 && !player.winGame) //derecha
+                    counter = game.frost(item.x - this.tileSize, item.y + this.tileSize, groundLayer);
+                else if (item.body.velocity.x < 0 && !player.winGame) //izquierda
+                    counter = game.frost(item.x + this.tileSize, item.y + this.tileSize, groundLayer);
+            }
+        }, scene);
+        return counter;
+    }
+
+    //FUNCION DE JUGADOR VER SI DESCONGELA//
+    checkIfMelt(player,game,groundLayer){
+        let counter = 0;
+        if (player.body.onFloor() && player.isAlive()) {
+            //rango de descongelacion del lobo: delante,medio,atras
+            counter += game.defrost(player.x - this.tileSize, player.y + this.tileSize, groundLayer);
+            counter += game.defrost(player.x, player.y + this.tileSize, groundLayer);
+            counter += game.defrost(player.x + this.tileSize, player.y + this.tileSize, groundLayer);
         }
         return counter;
     }
@@ -403,6 +444,72 @@ export default class Game extends Phaser.Scene {
     showProgress(score, total) {
         this.texts.setText("PROGRESS: " + score + "/" + total);
         this.texts.setFill("red");
+    }
+
+    //CHECKS//
+    //UPDATE DE LOS ENEMIGOS//
+    enemyUpdate(scene,enemies,player){
+        enemies.getChildren().forEach(function (item) {
+            item.update();
+            //Funcion atacar
+            if (!item.hurtflag)
+                item.checkAttack(player, this, scene);
+        }, this);
+    }
+    //UPDATE DE PROYECTILES
+    checkBeams(scene,projectiles,player,game){
+        for (let i = 0; i < projectiles.getChildren().length; i++) {
+            let beam = projectiles.getChildren()[i];
+            scene.physics.add.overlap(player, beam, game.knockBack, game.hitBeam, game.overlapcallback, scene);
+            beam.update(player, game);
+        }
+    }
+    //ATAQUE DEL JUGADOR
+    checkPlayerAttack(scene,slash,enemies,game){
+        for (let i = 0; i < slash.getChildren().length; i++) {
+            let temp = slash.getChildren()[i];
+            enemies.getChildren().forEach(function (item) {
+                if (!item.hurtflag) {
+                    scene.physics.add.overlap(item, slash, game.stunEnemy, null, scene);
+                    scene.game.delayStun(scene, item);
+                }
+            }, scene);
+            temp.update();
+        }
+    }
+    //VER OVERLAPS DEL JUGADOR CON LOS ENEMIGOS
+    checkPlayerisAttacked(scene,player,enemies,game){
+        if (player.isAlive()) {
+            scene.physics.add.overlap(player, enemies, game.knockBack, game.overlapcallback, scene);
+        }
+
+        if (player.hurtflag === true) {
+            game.hurtPlayer(scene, player);
+            game.updateHealthHud(player, scene);
+
+            if (!player.isAlive())
+                game.audio_gameOver(); //audio this.game over cuando matan al lobo
+            else
+                game.audio_playerHurt();
+
+        }
+    }
+    //VER SI HA GANADO
+    checkIfWin(scene,counter,checkWin,player,enemies,game,level){
+        if (counter === checkWin) {
+			game.winGame(player, scene, enemies);
+			player.winGame = true;
+			//delay para pasar al siguiente nivel para que de tiempo escuchar la musica y fade in
+			//scene.time.delayedCall(10000, game.nextLevel, [level], scene);
+		}    
+    }
+    //VER SI HA PERDIDO
+    checkIfLose(scene,player,game,level){
+        if (!player.isAlive()) { //ha perdido
+			game.gameOver(player, scene);
+			//delay para la escena Game over
+			scene.time.delayedCall(3000, game.sceneGameOver, [level], scene);
+		}
     }
 
 }

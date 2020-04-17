@@ -5,12 +5,13 @@ export default class Swub extends Phaser.GameObjects.Sprite {
         this.vel = 40;
         this.heightsizewalk = 53;
         this.heightsizehurt = 69;
+        this.hurtflag = false;
     }
-    create() {
+    
+    addPhysics() {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); //enable body
         this.body.setCollideWorldBounds(true);
-        this.hurtflag = false;
     }
 
     createAnims() {
