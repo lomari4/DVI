@@ -36,6 +36,8 @@ export default class Game extends Phaser.Scene {
         this.load.image("helpBoard", "./assets/helpBoard.png");
         //sonido al pulsar boton
         this.load.audio("menu_select_sound", "./assets/music/effects/menu_select.wav");
+        //sonido hover de boton
+        this.load.audio("menu_hover_sound", "./assets/music/effects/menu_hover3.mp3");
         
         //GAME OVER SCREEN
         this.load.image("menu_Button", "./assets/menu_button.png");
@@ -104,8 +106,12 @@ export default class Game extends Phaser.Scene {
         let menuSelect = this.sound.add("menu_select_sound",{
             volume: 0.40,
         });
+        let menuHover = this.sound.add("menu_hover_sound",{
+            volume: 2,
+        });
 
         clickButton.on("pointerover", () => {
+            menuHover.play();
             clickButton.setTexture('playButton_hover');
         });
 
@@ -128,6 +134,7 @@ export default class Game extends Phaser.Scene {
         });
 
         helpButton.on("pointerover", () => {
+            menuHover.play();
             helpButton.setTexture('helpButton_hover');
         });
 

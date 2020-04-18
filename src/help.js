@@ -12,6 +12,9 @@ export default class Help extends Phaser.Scene {
         let menuSelect = this.sound.add("menu_select_sound",{
             volume: 0.40,
         });
+        let menuHover = this.sound.add("menu_hover_sound",{
+            volume: 2,
+        });
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - this.heightMinus, "helpBoard").setDepth(1);
         let b = this.add.image(this.game.renderer.width / 2 + this.widthPlus, this.game.renderer.height / 2 + this.heightPlus, "menu_Button").setDepth(1).setInteractive();
         b.on("pointerup", () => {
@@ -19,6 +22,7 @@ export default class Help extends Phaser.Scene {
             this.scene.start("Game"); //menu
         });
         b.on("pointerover", () => {
+            menuHover.play();
             b.setTexture('menu_Button_hover');
         });
         b.on("pointerout", () => {

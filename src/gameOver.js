@@ -17,10 +17,14 @@ export default class GameOver extends Phaser.Scene {
         let menuSelect = this.sound.add("menu_select_sound",{
             volume: 0.40,
         });
+        let menuHover = this.sound.add("menu_hover_sound",{
+            volume: 2,
+        });
 
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - this.heighttoGameOver, "gameOver").setDepth(1);
         let botonMenu = this.add.sprite(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "menu_Button").setDepth(1).setInteractive();
         botonMenu.on("pointerover", () => {
+            menuHover.play();
             botonMenu.setTexture('menu_Button_hover');
         });
         botonMenu.on("pointerout", () => {
@@ -34,6 +38,7 @@ export default class GameOver extends Phaser.Scene {
 
         let botonLevel = this.add.sprite(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "retry_Button").setDepth(1).setInteractive();
         botonLevel.on("pointerover", () => {
+            menuHover.play();
             botonLevel.setTexture('retry_Button_hover');
         });
         botonLevel.on("pointerout", () => {
