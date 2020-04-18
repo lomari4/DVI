@@ -3,7 +3,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y) {
 		super(scene, x, y, 'boar');
         this.vel = 90;
-        this.velplus = 200;
+        this.velplus = 350;
 		this.difBoarandWolf = 6;
 		this.distancetowolf = 580;
 		this.heightsizewalk = 85;
@@ -25,10 +25,23 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 				prefix: 'boar_',
 				suffix: '.png',
 				start: 1,
-				end: 6,
+				end: 5,
 				zeroPad: 2
 			}),
 			frameRate: 6,
+			repeat: -1,
+
+		});
+		this.scene.anims.create({
+			key: 'runboar',
+			frames: this.scene.anims.generateFrameNames('boar', {
+				prefix: 'boar_',
+				suffix: '.png',
+				start: 6,
+				end: 10,
+				zeroPad: 2
+			}),
+			frameRate: 7,
 			repeat: -1,
 
 		});
@@ -57,6 +70,11 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 	}
 
 	update() {
+
+		if (!this.hurtflag && this.anims.currentAnim.key !== 'runboar') {
+			this.walk();
+		}
+
 		if (this.body.touching.right || this.body.blocked.right) {
 			this.body.setVelocityX(-this.vel); // turn left
 		}
@@ -80,19 +98,19 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 
 	playerInRange(wolf) {
         return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y - this.difBoarandWolf < 1 && this.y - wolf.y - this.difBoarandWolf > -1);
-
 	}
 
 	checkAttack(wolf, game) {
 		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y boar mirandolo
+			this.play('runboar', true);
+			this.sprint = true;
             if (this.flipX)
                 this.body.setVelocityX(this.velplus);
             else
                 this.body.setVelocityX(-this.velplus);
 		}
-		else {
+		else if (this.anims.currentFrame.index === 5)
 			this.walk();
-		}
 	}
 
 }

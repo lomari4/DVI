@@ -1,12 +1,12 @@
 {
 "frames": {
 	"boar_01.png": {
-		"frame": {"x":0, "y":193, "w":149, "h":96},
+		"frame": {"x":0, "y":0, "w":149, "h":96},
 		"spriteSourceSize": {"x":0,"y":0,"w":149,"h":96},
 		"sourceSize": {"w":149,"h":96}
 	},
 	"boar_02.png": {
-		"frame": {"x":296, "y":301, "w":147, "h":98},
+		"frame": {"x":150, "y":95, "w":147, "h":98},
 		"spriteSourceSize": {"x":0,"y":0,"w":147,"h":98},
 		"sourceSize": {"w":147,"h":98}
 	},
@@ -16,47 +16,42 @@
 		"sourceSize": {"w":144,"h":97}
 	},
 	"boar_04.png": {
-		"frame": {"x":296, "y":204, "w":147, "h":96},
+		"frame": {"x":296, "y":194, "w":147, "h":96},
 		"spriteSourceSize": {"x":0,"y":0,"w":147,"h":96},
 		"sourceSize": {"w":147,"h":96}
 	},
 	"boar_05.png": {
-		"frame": {"x":150, "y":109, "w":147, "h":94},
+		"frame": {"x":150, "y":0, "w":147, "h":94},
 		"spriteSourceSize": {"x":0,"y":0,"w":147,"h":94},
 		"sourceSize": {"w":147,"h":94}
 	},
 	"boar_06.png": {
-		"frame": {"x":0, "y":97, "w":149, "h":95},
-		"spriteSourceSize": {"x":0,"y":0,"w":149,"h":95},
-		"sourceSize": {"w":149,"h":95}
+		"frame": {"x":148, "y":291, "w":147, "h":94},
+		"spriteSourceSize": {"x":0,"y":0,"w":147,"h":94},
+		"sourceSize": {"w":147,"h":94}
 	},
 	"boar_07.png": {
-		"frame": {"x":0, "y":0, "w":149, "h":96},
+		"frame": {"x":0, "y":97, "w":149, "h":96},
 		"spriteSourceSize": {"x":0,"y":0,"w":149,"h":96},
 		"sourceSize": {"w":149,"h":96}
 	},
 	"boar_08.png": {
-		"frame": {"x":148, "y":290, "w":147, "h":98},
+		"frame": {"x":0, "y":303, "w":147, "h":98},
 		"spriteSourceSize": {"x":0,"y":0,"w":147,"h":98},
 		"sourceSize": {"w":147,"h":98}
 	},
 	"boar_09.png": {
-		"frame": {"x":298, "y":98, "w":144, "h":97},
+		"frame": {"x":296, "y":291, "w":144, "h":97},
 		"spriteSourceSize": {"x":0,"y":0,"w":144,"h":97},
 		"sourceSize": {"w":144,"h":97}
 	},
 	"boar_10.png": {
-		"frame": {"x":0, "y":290, "w":147, "h":95},
-		"spriteSourceSize": {"x":0,"y":0,"w":147,"h":95},
-		"sourceSize": {"w":147,"h":95}
-	},
-	"boar_11.png": {
-		"frame": {"x":0, "y":386, "w":147, "h":94},
-		"spriteSourceSize": {"x":0,"y":0,"w":147,"h":94},
-		"sourceSize": {"w":147,"h":94}
+		"frame": {"x":148, "y":194, "w":147, "h":96},
+		"spriteSourceSize": {"x":0,"y":0,"w":147,"h":96},
+		"sourceSize": {"w":147,"h":96}
 	},
 	"boar_12.png": {
-		"frame": {"x":150, "y":0, "w":147, "h":108},
+		"frame": {"x":0, "y":194, "w":147, "h":108},
 		"spriteSourceSize": {"x":0,"y":0,"w":147,"h":108},
 		"sourceSize": {"w":147,"h":108}
 	}
@@ -64,7 +59,7 @@
 },
 "meta": {
 	"image": "boar.png",
-	"size": {"w": 444, "h": 481},
+	"size": {"w": 444, "h": 402},
 	"scale": "1"
 }
 }
