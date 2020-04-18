@@ -50,8 +50,8 @@ export default class Level2 extends Phaser.Scene {
 		this.enemies = this.physics.add.group();
 
 		//funciones de spawn de enemigos
-		//this.game.spawnSwub(this, 1300, 933, this.enemies);
-		//this.game.spawnIcedrake(this, 1400, 550, this.enemies);
+		this.game.spawnBoar(this, 1300, 965, this.enemies);
+		this.game.spawnIcedrake(this, 1400, 565, this.enemies);
 		//this.game.spawnIcedrake(this, 2900, 550, this.enemies);
 
 		//colisiones de los enemigos

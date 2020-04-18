@@ -101,7 +101,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 	}
 
 	playerInRange(wolf) {
-		return Math.abs(this.x - wolf.x) <= this.distancetowolf && this.y === wolf.y + this.difDrakeandWolf;
+		return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y - this.difDrakeandWolf < 1 && this.y - wolf.y - this.difDrakeandWolf > -1);
 	}
 
 	checkAttack(wolf, game) {

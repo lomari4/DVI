@@ -1,6 +1,7 @@
 import Wolf from './wolf.js';
 import Swub from './swub.js';
 import Icedrake from './icedrake.js';
+import Boar from './boar.js';
 import Beam from './beam.js';
 import Slash from './slash.js';
 
@@ -88,6 +89,7 @@ export default class Game extends Phaser.Scene {
         this.load.atlas('wolf', './assets/mainCharacter/wolf_sprites/wolf.png', './assets/mainCharacter/wolf_sprites/wolf.json');
         //cargamos el spritesheet de los enemigos
         this.load.atlas('swub', './assets/enemies/swub_sprites/swub.png', './assets/enemies/swub_sprites/swub.json');
+        this.load.atlas('boar', './assets/enemies/boar_sprites/boar.png', './assets/enemies/boar_sprites/boar.json');
         this.load.atlas('icedrake', './assets/enemies/icedrake_sprites/icedrake.png', './assets/enemies/icedrake_sprites/icedrake.json');
 
     }
@@ -180,7 +182,7 @@ export default class Game extends Phaser.Scene {
         let bg;
         switch(level){ //ver en que nivel estamos para elegir bg
             case 1: bg = scene.add.sprite(0, -950, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
-            case 2: bg = scene.add.sprite(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
+            case 2: bg = scene.add.sprite(0, -400, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
             case 3: bg = scene.add.sprite(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
             case 4: bg = scene.add.sprite(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
         }
@@ -416,6 +418,12 @@ export default class Game extends Phaser.Scene {
         temp.play('walkicedrake', true);
         enemies.add(temp);
     }
+    spawnBoar(scene, x, y, enemies) {
+        let temp = new Boar(scene, x, y);
+        temp.createAnims();
+        temp.play('walkboar', true);
+        enemies.add(temp);
+    }
     spawnBeam(scene, x, y, enemy) {
         let beam = new Beam(scene, x, y, enemy);
         beam.createAnims();
@@ -443,7 +451,7 @@ export default class Game extends Phaser.Scene {
         let win;
         switch(level){ //ver en que nivel estamos para elegir bg
             case 1: win = scene.add.sprite(0, -950, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
-            case 2: win = scene.add.sprite(0, 0, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
+            case 2: win = scene.add.sprite(0, -400, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
             case 3: win = scene.add.sprite(0, 0, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
             case 4: win = scene.add.sprite(0, 0, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
         }
