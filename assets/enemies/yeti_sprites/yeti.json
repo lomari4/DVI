@@ -1,27 +1,12 @@
 {
 "frames": {
-	"yeti_01.png": {
-		"frame": {"x":411, "y":411, "w":100, "h":107},
-		"spriteSourceSize": {"x":0,"y":0,"w":100,"h":107},
-		"sourceSize": {"w":100,"h":107}
-	},
-	"yeti_02.png": {
-		"frame": {"x":414, "y":219, "w":100, "h":107},
-		"spriteSourceSize": {"x":0,"y":0,"w":100,"h":107},
-		"sourceSize": {"w":100,"h":107}
-	},
-	"yeti_03.png": {
-		"frame": {"x":414, "y":111, "w":100, "h":107},
-		"spriteSourceSize": {"x":0,"y":0,"w":100,"h":107},
-		"sourceSize": {"w":100,"h":107}
-	},
 	"yeti_04.png": {
-		"frame": {"x":309, "y":299, "w":104, "h":111},
+		"frame": {"x":309, "y":415, "w":104, "h":111},
 		"spriteSourceSize": {"x":0,"y":0,"w":104,"h":111},
 		"sourceSize": {"w":104,"h":111}
 	},
 	"yeti_05.png": {
-		"frame": {"x":298, "y":491, "w":112, "h":104},
+		"frame": {"x":309, "y":310, "w":112, "h":104},
 		"spriteSourceSize": {"x":0,"y":0,"w":112,"h":104},
 		"sourceSize": {"w":112,"h":104}
 	},
@@ -31,12 +16,12 @@
 		"sourceSize": {"w":100,"h":107}
 	},
 	"yeti_07.png": {
-		"frame": {"x":176, "y":491, "w":121, "h":104},
+		"frame": {"x":211, "y":0, "w":121, "h":104},
 		"spriteSourceSize": {"x":0,"y":0,"w":121,"h":104},
 		"sourceSize": {"w":121,"h":104}
 	},
 	"yeti_08.png": {
-		"frame": {"x":308, "y":0, "w":116, "h":110},
+		"frame": {"x":308, "y":105, "w":116, "h":110},
 		"spriteSourceSize": {"x":0,"y":0,"w":116,"h":110},
 		"sourceSize": {"w":116,"h":110}
 	},
@@ -51,7 +36,7 @@
 		"sourceSize": {"w":132,"h":187}
 	},
 	"yeti_11.png": {
-		"frame": {"x":308, "y":111, "w":105, "h":187},
+		"frame": {"x":422, "y":310, "w":105, "h":187},
 		"spriteSourceSize": {"x":0,"y":0,"w":105,"h":187},
 		"sourceSize": {"w":105,"h":187}
 	},
@@ -81,7 +66,7 @@
 		"sourceSize": {"w":175,"h":96}
 	},
 	"yeti_17.png": {
-		"frame": {"x":0, "y":497, "w":113, "h":93},
+		"frame": {"x":309, "y":216, "w":113, "h":93},
 		"spriteSourceSize": {"x":0,"y":0,"w":113,"h":93},
 		"sourceSize": {"w":113,"h":93}
 	}
@@ -89,7 +74,7 @@
 },
 "meta": {
 	"image": "yeti.png",
-	"size": {"w": 526, "h": 596},
+	"size": {"w": 528, "h": 527},
 	"scale": "1"
 }
 }
