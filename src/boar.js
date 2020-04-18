@@ -71,7 +71,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 
 	update() {
 
-		if (!this.hurtflag && this.anims.currentAnim.key !== 'runboar') {
+		if (!this.hurtflag && this.anims.currentAnim.key != 'runboar') {
 			this.walk();
 		}
 

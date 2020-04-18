@@ -75,7 +75,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 
 	update() {
 
-		if (!this.hurtflag && this.anims.currentAnim.key !== 'attackicedrake') {
+		if (!this.hurtflag && this.anims.currentAnim.key != 'attackicedrake') {
 			this.walk();
 		}
 

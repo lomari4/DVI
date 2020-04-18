@@ -28,7 +28,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 				zeroPad: 2
 			}),
 			frameRate: 2,
-			repeat: 0,
+			repeat: -1,
 
         });
         this.scene.anims.create({
@@ -69,6 +69,10 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	}
 
 	update() {
+
+		if (!this.hurtflag && this.anims.currentAnim.key != 'attackyeti') {
+			this.walk();
+		}
 		if (this.body.touching.right || this.body.blocked.right) {
 			this.body.setVelocityX(-this.vel); // turn left
 		}
@@ -97,11 +101,12 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	checkAttack(wolf, game) {
 		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y boar mirandolo
             //a mi no me va bien
-            //this.play('attackyeti', false);
-            this.body.setSize(0, this.heightsizeattack);
+            this.play('attackyeti', false);
+			this.body.setSize(120, 100);
+			this.setOrigin(0.5,0.5);
             this.body.setVelocityX(0);
 		}
-		else if (this.anims.currentFrame.index === 5)
+		else if (this.anims.currentFrame.index === 9)
 			this.walk();
 	}
 
