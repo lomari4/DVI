@@ -2,6 +2,7 @@ import Wolf from './wolf.js';
 import Swub from './swub.js';
 import Icedrake from './icedrake.js';
 import Boar from './boar.js';
+import Yeti from './yeti.js';
 import Beam from './beam.js';
 import Slash from './slash.js';
 
@@ -422,6 +423,12 @@ export default class Game extends Phaser.Scene {
         let temp = new Boar(scene, x, y);
         temp.createAnims();
         temp.play('walkboar', true);
+        enemies.add(temp);
+    }
+    spawnYeti(scene, x, y, enemies) {
+        let temp = new Yeti(scene, x, y);
+        temp.createAnims();
+        temp.play('walkyeti', true);
         enemies.add(temp);
     }
     spawnBeam(scene, x, y, enemy) {
