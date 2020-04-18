@@ -2,8 +2,8 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 
 	constructor(scene, x, y) {
 		super(scene, x, y, 'boar');
-        this.vel = 90;
-        this.velplus = 350;
+        this.vel = 100;
+        this.velplus = 380;
 		this.difBoarandWolf = 6;
 		this.distancetowolf = 580;
 		this.heightsizewalk = 85;
@@ -41,7 +41,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 				end: 10,
 				zeroPad: 2
 			}),
-			frameRate: 7,
+			frameRate: 8,
 			repeat: -1,
 
 		});
@@ -97,7 +97,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 	}
 
 	playerInRange(wolf) {
-        return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y - this.difBoarandWolf < 1 && this.y - wolf.y - this.difBoarandWolf > -1);
+        return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y - this.difBoarandWolf < 5 && this.y - wolf.y - this.difBoarandWolf > -5);
 	}
 
 	checkAttack(wolf, game) {
