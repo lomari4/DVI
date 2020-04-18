@@ -37,7 +37,7 @@ export default class Game extends Phaser.Scene {
         //sonido al pulsar boton
         this.load.audio("menu_select_sound", "./assets/music/effects/menu_select.wav");
         //sonido hover de boton
-        this.load.audio("menu_hover_sound", "./assets/music/effects/menu_hover3.mp3");
+        this.load.audio("menu_hover_sound", "./assets/music/effects/menu_hover.mp3");
         
         //GAME OVER SCREEN
         this.load.image("menu_Button", "./assets/menu_button.png");
