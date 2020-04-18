@@ -34,9 +34,9 @@ export default class Game extends Phaser.Scene {
         this.load.image("helpButton_hover", "./assets/help_button_hover.png");
         //seccion ayuda
         this.load.image("helpBoard", "./assets/helpBoard.png");
-        //slash player
-        this.load.image("slash", "./assets/mainCharacter/attackWolf.png");
-
+        //sonido al pulsar boton
+        this.load.audio("menu_select_sound", "./assets/music/effects/menu_select.wav");
+        
         //GAME OVER SCREEN
         this.load.image("menu_Button", "./assets/menu_button.png");
         this.load.image("retry_Button", "./assets/retry_button.png");
@@ -51,6 +51,7 @@ export default class Game extends Phaser.Scene {
         //AUDIO
         //cargamos el audio
         this.load.audio("level1_sound", "./assets/music/soundtrack/Snow.mp3")
+        this.load.audio("level2_sound", "./assets/music/soundtrack/Serenity.mp3")
         //cargamos los efectos de sonido del jugador
         this.load.audio("player_jump_sound", "./assets/music/effects/jump.wav");
         this.load.audio("player_attack_sound", "./assets/music/effects/wolf_attack.wav");
@@ -65,14 +66,17 @@ export default class Game extends Phaser.Scene {
         this.load.image('hud_2left', 'assets/hud/hud2.png');
         this.load.image('hud_1left', 'assets/hud/hud3.png');
         this.load.image('hud_empty', 'assets/hud/hud4.png');
+        //slash player
+        this.load.image("slash", "./assets/mainCharacter/attackWolf.png");
 
         //MAPA
         //cargamos el tilemap
         this.load.image('tiles', './assets/tiles/tilemap.png');
         //cargamos imagen bloque collision
         this.load.image('collision_tile', './assets/tiles/collision.png');
-        //cargamos el MAPA de tiled en json
+        //cargamos los MAPA de tiled en json
         this.load.tilemapTiledJSON('map1', './assets/levels/nivel1.json'); //nivel 1
+        this.load.tilemapTiledJSON('map2', './assets/levels/nivel2.json'); //nivel 2
         //BG
         this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
 
@@ -97,6 +101,10 @@ export default class Game extends Phaser.Scene {
         let sounds = this.sound.add("menuSound");
         sounds.play();
 
+        let menuSelect = this.sound.add("menu_select_sound",{
+            volume: 0.40,
+        });
+
         clickButton.on("pointerover", () => {
             clickButton.setTexture('playButton_hover');
         });
@@ -107,12 +115,14 @@ export default class Game extends Phaser.Scene {
 
         //Si se pulsa el botón de play
         clickButton.on("pointerup", () => {
+            menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level1");
+            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
         helpButton.on("pointerup", () => {
+            menuSelect.play();
             this.scene.start("Help");
             sounds.destroy();
         });
@@ -129,17 +139,31 @@ export default class Game extends Phaser.Scene {
     //FUNCIONES GENERALES DEL JUEGO QUE COMPARTEN TODOS LOS NIVELES//
 
     //MAPA//
-    addMap(scene, nivel) {
+    addMap(scene, level) {
         //añadimos el mapa dependiendo del nivel
         let map;
-        if (nivel === 1) {
-            map = scene.make.tilemap({
+        switch(level){ 
+            case 1: map = scene.make.tilemap({
                 key: 'map1',
                 tileWidth: 64,
                 tileHeight: 64
-            });
+            }); break;
+            case 2: map = scene.make.tilemap({
+                key: 'map2',
+                tileWidth: 64,
+                tileHeight: 64
+            }); break;
+            case 3: map = scene.make.tilemap({
+                key: 'map3',
+                tileWidth: 64,
+                tileHeight: 64
+            }); break;
+            case 4: map = scene.make.tilemap({
+                key: 'map4',
+                tileWidth: 64,
+                tileHeight: 64
+            }); break;
         }
-
         return map;
     }
 
@@ -202,6 +226,16 @@ export default class Game extends Phaser.Scene {
     }
 
     //AUDIOS//
+    addSoundtrack(level,scene){
+        let s;
+        switch(level){ 
+            case 1: s = scene.sound.add("level1_sound"); break;
+            case 2: s = scene.sound.add("level2_sound"); break;
+            case 3: s = scene.sound.add("level3_sound"); break;
+            case 4: s = scene.sound.add("level4_sound"); break;
+        }
+        return s;
+    }
     audio_playerJump() {
         let s = this.sound.add("player_jump_sound", {
             volume: 0.47,
@@ -280,33 +314,6 @@ export default class Game extends Phaser.Scene {
         return counter;
     }
 
-    //FUNCION SWUB VER SI CONGELA//
-    checkIfFreeze(scene,enemies,player,game,groundLayer){
-        let counter = 0;
-        enemies.getChildren().forEach(function (item) {
-            if (item.texture.key === 'swub') {
-                //solo congela el tile DETRAS de el
-                if (item.body.velocity.x > 0 && !player.winGame) //derecha
-                    counter = game.frost(item.x - this.tileSize, item.y + this.tileSize, groundLayer);
-                else if (item.body.velocity.x < 0 && !player.winGame) //izquierda
-                    counter = game.frost(item.x + this.tileSize, item.y + this.tileSize, groundLayer);
-            }
-        }, scene);
-        return counter;
-    }
-
-    //FUNCION DE JUGADOR VER SI DESCONGELA//
-    checkIfMelt(player,game,groundLayer){
-        let counter = 0;
-        if (player.body.onFloor() && player.isAlive()) {
-            //rango de descongelacion del lobo: delante,medio,atras
-            counter += game.defrost(player.x - this.tileSize, player.y + this.tileSize, groundLayer);
-            counter += game.defrost(player.x, player.y + this.tileSize, groundLayer);
-            counter += game.defrost(player.x + this.tileSize, player.y + this.tileSize, groundLayer);
-        }
-        return counter;
-    }
-
     //HUD//
     addHud(scene) {
         this.hud = scene.add.sprite(this.posHud, this.posHud, "hud_full").setOrigin(0);
@@ -377,7 +384,7 @@ export default class Game extends Phaser.Scene {
     }
     delayStun(scene, enemy) {
         scene.time.addEvent({
-            delay: 3000, //tiempo que el enemigo esta stuneado
+            delay: enemy.stunDelay, //tiempo que el enemigo esta stuneado
             callback: () => {
                 enemy.hurtflag = false;
             },
@@ -386,7 +393,7 @@ export default class Game extends Phaser.Scene {
 
     //SPAWN//
     spawnPlayer(scene, x, y, groundLayer) {
-        let wolf = new Wolf(scene, 0, 919);
+        let wolf = new Wolf(scene, x, y);
         wolf.createAnims(); //crear las animaciones del wolf
         return wolf;
     }
@@ -441,11 +448,18 @@ export default class Game extends Phaser.Scene {
         })
     }
     nextLevel(nivel) {
+        let s;
+        switch (nivel) {
+            case 1: s = 'Level1'; break;
+            case 2: s = 'Level2'; break;
+            case 3: s = 'Level3'; break;
+            case 4: s = 'Level4'; break;
+        }
+        this.scene.stop(s);
         switch (nivel) {
             case 1: this.scene.launch('Level2');
-            case 2: this.scene.launch('Level3');
-            case 3: this.scene.launch('Level4');
-            default: this.scene.launch('Game');
+            //case 2: this.scene.launch('Level3');
+            //case 3: this.scene.launch('Level4');
         }
     }
 
@@ -514,7 +528,7 @@ export default class Game extends Phaser.Scene {
     }
     //VER OVERLAPS DEL JUGADOR CON LOS ENEMIGOS
     checkPlayerisAttacked(scene,player,enemies,game){
-        if (player.isAlive()) {
+        if (player.isAlive() && !player.winGame) {
             scene.physics.add.overlap(player, enemies, game.knockBack, game.overlapcallback, scene);
         }
 
@@ -529,13 +543,38 @@ export default class Game extends Phaser.Scene {
 
         }
     }
+	//FUNCION SWUB VER SI CONGELA
+    checkIfFreeze(scene,enemies,player,game,groundLayer){
+        let counter = 0;
+        enemies.getChildren().forEach(function (item) {
+            if (item.texture.key === 'swub') {
+                //solo congela el tile DETRAS de el
+                if (item.body.velocity.x > 0 && !player.winGame) //derecha
+                    counter = game.frost(item.x - this.tileSize, item.y + this.tileSize, groundLayer);
+                else if (item.body.velocity.x < 0 && !player.winGame) //izquierda
+                    counter = game.frost(item.x + this.tileSize, item.y + this.tileSize, groundLayer);
+            }
+        }, scene);
+        return counter;
+    }
+    //FUNCION DE JUGADOR VER SI DESCONGELA
+    checkIfMelt(player,game,groundLayer){
+        let counter = 0;
+        if (player.body.onFloor() && player.isAlive()) {
+            //rango de descongelacion del lobo: delante,medio,atras
+            counter += game.defrost(player.x - this.tileSize, player.y + this.tileSize, groundLayer);
+            counter += game.defrost(player.x, player.y + this.tileSize, groundLayer);
+            counter += game.defrost(player.x + this.tileSize, player.y + this.tileSize, groundLayer);
+        }
+        return counter;
+    }
     //VER SI HA GANADO
     checkIfWin(scene,counter,checkWin,player,enemies,game,level){
         if (counter === checkWin) {
 			game.winGame(player, scene, enemies);
 			player.winGame = true;
 			//delay para pasar al siguiente nivel para que de tiempo escuchar la musica y fade in
-			//scene.time.delayedCall(10000, game.nextLevel, [level], scene);
+			scene.time.delayedCall(7600, game.nextLevel, [level], scene);
 		}    
     }
     //VER SI HA PERDIDO
@@ -546,5 +585,6 @@ export default class Game extends Phaser.Scene {
 			scene.time.delayedCall(3000, game.sceneGameOver, [level], scene);
 		}
     }
+    
 
 }

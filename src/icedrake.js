@@ -12,6 +12,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		this.heightsizeattack = 85;
 		this.distSpawnBeam = 70;
 		this.hurtflag = false;
+		this.stunDelay = 3000;
 	}
 	
 	addPhysics() {

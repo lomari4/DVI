@@ -14,6 +14,9 @@ export default class GameOver extends Phaser.Scene {
 
     create() {
         this.checkLevel(); //ver que nivel ha llamado al game over
+        let menuSelect = this.sound.add("menu_select_sound",{
+            volume: 0.40,
+        });
 
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - this.heighttoGameOver, "gameOver").setDepth(1);
         let botonMenu = this.add.sprite(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "menu_Button").setDepth(1).setInteractive();
@@ -24,6 +27,7 @@ export default class GameOver extends Phaser.Scene {
             botonMenu.setTexture('menu_Button');
         });
         botonMenu.on("pointerup", () => {
+            menuSelect.play();
             this.scene.stop(this.levelKey); //parar la escena del nivel
             this.scene.start("Game"); //menu
         });
@@ -36,6 +40,7 @@ export default class GameOver extends Phaser.Scene {
             botonLevel.setTexture('retry_Button');
         });
         botonLevel.on("pointerup", () => {
+            menuSelect.play();
             this.scene.start(this.levelKey);
         });
 

@@ -1,8 +1,8 @@
-export default class Level1 extends Phaser.Scene {
+export default class Level2 extends Phaser.Scene {
 
 	constructor() {
-		super({ key: 'Level1' });
-		this.level = 1;
+		super({ key: 'Level2' });
+		this.level = 2;
 		this.tileSize = 64;
 	}
 
@@ -36,7 +36,7 @@ export default class Level1 extends Phaser.Scene {
 		this.game.textProgress(this);
 
 		//JUGADOR//
-		this.wolf = this.game.spawnPlayer(this, 0, 919, this.groundLayer);
+		this.wolf = this.game.spawnPlayer(this, 0, 1430, this.groundLayer);
 		//colisiones del jugador
 		this.collider = this.physics.add.collider(this.wolf, this.groundLayer);
 		//ataque del jugador
@@ -50,9 +50,9 @@ export default class Level1 extends Phaser.Scene {
 		this.enemies = this.physics.add.group();
 
 		//funciones de spawn de enemigos
-		this.game.spawnSwub(this, 1300, 933, this.enemies);
-		this.game.spawnIcedrake(this, 1400, 550, this.enemies);
-		this.game.spawnIcedrake(this, 2900, 550, this.enemies);
+		//this.game.spawnSwub(this, 1300, 933, this.enemies);
+		//this.game.spawnIcedrake(this, 1400, 550, this.enemies);
+		//this.game.spawnIcedrake(this, 2900, 550, this.enemies);
 
 		//colisiones de los enemigos
 		this.game.addEnemyPhysics(this, this.enemies, this.groundLayer, enemy_collisionLayer);
