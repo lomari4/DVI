@@ -125,7 +125,7 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
+            this.scene.start("Level2"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
@@ -325,7 +325,7 @@ export default class Game extends Phaser.Scene {
 
     //HUD//
     addHud(scene) {
-        this.hud = scene.add.sprite(this.posHud, this.posHud, "hud_full").setOrigin(0);
+        this.hud = scene.add.sprite(this.posHud, this.posHud, "hud_full").setOrigin(0).setDepth(2);
         this.hud.setTexture("hud_full");
         this.hud.setScrollFactor(0);
     }
@@ -502,7 +502,7 @@ export default class Game extends Phaser.Scene {
         this.texts = scene.add.text(this.textProgressX, this.textProgressY, 'text', {
             fontSize: '24px',
             fontFamily: 'font1',
-        });
+        }).setDepth(2);
         this.texts.setScrollFactor(0);
     }
     showProgress(score, total) {
