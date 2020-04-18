@@ -91,6 +91,7 @@ export default class Game extends Phaser.Scene {
         //cargamos el spritesheet de los enemigos
         this.load.atlas('swub', './assets/enemies/swub_sprites/swub.png', './assets/enemies/swub_sprites/swub.json');
         this.load.atlas('boar', './assets/enemies/boar_sprites/boar.png', './assets/enemies/boar_sprites/boar.json');
+        this.load.atlas('yeti', './assets/enemies/yeti_sprites/yeti.png', './assets/enemies/yeti_sprites/yeti.json');
         this.load.atlas('icedrake', './assets/enemies/icedrake_sprites/icedrake.png', './assets/enemies/icedrake_sprites/icedrake.json');
 
     }
