@@ -99,7 +99,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	}
 
 	checkAttack(wolf, game) {
-		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y boar mirandolo
+		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y yeti mirandolo
             //a mi no me va bien
             this.play('attackyeti', false);
 			this.body.setSize(120, 100);
