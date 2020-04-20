@@ -74,7 +74,7 @@ Por ahora serán cuatro niveles, el ultimo siendo el del boss final. Cada nivel 
 ## Primer nivel
 Aparecerán los enemigos Swub y Ice Drake. Dos alturas. 
 ## Segundo nivel
-Aparecerán Swub, Ice Drake y Yeti. Tres alturas. 
+Aparecerán Swub, Ice Drake y Boar. Tres alturas. 
 ## Tercer nivel
 Aparecerán todos los enemigos. Cuatro alturas 
 ## Nivel final
