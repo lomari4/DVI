@@ -97,7 +97,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 	}
 
 	playerInRange(wolf) {
-        return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y - this.difBoarandWolf < 4 && this.y - wolf.y - this.difBoarandWolf > -4);
+        return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y - this.difBoarandWolf < 7 && this.y - wolf.y - this.difBoarandWolf > -7);
 	}
 
 	checkAttack(wolf, game) {

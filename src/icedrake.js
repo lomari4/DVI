@@ -7,7 +7,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		this.vel = 70;
 		this.difDrakeandWolf = 16;
 		this.distancetowolf = 580;
-		this.heightsizewalk = 65;
+		this.heightsizewalk = 70;
 		this.heightsizehurt = 84;
 		this.heightsizeattack = 85;
 		this.distSpawnBeam = 70;
