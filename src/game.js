@@ -5,6 +5,7 @@ import Boar from './boar.js';
 import Yeti from './yeti.js';
 import Beam from './beam.js';
 import Slash from './slash.js';
+import Ice from './iceYeti.js';
 
 //RECORDAR INDENTAR CON ALT+SHIFT+F
 export default class Game extends Phaser.Scene {
@@ -72,6 +73,9 @@ export default class Game extends Phaser.Scene {
         this.load.image('hud_empty', 'assets/hud/hud4.png');
         //slash player
         this.load.image("slash", "./assets/mainCharacter/attackWolf.png");
+
+        //ice Yeti
+        this.load.image("ice", "./assets/enemies/yeti_sprites/yeti_18.png");
 
         //MAPA
         //cargamos el tilemap
@@ -441,6 +445,10 @@ export default class Game extends Phaser.Scene {
         let slash = new Slash(scene, x, y, player);
         return slash;
     }
+    spawnIce(scene, x, y, enemy) {
+        let ice = new Ice(scene, x, y, enemy);
+        return ice;
+    }
 
     //WIN GAME//
     winGame(player,scene, enemies) {
@@ -536,6 +544,14 @@ export default class Game extends Phaser.Scene {
             beam.update(player, game);
         }
     }
+    //UPDATE DE ICES
+    checkIces(scene,ices,player,game){
+        for (let i = 0; i < ices.getChildren().length; i++) {
+            let ice = ices.getChildren()[i];
+            scene.physics.add.overlap(player, ice, game.knockBack, game.overlapcallback, scene);
+            ice.update(player, game);
+        }
+    }
     //ATAQUE DEL JUGADOR
     checkPlayerAttack(scene,slash,enemies,game){
         for (let i = 0; i < slash.getChildren().length; i++) {
@@ -558,11 +574,11 @@ export default class Game extends Phaser.Scene {
         if (player.hurtflag === true) {
             game.hurtPlayer(scene, player);
             console.log(enemies.getChildren());
-            enemies.getChildren().forEach(item => {
+            /*enemies.getChildren().forEach(item => {
                 if(item.texture.key === 'yeti')
                     if(item.anims.currentAnim.key === 'attackyeti')
                         game.hurtPlayer(scene, player);
-            });
+            });*/
             game.updateHealthHud(player, scene);
 
             if (!player.isAlive())

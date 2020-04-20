@@ -61,6 +61,8 @@ export default class Level2 extends Phaser.Scene {
 
 		//grupo de proyectiles
 		this.projectiles = this.add.group();
+		//grupo de hielos creados por los yetis
+		this.ices = this.add.group();
 
 	}
 
@@ -81,6 +83,8 @@ export default class Level2 extends Phaser.Scene {
 			//ATAQUES Y OVERLAPS
 			//update y overlap de los proyectiles del dragon
 			this.game.checkBeams(this,this.projectiles,this.wolf,this.game);
+			//update y overlap de los ices del yeti
+			this.game.checkIces(this,this.ices,this.wolf,this.game);
 
 			//overlap del ataque del jugador
 			this.game.checkPlayerAttack(this,this.slash,this.enemies,this.game);

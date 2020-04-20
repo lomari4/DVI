@@ -13,6 +13,8 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		this.pivotX = 0.25;
 		this.coolDown = 300;
 		this.maxcoolDown = 300;
+		this.distSpawnIce = 100;
+		this.distSpawnIceY = 50;
 	}
 	
 	addPhysics() {
@@ -116,6 +118,13 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y yeti mirandolo
 			if (this.coolDown > this.maxcoolDown) {
 				this.play('attackyeti', true);
+				let ice;
+				if (this.flipX){
+					ice = game.spawnIce(this.scene, this.x + this.distSpawnIce, this.y + this.distSpawnIceY, this);
+				}
+				else {
+					ice = game.spawnIce(this.scene, this.x - this.distSpawnIce, this.y + this.distSpawnIceY, this);
+				}
 				this.body.setVelocityX(0);
 				this.coolDown = 0;
 			}
