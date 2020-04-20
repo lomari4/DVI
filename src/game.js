@@ -557,6 +557,12 @@ export default class Game extends Phaser.Scene {
 
         if (player.hurtflag === true) {
             game.hurtPlayer(scene, player);
+            console.log(enemies.getChildren());
+            enemies.getChildren().forEach(item => {
+                if(item.texture.key === 'yeti')
+                    if(item.anims.currentAnim.key === 'attackyeti')
+                        game.hurtPlayer(scene, player);
+            });
             game.updateHealthHud(player, scene);
 
             if (!player.isAlive())
