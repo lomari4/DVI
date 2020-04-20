@@ -589,9 +589,9 @@ export default class Game extends Phaser.Scene {
             if (item.texture.key === 'swub') {
                 //solo congela el tile DETRAS de el
                 if (item.body.velocity.x > 0 && !player.winGame) //derecha
-                    counter = game.frost(item.x - this.tileSize, item.y + this.tileSize, groundLayer);
+                    counter += game.frost(item.x - this.tileSize, item.y + this.tileSize, groundLayer);
                 else if (item.body.velocity.x < 0 && !player.winGame) //izquierda
-                    counter = game.frost(item.x + this.tileSize, item.y + this.tileSize, groundLayer);
+                    counter += game.frost(item.x + this.tileSize, item.y + this.tileSize, groundLayer);
             }
         }, scene);
         return counter;

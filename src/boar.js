@@ -9,7 +9,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 		this.heightsizewalk = 85;
 		this.heightsizehurt = 95;
 		this.hurtflag = false;
-		this.stunDelay = 3000;
+		this.stunDelay = 2500;
 	}
 	
 	addPhysics() {

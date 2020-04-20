@@ -2,11 +2,11 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 
 	constructor(scene, x, y) {
 		super(scene, x, y, 'icedrake');
-		this.coolDown = 700;
-		this.maxcoolDown = 700;
+		this.coolDown = 500;
+		this.maxcoolDown = 500;
 		this.vel = 70;
 		this.difDrakeandWolf = 16;
-		this.distancetowolf = 580;
+		this.distancetowolf = 600;
 		this.heightsizewalk = 70;
 		this.heightsizehurt = 84;
 		this.heightsizeattack = 85;
