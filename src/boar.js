@@ -2,7 +2,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 
 	constructor(scene, x, y) {
 		super(scene, x, y, 'boar');
-        this.vel = 100;
+        this.vel = 110;
         this.velplus = 380;
 		this.difBoarandWolf = 6;
 		this.distancetowolf = 580;
@@ -28,7 +28,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 				end: 5,
 				zeroPad: 2
 			}),
-			frameRate: 6,
+			frameRate: 7,
 			repeat: -1,
 
 		});
@@ -41,7 +41,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 				end: 10,
 				zeroPad: 2
 			}),
-			frameRate: 8,
+			frameRate: 10,
 			repeat: -1,
 
 		});

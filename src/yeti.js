@@ -2,7 +2,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 
 	constructor(scene, x, y) {
 		super(scene, x, y, 'yeti');
-        this.vel = 60;
+        this.vel = 40;
 		this.distancetowolf = 250;
 		this.heightsizewalk = 115;
         this.heightsizehurt = 100;
@@ -42,7 +42,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 				end: 16,
 				zeroPad: 2
 			}),
-			frameRate: 3,
+			frameRate: 7,
 			repeat: 0,
 
 		});
@@ -89,9 +89,12 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		}
 
 		if (this.hurtflag) {
-			this.body.setSize(0, this.heightsizehurt); //ajustar el collider
 			this.play('hurtyeti', false);
 			this.body.setVelocityX(0);
+			if(this.flipX)
+				this.setOrigin(0.5,this.pivotY);
+			else
+				this.setOrigin(this.pivotX,this.pivotY);
 		}
 
 		//fliperar el sprite (por default esta a la izquierda)
