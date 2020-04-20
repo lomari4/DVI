@@ -131,7 +131,7 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level2"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
+            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
@@ -507,7 +507,7 @@ export default class Game extends Phaser.Scene {
         this.scene.launch('GameOver', { level: nivel });
     }
     overlapcallback(player, enemy) {
-        if (player.isAlive())
+        if (player.isAlive() && !player.winGame)
             return true;
         else
             return false;
@@ -610,8 +610,8 @@ export default class Game extends Phaser.Scene {
     //VER SI HA GANADO
     checkIfWin(scene,counter,checkWin,player,enemies,game,level){
         if (counter === checkWin) {
-			game.winGame(player, scene, enemies);
-			player.winGame = true;
+            game.winGame(player, scene, enemies);
+            player.winGame = true;
 			//delay para pasar al siguiente nivel para que de tiempo escuchar la musica y fade in
 			scene.time.delayedCall(7600, game.nextLevel, [level], scene);
 		}    
