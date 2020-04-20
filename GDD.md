@@ -34,7 +34,7 @@ Elegimos un lobo que es medio árbol para caracterizar a la naturaleza, ya que e
 
 
 ## 2.2. Enemigos
-Cuando el jugador es dañado, ya sea por tocar a un enemigo o por un ataque de estos, se le quita una vida.
+Cuando el jugador es dañado, ya sea por tocar a un enemigo o por un ataque, se le quita una vida.
 
 ### 2.2.1. Ice Drake
 
