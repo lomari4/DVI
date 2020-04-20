@@ -4,17 +4,19 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		super(scene, x, y, 'yeti');
         this.vel = 60;
 		this.distancetowolf = 250;
-		this.heightsizewalk = 95;
-        this.heightsizehurt = 80;
-        this.heightsizeattack = 140;
+		this.heightsizewalk = 115;
+        this.heightsizehurt = 100;
 		this.hurtflag = false;
 		this.stunDelay = 3000;
+		this.pivotY = 0.32;
+		this.pivotX = 0.25;
 	}
 	
 	addPhysics() {
 		this.scene.add.existing(this);
 		this.scene.physics.add.existing(this); //enable body
 		this.body.setCollideWorldBounds(true);
+		this.body.syncBounds = true;
 	}
 
 	createAnims() {
@@ -63,9 +65,15 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		this.body.setSize(0, this.heightsizewalk); //ajustar el collider
         this.play('walkyeti', true);
 		if (this.flipX)
+		{
+			this.setOrigin(0.5,this.pivotY);
 			this.body.setVelocityX(this.vel);
+		}
 		else
+		{
+			this.setOrigin(this.pivotX,this.pivotY);
 			this.body.setVelocityX(-this.vel);
+		}
 	}
 
 	update() {
@@ -95,15 +103,12 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	}
 
 	playerInRange(wolf) {
-        return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y < 5 && this.y - wolf.y > -5);
+        return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y < 1 && this.y - wolf.y > -1);
 	}
 
 	checkAttack(wolf, game) {
 		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y yeti mirandolo
-            //a mi no me va bien
             this.play('attackyeti', false);
-			this.body.setSize(120, 100);
-			this.setOrigin(0.5,0.5);
             this.body.setVelocityX(0);
 		}
 		else if (this.anims.currentFrame.index === 9)

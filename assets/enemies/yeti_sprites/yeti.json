@@ -1,80 +1,370 @@
 {
-"frames": {
-	"yeti_04.png": {
-		"frame": {"x":309, "y":415, "w":104, "h":111},
-		"spriteSourceSize": {"x":0,"y":0,"w":104,"h":111},
-		"sourceSize": {"w":104,"h":111}
-	},
-	"yeti_05.png": {
-		"frame": {"x":309, "y":310, "w":112, "h":104},
-		"spriteSourceSize": {"x":0,"y":0,"w":112,"h":104},
-		"sourceSize": {"w":112,"h":104}
-	},
-	"yeti_06.png": {
-		"frame": {"x":425, "y":0, "w":100, "h":107},
-		"spriteSourceSize": {"x":0,"y":0,"w":100,"h":107},
-		"sourceSize": {"w":100,"h":107}
-	},
-	"yeti_07.png": {
-		"frame": {"x":211, "y":0, "w":121, "h":104},
-		"spriteSourceSize": {"x":0,"y":0,"w":121,"h":104},
-		"sourceSize": {"w":121,"h":104}
-	},
-	"yeti_08.png": {
-		"frame": {"x":308, "y":105, "w":116, "h":110},
-		"spriteSourceSize": {"x":0,"y":0,"w":116,"h":110},
-		"sourceSize": {"w":116,"h":110}
-	},
-	"yeti_09.png": {
-		"frame": {"x":178, "y":109, "w":129, "h":109},
-		"spriteSourceSize": {"x":0,"y":0,"w":129,"h":109},
-		"sourceSize": {"w":129,"h":109}
-	},
-	"yeti_10.png": {
-		"frame": {"x":176, "y":303, "w":132, "h":187},
-		"spriteSourceSize": {"x":0,"y":0,"w":132,"h":187},
-		"sourceSize": {"w":132,"h":187}
-	},
-	"yeti_11.png": {
-		"frame": {"x":422, "y":310, "w":105, "h":187},
-		"spriteSourceSize": {"x":0,"y":0,"w":105,"h":187},
-		"sourceSize": {"w":105,"h":187}
-	},
-	"yeti_12.png": {
-		"frame": {"x":0, "y":0, "w":210, "h":108},
-		"spriteSourceSize": {"x":0,"y":0,"w":210,"h":108},
-		"sourceSize": {"w":210,"h":108}
-	},
-	"yeti_13.png": {
-		"frame": {"x":0, "y":109, "w":177, "h":96},
-		"spriteSourceSize": {"x":0,"y":0,"w":177,"h":96},
-		"sourceSize": {"w":177,"h":96}
-	},
-	"yeti_14.png": {
-		"frame": {"x":0, "y":206, "w":176, "h":96},
-		"spriteSourceSize": {"x":0,"y":0,"w":176,"h":96},
-		"sourceSize": {"w":176,"h":96}
-	},
-	"yeti_15.png": {
-		"frame": {"x":0, "y":400, "w":175, "h":96},
-		"spriteSourceSize": {"x":0,"y":0,"w":175,"h":96},
-		"sourceSize": {"w":175,"h":96}
-	},
-	"yeti_16.png": {
-		"frame": {"x":0, "y":303, "w":175, "h":96},
-		"spriteSourceSize": {"x":0,"y":0,"w":175,"h":96},
-		"sourceSize": {"w":175,"h":96}
-	},
-	"yeti_17.png": {
-		"frame": {"x":309, "y":216, "w":113, "h":93},
-		"spriteSourceSize": {"x":0,"y":0,"w":113,"h":93},
-		"sourceSize": {"w":113,"h":93}
+	"textures": [
+		{
+			"image": "yeti.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1147,
+				"h": 210
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "yeti_10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 132,
+						"h": 187
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 132,
+						"h": 187
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 132,
+						"h": 187
+					},
+					"anchor": {
+						"x": 0.5303030303030303,
+						"y": 0.5828877005347594
+					}
+				},
+				{
+					"filename": "yeti_11.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 105,
+						"h": 187
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 105,
+						"h": 187
+					},
+					"frame": {
+						"x": 135,
+						"y": 1,
+						"w": 105,
+						"h": 187
+					},
+					"anchor": {
+						"x": 0.4095238095238095,
+						"y": 0.5828877005347594
+					}
+				},
+				{
+					"filename": "yeti_04.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 104,
+						"h": 111
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 104,
+						"h": 111
+					},
+					"frame": {
+						"x": 242,
+						"y": 1,
+						"w": 104,
+						"h": 111
+					},
+					"anchor": {
+						"x": 0.2692307692307692,
+						"y": 0.34234234234234234
+					}
+				},
+				{
+					"filename": "yeti_17.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 113,
+						"h": 93
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 113,
+						"h": 93
+					},
+					"frame": {
+						"x": 242,
+						"y": 114,
+						"w": 113,
+						"h": 93
+					},
+					"anchor": {
+						"x": 0.2610619469026549,
+						"y": 0.3709677419354839
+					}
+				},
+				{
+					"filename": "yeti_08.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 116,
+						"h": 110
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 116,
+						"h": 110
+					},
+					"frame": {
+						"x": 348,
+						"y": 1,
+						"w": 116,
+						"h": 110
+					},
+					"anchor": {
+						"x": 0.45689655172413796,
+						"y": 0.2909090909090909
+					}
+				},
+				{
+					"filename": "yeti_13.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 177,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 177,
+						"h": 96
+					},
+					"frame": {
+						"x": 357,
+						"y": 113,
+						"w": 177,
+						"h": 96
+					},
+					"anchor": {
+						"x": 0.4774011299435028,
+						"y": 0.34375
+					}
+				},
+				{
+					"filename": "yeti_09.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 129,
+						"h": 109
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 129,
+						"h": 109
+					},
+					"frame": {
+						"x": 466,
+						"y": 1,
+						"w": 129,
+						"h": 109
+					},
+					"anchor": {
+						"x": 0.5116279069767442,
+						"y": 0.30275229357798167
+					}
+				},
+				{
+					"filename": "yeti_14.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 176,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 176,
+						"h": 96
+					},
+					"frame": {
+						"x": 536,
+						"y": 112,
+						"w": 176,
+						"h": 96
+					},
+					"anchor": {
+						"x": 0.4715909090909091,
+						"y": 0.3541666666666667
+					}
+				},
+				{
+					"filename": "yeti_12.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 210,
+						"h": 108
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 210,
+						"h": 108
+					},
+					"frame": {
+						"x": 597,
+						"y": 1,
+						"w": 210,
+						"h": 108
+					},
+					"anchor": {
+						"x": 0.5571428571428572,
+						"y": 0.4074074074074074
+					}
+				},
+				{
+					"filename": "yeti_15.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 175,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 175,
+						"h": 96
+					},
+					"frame": {
+						"x": 714,
+						"y": 111,
+						"w": 175,
+						"h": 96
+					},
+					"anchor": {
+						"x": 0.4685714285714286,
+						"y": 0.34375
+					}
+				},
+				{
+					"filename": "yeti_06.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 100,
+						"h": 107
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 100,
+						"h": 107
+					},
+					"frame": {
+						"x": 809,
+						"y": 1,
+						"w": 100,
+						"h": 107
+					},
+					"anchor": {
+						"x": 0.29,
+						"y": 0.3177570093457944
+					}
+				},
+				{
+					"filename": "yeti_16.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 175,
+						"h": 96
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 175,
+						"h": 96
+					},
+					"frame": {
+						"x": 891,
+						"y": 110,
+						"w": 175,
+						"h": 96
+					},
+					"anchor": {
+						"x": 0.4714285714285714,
+						"y": 0.3541666666666667
+					}
+				},
+				{
+					"filename": "yeti_07.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 121,
+						"h": 104
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 121,
+						"h": 104
+					},
+					"frame": {
+						"x": 911,
+						"y": 1,
+						"w": 121,
+						"h": 104
+					},
+					"anchor": {
+						"x": 0.2396694214876033,
+						"y": 0.3269230769230769
+					}
+				},
+				{
+					"filename": "yeti_05.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 112,
+						"h": 104
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 112,
+						"h": 104
+					},
+					"frame": {
+						"x": 1034,
+						"y": 1,
+						"w": 112,
+						"h": 104
+					},
+					"anchor": {
+						"x": 0.25892857142857145,
+						"y": 0.3269230769230769
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:1ed521e82ca4360dff4b81916c6488c0:3bbd13606ab44c12f6ae5e91e9d32db3:5550ea94bea9ce9f17de0a2f2002f036$"
 	}
-
-},
-"meta": {
-	"image": "yeti.png",
-	"size": {"w": 528, "h": 527},
-	"scale": "1"
-}
 }
