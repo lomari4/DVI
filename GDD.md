@@ -34,7 +34,7 @@ Elegimos un lobo que es medio árbol para caracterizar a la naturaleza, ya que e
 
 
 ## 2.2. Enemigos
-Como norma general, tocar a los enemigos daña al personaje.
+Como norma general, tocar a los enemigos daña al personaje. Cuando el jugador es dañado, se le quita una vida.
 
 ### 2.2.1. Ice Drake
 
@@ -50,7 +50,7 @@ Monstruito peludo que se arrastra sobre el suelo y puede volver a congelarlo, de
 
 ### 2.2.3. Yeti
 
-Un yeti que ataca a melee y quita dos vidas al personaje. Anda lentamente de un lado a otro.
+Un yeti que golpea el suelo para levantar pinchos helados en frente de él. Anda lentamente de un lado a otro.
 
 ![yeti](https://vignette.wikia.nocookie.net/maplestory/images/b/bd/Mob_Yeti.png/revision/latest/scale-to-width-down/340?cb=20100814143115)
 
