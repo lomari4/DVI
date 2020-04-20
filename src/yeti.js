@@ -16,7 +16,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		this.scene.add.existing(this);
 		this.scene.physics.add.existing(this); //enable body
 		this.body.setCollideWorldBounds(true);
-		this.body.syncBounds = true;
+		this.body.syncBounds = true; //para sincronizar sprite con el collider box
 	}
 
 	createAnims() {
