@@ -85,7 +85,7 @@ Los escenarios de este juego serán bosques nevados que evolucionarán según el
 La evolución del nivel se puede ver en la siguiente imagen:
 ![transicion](https://i.imgur.com/RhrzzTT.png)
 
-El background de los niveles cambiará cuando el nivel se complete:
+El background cambiará cuando el nivel se complete:
 ![bg](https://i.imgur.com/sXGeiDn.png)
 
 # 5. Música y sonidos
