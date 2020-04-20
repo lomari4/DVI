@@ -13,7 +13,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		this.coolDown = 300;
 		this.maxcoolDown = 300;
 		this.distSpawnIce = 180;
-		this.distSpawnIceY = 65;
+		this.distSpawnIceY = 60;
 		this.isAttacking = false;
 	}
 
@@ -47,7 +47,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 				end: 16,
 				zeroPad: 2
 			}),
-			frameRate: 4,
+			frameRate: 7,
 			repeat: -1,
 
 		});

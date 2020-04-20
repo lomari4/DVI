@@ -17,7 +17,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.slashWidth = 130;
         this.vel = 300;
         this.jumpvel = -420;
-        this.heightsize = 97;
+        this.heightsize = 100;
         this.knockBackUP = 300;
         this.knockBackSIDE = 200;
     }
