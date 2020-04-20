@@ -2,10 +2,9 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 
 	constructor(scene, x, y) {
 		super(scene, x, y, 'yeti');
-        this.vel = 40;
+		this.vel = 40;
 		this.distancetowolf = 250;
-		//this.heightsizewalk = 105;
-        //this.heightsizehurt = 100;
+		this.heightsizeattack = 115;
 		this.hurtflag = false;
 		this.stunDelay = 3000;
 		this.difYetiandWolf = 24;
@@ -13,10 +12,11 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		this.pivotX = 0.25;
 		this.coolDown = 300;
 		this.maxcoolDown = 300;
-		this.distSpawnIce = 100;
-		this.distSpawnIceY = 50;
+		this.distSpawnIce = 180;
+		this.distSpawnIceY = 65;
+		this.isAttacking = false;
 	}
-	
+
 	addPhysics() {
 		this.scene.add.existing(this);
 		this.scene.physics.add.existing(this); //enable body
@@ -37,8 +37,8 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 			frameRate: 2,
 			repeat: -1,
 
-        });
-        this.scene.anims.create({
+		});
+		this.scene.anims.create({
 			key: 'attackyeti',
 			frames: this.scene.anims.generateFrameNames('yeti', {
 				prefix: 'yeti_',
@@ -68,21 +68,18 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 
 	walk() {
 		//this.body.setSize(0, this.heightsizewalk); //ajustar el collider
-        this.play('walkyeti', true);
-		if (this.flipX)
-		{
-			this.setOrigin(0.5,this.pivotY);
+		this.play('walkyeti', true);
+		if (this.flipX) {
+			this.setOrigin(0.5, this.pivotY);
 			this.body.setVelocityX(this.vel);
 		}
-		else
-		{
-			this.setOrigin(this.pivotX,this.pivotY);
+		else {
+			this.setOrigin(this.pivotX, this.pivotY);
 			this.body.setVelocityX(-this.vel);
 		}
 	}
 
 	update() {
-
 		if (!this.hurtflag && this.anims.currentAnim.key != 'attackyeti') {
 			this.walk();
 		}
@@ -96,10 +93,10 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		if (this.hurtflag) {
 			this.play('hurtyeti', false);
 			this.body.setVelocityX(0);
-			if(this.flipX)
-				this.setOrigin(0.5,this.pivotY);
+			if (this.flipX)
+				this.setOrigin(0.5, this.pivotY);
 			else
-				this.setOrigin(this.pivotX,this.pivotY);
+				this.setOrigin(this.pivotX, this.pivotY);
 		}
 
 		//fliperar el sprite (por default esta a la izquierda)
@@ -111,27 +108,34 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	}
 
 	playerInRange(wolf) {
-        return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y + this.difYetiandWolf < 5 && this.y - wolf.y + this.difYetiandWolf > -5);
+		return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y + this.difYetiandWolf < 5 && this.y - wolf.y + this.difYetiandWolf > -5);
 	}
 
 	checkAttack(wolf, game) {
+		console.log(this.anims.currentFrame.index);
 		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y yeti mirandolo
 			if (this.coolDown > this.maxcoolDown) {
+				this.body.setSize(0, this.heightsizeattack);
 				this.play('attackyeti', true);
-				let ice;
-				if (this.flipX){
-					ice = game.spawnIce(this.scene, this.x + this.distSpawnIce, this.y + this.distSpawnIceY, this);
-				}
-				else {
-					ice = game.spawnIce(this.scene, this.x - this.distSpawnIce, this.y + this.distSpawnIceY, this);
-				}
 				this.body.setVelocityX(0);
 				this.coolDown = 0;
+				this.isAttacking = true;
 			}
 		}
-		else if (this.anims.currentFrame.index === 9)
+		else if (this.anims.currentFrame.index === 8)
 			this.walk();
 
+		if (this.anims.currentFrame.index === 5 && this.isAttacking) //animacion de slam
+		{
+			this.isAttacking = false;
+			let ice;
+			if (this.flipX) {
+				ice = game.spawnIce(this.scene, this.x + this.distSpawnIce, this.y + this.distSpawnIceY, this);
+			}
+			else {
+				ice = game.spawnIce(this.scene, this.x - this.distSpawnIce, this.y + this.distSpawnIceY, this);
+			}
+		}
 		this.coolDown++;
 	}
 

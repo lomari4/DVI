@@ -75,7 +75,7 @@ export default class Game extends Phaser.Scene {
         this.load.image("slash", "./assets/mainCharacter/attackWolf.png");
 
         //ice Yeti
-        this.load.image("ice", "./assets/enemies/yeti_sprites/yeti_18.png");
+        this.load.image("ice", "./assets/enemies/yeti_sprites/ice.png");
 
         //MAPA
         //cargamos el tilemap

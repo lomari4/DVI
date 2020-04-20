@@ -5,7 +5,7 @@ export default class Ice extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this);
         
         this.coolDown = 0;
-        this.coolDownMax = 200;
+        this.coolDownMax = 100;
 
         this.scene.physics.add.existing(this); //enable body
 
