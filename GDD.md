@@ -85,8 +85,8 @@ Los escenarios de este juego serán bosques nevados que evolucionarán según el
 La evolución del nivel se puede ver en la siguiente imagen:
 ![transicion](https://i.imgur.com/RhrzzTT.png)
 
-El background de los niveles será este:
-![bg](https://i.imgur.com/JnFCODm.png)
+El background de los niveles cambiará cuando el nivel se complete:
+![bg](https://imgur.com/sXGeiDn)
 
 # 5. Música y sonidos
 La música de este juego pertenece a [Aaron Krogh](https://www.youtube.com/user/amkrogh89/featured "Aaron Krogh"), un compositor que deja que cualquiera use su música, ya sea para proyectos comerciales o no. De su gran librería de pistas, hemos escogido 5, una para la pantalla de título, para los 3 niveles y para el jefe final:
