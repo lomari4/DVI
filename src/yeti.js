@@ -11,6 +11,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		this.pivotY = 0.32;
 		this.pivotX = 0.25;
 		this.coolDown = 300;
+		this.rangeY = 5;
 		this.maxcoolDown = 300;
 		this.distSpawnIce = 180;
 		this.distSpawnIceY = 60;
@@ -108,7 +109,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	}
 
 	playerInRange(wolf) {
-		return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y + this.difYetiandWolf < 5 && this.y - wolf.y + this.difYetiandWolf > -5);
+		return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y + this.difYetiandWolf < this.rangeY && this.y - wolf.y + this.difYetiandWolf > -this.rangeY);
 	}
 
 	checkAttack(wolf, game) {

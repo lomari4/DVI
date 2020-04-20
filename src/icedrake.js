@@ -12,6 +12,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		this.heightsizeattack = 85;
 		this.distSpawnBeam = 70;
 		this.hurtflag = false;
+		this.rangeY = 1;
 		this.stunDelay = 3000;
 	}
 	
@@ -101,7 +102,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 	}
 
 	playerInRange(wolf) {
-		return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y - this.difDrakeandWolf < 1 && this.y - wolf.y - this.difDrakeandWolf > -1);
+		return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y - this.difDrakeandWolf < this.rangeY && this.y - wolf.y - this.difDrakeandWolf > -this.rangeY);
 	}
 
 	checkAttack(wolf, game) {
