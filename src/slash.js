@@ -17,7 +17,6 @@ export default class Slash extends Phaser.GameObjects.Sprite {
     }
 
     update(){
-        //this.body.setSize(50, 81);
         if(this.delay === this.maxDelay){
             this.destroy();
         }
