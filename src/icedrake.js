@@ -67,6 +67,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 	}
 
 	walk() {
+		this.body.setSize(0, this.heightsizewalk); //ajustar el collider
 		this.play('walkicedrake', true);
 		if (this.flipX)
 			this.body.setVelocityX(this.vel);
@@ -78,7 +79,6 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		super.preUpdate(t,dt);
 
 		if (!this.hurtflag && this.anims.currentAnim.key != 'attackicedrake') {
-			this.body.setSize(0, this.heightsizewalk); //ajustar el collider
 			this.walk();
 		}
 

@@ -63,6 +63,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 	}
 
 	walk() {
+		this.body.setSize(0, this.heightsizewalk); //ajustar el collider
         this.play('walkboar', true);
 		if (this.flipX)
 			this.body.setVelocityX(this.vel);
@@ -74,7 +75,6 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 		super.preUpdate(t,dt);
 
 		if (!this.hurtflag && this.anims.currentAnim.key != 'runboar') {
-			this.body.setSize(0, this.heightsizewalk); //ajustar el collider
 			this.walk();
 		}
 
