@@ -105,7 +105,6 @@ export default class Level2 extends Phaser.Scene {
 			this.game.gameOver(this.wolf, this);
 		
 		//si ha ganado, audio de game win y fade in del nuevo bg
-		//necesario hacerlo aqui por el winFlag
 		if (this.wolf.winGame && !this.winFlag) {
 			this.game.audio_gameWin();
 			this.game.bgFadeIn(this,this.level);
