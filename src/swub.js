@@ -45,6 +45,17 @@ export default class Swub extends Phaser.GameObjects.Sprite {
 
     }
 
+    walk() {
+        this.body.setSize(0, this.heightsizewalk); //ajustar el collider
+		this.play('walkswub', true);
+		if (this.flipX) {
+			this.body.setVelocityX(this.vel);
+		}
+		else {
+			this.body.setVelocityX(-this.vel);
+		}
+	}
+
     preUpdate(t,dt) {
         super.preUpdate(t,dt);
 
@@ -55,13 +66,7 @@ export default class Swub extends Phaser.GameObjects.Sprite {
             this.body.setVelocityX(this.vel); // turn right
         }
         if(!this.hurtflag){
-            this.body.setSize(0, this.heightsizewalk); //ajustar el collider
-            this.play('walkswub', true);
-            if(this.body.velocity.x === 0)
-                if(this.flipX)
-                    this.body.setVelocityX(this.vel);
-                else
-                    this.body.setVelocityX(-this.vel);
+            this.walk();
         }
         else{
             this.body.setSize(0, this.heightsizehurt); //ajustar el collider
