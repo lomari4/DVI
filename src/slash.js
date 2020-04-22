@@ -16,7 +16,8 @@ export default class Slash extends Phaser.GameObjects.Sprite {
         scene.slash.add(this);
     }
 
-    update(){
+    preUpdate(t,dt){
+        super.preUpdate(t,dt);
         if(this.delay === this.maxDelay){
             this.destroy();
         }

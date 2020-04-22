@@ -527,7 +527,7 @@ export default class Game extends Phaser.Scene {
     }
 
     //CHECKS//
-    //UPDATE DE LOS ENEMIGOS//
+    //CHECK ATAQUES DE LOS ENEMIGOS//
     enemyUpdate(scene,enemies,player){
         enemies.getChildren().forEach(function (item) {
             //Funcion atacar
@@ -535,20 +535,18 @@ export default class Game extends Phaser.Scene {
                 item.checkAttack(player, this, scene);
         }, this);
     }
-    //UPDATE DE PROYECTILES
+    //CHECK DE PROYECTILES
     checkBeams(scene,projectiles,player,game){
         for (let i = 0; i < projectiles.getChildren().length; i++) {
             let beam = projectiles.getChildren()[i];
             scene.physics.add.overlap(player, beam, game.knockBack, game.hitBeam, game.overlapcallback, scene);
-            beam.update(player, game);
         }
     }
-    //UPDATE DE ICES
+    //CHECK DE ICES
     checkIces(scene,ices,player,game){
         for (let i = 0; i < ices.getChildren().length; i++) {
             let ice = ices.getChildren()[i];
             scene.physics.add.overlap(player, ice, game.knockBack, game.overlapcallback, scene);
-            ice.update(player, game);
         }
     }
     //ATAQUE DEL JUGADOR
@@ -561,7 +559,6 @@ export default class Game extends Phaser.Scene {
                     scene.game.delayStun(scene, item);
                 }
             }, scene);
-            temp.update();
         }
     }
     //VER OVERLAPS DEL JUGADOR CON LOS ENEMIGOS
