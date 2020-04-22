@@ -4,10 +4,9 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		super(scene, x, y, 'yeti');
 		this.vel = 40;
 		this.distancetowolf = 250;
-		this.heightsizeattack = 115;
 		this.hurtflag = false;
 		this.stunDelay = 3000;
-		this.difYetiandWolf = 24;
+		this.difYetiandWolf = 30;
 		this.pivotY = 0.32;
 		this.pivotX = 0.25;
 		this.coolDown = 300;
@@ -68,7 +67,6 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	}
 
 	walk() {
-		//this.body.setSize(0, this.heightsizewalk); //ajustar el collider
 		this.play('walkyeti', true);
 		if (this.flipX) {
 			this.setOrigin(0.5, this.pivotY);
@@ -80,7 +78,9 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		}
 	}
 
-	update() {
+	preUpdate(t,dt) {
+		super.preUpdate(t,dt);
+
 		if (!this.hurtflag && this.anims.currentAnim.key != 'attackyeti') {
 			this.walk();
 		}
@@ -116,7 +116,6 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		console.log(this.anims.currentFrame.index);
 		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y yeti mirandolo
 			if (this.coolDown > this.maxcoolDown) {
-				this.body.setSize(0, this.heightsizeattack);
 				this.play('attackyeti', true);
 				this.body.setVelocityX(0);
 				this.coolDown = 0;

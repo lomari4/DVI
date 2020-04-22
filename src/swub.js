@@ -45,7 +45,8 @@ export default class Swub extends Phaser.GameObjects.Sprite {
 
     }
 
-    update() {
+    preUpdate(t,dt) {
+        super.preUpdate(t,dt);
 
         if (this.body.touching.right || this.body.blocked.right) {
             this.body.setVelocityX(-this.vel); // turn left

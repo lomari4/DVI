@@ -97,10 +97,12 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         });
     }
 
-    update(game) {
+    preUpdate(t,dt){
+        super.preUpdate(t,dt);
         this.body.setSize(0, this.heightsize); //ajustar el collider
-        //this.setOrigin(0.5,0.5);
+    }
 
+    update(game) {
         //izquierda
         if (this.cursors.A.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.isAlive() && !this.winGame) {
             this.body.setVelocityX(-this.vel);
@@ -131,10 +133,6 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
             //idle
             if (this.body.onFloor())
                 this.play('idlewolf', true);
-            /* a veces el sprite no toca el suelo cuando corre, por lo que no añadimos la animacion de caida
-            else
-                this.play('jump', true);
-            */
         }
         //saltar
         if (this.cursors.W.isDown && this.body.onFloor() && this.isAlive() && !this.winGame) {

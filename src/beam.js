@@ -36,14 +36,16 @@ export default class Beam extends Phaser.GameObjects.Sprite {
                 end: 26,
                 zeroPad: 2
             }),
-            frameRate: 3,
+            frameRate: 7,
             repeat: -1,
 
         });
     }
 
-    update(player,game) {
+    preUpdate(t,dt) {
+        super.preUpdate(t,dt);
         this.body.setSize(80, 20);
+        
         if (this.x < this.mapBoundaryLeft || this.x > this.mapBoundaryRight) //se va del mapa
             this.destroy();  
     }

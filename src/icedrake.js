@@ -8,12 +8,13 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		this.difDrakeandWolf = 16;
 		this.distancetowolf = 600;
 		this.heightsizewalk = 70;
+		this.heightsizeattack = 83;
 		this.heightsizehurt = 84;
-		this.heightsizeattack = 85;
 		this.distSpawnBeam = 70;
 		this.hurtflag = false;
-		this.rangeY = 1;
+		this.rangeY = 2;
 		this.stunDelay = 3000;
+		this.isAttacking = false;
 	}
 	
 	addPhysics() {
@@ -66,7 +67,6 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 	}
 
 	walk() {
-		this.body.setSize(0, this.heightsizewalk); //ajustar el collider
 		this.play('walkicedrake', true);
 		if (this.flipX)
 			this.body.setVelocityX(this.vel);
@@ -74,9 +74,11 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			this.body.setVelocityX(-this.vel);
 	}
 
-	update() {
+	preUpdate(t,dt){
+		super.preUpdate(t,dt);
 
 		if (!this.hurtflag && this.anims.currentAnim.key != 'attackicedrake') {
+			this.body.setSize(0, this.heightsizewalk); //ajustar el collider
 			this.walk();
 		}
 
@@ -88,9 +90,12 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		}
 
 		if (this.hurtflag) {
-			this.body.setSize(0, this.heightsizehurt); //ajustar el collider
+			this.body.setSize(0, this.heightsizehurt);
 			this.play('hurticedrake', false);
 			this.body.setVelocityX(0);
+		}
+		if(this.isAttacking){
+			this.body.setSize(0, this.heightsizeattack);
 		}
 
 		//fliperar el sprite (por default esta a la izquierda)
@@ -100,7 +105,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			this.setFlipX(false); //izquierda
 
 	}
-
+	
 	playerInRange(wolf) {
 		return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y - this.difDrakeandWolf < this.rangeY && this.y - wolf.y - this.difDrakeandWolf > -this.rangeY);
 	}
@@ -108,7 +113,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 	checkAttack(wolf, game) {
 		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y dragon mirandolo
 			if (this.coolDown > this.maxcoolDown) {
-				this.body.setSize(0, this.heightsizeattack); //ajustar el collider
+				this.isAttacking = true;
 				this.play('attackicedrake', true);
 				let beam;
 				if (this.flipX)
@@ -120,7 +125,8 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 				this.body.setVelocityX(0);
 			}
 		}
-		else if (this.anims.currentFrame.index === 5) {
+		if (this.anims.currentFrame.index === 5) {
+			this.isAttacking = false;
 			this.walk();
 		}
 		this.coolDown++;

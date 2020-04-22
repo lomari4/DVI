@@ -7,6 +7,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 		this.difBoarandWolf = 6;
 		this.distancetowolf = 580;
 		this.heightsizewalk = 85;
+		this.heightsizeattack = 85;
 		this.heightsizehurt = 95;
 		this.rangeY = 7;
 		this.hurtflag = false;
@@ -62,7 +63,6 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 	}
 
 	walk() {
-		this.body.setSize(0, this.heightsizewalk); //ajustar el collider
         this.play('walkboar', true);
 		if (this.flipX)
 			this.body.setVelocityX(this.vel);
@@ -70,9 +70,11 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 			this.body.setVelocityX(-this.vel);
 	}
 
-	update() {
+	preUpdate(t,dt) {
+		super.preUpdate(t,dt);
 
 		if (!this.hurtflag && this.anims.currentAnim.key != 'runboar') {
+			this.body.setSize(0, this.heightsizewalk); //ajustar el collider
 			this.walk();
 		}
 
@@ -87,6 +89,9 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 			this.body.setSize(0, this.heightsizehurt); //ajustar el collider
 			this.play('hurtboar', false);
 			this.body.setVelocityX(0);
+		}
+		if(this.isAttacking){
+			this.body.setSize(0, this.heightsizeattack);
 		}
 
 		//fliperar el sprite (por default esta a la izquierda)
@@ -103,15 +108,18 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 
 	checkAttack(wolf, game) {
 		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y boar mirandolo
+			this.isAttacking = true;
 			this.play('runboar', true);
-			this.sprint = true;
             if (this.flipX)
                 this.body.setVelocityX(this.velplus);
             else
                 this.body.setVelocityX(-this.velplus);
 		}
-		else if (this.anims.currentFrame.index === 5)
+		else if (this.anims.currentFrame.index === 5){
+			this.isAttacking = false;
 			this.walk();
+		}
+			
 	}
 
 }

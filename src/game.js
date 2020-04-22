@@ -131,7 +131,7 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
+            this.scene.start("Level2"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
@@ -530,7 +530,6 @@ export default class Game extends Phaser.Scene {
     //UPDATE DE LOS ENEMIGOS//
     enemyUpdate(scene,enemies,player){
         enemies.getChildren().forEach(function (item) {
-            item.update();
             //Funcion atacar
             if (!item.hurtflag)
                 item.checkAttack(player, this, scene);
