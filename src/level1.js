@@ -79,15 +79,13 @@ export default class Level1 extends Phaser.Scene {
 			this.counter += this.game.checkIfMelt(this.wolf,this.game,this.groundLayer);
 
 			//ATAQUES Y OVERLAPS
-			//update y overlap de los proyectiles del dragon
+			//overlap de los proyectiles del dragon
 			this.game.checkBeams(this,this.projectiles,this.wolf,this.game);
-			//update y overlap de los ices del yeti
+			//overlap de los ices del yeti
 			this.game.checkIces(this,this.ices,this.wolf,this.game);
-
 			//overlap del ataque del jugador
 			this.game.checkPlayerAttack(this,this.slash,this.enemies,this.game);
-
-			//funcion overlap para colisiones con el jugador
+			//overlap para colisiones con el jugador
 			this.game.checkPlayerisAttacked(this,this.wolf,this.enemies,this.game);
 		}
 
