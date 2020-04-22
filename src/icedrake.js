@@ -15,8 +15,9 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 		this.rangeY = 2;
 		this.stunDelay = 3000;
 		this.isAttacking = false;
+		this.winGame = false;
 	}
-	
+
 	addPhysics() {
 		this.scene.add.existing(this);
 		this.scene.physics.add.existing(this); //enable body
@@ -75,43 +76,44 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 			this.body.setVelocityX(-this.vel);
 	}
 
-	preUpdate(t,dt){
-		super.preUpdate(t,dt);
+	preUpdate(t, dt) {
+		if (!this.winGame) {
+			super.preUpdate(t, dt);
 
-		if (!this.hurtflag && this.anims.currentAnim.key != 'attackicedrake') {
-			this.walk();
-		}
+			if (!this.hurtflag && this.anims.currentAnim.key != 'attackicedrake') {
+				this.walk();
+			}
 
-		if (this.body.touching.right || this.body.blocked.right) {
-			this.body.setVelocityX(-this.vel); // turn left
-		}
-		else if (this.body.touching.left || this.body.blocked.left) {
-			this.body.setVelocityX(this.vel); // turn right
-		}
+			if (this.body.touching.right || this.body.blocked.right) {
+				this.body.setVelocityX(-this.vel); // turn left
+			}
+			else if (this.body.touching.left || this.body.blocked.left) {
+				this.body.setVelocityX(this.vel); // turn right
+			}
 
-		if (this.hurtflag) {
-			this.body.setSize(0, this.heightsizehurt);
-			this.play('hurticedrake', false);
-			this.body.setVelocityX(0);
-		}
-		if(this.isAttacking){
-			this.body.setSize(0, this.heightsizeattack);
-		}
+			if (this.hurtflag) {
+				this.body.setSize(0, this.heightsizehurt);
+				this.play('hurticedrake', false);
+				this.body.setVelocityX(0);
+			}
+			if (this.isAttacking) {
+				this.body.setSize(0, this.heightsizeattack);
+			}
 
-		//fliperar el sprite (por default esta a la izquierda)
-		if (this.body.velocity.x > 0)
-			this.setFlipX(true); //derecha
-		else if (this.body.velocity.x < 0)
-			this.setFlipX(false); //izquierda
-
+			//fliperar el sprite (por default esta a la izquierda)
+			if (this.body.velocity.x > 0)
+				this.setFlipX(true); //derecha
+			else if (this.body.velocity.x < 0)
+				this.setFlipX(false); //izquierda
+		}
 	}
-	
+
 	playerInRange(wolf) {
 		return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y - this.difDrakeandWolf < this.rangeY && this.y - wolf.y - this.difDrakeandWolf > -this.rangeY);
 	}
 
 	checkAttack(wolf, game) {
-		if(wolf.isAlive()){
+		if (wolf.isAlive()) {
 			if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y dragon mirandolo
 				if (this.coolDown > this.maxcoolDown) {
 					this.isAttacking = true;

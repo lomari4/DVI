@@ -455,6 +455,7 @@ export default class Game extends Phaser.Scene {
         player.body.setVelocityX(0);
         player.anims.stop();
         enemies.getChildren().forEach(function (item) {
+            item.winGame = true;
             item.body.setVelocityX(0);
             item.anims.stop();
         }, this);

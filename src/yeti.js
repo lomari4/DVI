@@ -15,6 +15,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		this.distSpawnIce = 180;
 		this.distSpawnIceY = 60;
 		this.isAttacking = false;
+		this.winGame = false;
 	}
 
 	addPhysics() {
@@ -78,33 +79,36 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		}
 	}
 
-	preUpdate(t,dt) {
-		super.preUpdate(t,dt);
+	preUpdate(t, dt) {
+		if (!this.winGame) {
+			super.preUpdate(t, dt);
 
-		if (!this.hurtflag && this.anims.currentAnim.key != 'attackyeti') {
-			this.walk();
-		}
-		if (this.body.touching.right || this.body.blocked.right) {
-			this.body.setVelocityX(-this.vel); // turn left
-		}
-		else if (this.body.touching.left || this.body.blocked.left) {
-			this.body.setVelocityX(this.vel); // turn right
-		}
+			if (!this.hurtflag && this.anims.currentAnim.key != 'attackyeti') {
+				this.walk();
+			}
+			if (this.body.touching.right || this.body.blocked.right) {
+				this.body.setVelocityX(-this.vel); // turn left
+			}
+			else if (this.body.touching.left || this.body.blocked.left) {
+				this.body.setVelocityX(this.vel); // turn right
+			}
 
-		if (this.hurtflag) {
-			this.play('hurtyeti', false);
-			this.body.setVelocityX(0);
-			if (this.flipX)
-				this.setOrigin(0.5, this.pivotY);
-			else
-				this.setOrigin(this.pivotX, this.pivotY);
-		}
+			if (this.hurtflag) {
+				this.play('hurtyeti', false);
+				this.body.setVelocityX(0);
+				if (this.flipX)
+					this.setOrigin(0.5, this.pivotY);
+				else
+					this.setOrigin(this.pivotX, this.pivotY);
+			}
 
-		//fliperar el sprite (por default esta a la izquierda)
-		if (this.body.velocity.x > 0)
-			this.setFlipX(true); //derecha
-		else if (this.body.velocity.x < 0)
-			this.setFlipX(false); //izquierda
+			//fliperar el sprite (por default esta a la izquierda)
+			if (this.body.velocity.x > 0)
+				this.setFlipX(true); //derecha
+			else if (this.body.velocity.x < 0)
+				this.setFlipX(false); //izquierda
+
+		}
 
 	}
 
@@ -113,7 +117,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	}
 
 	checkAttack(wolf, game) {
-		if(wolf.isAlive()){
+		if (wolf.isAlive()) {
 			if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y yeti mirandolo
 				if (this.coolDown > this.maxcoolDown) {
 					this.play('attackyeti', true);
