@@ -7,10 +7,8 @@ export default class Beam extends Phaser.GameObjects.Sprite {
         this.vel = 230;
 
         this.scene.add.existing(this);
-
-
         this.scene.physics.add.existing(this); //enable body
-        //this.body.setCollideWorldBounds(true);
+      
         if (enemy.flipX) {
             this.body.setVelocityX(this.vel);
             this.setFlipX(true);
@@ -24,6 +22,7 @@ export default class Beam extends Phaser.GameObjects.Sprite {
 
         this.mapBoundaryLeft = -70;
         this.mapBoundaryRight = 3300;
+        this.body.syncBounds = true; 
     }
 
     createAnims() {
@@ -44,8 +43,6 @@ export default class Beam extends Phaser.GameObjects.Sprite {
 
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
-        this.body.setSize(80, 20);
-
         if (this.x < this.mapBoundaryLeft || this.x > this.mapBoundaryRight) //se va del mapa
             this.destroy();
     }

@@ -18,6 +18,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.vel = 300;
         this.jumpvel = -420;
         this.heightsize = 100;
+        this.heightsizedead = 52;
         this.knockBackUP = 300;
         this.knockBackSIDE = 200;
     }
@@ -82,7 +83,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
                 end: 15,
                 zeroPad: 2
             }),
-            frameRate: 1.5,
+            frameRate: 2,
         });
         this.scene.anims.create({
             key: 'deadwolf',
@@ -93,7 +94,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
                 end: 16,
                 zeroPad: 2
             }),
-            frameRate: 1.5,
+            frameRate: 1,
         });
     }
 

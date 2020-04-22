@@ -67,10 +67,10 @@ export default class Game extends Phaser.Scene {
 
         //GENERAL
         //añadimos imagen de las vidas
-        this.load.image('hud_full', 'assets/hud/hud1.png');
-        this.load.image('hud_2left', 'assets/hud/hud2.png');
-        this.load.image('hud_1left', 'assets/hud/hud3.png');
-        this.load.image('hud_empty', 'assets/hud/hud4.png');
+        this.load.image('hud_full', './assets/hud/hud1.png');
+        this.load.image('hud_2left', './assets/hud/hud2.png');
+        this.load.image('hud_1left', './assets/hud/hud3.png');
+        this.load.image('hud_empty', './assets/hud/hud4.png');
         //slash player
         this.load.image("slash", "./assets/mainCharacter/attackWolf.png");
 
@@ -500,7 +500,7 @@ export default class Game extends Phaser.Scene {
         //animacion de muerto
         player.body.setVelocityX(0);
         player.play("deadwolf");
-        player.body.setSize(0, 52); //ajustar el collider
+        player.body.setSize(0, player.heightsizedead); //ajustar el collider
 
         scene.music.stop();
     }
@@ -553,7 +553,6 @@ export default class Game extends Phaser.Scene {
     //ATAQUE DEL JUGADOR
     checkPlayerAttack(scene, slash, enemies, game) {
         for (let i = 0; i < slash.getChildren().length; i++) {
-            let temp = slash.getChildren()[i];
             enemies.getChildren().forEach(function (item) {
                 if (!item.hurtflag) {
                     scene.physics.add.overlap(item, slash, game.stunEnemy, null, scene);
