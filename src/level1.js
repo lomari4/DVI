@@ -16,13 +16,13 @@ export default class Level1 extends Phaser.Scene {
 		this.winFlag = false;
 
 		//añadimos el sonido
-		this.music = this.game.addSoundtrack(this.level,this);
+		this.music = this.game.addSoundtrack(this.level, this);
 		this.music.setLoop(true);
 		this.music.play();
 
 		//MAPA//
 		this.map = this.game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
-		this.background = this.game.addBackground(this,this.level);
+		this.background = this.game.addBackground(this, this.level);
 		this.groundLayer = this.game.addGround(this, this.map);
 		let enemy_collisionLayer = this.game.addEnemyCollision(this.map);
 
@@ -70,41 +70,41 @@ export default class Level1 extends Phaser.Scene {
 			this.wolf.update(this.game);
 
 			//update de los enemigos
-			this.game.enemyUpdate(this,this.enemies,this.wolf);
+			this.game.enemyUpdate(this, this.enemies, this.wolf);
 
 			//FUNCION DE CONGELAR EL SUELO DE LOS SWUB
-			this.counter -= this.game.checkIfFreeze(this,this.enemies,this.wolf,this.game,this.groundLayer);
+			this.counter -= this.game.checkIfFreeze(this, this.enemies, this.wolf, this.game, this.groundLayer);
 
 			//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
-			this.counter += this.game.checkIfMelt(this.wolf,this.game,this.groundLayer);
+			this.counter += this.game.checkIfMelt(this.wolf, this.game, this.groundLayer);
 
 			//ATAQUES Y OVERLAPS
 			//overlap de los proyectiles del dragon
-			this.game.checkBeams(this,this.projectiles,this.wolf,this.game);
+			this.game.checkBeams(this, this.projectiles, this.wolf, this.game);
 			//overlap de los ices del yeti
-			this.game.checkIces(this,this.ices,this.wolf,this.game);
+			this.game.checkIces(this, this.ices, this.wolf, this.game);
 			//overlap del ataque del jugador
-			this.game.checkPlayerAttack(this,this.slash,this.enemies,this.game);
+			this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
 			//overlap para colisiones con el jugador
-			this.game.checkPlayerisAttacked(this,this.wolf,this.enemies,this.game);
+			this.game.checkPlayerisAttacked(this, this.wolf, this.enemies, this.game);
 		}
 
 		//MUESTRA EL PROGRESO AL JUGADOR
 		this.game.showProgress(this.counter, this.checkWin);
 
 		//COMPRUEBA SI HA GANADO
-		this.game.checkIfWin(this,this.counter,this.checkWin,this.wolf,this.enemies,this.game,this.level);
-		
+		this.game.checkIfWin(this, this.counter, this.checkWin, this.wolf, this.enemies, this.game, this.level);
+
 		//COMPRUEBA SI HA PERDIDO
-		if(!this.wolf.loseGame)
-			this.game.checkIfLose(this,this.wolf,this.game,this.level);
-		if(this.wolf.loseGame)
+		if (!this.wolf.loseGame)
+			this.game.checkIfLose(this, this.wolf, this.game, this.level);
+		if (this.wolf.loseGame)
 			this.game.gameOver(this.wolf, this);
-		
+
 		//si ha ganado, audio de game win y fade in del nuevo bg
 		if (this.wolf.winGame && !this.winFlag) {
 			this.game.audio_gameWin();
-			this.game.bgFadeIn(this,this.level);
+			this.game.bgFadeIn(this, this.level);
 			this.winFlag = true;
 		}
 

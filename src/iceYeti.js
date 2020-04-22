@@ -3,7 +3,7 @@ export default class Ice extends Phaser.GameObjects.Sprite {
         super(scene, x, y, "ice");
 
         this.scene.add.existing(this);
-        
+
         this.coolDown = 0;
         this.coolDownMax = 100;
 
@@ -20,10 +20,10 @@ export default class Ice extends Phaser.GameObjects.Sprite {
 
     }
 
-    preUpdate(t,dt) {
-        super.preUpdate(t,dt);
+    preUpdate(t, dt) {
+        super.preUpdate(t, dt);
         if (this.coolDown > this.coolDownMax)
-            this.destroy();  
+            this.destroy();
         this.coolDown++;
     }
 }

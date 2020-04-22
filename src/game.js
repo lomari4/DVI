@@ -41,7 +41,7 @@ export default class Game extends Phaser.Scene {
         this.load.audio("menu_select_sound", "./assets/music/effects/menu_select.wav");
         //sonido hover de boton
         this.load.audio("menu_hover_sound", "./assets/music/effects/menu_hover.mp3");
-        
+
         //GAME OVER SCREEN
         this.load.image("menu_Button", "./assets/menu_button.png");
         this.load.image("retry_Button", "./assets/retry_button.png");
@@ -111,10 +111,10 @@ export default class Game extends Phaser.Scene {
         let sounds = this.sound.add("menuSound");
         sounds.play();
 
-        let menuSelect = this.sound.add("menu_select_sound",{
+        let menuSelect = this.sound.add("menu_select_sound", {
             volume: 0.40,
         });
-        let menuHover = this.sound.add("menu_hover_sound",{
+        let menuHover = this.sound.add("menu_hover_sound", {
             volume: 2,
         });
 
@@ -157,7 +157,7 @@ export default class Game extends Phaser.Scene {
     addMap(scene, level) {
         //añadimos el mapa dependiendo del nivel
         let map;
-        switch(level){ 
+        switch (level) {
             case 1: map = scene.make.tilemap({
                 key: 'map1',
                 tileWidth: 64,
@@ -183,10 +183,10 @@ export default class Game extends Phaser.Scene {
     }
 
     //BACKGROUND//
-    addBackground(scene,level) {
+    addBackground(scene, level) {
         //añadimos el background que tiene fullscreen de funcionalidad
         let bg;
-        switch(level){ //ver en que nivel estamos para elegir bg
+        switch (level) { //ver en que nivel estamos para elegir bg
             case 1: bg = scene.add.image(0, -950, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
             case 2: bg = scene.add.image(0, -400, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
             case 3: bg = scene.add.image(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
@@ -224,13 +224,13 @@ export default class Game extends Phaser.Scene {
     }
 
     //COLISIONES DE LOS ENEMIGOS//
-    addEnemyPhysics(scene,enemies, groundLayer, enemy_collisionLayer){
+    addEnemyPhysics(scene, enemies, groundLayer, enemy_collisionLayer) {
         scene.physics.add.collider(enemies, groundLayer);
-		scene.physics.add.collider(enemies, enemy_collisionLayer);
+        scene.physics.add.collider(enemies, enemy_collisionLayer);
         scene.physics.add.collider(enemies, enemies);
-        enemies.getChildren().forEach(function (item) { 
-			item.addPhysics();
-		}, scene);
+        enemies.getChildren().forEach(function (item) {
+            item.addPhysics();
+        }, scene);
     }
 
     //CAMARA//
@@ -241,9 +241,9 @@ export default class Game extends Phaser.Scene {
     }
 
     //AUDIOS//
-    addSoundtrack(level,scene){
+    addSoundtrack(level, scene) {
         let s;
-        switch(level){ 
+        switch (level) {
             case 1: s = scene.sound.add("level1_sound"); break;
             case 2: s = scene.sound.add("level2_sound"); break;
             case 3: s = scene.sound.add("level3_sound"); break;
@@ -368,7 +368,7 @@ export default class Game extends Phaser.Scene {
                 player.body.setVelocityY(-player.knockBackSIDE);
                 player.body.setVelocityX(player.knockBackSIDE);
             }
-            else{
+            else {
                 player.body.setVelocityY(-player.knockBackUP);
             }
             player.play('hurtwolf', false);
@@ -376,7 +376,7 @@ export default class Game extends Phaser.Scene {
         }
 
     }
-    hitBeam(player, beam){
+    hitBeam(player, beam) {
         if (!player.invincible) {
             beam.destroy();
         }
@@ -451,7 +451,7 @@ export default class Game extends Phaser.Scene {
     }
 
     //WIN GAME//
-    winGame(player,scene, enemies) {
+    winGame(player, scene, enemies) {
         player.body.setVelocityX(0);
         player.anims.stop();
         enemies.getChildren().forEach(function (item) {
@@ -463,10 +463,10 @@ export default class Game extends Phaser.Scene {
         winLetters.setScrollFactor(0);
         scene.music.stop();
     }
-    bgFadeIn(scene,level) {
+    bgFadeIn(scene, level) {
         //tween para el fade in del nuevo background
         let win;
-        switch(level){ //ver en que nivel estamos para elegir bg
+        switch (level) { //ver en que nivel estamos para elegir bg
             case 1: win = scene.add.image(0, -950, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
             case 2: win = scene.add.image(0, -400, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
             case 3: win = scene.add.image(0, 0, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
@@ -529,7 +529,7 @@ export default class Game extends Phaser.Scene {
 
     //CHECKS//
     //CHECK ATAQUES DE LOS ENEMIGOS//
-    enemyUpdate(scene,enemies,player){
+    enemyUpdate(scene, enemies, player) {
         enemies.getChildren().forEach(function (item) {
             //Funcion atacar
             if (!item.hurtflag)
@@ -537,21 +537,21 @@ export default class Game extends Phaser.Scene {
         }, this);
     }
     //CHECK DE PROYECTILES
-    checkBeams(scene,projectiles,player,game){
+    checkBeams(scene, projectiles, player, game) {
         for (let i = 0; i < projectiles.getChildren().length; i++) {
             let beam = projectiles.getChildren()[i];
             scene.physics.add.overlap(player, beam, game.knockBack, game.hitBeam, game.overlapcallback, scene);
         }
     }
     //CHECK DE ICES
-    checkIces(scene,ices,player,game){
+    checkIces(scene, ices, player, game) {
         for (let i = 0; i < ices.getChildren().length; i++) {
             let ice = ices.getChildren()[i];
             scene.physics.add.overlap(player, ice, game.knockBack, game.overlapcallback, scene);
         }
     }
     //ATAQUE DEL JUGADOR
-    checkPlayerAttack(scene,slash,enemies,game){
+    checkPlayerAttack(scene, slash, enemies, game) {
         for (let i = 0; i < slash.getChildren().length; i++) {
             let temp = slash.getChildren()[i];
             enemies.getChildren().forEach(function (item) {
@@ -563,7 +563,7 @@ export default class Game extends Phaser.Scene {
         }
     }
     //VER OVERLAPS DEL JUGADOR CON LOS ENEMIGOS
-    checkPlayerisAttacked(scene,player,enemies,game){
+    checkPlayerisAttacked(scene, player, enemies, game) {
         if (player.isAlive() && !player.winGame) {
             scene.physics.add.overlap(player, enemies, game.knockBack, game.overlapcallback, scene);
         }
@@ -579,8 +579,8 @@ export default class Game extends Phaser.Scene {
 
         }
     }
-	//FUNCION SWUB VER SI CONGELA
-    checkIfFreeze(scene,enemies,player,game,groundLayer){
+    //FUNCION SWUB VER SI CONGELA
+    checkIfFreeze(scene, enemies, player, game, groundLayer) {
         let counter = 0;
         enemies.getChildren().forEach(function (item) {
             if (item.texture.key === 'swub') {
@@ -594,7 +594,7 @@ export default class Game extends Phaser.Scene {
         return counter;
     }
     //FUNCION DE JUGADOR VER SI DESCONGELA
-    checkIfMelt(player,game,groundLayer){
+    checkIfMelt(player, game, groundLayer) {
         let counter = 0;
         if (player.body.onFloor() && player.isAlive()) {
             //rango de descongelacion del lobo: delante,medio,atras
@@ -605,22 +605,22 @@ export default class Game extends Phaser.Scene {
         return counter;
     }
     //VER SI HA GANADO
-    checkIfWin(scene,counter,checkWin,player,enemies,game,level){
+    checkIfWin(scene, counter, checkWin, player, enemies, game, level) {
         if (counter === checkWin) {
             game.winGame(player, scene, enemies);
             player.winGame = true;
-			//delay para pasar al siguiente nivel para que de tiempo escuchar la musica y fade in
-			scene.time.delayedCall(7600, game.nextLevel, [level], scene);
-		}    
+            //delay para pasar al siguiente nivel para que de tiempo escuchar la musica y fade in
+            scene.time.delayedCall(7600, game.nextLevel, [level], scene);
+        }
     }
     //VER SI HA PERDIDO
-    checkIfLose(scene,player,game,level){
+    checkIfLose(scene, player, game, level) {
         if (!player.isAlive()) { //ha perdido
             player.loseGame = true;
-			//delay para la escena Game over
-			scene.time.delayedCall(3000, game.sceneGameOver, [level], scene);
-		}
+            //delay para la escena Game over
+            scene.time.delayedCall(3000, game.sceneGameOver, [level], scene);
+        }
     }
-    
+
 
 }

@@ -14,10 +14,10 @@ export default class GameOver extends Phaser.Scene {
 
     create() {
         this.checkLevel(); //ver que nivel ha llamado al game over
-        let menuSelect = this.sound.add("menu_select_sound",{
+        let menuSelect = this.sound.add("menu_select_sound", {
             volume: 0.40,
         });
-        let menuHover = this.sound.add("menu_hover_sound",{
+        let menuHover = this.sound.add("menu_hover_sound", {
             volume: 2,
         });
 
