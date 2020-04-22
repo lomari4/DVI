@@ -113,30 +113,31 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	}
 
 	checkAttack(wolf, game) {
-		console.log(this.anims.currentFrame.index);
-		if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y yeti mirandolo
-			if (this.coolDown > this.maxcoolDown) {
-				this.play('attackyeti', true);
-				this.body.setVelocityX(0);
-				this.coolDown = 0;
-				this.isAttacking = true;
+		if(wolf.isAlive()){
+			if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y yeti mirandolo
+				if (this.coolDown > this.maxcoolDown) {
+					this.play('attackyeti', true);
+					this.body.setVelocityX(0);
+					this.coolDown = 0;
+					this.isAttacking = true;
+				}
 			}
-		}
-		else if (this.anims.currentFrame.index === 8)
-			this.walk();
+			else if (this.anims.currentFrame.index === 8)
+				this.walk();
 
-		if (this.anims.currentFrame.index === 5 && this.isAttacking) //animacion de slam
-		{
-			this.isAttacking = false;
-			let ice;
-			if (this.flipX) {
-				ice = game.spawnIce(this.scene, this.x + this.distSpawnIce, this.y + this.distSpawnIceY, this);
+			if (this.anims.currentFrame.index === 5 && this.isAttacking) //animacion de slam
+			{
+				this.isAttacking = false;
+				let ice;
+				if (this.flipX) {
+					ice = game.spawnIce(this.scene, this.x + this.distSpawnIce, this.y + this.distSpawnIceY, this);
+				}
+				else {
+					ice = game.spawnIce(this.scene, this.x - this.distSpawnIce, this.y + this.distSpawnIceY, this);
+				}
 			}
-			else {
-				ice = game.spawnIce(this.scene, this.x - this.distSpawnIce, this.y + this.distSpawnIceY, this);
-			}
+			this.coolDown++;
 		}
-		this.coolDown++;
 	}
 
 }

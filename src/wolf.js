@@ -98,8 +98,10 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
     }
 
     preUpdate(t,dt){
-        super.preUpdate(t,dt);
-        this.body.setSize(0, this.heightsize); //ajustar el collider
+        if(this.isAlive()){
+            super.preUpdate(t,dt);
+            this.body.setSize(0, this.heightsize); //ajustar el collider
+        }
     }
 
     update(game) {
