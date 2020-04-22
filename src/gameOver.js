@@ -22,7 +22,7 @@ export default class GameOver extends Phaser.Scene {
         });
 
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - this.heighttoGameOver, "gameOver").setDepth(1);
-        let botonMenu = this.add.sprite(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "menu_Button").setDepth(1).setInteractive();
+        let botonMenu = this.add.image(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "menu_Button").setDepth(1).setInteractive();
         botonMenu.on("pointerover", () => {
             menuHover.play();
             botonMenu.setTexture('menu_Button_hover');
@@ -36,7 +36,7 @@ export default class GameOver extends Phaser.Scene {
             this.scene.start("Game"); //menu
         });
 
-        let botonLevel = this.add.sprite(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "retry_Button").setDepth(1).setInteractive();
+        let botonLevel = this.add.image(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "retry_Button").setDepth(1).setInteractive();
         botonLevel.on("pointerover", () => {
             menuHover.play();
             botonLevel.setTexture('retry_Button_hover');

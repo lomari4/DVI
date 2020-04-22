@@ -104,8 +104,8 @@ export default class Game extends Phaser.Scene {
         //Añadimos las Imagenes y el sonido
         this.add.image(0, 0, "title_bg").setOrigin(0).setDepth(0);
         this.add.image(this.game.renderer.width / 2, this.game.renderer.width * 0.19, "logo").setDepth(1);
-        let clickButton = this.add.sprite(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "playButton").setDepth(1).setInteractive();
-        let helpButton = this.add.sprite(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "helpButton").setDepth(1).setInteractive();
+        let clickButton = this.add.image(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "playButton").setDepth(1).setInteractive();
+        let helpButton = this.add.image(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "helpButton").setDepth(1).setInteractive();
 
         this.sound.pauseOnBlur = false;
         let sounds = this.sound.add("menuSound");
@@ -187,10 +187,10 @@ export default class Game extends Phaser.Scene {
         //añadimos el background que tiene fullscreen de funcionalidad
         let bg;
         switch(level){ //ver en que nivel estamos para elegir bg
-            case 1: bg = scene.add.sprite(0, -950, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
-            case 2: bg = scene.add.sprite(0, -400, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
-            case 3: bg = scene.add.sprite(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
-            case 4: bg = scene.add.sprite(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
+            case 1: bg = scene.add.image(0, -950, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
+            case 2: bg = scene.add.image(0, -400, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
+            case 3: bg = scene.add.image(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
+            case 4: bg = scene.add.image(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
         }
         bg.on('pointerup', function () {
             if (scene.scale.isFullscreen)
@@ -466,10 +466,10 @@ export default class Game extends Phaser.Scene {
         //tween para el fade in del nuevo background
         let win;
         switch(level){ //ver en que nivel estamos para elegir bg
-            case 1: win = scene.add.sprite(0, -950, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
-            case 2: win = scene.add.sprite(0, -400, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
-            case 3: win = scene.add.sprite(0, 0, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
-            case 4: win = scene.add.sprite(0, 0, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
+            case 1: win = scene.add.image(0, -950, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
+            case 2: win = scene.add.image(0, -400, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
+            case 3: win = scene.add.image(0, 0, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
+            case 4: win = scene.add.image(0, 0, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
         }
         scene.tweens.add({
             targets: win,
