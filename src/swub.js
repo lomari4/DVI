@@ -6,7 +6,7 @@ export default class Swub extends Phaser.GameObjects.Sprite {
         this.heightsizewalk = 53;
         this.heightsizehurt = 69;
         this.hurtflag = false;
-        this.stunDelay = 4000;
+        this.stunDelay = 4500;
         this.winGame = false;
     }
 

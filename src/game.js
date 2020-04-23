@@ -57,6 +57,7 @@ export default class Game extends Phaser.Scene {
         //cargamos el audio
         this.load.audio("level1_sound", "./assets/music/soundtrack/Snow.mp3")
         this.load.audio("level2_sound", "./assets/music/soundtrack/Serenity.mp3")
+        this.load.audio("level3_sound", "./assets/music/soundtrack/TreacherousSlopes.mp3")
         //cargamos los efectos de sonido del jugador
         this.load.audio("player_jump_sound", "./assets/music/effects/jump.wav");
         this.load.audio("player_attack_sound", "./assets/music/effects/wolf_attack.wav");
@@ -77,14 +78,15 @@ export default class Game extends Phaser.Scene {
         //ice Yeti
         this.load.image("ice", "./assets/enemies/yeti_sprites/ice.png");
 
-        //MAPA
+        //MAPAS
         //cargamos el tilemap
         this.load.image('tiles', './assets/tiles/tilemap.png');
         //cargamos imagen bloque collision
         this.load.image('collision_tile', './assets/tiles/collision.png');
-        //cargamos los MAPA de tiled en json
+        //cargamos los MAPAS de tiled en json
         this.load.tilemapTiledJSON('map1', './assets/levels/nivel1.json'); //nivel 1
         this.load.tilemapTiledJSON('map2', './assets/levels/nivel2.json'); //nivel 2
+        this.load.tilemapTiledJSON('map3', './assets/levels/nivel3.json'); //nivel 3
         //BG
         this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
 
@@ -243,12 +245,16 @@ export default class Game extends Phaser.Scene {
     //AUDIOS//
     addSoundtrack(level, scene) {
         let s;
+        let name;
         switch (level) {
-            case 1: s = scene.sound.add("level1_sound"); break;
-            case 2: s = scene.sound.add("level2_sound"); break;
-            case 3: s = scene.sound.add("level3_sound"); break;
-            case 4: s = scene.sound.add("level4_sound"); break;
+            case 1: name = "level1_sound"; break;
+            case 2: name = "level2_sound"; break;
+            case 3: name = "level3_sound"; break;
+            case 4: name = "level4_sound"; break;
         }
+        this.sound.pauseOnBlur = false;
+        s = scene.sound.add(name);
+        s.loop = true;
         return s;
     }
     audio_playerJump() {
@@ -489,9 +495,10 @@ export default class Game extends Phaser.Scene {
         }
         this.scene.stop(s);
         switch (nivel) {
-            case 1: this.scene.launch('Level2');
-            //case 2: this.scene.launch('Level3');
-            //case 3: this.scene.launch('Level4');
+            case 1: this.scene.launch('Level2'); break;
+            case 2: this.scene.launch('Level3'); break;
+            //case 3: this.scene.launch('Level4'); break;
+            default: this.scene.launch('Game'); break;
         }
     }
 
