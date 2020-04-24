@@ -57,6 +57,7 @@ export default class Level3 extends Phaser.Scene {
 		this.game.spawnBoar(this, 1600, 1330, this.enemies);
 		this.game.spawnIcedrake(this, 1700, 1000, this.enemies);
 		this.game.spawnYeti(this, 1700, 500, this.enemies);
+		this.game.spawnBoar(this, 1500, 500, this.enemies);
 		this.game.spawnIcedrake(this, 700, 550, this.enemies);
 
 		//colisiones de los enemigos

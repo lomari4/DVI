@@ -3,7 +3,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y) {
 		super(scene, x, y, 'yeti');
 		this.vel = 40;
-		this.distancetowolf = 250;
+		this.distancetowolf = 430;
 		this.hurtflag = false;
 		this.stunDelay = 3000;
 		this.difYetiandWolf = 20;
@@ -12,7 +12,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		this.coolDown = 200;
 		this.rangeY = 5;
 		this.maxcoolDown = 200;
-		this.distSpawnIce = 180;
+		this.distSpawnIce = 200;
 		this.distSpawnIceY = 60;
 		this.isAttacking = false;
 		this.winGame = false;
@@ -48,7 +48,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 				end: 16,
 				zeroPad: 2
 			}),
-			frameRate: 7,
+			frameRate: 10,
 			repeat: -1,
 
 		});
