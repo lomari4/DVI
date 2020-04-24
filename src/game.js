@@ -563,8 +563,9 @@ export default class Game extends Phaser.Scene {
             enemies.getChildren().forEach(function (item) {
                 if (!item.hurtflag) {
                     scene.physics.add.overlap(item, slash, game.stunEnemy, null, scene);
-                    scene.game.delayStun(scene, item);
                 }
+                if(item.hurtflag)
+                    scene.game.delayStun(scene, item);
             }, scene);
         }
     }
