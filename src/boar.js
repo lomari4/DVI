@@ -109,20 +109,17 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 	}
 
 	checkAttack(wolf, game) {
-		if (wolf.isAlive()) {
-			if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y boar mirandolo
-				this.isAttacking = true;
-				this.play('runboar', true);
-				if (this.flipX)
-					this.body.setVelocityX(this.velplus);
-				else
-					this.body.setVelocityX(-this.velplus);
-			}
-			else if (this.anims.currentFrame.index === 5) {
-				this.isAttacking = false;
-				this.walk();
-			}
-
+		if (wolf.isAlive() && this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y boar mirandolo
+			this.isAttacking = true;
+			this.play('runboar', true);
+			if (this.flipX)
+				this.body.setVelocityX(this.velplus);
+			else
+				this.body.setVelocityX(-this.velplus);
+		}
+		else if (this.anims.currentFrame.index === 5 && this.isAttacking) {
+			this.isAttacking = false;
+			this.walk();
 		}
 	}
 

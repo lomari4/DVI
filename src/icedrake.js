@@ -113,27 +113,24 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 	}
 
 	checkAttack(wolf, game) {
-		if (wolf.isAlive()) {
-			if (this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y dragon mirandolo
-				if (this.coolDown > this.maxcoolDown) {
-					this.isAttacking = true;
-					this.play('attackicedrake', true);
-					let beam;
-					if (this.flipX)
-						beam = game.spawnBeam(this.scene, this.x + this.distSpawnBeam, this.y, this);
-					else
-						beam = game.spawnBeam(this.scene, this.x - this.distSpawnBeam, this.y, this);
-					beam.play('beamAnim', true);
-					this.coolDown = 0;
-					this.body.setVelocityX(0);
-				}
+		if (wolf.isAlive() && this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y dragon mirandolo
+			if (this.coolDown > this.maxcoolDown) {
+				this.isAttacking = true;
+				this.play('attackicedrake', true);
+				let beam;
+				if (this.flipX)
+					beam = game.spawnBeam(this.scene, this.x + this.distSpawnBeam, this.y, this);
+				else
+					beam = game.spawnBeam(this.scene, this.x - this.distSpawnBeam, this.y, this);
+				beam.play('beamAnim', true);
+				this.coolDown = 0;
+				this.body.setVelocityX(0);
 			}
-			if (this.anims.currentFrame.index === 5) {
-				this.isAttacking = false;
-				this.walk();
-			}
-			this.coolDown++;
 		}
+		if (this.anims.currentFrame.index === 5 && this.isAttacking) {
+			this.isAttacking = false;
+			this.walk();
+		}
+		this.coolDown++;
 	}
-
 }
