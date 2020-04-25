@@ -495,10 +495,10 @@ export default class Game extends Phaser.Scene {
         }
         this.scene.stop(s);
         switch (nivel) {
-            case 1: this.scene.launch('Level2'); break;
-            case 2: this.scene.launch('Level3'); break;
-            //case 3: this.scene.launch('Level4'); break;
-            default: this.scene.launch('Game'); break;
+            case 1: this.scene.start('Level2'); break;
+            case 2: this.scene.start('Level3'); break;
+            //case 3: this.scene.start('Level4'); break;
+            default: this.scene.start('Game'); break;
         }
     }
 
