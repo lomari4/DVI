@@ -543,27 +543,10 @@ export default class Game extends Phaser.Scene {
                 item.checkAttack(player, this, scene);
         }, this);
     }
-    //CHECK DE PROYECTILES
-    checkBeams(scene, projectiles, player, game) {
-        for (let i = 0; i < projectiles.getChildren().length; i++) {
-            let beam = projectiles.getChildren()[i];
-            scene.physics.add.overlap(player, beam, game.knockBack, game.hitBeam, game.overlapcallback, scene);
-        }
-    }
-    //CHECK DE ICES
-    checkIces(scene, ices, player, game) {
-        for (let i = 0; i < ices.getChildren().length; i++) {
-            let ice = ices.getChildren()[i];
-            scene.physics.add.overlap(player, ice, game.knockBack, game.overlapcallback, scene);
-        }
-    }
     //ATAQUE DEL JUGADOR
     checkPlayerAttack(scene, slash, enemies, game) {
         for (let i = 0; i < slash.getChildren().length; i++) {
             enemies.getChildren().forEach(function (item) {
-                if (!item.hurtflag) {
-                    scene.physics.add.overlap(item, slash, game.stunEnemy, null, scene);
-                }
                 if(item.hurtflag)
                     scene.game.delayStun(scene, item);
             }, scene);
@@ -571,10 +554,6 @@ export default class Game extends Phaser.Scene {
     }
     //VER OVERLAPS DEL JUGADOR CON LOS ENEMIGOS
     checkPlayerisAttacked(scene, player, enemies, game) {
-        if (player.isAlive() && !player.winGame) {
-            scene.physics.add.overlap(player, enemies, game.knockBack, game.overlapcallback, scene);
-        }
-
         if (player.hurtflag === true) {
             game.hurtPlayer(scene, player);
             game.updateHealthHud(player, scene);
