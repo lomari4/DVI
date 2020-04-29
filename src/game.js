@@ -137,7 +137,7 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level3"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
+            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
