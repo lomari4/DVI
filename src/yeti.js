@@ -95,6 +95,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 
 			if (this.hurtflag) {
 				this.play('hurtyeti', false);
+				this.isAttacking = false;
 				this.body.setVelocityX(0);
 				if (this.flipX)
 					this.setOrigin(0.5, this.pivotY);
@@ -138,6 +139,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 			else {
 				ice = game.spawnIce(this.scene, this.x - this.distSpawnIce, this.y + this.distSpawnIceY, this);
 			}
+			game.audio_hityeti();
 		}
 		this.coolDown++;
 	}

@@ -90,6 +90,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 			if (this.hurtflag) {
 				this.body.setSize(0, this.heightsizehurt); //ajustar el collider
 				this.play('hurtboar', false);
+				this.isAttacking = false;
 				this.body.setVelocityX(0);
 			}
 			if (this.isAttacking) {
@@ -110,6 +111,8 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 
 	checkAttack(wolf, game) {
 		if (wolf.isAlive() && this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y boar mirandolo
+			if(!this.isAttacking)
+				game.audio_oink();
 			this.isAttacking = true;
 			this.play('runboar', true);
 			if (this.flipX)

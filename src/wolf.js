@@ -21,6 +21,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.heightsizedead = 52;
         this.knockBackUP = 300;
         this.knockBackSIDE = 200;
+        this.beamHit = false;
     }
 
     createAnims() {

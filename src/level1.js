@@ -68,7 +68,6 @@ export default class Level1 extends Phaser.Scene {
 		this.physics.add.overlap(this.wolf, this.enemies, this.game.knockBack, this.game.overlapcallback, this);
 		this.physics.add.overlap(this.wolf, this.projectiles, this.game.knockBack, this.game.hitBeam, this.game.overlapcallback, this);
 		this.physics.add.overlap(this.enemies, this.slash, this.game.stunEnemy, null, this);
-		//this.physics.add.overlap(this, this.enemies, this.game.delayStun, null, this); NO FUNCIONA EL DELAY STUN
 
 	}
 
@@ -89,8 +88,8 @@ export default class Level1 extends Phaser.Scene {
 			//ATAQUES
 			//ataque del jugador
 			this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
-			//ataque a los enemigos
-			this.game.checkPlayerisAttacked(this, this.wolf, this.enemies, this.game);
+			//ataque de los enemigos
+			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
 		}
 
 		//MUESTRA EL PROGRESO AL JUGADOR

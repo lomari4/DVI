@@ -65,6 +65,10 @@ export default class Game extends Phaser.Scene {
         //efectos de sonido generales
         this.load.audio("gameover_sound", "./assets/music/effects/game_over.wav");
         this.load.audio("gamewin_sound", "./assets/music/effects/game_win.wav");
+        this.load.audio("icehit_sound", "./assets/music/effects/ice_splash.wav");
+        this.load.audio("yeti_smash", "./assets/music/effects/yeti_smash.wav");
+        this.load.audio("dragon_breath", "./assets/music/effects/dragon_breath.mp3");
+        this.load.audio("boar_sound", "./assets/music/effects/boar.wav");
 
         //GENERAL
         //añadimos imagen de las vidas
@@ -133,7 +137,7 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
+            this.scene.start("Level3"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
@@ -271,7 +275,7 @@ export default class Game extends Phaser.Scene {
     }
     audio_playerHurt() {
         let s = this.sound.add("player_hurt_sound", {
-            volume: 0.15,
+            volume: 0.20,
         });
         s.play();
     }
@@ -284,6 +288,30 @@ export default class Game extends Phaser.Scene {
     audio_gameWin() {
         let s = this.sound.add("gamewin_sound", {
             volume: 0.25,
+        });
+        s.play();
+    }
+    audio_hitbeam() {
+        let s = this.sound.add("icehit_sound", {
+            volume: 0.55,
+        });
+        s.play();
+    }
+    audio_hityeti() {
+        let s = this.sound.add("yeti_smash", {
+            volume: 0.35,
+        });
+        s.play();
+    }
+    audio_dragonbreath() {
+        let s = this.sound.add("dragon_breath", {
+            volume: 0.70,
+        });
+        s.play();
+    }
+    audio_oink() {
+        let s = this.sound.add("boar_sound", {
+            volume: 0.60,
         });
         s.play();
     }
@@ -385,6 +413,7 @@ export default class Game extends Phaser.Scene {
     hitBeam(player, beam) {
         if (!player.invincible) {
             beam.destroy();
+            player.beamHit = true;
         }
     }
     hurtPlayer(scene, player) {
@@ -514,6 +543,7 @@ export default class Game extends Phaser.Scene {
     sceneGameOver(nivel) {
         this.scene.launch('GameOver', { level: nivel });
     }
+
     overlapcallback(player, enemy) {
         if (player.isAlive() && !player.winGame)
             return true;
@@ -543,21 +573,29 @@ export default class Game extends Phaser.Scene {
                 item.checkAttack(player, this, scene);
         }, this);
     }
-    //ATAQUE DEL JUGADOR
+    //ATAQUE DEL JUGADOR A LOS ENEMIGOS
     checkPlayerAttack(scene, slash, enemies, game) {
         for (let i = 0; i < slash.getChildren().length; i++) {
             enemies.getChildren().forEach(function (item) {
-                if(item.hurtflag)
+                if (!item.hurtflag && scene.physics.overlap(slash, item))
+                    game.stunEnemy(item, slash)
+                if (item.hurtflag)
                     scene.game.delayStun(scene, item);
             }, scene);
         }
     }
-    //VER OVERLAPS DEL JUGADOR CON LOS ENEMIGOS
-    checkPlayerisAttacked(scene, player, enemies, game) {
-        if (player.hurtflag === true) {
+    //VER SI EL JUGADOR HA SIDO ATACADO
+    checkPlayerisAttacked(scene, player, game) {
+        if (player.hurtflag) {
             game.hurtPlayer(scene, player);
             game.updateHealthHud(player, scene);
 
+            //audios
+            if(player.beamHit)
+            {
+                game.audio_hitbeam();
+                player.beamHit = false;
+            }
             if (!player.isAlive())
                 game.audio_gameOver(); //audio this.game over cuando matan al lobo
             else

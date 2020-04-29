@@ -65,6 +65,12 @@ export default class Level2 extends Phaser.Scene {
 		//grupo de hielos creados por los yetis
 		this.ices = this.add.group();
 
+		//OVERLAPS//
+		this.physics.add.overlap(this.wolf, this.ices, this.game.knockBack, this.game.overlapcallback, this);
+		this.physics.add.overlap(this.wolf, this.enemies, this.game.knockBack, this.game.overlapcallback, this);
+		this.physics.add.overlap(this.wolf, this.projectiles, this.game.knockBack, this.game.hitBeam, this.game.overlapcallback, this);
+		this.physics.add.overlap(this.enemies, this.slash, this.game.stunEnemy, null, this);
+
 	}
 
 	update(time, delta) {
@@ -81,15 +87,11 @@ export default class Level2 extends Phaser.Scene {
 			//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
 			this.counter += this.game.checkIfMelt(this.wolf, this.game, this.groundLayer);
 
-			//ATAQUES Y OVERLAPS
-			//overlap de los proyectiles del dragon
-			this.game.checkBeams(this, this.projectiles, this.wolf, this.game);
-			//overlap de los ices del yeti
-			this.game.checkIces(this, this.ices, this.wolf, this.game);
-			//overlap del ataque del jugador
+			//ATAQUES
+			//ataque del jugador
 			this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
-			//overlap para colisiones con el jugador
-			this.game.checkPlayerisAttacked(this, this.wolf, this.enemies, this.game);
+			//ataque de los enemigos
+			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
 		}
 
 		//MUESTRA EL PROGRESO AL JUGADOR

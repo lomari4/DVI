@@ -123,6 +123,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 				else
 					beam = game.spawnBeam(this.scene, this.x - this.distSpawnBeam, this.y, this);
 				beam.play('beamAnim', true);
+				game.audio_dragonbreath();
 				this.coolDown = 0;
 				this.body.setVelocityX(0);
 			}
