@@ -91,6 +91,7 @@ export default class Game extends Phaser.Scene {
         this.load.tilemapTiledJSON('map1', './assets/levels/nivel1.json'); //nivel 1
         this.load.tilemapTiledJSON('map2', './assets/levels/nivel2.json'); //nivel 2
         this.load.tilemapTiledJSON('map3', './assets/levels/nivel3.json'); //nivel 3
+        this.load.tilemapTiledJSON('map4', './assets/levels/nivel4.json'); //nivel 4
         //BG
         this.load.image("bg", "./assets/backgrounds/backgroundForest_extended.png");
 
@@ -137,7 +138,7 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
+            this.scene.start("Level4"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
@@ -196,7 +197,7 @@ export default class Game extends Phaser.Scene {
             case 1: bg = scene.add.image(0, -950, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
             case 2: bg = scene.add.image(0, -400, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
             case 3: bg = scene.add.image(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
-            case 4: bg = scene.add.image(0, 0, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
+            case 4: bg = scene.add.image(0, -950, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
         }
         bg.on('pointerup', function () {
             if (scene.scale.isFullscreen)
@@ -505,7 +506,7 @@ export default class Game extends Phaser.Scene {
             case 1: win = scene.add.image(0, -950, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
             case 2: win = scene.add.image(0, -400, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
             case 3: win = scene.add.image(0, 0, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
-            case 4: win = scene.add.image(0, 0, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
+            case 4: win = scene.add.image(0, -950, "win").setOrigin(0).setAlpha(0).setDepth(-1); break;
         }
         scene.tweens.add({
             targets: win,
@@ -526,7 +527,7 @@ export default class Game extends Phaser.Scene {
         switch (nivel) {
             case 1: this.scene.start('Level2'); break;
             case 2: this.scene.start('Level3'); break;
-            //case 3: this.scene.start('Level4'); break;
+            case 3: this.scene.start('Level4'); break;
             default: this.scene.start('Game'); break;
         }
     }
