@@ -9,8 +9,10 @@ export default class Level4 extends Phaser.Scene {
 	preload() { }
 
 	stunBoss(boss,slash){
-		if(!boss.invincible)
+		if(!boss.invincible){
 			this.game.stunEnemy(boss, slash);
+			this.game.delayStun(this,boss);
+		}
 	}
 
 	create() {
@@ -20,12 +22,10 @@ export default class Level4 extends Phaser.Scene {
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		this.winFlag = false;
 
-		/*
 		//añadimos el sonido SOLO cuando entra en la zona del boss
-		this.music = this.game.addSoundtrack(this.level, this);
+		/*this.music = this.game.addSoundtrack(this.level, this);
 		this.music.setLoop(true);
-		this.music.play();
-		*/
+		this.music.play();*/
 
 		//MAPA//
 		this.map = this.game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
@@ -42,8 +42,7 @@ export default class Level4 extends Phaser.Scene {
 		this.game.textProgress(this);
 
 		//JUGADOR//
-		//this.wolf = this.game.spawnPlayer(this, 0, 919, this.groundLayer);
-		this.wolf = this.game.spawnPlayer(this, 2619, 919, this.groundLayer); //cambiar esto cuando este lo de la camara
+		this.wolf = this.game.spawnPlayer(this, 2600, 919, this.groundLayer);
 		//colisiones del jugador
 		this.collider = this.physics.add.collider(this.wolf, this.groundLayer);
 		//ataque del jugador
@@ -61,18 +60,20 @@ export default class Level4 extends Phaser.Scene {
 
 		//spawn boss
 		//habia pensado hacerlo aparecer con la animacion de muerto, pero al reves sprite.anims.playReverse("die")
-		//....
+		//....		
 
+		this.game.spawnBoss(this, 2800, 850, this.enemies);
 
 		//colisiones de los enemigos
-		this.physics.add.collider(this.enemies, this.groundLayer);
+        this.physics.add.collider(this.enemies, this.groundLayer);
 
-		//grupo de proyectiles
-		this.projectiles = this.add.group();
+        this.enemies.getChildren().forEach(function (item) {
+            item.addPhysics();
+        }, this);
+
 
 		//OVERLAPS//
 		this.physics.add.overlap(this.wolf, this.enemies, this.game.knockBack, this.game.overlapcallback, this);
-		this.physics.add.overlap(this.wolf, this.projectiles, this.game.knockBack, this.game.hitBeam, this.game.overlapcallback, this);
 		this.physics.add.overlap(this.enemies, this.slash, this.stunBoss, null, this);
 
 	}

@@ -6,6 +6,7 @@ import Yeti from './yeti.js';
 import Beam from './beam.js';
 import Slash from './slash.js';
 import Ice from './iceYeti.js';
+import Boss from './boss.js';
 
 //RECORDAR INDENTAR CON ALT+SHIFT+F
 export default class Game extends Phaser.Scene {
@@ -104,6 +105,7 @@ export default class Game extends Phaser.Scene {
         this.load.atlas('boar', './assets/enemies/boar_sprites/boar.png', './assets/enemies/boar_sprites/boar.json');
         this.load.atlas('yeti', './assets/enemies/yeti_sprites/yeti.png', './assets/enemies/yeti_sprites/yeti.json');
         this.load.atlas('icedrake', './assets/enemies/icedrake_sprites/icedrake.png', './assets/enemies/icedrake_sprites/icedrake.json');
+        this.load.atlas('boss', './assets/enemies/boss_sprites/boss.png', './assets/enemies/boss_sprites/boss.json');
 
     }
 
@@ -484,6 +486,12 @@ export default class Game extends Phaser.Scene {
     spawnIce(scene, x, y, enemy) {
         let ice = new Ice(scene, x, y, enemy);
         return ice;
+    }
+    spawnBoss(scene, x, y, enemies) {
+        let temp = new Boss(scene, x, y);
+        temp.createAnims();
+        temp.play('walkboss', true);
+        enemies.add(temp);
     }
 
     //WIN GAME//
