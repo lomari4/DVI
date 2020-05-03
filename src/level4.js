@@ -21,6 +21,7 @@ export default class Level4 extends Phaser.Scene {
 		this.counter = 0; //contador del numero de tiles que has cambiado
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		this.winFlag = false;
+		this.cameraGood = false;
 
 		//añadimos el sonido SOLO cuando entra en la zona del boss
 		/*this.music = this.game.addSoundtrack(this.level, this);
@@ -42,7 +43,7 @@ export default class Level4 extends Phaser.Scene {
 		this.game.textProgress(this);
 
 		//JUGADOR//
-		this.wolf = this.game.spawnPlayer(this, 2600, 919, this.groundLayer);
+		this.wolf = this.game.spawnPlayer(this, 0, 919, this.groundLayer);
 		//colisiones del jugador
 		this.collider = this.physics.add.collider(this.wolf, this.groundLayer);
 		//ataque del jugador
@@ -51,8 +52,6 @@ export default class Level4 extends Phaser.Scene {
 		//CAMARA//
 		this.game.addCamera(this, this.wolf, this.groundLayer); //editar
 		//this.cameras.main.setZoom(0.7);
-		//TO DO: ZONA DONDE CUANDO EL JUAGDOR PISE, SE BLOQUEE LA CAMARA
-		//this.cameras.main.stopFollow();
 
 		//BOSS//
 		//crear grupo con todos los enemigos para las fisicas
@@ -96,12 +95,15 @@ export default class Level4 extends Phaser.Scene {
 			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
 		}
 
+		if(this.wolf.x > 2000 && !this.cameraGood){
+			this.game.cameraStop(this);
+		}
 		//MUESTRA EL PROGRESO AL JUGADOR
 		this.game.showProgress(this.counter, this.checkWin);
 
 		//COMPRUEBA SI HA GANADO (SI EL BOSS HA MUERTO Y SI NIVEL ESTA DESCONGELADO)
 		this.enemies.getChildren().forEach(function (item) {
-			if(item.isAlive())
+			if(!item.isAlive())
 				this.game.checkIfWin(this, this.counter, this.checkWin, this.wolf, this.enemies, this.game, this.level);
 		},this);
 
