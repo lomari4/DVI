@@ -97,9 +97,12 @@ export default class Level4 extends Phaser.Scene {
 
 			//ATAQUES
 			//ataque del jugador. Solo efectivo si boss no es invencible
-			if(!this.bossInvincible)
-				this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
-			//ataque de los enemigos
+			this.enemies.getChildren().forEach(function (item) {
+				if(!item.invincible)
+					this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
+			},this);
+
+			//ataque de los enemigos al juagdor
 			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
 
 			//ZONA BOSS

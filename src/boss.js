@@ -9,6 +9,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.charge = 900;
 		this.health = 5;
 		this.invincible = true;
+		this.stunDelay = 250;
 		this.setScale(2);
 	}
 
@@ -96,12 +97,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		if (!this.winGame && this.invincible) {
 			super.preUpdate(t, dt);
 
-			if (this.hurtflag) {
-				this.play('hurtboss', false);
-				this.isAttacking = false;
-				this.body.setVelocityY(0);
-			}
-			else if (this.body.velocity.y === 0 && !this.hurtflag) {
+			if (this.body.velocity.y === 0 && !this.hurtflag) {
 				this.body.setVelocityY(-this.vel);
 			}
 			if (this.body.blocked.down) {
@@ -110,6 +106,10 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 			else if (this.body.blocked.up) {
 				this.body.setVelocityY(this.vel);
 			}
+		}
+		else if (!this.winGame && this.hurtflag) {
+			this.play('hurtboss', false);
+			this.body.setVelocityY(0);
 		}
 
 	}
@@ -121,7 +121,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				this.invincible = false;
 				this.play('vulnerableboss', true);
 				this.body.setVelocityY(this.velFall);
-				this.scene.time.addEvent({
+				this.scene.time.addEvent({ //TO DO: CANCELAR ESTO CUANDO this.hurtFlag. Si no se puede, hay que hacerlo con un contador o algo
 					delay: this.chargeDelay, //tiempo que el boss es vulnerable y esta cargando
 					callback: () => {
 						this.invincible = true;
