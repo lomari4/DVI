@@ -60,6 +60,19 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 			frameRate: 1,
 			repeat: 0,
 
+		});
+		this.scene.anims.create({
+			key: 'vulnerableboss',
+			frames: this.scene.anims.generateFrameNames('boss', {
+				prefix: 'boss_',
+				suffix: '.png',
+				start: 24,
+				end: 24,
+				zeroPad: 2
+			}),
+			frameRate: 1,
+			repeat: 0,
+
         });
         this.scene.anims.create({
 			key: 'dissapearboss',

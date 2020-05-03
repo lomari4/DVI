@@ -655,13 +655,4 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    //Camara stop solo para el boss
-    cameraStop(scene){
-		//TO DO: ZONA DONDE CUANDO EL JUAGDOR PISE, SE BLOQUEE LA CAMARA
-        scene.cameras.main.stopFollow();
-        scene.cameras.main.setScroll(scene.cameras.main.x + 2500);
-        scene.cameras.main.flash(250, 255, 0 , 0);
-        scene.cameraGood = true;
-    }
-
 }

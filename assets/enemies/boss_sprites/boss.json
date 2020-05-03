@@ -10,11 +10,6 @@
 		"spriteSourceSize": {"x":0,"y":0,"w":167,"h":189},
 		"sourceSize": {"w":167,"h":189}
 	},
-	"boss_024.png": {
-		"frame": {"x":504, "y":568, "w":153, "h":158},
-		"spriteSourceSize": {"x":7,"y":31,"w":167,"h":189},
-		"sourceSize": {"w":167,"h":189}
-	},
 	"boss_03.png": {
 		"frame": {"x":168, "y":420, "w":167, "h":196},
 		"spriteSourceSize": {"x":0,"y":0,"w":167,"h":196},
@@ -114,6 +109,11 @@
 		"frame": {"x":357, "y":782, "w":16, "h":46},
 		"spriteSourceSize": {"x":0,"y":0,"w":16,"h":46},
 		"sourceSize": {"w":16,"h":46}
+	},
+	"boss_24.png": {
+		"frame": {"x":504, "y":568, "w":153, "h":158},
+		"spriteSourceSize": {"x":7,"y":31,"w":167,"h":189},
+		"sourceSize": {"w":167,"h":189}
 	}
 
 },

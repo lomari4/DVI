@@ -8,12 +8,24 @@ export default class Level4 extends Phaser.Scene {
 
 	preload() { }
 
-	stunBoss(boss,slash){
-		if(!boss.invincible){
-			this.game.stunEnemy(boss, slash);
-			this.game.delayStun(this,boss);
-		}
+	resetBounds(){
+		this.physics.world.bounds.width = this.groundLayer.width;
+        this.physics.world.bounds.height = this.groundLayer.height;
 	}
+
+	modifyBounds(){
+		this.physics.world.bounds.width = this.groundLayer.width; //TODO CAMBIAR ESTO
+        this.physics.world.bounds.height = this.groundLayer.height;
+	}
+
+	//Camara stop cuando boss spawnea
+	cameraStop(){
+		//TO DO: ZONA DONDE CUANDO EL JUAGDOR PISE, SE BLOQUEE LA CAMARA
+        this.cameras.main.stopFollow();
+        this.cameras.main.setScroll(this.cameras.main.x + 2500);
+        this.cameras.main.flash(250, 255, 0 , 0);
+        this.cameraGood = true;
+    }
 
 	create() {
 		//GENERAL//
@@ -22,6 +34,7 @@ export default class Level4 extends Phaser.Scene {
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		this.winFlag = false;
 		this.cameraGood = false;
+		this.bossInvincible = true;
 
 		//añadimos el sonido SOLO cuando entra en la zona del boss
 		/*this.music = this.game.addSoundtrack(this.level, this);
@@ -54,26 +67,24 @@ export default class Level4 extends Phaser.Scene {
 		//this.cameras.main.setZoom(0.7);
 
 		//BOSS//
-		//crear grupo con todos los enemigos para las fisicas
 		this.enemies = this.physics.add.group();
 
 		//spawn boss
-		//habia pensado hacerlo aparecer con la animacion de muerto, pero al reves sprite.anims.playReverse("die")
-		//....		
-
-		this.game.spawnBoss(this, 2800, 850, this.enemies);
+		this.game.spawnBoss(this, 2800, 0, this.enemies);
 
 		//colisiones de los enemigos
         this.physics.add.collider(this.enemies, this.groundLayer);
-
         this.enemies.getChildren().forEach(function (item) {
             item.addPhysics();
         }, this);
 
+		//grupo de proyectiles
+		this.projectiles = this.add.group();
 
 		//OVERLAPS//
 		this.physics.add.overlap(this.wolf, this.enemies, this.game.knockBack, this.game.overlapcallback, this);
-		this.physics.add.overlap(this.enemies, this.slash, this.stunBoss, null, this);
+		this.physics.add.overlap(this.enemies, this.slash, this.game.stunEnemy, null, this);
+		this.physics.add.overlap(this.wolf, this.projectiles, this.game.knockBack, this.game.hitBeam, this.game.overlapcallback, this);
 
 	}
 
@@ -89,15 +100,18 @@ export default class Level4 extends Phaser.Scene {
 			this.counter += this.game.checkIfMelt(this.wolf, this.game, this.groundLayer);
 
 			//ATAQUES
-			//ataque del jugador
-			this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
+			//ataque del jugador. Solo efectivo si boss no es invencible
+			if(!this.bossInvincible)
+				this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
 			//ataque de los enemigos
 			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
 		}
 
 		if(this.wolf.x > 2000 && !this.cameraGood){
-			this.game.cameraStop(this);
+			this.cameraStop();
+			this.modifyBounds();
 		}
+
 		//MUESTRA EL PROGRESO AL JUGADOR
 		this.game.showProgress(this.counter, this.checkWin);
 
