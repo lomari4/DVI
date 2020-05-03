@@ -59,6 +59,7 @@ export default class Game extends Phaser.Scene {
         this.load.audio("level1_sound", "./assets/music/soundtrack/Snow.mp3")
         this.load.audio("level2_sound", "./assets/music/soundtrack/Serenity.mp3")
         this.load.audio("level3_sound", "./assets/music/soundtrack/TreacherousSlopes.mp3")
+        this.load.audio("level4_sound", "./assets/music/soundtrack/Bloodlust.mp3")
         //cargamos los efectos de sonido del jugador
         this.load.audio("player_jump_sound", "./assets/music/effects/jump.wav");
         this.load.audio("player_attack_sound", "./assets/music/effects/wolf_attack.wav");

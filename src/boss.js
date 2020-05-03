@@ -2,14 +2,14 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 
 	constructor(scene, x, y) {
 		super(scene, x, y, 'boss');
-        this.vel = 100;
-		this.distancetowolf = 1500;
-        this.isAttacking = false;
-        this.difBossandWolf = 30; 
-        this.stunDelay = 500;     
-        this.countUp = 50;  
-        this.countDown = 800;  
+		this.vel = 100;
+		this.velFall = 200;
+		this.chargeDelay = 4000;
+		this.maxCharge = 900;
+		this.charge = 900;
 		this.health = 5;
+		this.invincible = true;
+		this.setScale(2);
 	}
 
 	addPhysics() {
@@ -17,8 +17,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.scene.physics.add.existing(this); //enable body
 		this.body.setCollideWorldBounds(true);
 		this.body.allowGravity = false;
-        this.body.syncBounds = true; //para sincronizar sprite con el collider box
-
+		this.body.syncBounds = true; //para sincronizar sprite con el collider box
 	}
 
 	createAnims() {
@@ -31,7 +30,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				end: 6,
 				zeroPad: 2
 			}),
-			frameRate: 2,
+			frameRate: 7,
 			repeat: -1,
 
 		});
@@ -41,7 +40,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				prefix: 'boss_',
 				suffix: '.png',
 				start: 8,
-				end: 15,
+				end: 13,
 				zeroPad: 2
 			}),
 			frameRate: 10,
@@ -73,13 +72,13 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 			frameRate: 1,
 			repeat: 0,
 
-        });
-        this.scene.anims.create({
+		});
+		this.scene.anims.create({
 			key: 'dissapearboss',
 			frames: this.scene.anims.generateFrameNames('boss', {
 				prefix: 'boss_',
 				suffix: '.png',
-				start: 16,
+				start: 15,
 				end: 23,
 				zeroPad: 2
 			}),
@@ -91,16 +90,10 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 
 	walk() {
 		this.play('walkboss', true);
-		if (this.body.y < this.countUp) {
-			this.body.setVelocityY(this.vel);
-		}
-		else if(this.body.y > this.countDown){
-			this.body.setVelocityY(-this.vel);
-        }
 	}
 
 	preUpdate(t, dt) {
-		if (!this.winGame) {
+		if (!this.winGame && this.invincible) {
 			super.preUpdate(t, dt);
 
 			if (this.hurtflag) {
@@ -108,40 +101,45 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				this.isAttacking = false;
 				this.body.setVelocityY(0);
 			}
-			else if(this.body.velocity.y === 0 && !this.hurtflag) {
+			else if (this.body.velocity.y === 0 && !this.hurtflag) {
 				this.body.setVelocityY(-this.vel);
 			}
-			else {
-				this.walk();
+			if (this.body.blocked.down) {
+				this.body.setVelocityY(-this.vel);
 			}
-
+			else if (this.body.blocked.up) {
+				this.body.setVelocityY(this.vel);
+			}
 		}
 
-	}
-
-	playerInRange(wolf) {
-		return Math.abs(this.x - wolf.x) <= this.distancetowolf && (this.y - wolf.y + this.difBossandWolf < this.rangeY && this.y - wolf.y + this.difBossandWolf > -this.rangeY);
 	}
 
 	checkAttack(wolf, game) {
-		if (wolf.isAlive() && this.playerInRange(wolf)) { //jugador en rango
-			if (this.coolDown > this.maxcoolDown) {
-				this.play('attackboss', true);
-				this.coolDown = 0;
-				this.isAttacking = true;
+		if (wolf.isAlive() && wolf.inZone) {
+			if (this.charge <= 0) { //tiene que cargar
+				this.body.setVelocityY(0);
+				this.invincible = false;
+				this.play('vulnerableboss', true);
+				this.body.setVelocityY(this.velFall);
+				this.scene.time.addEvent({
+					delay: this.chargeDelay, //tiempo que el boss es vulnerable y esta cargando
+					callback: () => {
+						this.invincible = true;
+						this.charge = this.maxCharge;
+					},
+				});
 			}
-		}
-		else if (this.anims.currentFrame.index === 8)
-			this.walk();
+			else
+				this.play('attackboss', true);
 
-		if (this.anims.currentFrame.index === 5 && this.isAttacking) //animacion de slam
-		{
-			this.isAttacking = false;
+			this.charge--;
 		}
-		this.coolDown++;
+		else
+			this.walk();
 	}
+
 	isAlive() {
-        return this.health > 0;
-    }
+		return this.health > 0;
+	}
 
 }

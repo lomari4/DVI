@@ -20,11 +20,10 @@ export default class Level4 extends Phaser.Scene {
 
 	//Camara stop cuando boss spawnea
 	cameraStop(){
-		//TO DO: ZONA DONDE CUANDO EL JUAGDOR PISE, SE BLOQUEE LA CAMARA
         this.cameras.main.stopFollow();
         this.cameras.main.setScroll(this.cameras.main.x + 2500);
         this.cameras.main.flash(250, 255, 0 , 0);
-        this.cameraGood = true;
+        this.inZone = true;
     }
 
 	create() {
@@ -33,18 +32,14 @@ export default class Level4 extends Phaser.Scene {
 		this.counter = 0; //contador del numero de tiles que has cambiado
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		this.winFlag = false;
-		this.cameraGood = false;
+		this.inZone = false;
 		this.bossInvincible = true;
-
-		//añadimos el sonido SOLO cuando entra en la zona del boss
-		/*this.music = this.game.addSoundtrack(this.level, this);
-		this.music.setLoop(true);
-		this.music.play();*/
 
 		//MAPA//
 		this.map = this.game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
 		this.background = this.game.addBackground(this, this.level);
 		this.groundLayer = this.game.addGround(this, this.map);
+		this.collisionLayer = this.game.addEnemyCollision(this.map); //para limitar el movimiento en la zona del boss
 
 		//Cuenta el numero de tiles que hay en el mapa
 		this.checkWin = this.game.countTotalTiles(this.map, this.groundLayer);
@@ -56,24 +51,25 @@ export default class Level4 extends Phaser.Scene {
 		this.game.textProgress(this);
 
 		//JUGADOR//
-		this.wolf = this.game.spawnPlayer(this, 0, 919, this.groundLayer);
+		//this.wolf = this.game.spawnPlayer(this, 0, 919, this.groundLayer);
+		this.wolf = this.game.spawnPlayer(this, 1900, 919, this.groundLayer); //TESTING
 		//colisiones del jugador
 		this.collider = this.physics.add.collider(this.wolf, this.groundLayer);
 		//ataque del jugador
 		this.slash = this.add.group();
 
 		//CAMARA//
-		this.game.addCamera(this, this.wolf, this.groundLayer); //editar
-		//this.cameras.main.setZoom(0.7);
+		this.game.addCamera(this, this.wolf, this.groundLayer);
 
 		//BOSS//
 		this.enemies = this.physics.add.group();
 
 		//spawn boss
-		this.game.spawnBoss(this, 2800, 0, this.enemies);
+		this.game.spawnBoss(this, 2800, 719, this.enemies);
 
 		//colisiones de los enemigos
-        this.physics.add.collider(this.enemies, this.groundLayer);
+		this.physics.add.collider(this.enemies, this.groundLayer);
+		this.physics.add.collider(this.enemies, this.collisionLayer);
         this.enemies.getChildren().forEach(function (item) {
             item.addPhysics();
         }, this);
@@ -105,11 +101,19 @@ export default class Level4 extends Phaser.Scene {
 				this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
 			//ataque de los enemigos
 			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
-		}
 
-		if(this.wolf.x > 2000 && !this.cameraGood){
-			this.cameraStop();
-			this.modifyBounds();
+			//ZONA BOSS
+			if(this.wolf.x > 2100 && !this.inZone){
+				this.wolf.inZone = true;
+				//bloquear camara
+				this.cameraStop();
+				//audio
+				this.music = this.game.addSoundtrack(this.level, this);
+				this.music.setLoop(true);
+				this.music.play();	
+				//nueva capa de collision para que el jugador no pueda escapar del boss
+				this.collider = this.physics.add.collider(this.wolf, this.collisionLayer);
+			}
 		}
 
 		//MUESTRA EL PROGRESO AL JUGADOR
