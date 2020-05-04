@@ -14,7 +14,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.cursors = this.scene.input.keyboard.addKeys('W, A, D, SPACE');
         this.invincible = false;
         this.slashHeight = 10;
-        this.slashWidth = 130;
+        this.slashWidth = 135;
         this.vel = 300;
         this.jumpvel = -420;
         this.heightsize = 100;
