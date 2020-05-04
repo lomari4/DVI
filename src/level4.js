@@ -9,23 +9,23 @@ export default class Level4 extends Phaser.Scene {
 
 	preload() { }
 
-	resetBounds(){
+	resetBounds() {
 		this.physics.world.bounds.width = this.groundLayer.width;
-        this.physics.world.bounds.height = this.groundLayer.height;
+		this.physics.world.bounds.height = this.groundLayer.height;
 	}
 
-	modifyBounds(){
+	modifyBounds() {
 		this.physics.world.bounds.width = this.groundLayer.width; //TODO CAMBIAR ESTO
-        this.physics.world.bounds.height = this.groundLayer.height;
+		this.physics.world.bounds.height = this.groundLayer.height;
 	}
 
 	//Camara stop cuando boss spawnea
-	cameraStop(){
-        this.cameras.main.stopFollow();
-        this.cameras.main.setScroll(this.cameras.main.x + 2500);
-        this.cameras.main.flash(250, 255, 0 , 0);
-        this.inZone = true;
-    }
+	cameraStop() {
+		this.cameras.main.stopFollow();
+		this.cameras.main.setScroll(this.cameras.main.x + 2500);
+		this.cameras.main.flash(250, 255, 0, 0);
+		this.inZone = true;
+	}
 
 	create() {
 		//GENERAL//
@@ -71,9 +71,9 @@ export default class Level4 extends Phaser.Scene {
 		//colisiones de los enemigos
 		this.physics.add.collider(this.enemies, this.groundLayer);
 		this.physics.add.collider(this.enemies, this.collisionLayer);
-        this.enemies.getChildren().forEach(function (item) {
-            item.addPhysics();
-        }, this);
+		this.enemies.getChildren().forEach(function (item) {
+			item.addPhysics();
+		}, this);
 
 		//grupo de proyectiles
 		this.projectiles = this.add.group();
@@ -90,7 +90,7 @@ export default class Level4 extends Phaser.Scene {
 			//update del jugador
 			this.wolf.update(this.game);
 
-			//update de los enemigos
+			//update de los enemigos (ver si pueden atacar)
 			this.game.enemyUpdate(this, this.enemies, this.wolf);
 
 			//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
@@ -99,22 +99,22 @@ export default class Level4 extends Phaser.Scene {
 			//ATAQUES
 			//ataque del jugador. Solo efectivo si boss no es invencible
 			this.enemies.getChildren().forEach(function (item) {
-				if(!item.invincible)
+				if (!item.invincible)
 					this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
-			},this);
+			}, this);
 
 			//ataque de los enemigos al juagdor
 			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
 
 			//ZONA BOSS
-			if(this.wolf.x > this.zoneX && !this.inZone){
+			if (this.wolf.x > this.zoneX && !this.inZone) {
 				this.wolf.inZone = true;
 				//bloquear camara
 				this.cameraStop();
 				//audio
 				this.music = this.game.addSoundtrack(this.level, this);
 				this.music.setLoop(true);
-				this.music.play();	
+				this.music.play();
 				//nueva capa de collision para que el jugador no pueda escapar del boss
 				this.collider = this.physics.add.collider(this.wolf, this.collisionLayer);
 			}
@@ -125,9 +125,9 @@ export default class Level4 extends Phaser.Scene {
 
 		//COMPRUEBA SI HA GANADO (SI EL BOSS HA MUERTO Y SI NIVEL ESTA DESCONGELADO)
 		this.enemies.getChildren().forEach(function (item) {
-			if(!item.isAlive())
+			if (!item.isAlive())
 				this.game.checkIfWin(this, this.counter, this.checkWin, this.wolf, this.enemies, this.game, this.level);
-		},this);
+		}, this);
 
 		//COMPRUEBA SI HA PERDIDO
 		if (!this.wolf.loseGame)

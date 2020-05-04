@@ -601,8 +601,7 @@ export default class Game extends Phaser.Scene {
             game.updateHealthHud(player, scene);
 
             //audios
-            if(player.beamHit)
-            {
+            if (player.beamHit) {
                 game.audio_hitbeam();
                 player.beamHit = false;
             }

@@ -9,10 +9,10 @@ export default class Help extends Phaser.Scene {
 
     create() {
         this.add.image(0, 0, "title_bg").setOrigin(0).setDepth(0);
-        let menuSelect = this.sound.add("menu_select_sound",{
+        let menuSelect = this.sound.add("menu_select_sound", {
             volume: 0.40,
         });
-        let menuHover = this.sound.add("menu_hover_sound",{
+        let menuHover = this.sound.add("menu_hover_sound", {
             volume: 2,
         });
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - this.heightMinus, "helpBoard").setDepth(1);

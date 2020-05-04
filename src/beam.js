@@ -8,7 +8,7 @@ export default class Beam extends Phaser.GameObjects.Sprite {
 
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); //enable body
-      
+
         if (enemy.flipX) {
             this.body.setVelocityX(this.vel);
             this.setFlipX(true);
@@ -22,7 +22,7 @@ export default class Beam extends Phaser.GameObjects.Sprite {
 
         this.mapBoundaryLeft = -70;
         this.mapBoundaryRight = 3300;
-        this.body.syncBounds = true; 
+        this.body.syncBounds = true;
     }
 
     createAnims() {

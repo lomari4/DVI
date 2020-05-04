@@ -78,7 +78,7 @@ export default class Level2 extends Phaser.Scene {
 			//update del jugador
 			this.wolf.update(this.game);
 
-			//update de los enemigos
+			//update de los enemigos (ver si pueden atacar)
 			this.game.enemyUpdate(this, this.enemies, this.wolf);
 
 			//FUNCION DE CONGELAR EL SUELO DE LOS SWUB

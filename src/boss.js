@@ -133,10 +133,9 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 						this.charge = this.maxCharge;
 					},
 				});
-				
+
 			}
-			else if (this.coolDown >= this.maxcoolDown)
-			{
+			else if (this.coolDown >= this.maxcoolDown) {
 				this.play('attackboss', true);
 				let beam = game.spawnBeam(this.scene, this.x - this.distSpawnBeamX, this.y + this.distSpawnBeamY, this);
 				beam.setScale(1.3);

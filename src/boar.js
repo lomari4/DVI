@@ -111,7 +111,7 @@ export default class Boar extends Phaser.GameObjects.Sprite {
 
 	checkAttack(wolf, game) {
 		if (wolf.isAlive() && this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y boar mirandolo
-			if(!this.isAttacking)
+			if (!this.isAttacking)
 				game.audio_oink();
 			this.isAttacking = true;
 			this.play('runboar', true);
