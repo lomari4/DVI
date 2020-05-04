@@ -44,7 +44,6 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 				prefix: 'icedrake_',
 				suffix: '.png',
 				start: 19,
-				//start: 23,
 				end: 23,
 				zeroPad: 2
 			}),
@@ -95,6 +94,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 				this.body.setSize(0, this.heightsizehurt);
 				this.play('hurticedrake', false);
 				this.body.setVelocityX(0);
+				this.coolDown = this.maxcoolDown;
 			}
 			if (this.isAttacking) {
 				this.body.setSize(0, this.heightsizeattack);

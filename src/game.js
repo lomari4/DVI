@@ -423,7 +423,7 @@ export default class Game extends Phaser.Scene {
     hurtPlayer(scene, player) {
         //jugador invencible por tiempo
         scene.time.addEvent({
-            delay: 1000,
+            delay: player.invincibleCounter,
             callback: () => {
                 player.invincible = false;
             },
@@ -588,9 +588,10 @@ export default class Game extends Phaser.Scene {
         for (let i = 0; i < slash.getChildren().length; i++) {
             enemies.getChildren().forEach(function (item) {
                 if (!item.hurtflag && scene.physics.overlap(slash, item))
+                {
                     game.stunEnemy(item, slash)
-                if (item.hurtflag)
-                    scene.game.delayStun(scene, item);
+                    game.delayStun(scene, item);
+                }
             }, scene);
         }
     }
