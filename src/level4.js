@@ -4,6 +4,7 @@ export default class Level4 extends Phaser.Scene {
 		super({ key: 'Level4' });
 		this.level = 4;
 		this.tileSize = 64;
+		this.zoneX = 2000;
 	}
 
 	preload() { }
@@ -106,7 +107,7 @@ export default class Level4 extends Phaser.Scene {
 			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
 
 			//ZONA BOSS
-			if(this.wolf.x > 2100 && !this.inZone){
+			if(this.wolf.x > this.zoneX && !this.inZone){
 				this.wolf.inZone = true;
 				//bloquear camara
 				this.cameraStop();

@@ -7,10 +7,14 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.chargeDelay = 4000;
 		this.maxCharge = 900;
 		this.charge = 900;
-		this.health = 5;
+		this.health = 6;
 		this.invincible = true;
 		this.stunDelay = 250;
+		this.distSpawnBeamX = 200;
+		this.distSpawnBeamY = 80;
 		this.setScale(2);
+		this.maxcoolDown = 100;
+		this.coolDown = 100;
 	}
 
 	addPhysics() {
@@ -121,6 +125,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				this.invincible = false;
 				this.play('vulnerableboss', true);
 				this.body.setVelocityY(this.velFall);
+				this.coolDown = this.maxcoolDown;
 				this.scene.time.addEvent({ //TO DO: CANCELAR ESTO CUANDO this.hurtFlag. Si no se puede, hay que hacerlo con un contador o algo
 					delay: this.chargeDelay, //tiempo que el boss es vulnerable y esta cargando
 					callback: () => {
@@ -128,11 +133,18 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 						this.charge = this.maxCharge;
 					},
 				});
+				
 			}
-			else
+			else if (this.coolDown >= this.maxcoolDown)
+			{
 				this.play('attackboss', true);
-
+				let beam = game.spawnBeam(this.scene, this.x - this.distSpawnBeamX, this.y + this.distSpawnBeamY, this);
+				beam.setScale(1.3);
+				beam.play('beamAnim', true);
+				this.coolDown = 0;
+			}
 			this.charge--;
+			this.coolDown++;
 		}
 		else
 			this.walk();
