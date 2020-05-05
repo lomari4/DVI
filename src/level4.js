@@ -24,7 +24,6 @@ export default class Level4 extends Phaser.Scene {
 	hitBoss(slash, enemy){
 		if(!enemy.invincible)
 		{
-			slash.destroy();
 			enemy.health -=1;
 			enemy.invincible = true;
 		}
