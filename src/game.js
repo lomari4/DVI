@@ -71,6 +71,9 @@ export default class Game extends Phaser.Scene {
         this.load.audio("yeti_smash", "./assets/music/effects/yeti_smash.wav");
         this.load.audio("dragon_breath", "./assets/music/effects/dragon_breath.mp3");
         this.load.audio("boar_sound", "./assets/music/effects/boar.wav");
+        this.load.audio("boss_beam", "./assets/music/effects/boss_beam.wav");
+        this.load.audio("boss_die", "./assets/music/effects/boss_die.mp3");
+        this.load.audio("boss_hit", "./assets/music/effects/boss_hit.wav");
 
         //GENERAL
         //añadimos imagen de las vidas
@@ -249,6 +252,12 @@ export default class Game extends Phaser.Scene {
         scene.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height); //para que no se salga del mapa
         scene.cameras.main.startFollow(player);
     }
+    //Camara stop cuando boss spawnea
+	BossCameraStop(scene) {
+		scene.cameras.main.stopFollow();
+		scene.cameras.main.setScroll(scene.cameras.main.x + 2500);
+		scene.cameras.main.flash(250, 255, 0, 0);
+	}
 
     //AUDIOS//
     addSoundtrack(level, scene) {
@@ -316,6 +325,18 @@ export default class Game extends Phaser.Scene {
     audio_oink() {
         let s = this.sound.add("boar_sound", {
             volume: 0.60,
+        });
+        s.play();
+    }
+    audio_bossBeam() {
+        let s = this.sound.add("boss_beam", {
+            volume: 0.5,
+        });
+        s.play();
+    }
+    audio_bossDie() {
+        let s = this.sound.add("boss_die", {
+            volume: 0.55,
         });
         s.play();
     }
@@ -443,6 +464,18 @@ export default class Game extends Phaser.Scene {
                 enemy.hurtflag = false;
             },
         });
+    }
+    //dañar al boss
+    hitBoss(slash, enemy){
+		if(!enemy.invincible)
+		{
+			enemy.health -=1;
+			enemy.invincible = true;
+            enemy.hurtFlag = true;
+            if(enemy.health != 0){
+                this.sound.add("boss_hit", { volume: 0.6, }).play();
+            }  
+		}
     }
 
     //SPAWN//

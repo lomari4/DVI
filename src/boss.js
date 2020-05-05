@@ -13,10 +13,11 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.hurtFlag = false;
 		this.invincibleCounter = 3000;
 		this.distSpawnBeamX = 100;
-		this.distSpawnBeamY = 80;
+		this.distSpawnBeamY = 100;
 		this.setScale(2);
 		this.maxcoolDown = 200;
 		this.coolDown = 200;
+		this.dieSound = false;
 	}
 
 	addPhysics() {
@@ -133,7 +134,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 					this.play('vulnerableboss', true);
 					this.body.setVelocityY(this.velFall);
 					this.coolDown = this.maxcoolDown;
-					this.scene.time.addEvent({ 
+					this.scene.time.addEvent({
 						delay: this.chargeDelay, //tiempo que el boss es vulnerable y esta cargando
 						callback: () => {
 							this.invincible = true;
@@ -146,6 +147,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				else if (this.coolDown >= this.maxcoolDown && !this.hurtFlag) {
 					this.play('attackboss', true);
 					let beam = game.spawnBeam(this.scene, this.x - this.distSpawnBeamX, this.y + this.distSpawnBeamY, this);
+					game.audio_bossBeam();
 					beam.setScale(1.2);
 					beam.play('beamAnim', true);
 					this.coolDown = 0;
@@ -153,13 +155,12 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 
 				//cada vez que le quita una vida el jugador, el boss dispara mas rapido
 				switch (this.health) {
-					case 1: this.maxcoolDown = 100; this.vel = 390; break;
-					case 2: this.maxcoolDown = 130; this.vel = 370; break;
-					case 3: this.maxcoolDown = 150; this.vel = 350; break;
+					case 1: this.maxcoolDown = 120; this.vel = 410; break;
+					case 2: this.maxcoolDown = 130; this.vel = 380; break;
+					case 3: this.maxcoolDown = 140; this.vel = 350; break;
 					case 4: this.maxcoolDown = 160; this.vel = 340; break;
 					case 5: this.maxcoolDown = 180; this.vel = 320; break;
 				}
-
 				this.charge--;
 				this.coolDown++;
 			}
@@ -167,7 +168,12 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				this.walk();
 		}
 		else {
+			this.body.setVelocityY(-60);
 			this.play('dissapearboss', true);
+			if (!this.dieSound) {
+				game.audio_bossDie();
+				this.dieSound = true;
+			}
 			if (this.anims.currentFrame.index === 9) {
 				this.destroy();
 				wolf.killedBoss = true;

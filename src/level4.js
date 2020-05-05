@@ -9,27 +9,6 @@ export default class Level4 extends Phaser.Scene {
 
 	preload() { }
 
-	resetBounds() {
-		this.physics.world.bounds.width = this.groundLayer.width;
-		this.physics.world.bounds.height = this.groundLayer.height;
-	}
-
-	//Camara stop cuando boss spawnea
-	cameraStop() {
-		this.cameras.main.stopFollow();
-		this.cameras.main.setScroll(this.cameras.main.x + 2500);
-		this.cameras.main.flash(250, 255, 0, 0);
-		this.inZone = true;
-	}
-	hitBoss(slash, enemy){
-		if(!enemy.invincible)
-		{
-			enemy.health -=1;
-			enemy.invincible = true;
-			enemy.hurtFlag = true;
-		}
-    }
-
 	create() {
 		//GENERAL//
 		this.game = this.scene.get('Game'); //(clase Game con todas las funciones que van a compartir todos los niveles)
@@ -56,6 +35,7 @@ export default class Level4 extends Phaser.Scene {
 		//JUGADOR//
 		//this.wolf = this.game.spawnPlayer(this, 0, 919, this.groundLayer);
 		this.wolf = this.game.spawnPlayer(this, 1900, 919, this.groundLayer); //TESTING
+
 		//colisiones del jugador
 		this.collider = this.physics.add.collider(this.wolf, this.groundLayer);
 		//ataque del jugador
@@ -82,7 +62,7 @@ export default class Level4 extends Phaser.Scene {
 
 		//OVERLAPS//
 		this.physics.add.overlap(this.wolf, this.enemies, this.game.knockBack, this.game.overlapcallback, this);
-		this.physics.add.overlap(this.enemies, this.slash, this.hitBoss, null, this);
+		this.physics.add.overlap(this.enemies, this.slash, this.game.hitBoss, null, this);
 		this.physics.add.overlap(this.wolf, this.projectiles, this.game.knockBack, this.game.hitBeam, this.game.overlapcallback, this);
 
 	}
@@ -109,12 +89,13 @@ export default class Level4 extends Phaser.Scene {
 			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
 
 			//ZONA BOSS
-			if (this.wolf.x > this.zoneX && !this.inZone) {
+			if (this.wolf.x > this.zoneX && !this.wolf.inZone) {
 				this.wolf.inZone = true;
 				//bloquear camara
-				this.cameraStop();
+				this.game.BossCameraStop(this);
 				//audio
 				this.music = this.game.addSoundtrack(this.level, this);
+				this.music.setVolume(0.2);
 				this.music.setLoop(true);
 				this.music.play();
 				//nueva capa de collision para que el jugador no pueda escapar del boss
@@ -127,6 +108,7 @@ export default class Level4 extends Phaser.Scene {
 
 		//COMPRUEBA SI HA GANADO (SI EL BOSS HA MUERTO Y SI NIVEL ESTA DESCONGELADO)
 		if (this.wolf.killedBoss){
+			this.music.stop();
 			this.game.checkIfWin(this, this.counter, this.checkWin, this.wolf, this.enemies, this.game, this.level);
 			this.physics.world.removeCollider(this.collider);
 			this.game.addCamera(this, this.wolf, this.groundLayer);
