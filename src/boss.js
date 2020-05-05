@@ -113,7 +113,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				this.body.setVelocityY(this.vel);
 			}
 		}
-		else if (!this.winGame && this.hurtflag) {
+		else if (!this.winGame && this.hurtflag && this.isAlive()) {
 			this.play('hurtboss', false);
 			this.body.setVelocityY(0);
 		}
