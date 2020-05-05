@@ -16,7 +16,6 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.setScale(2);
 		this.maxcoolDown = 100;
 		this.coolDown = 100;
-		this.destroyDelay = 3000;
 	}
 
 	addPhysics() {
@@ -89,7 +88,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				end: 23,
 				zeroPad: 2
 			}),
-			frameRate: 1,
+			frameRate: 6,
 			repeat: 0,
 
 		});
@@ -153,12 +152,8 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		}
 		else{
 			this.play('dissapearboss', true);
-			this.scene.time.addEvent({ 
-				delay: this.destroyDelay,
-				callback: () => {
-					this.destroy();
-				},
-			});
+			if(this.anims.currentFrame.index === 9)
+				this.destroy();
 		}
 	}
 

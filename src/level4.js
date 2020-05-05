@@ -14,11 +14,6 @@ export default class Level4 extends Phaser.Scene {
 		this.physics.world.bounds.height = this.groundLayer.height;
 	}
 
-	modifyBounds() {
-		this.physics.world.bounds.width = this.groundLayer.width; //TODO CAMBIAR ESTO
-		this.physics.world.bounds.height = this.groundLayer.height;
-	}
-
 	//Camara stop cuando boss spawnea
 	cameraStop() {
 		this.cameras.main.stopFollow();
@@ -26,6 +21,11 @@ export default class Level4 extends Phaser.Scene {
 		this.cameras.main.flash(250, 255, 0, 0);
 		this.inZone = true;
 	}
+	hitBoss(slash, enemy){
+        slash.destroy();
+        if(!enemy.invincible)
+			enemy.health -=1;
+    }
 
 	create() {
 		//GENERAL//
@@ -80,7 +80,7 @@ export default class Level4 extends Phaser.Scene {
 
 		//OVERLAPS//
 		this.physics.add.overlap(this.wolf, this.enemies, this.game.knockBack, this.game.overlapcallback, this);
-		this.physics.add.overlap(this.enemies, this.slash, this.game.hitBoss, null, this);
+		this.physics.add.overlap(this.enemies, this.slash, this.hitBoss, null, this);
 		this.physics.add.overlap(this.wolf, this.projectiles, this.game.knockBack, this.game.hitBeam, this.game.overlapcallback, this);
 
 	}

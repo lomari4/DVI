@@ -444,11 +444,6 @@ export default class Game extends Phaser.Scene {
             },
         });
     }
-    hitBoss(slash, enemy){
-        slash.destroy();
-        if(!enemy.invincible)
-                enemy.health -=1;
-    }
 
     //SPAWN//
     spawnPlayer(scene, x, y, groundLayer) {
