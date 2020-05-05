@@ -23,6 +23,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.knockBackSIDE = 200;
         this.beamHit = false;
         this.invincibleCounter = 1200;
+        this.killedBoss = false;
     }
 
     createAnims() {

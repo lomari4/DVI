@@ -34,7 +34,6 @@ export default class Level4 extends Phaser.Scene {
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		this.winFlag = false;
 		this.inZone = false;
-		this.bossInvincible = true;
 
 		//MAPA//
 		this.map = this.game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
@@ -86,7 +85,6 @@ export default class Level4 extends Phaser.Scene {
 	}
 
 	update(time, delta) {
-		this.numEnemies = 0;
 		if (!this.wolf.winGame) {
 			//update del jugador
 			this.wolf.update(this.game);
@@ -102,8 +100,6 @@ export default class Level4 extends Phaser.Scene {
 			this.enemies.getChildren().forEach(function (item) {
 				if (!item.invincible)
 					this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
-
-				this.numEnemies++;
 			}, this);
 
 			//ataque de los enemigos al juagdor
@@ -127,8 +123,11 @@ export default class Level4 extends Phaser.Scene {
 		this.game.showProgress(this.counter, this.checkWin);
 
 		//COMPRUEBA SI HA GANADO (SI EL BOSS HA MUERTO Y SI NIVEL ESTA DESCONGELADO)
-		if (this.numEnemies === 0)
+		if (this.wolf.killedBoss){
 			this.game.checkIfWin(this, this.counter, this.checkWin, this.wolf, this.enemies, this.game, this.level);
+			this.physics.world.removeCollider(this.collider);
+			this.game.addCamera(this, this.wolf, this.groundLayer);
+		}
 
 		//COMPRUEBA SI HA PERDIDO
 		if (!this.wolf.loseGame)

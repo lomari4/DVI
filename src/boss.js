@@ -153,7 +153,10 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		else{
 			this.play('dissapearboss', true);
 			if(this.anims.currentFrame.index === 9)
+			{
 				this.destroy();
+				wolf.killedBoss = true;
+			}
 		}
 	}
 
