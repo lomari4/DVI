@@ -9,9 +9,10 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.charge = 900;
 		this.health = 6;
 		this.invincible = true;
+		this.hurtFlag = false;
 		this.invincibleCounter = 3000;
 		this.stunDelay = 250;
-		this.distSpawnBeamX = 200;
+		this.distSpawnBeamX = 100;
 		this.distSpawnBeamY = 80;
 		this.setScale(1.5);
 		this.maxcoolDown = 200;
@@ -98,11 +99,11 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 	}
 
 	preUpdate(t, dt) {
-		this.body.setSize(137, 189); //ajustar el collider
-		if (!this.winGame && this.invincible) {
+		if (!this.winGame && this.invincible && !this.hurtFlag) {
 			super.preUpdate(t, dt);
 
-			if (this.body.velocity.y === 0 && !this.hurtflag) {
+			this.body.setSize(137, 189); //ajustar el collider
+			if (this.body.velocity.y === 0) {
 				this.body.setVelocityY(-this.vel);
 			}
 			if (this.body.blocked.down) {
@@ -112,7 +113,8 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				this.body.setVelocityY(this.vel);
 			}
 		}
-		else if (!this.winGame && this.hurtflag && this.isAlive()) {
+		else if (!this.winGame && this.hurtFlag && this.isAlive()) {
+			this.body.setSize(137, 200); //ajustar el collider
 			this.play('hurtboss', false);
 			this.body.setVelocityY(0);
 		}
@@ -122,7 +124,8 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 	checkAttack(wolf, game) {
 		if(this.isAlive()){
 			if (wolf.isAlive() && wolf.inZone) {
-				if (this.charge <= 0) { //tiene que cargar
+				if (this.charge <= 0 && !this.hurtFlag) { //tiene que cargar
+					this.body.setSize(137, 160); //ajustar el collider
 					this.body.setVelocityY(0);
 					this.invincible = false;
 					this.play('vulnerableboss', true);
@@ -132,12 +135,13 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 						delay: this.chargeDelay, //tiempo que el boss es vulnerable y esta cargando
 						callback: () => {
 							this.invincible = true;
+							this.hurtFlag = false;
 							this.charge = this.maxCharge;
 						},
 					});
 
 				}
-				else if (this.coolDown >= this.maxcoolDown) {
+				else if (this.coolDown >= this.maxcoolDown && !this.hurtFlag) {
 					this.play('attackboss', true);
 					let beam = game.spawnBeam(this.scene, this.x - this.distSpawnBeamX, this.y + this.distSpawnBeamY, this);
 					beam.setScale(1.3);

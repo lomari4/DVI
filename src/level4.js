@@ -26,6 +26,7 @@ export default class Level4 extends Phaser.Scene {
 		{
 			enemy.health -=1;
 			enemy.invincible = true;
+			enemy.hurtFlag = true;
 		}
     }
 
