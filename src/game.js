@@ -67,6 +67,7 @@ export default class Game extends Phaser.Scene {
         //efectos de sonido generales
         this.load.audio("gameover_sound", "./assets/music/effects/game_over.wav");
         this.load.audio("gamewin_sound", "./assets/music/effects/game_win.wav");
+        this.load.audio("enemy_hit", "./assets/music/effects/enemy_hit.wav");
         this.load.audio("icehit_sound", "./assets/music/effects/ice_splash.wav");
         this.load.audio("yeti_smash", "./assets/music/effects/yeti_smash.wav");
         this.load.audio("dragon_breath", "./assets/music/effects/dragon_breath.mp3");
@@ -144,7 +145,7 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level4"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
+            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
@@ -253,11 +254,11 @@ export default class Game extends Phaser.Scene {
         scene.cameras.main.startFollow(player);
     }
     //Camara stop cuando boss spawnea
-	BossCameraStop(scene) {
-		scene.cameras.main.stopFollow();
-		scene.cameras.main.setScroll(scene.cameras.main.x + 2500);
-		scene.cameras.main.flash(250, 255, 0, 0);
-	}
+    BossCameraStop(scene) {
+        scene.cameras.main.stopFollow();
+        scene.cameras.main.setScroll(scene.cameras.main.x + 2500);
+        scene.cameras.main.flash(250, 255, 0, 0);
+    }
 
     //AUDIOS//
     addSoundtrack(level, scene) {
@@ -458,6 +459,7 @@ export default class Game extends Phaser.Scene {
         enemy.hurtflag = true;
     }
     delayStun(scene, enemy) {
+        this.sound.add("enemy_hit", { volume: 0.3 }).play();
         scene.time.addEvent({
             delay: enemy.stunDelay, //tiempo que el enemigo esta stuneado
             callback: () => {
@@ -466,16 +468,15 @@ export default class Game extends Phaser.Scene {
         });
     }
     //dañar al boss
-    hitBoss(slash, enemy){
-		if(!enemy.invincible)
-		{
-			enemy.health -=1;
-			enemy.invincible = true;
+    hitBoss(slash, enemy) {
+        if (!enemy.invincible) {
+            enemy.health -= 1;
+            enemy.invincible = true;
             enemy.hurtFlag = true;
-            if(enemy.health != 0){
+            if (enemy.health != 0) {
                 this.sound.add("boss_hit", { volume: 0.6, }).play();
-            }  
-		}
+            }
+        }
     }
 
     //SPAWN//
@@ -620,8 +621,7 @@ export default class Game extends Phaser.Scene {
     checkPlayerAttack(scene, slash, enemies, game) {
         for (let i = 0; i < slash.getChildren().length; i++) {
             enemies.getChildren().forEach(function (item) {
-                if (!item.hurtflag && scene.physics.overlap(slash, item))
-                {
+                if (!item.hurtflag && scene.physics.overlap(slash, item)) {
                     game.stunEnemy(item, slash)
                     game.delayStun(scene, item);
                 }

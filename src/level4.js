@@ -33,8 +33,7 @@ export default class Level4 extends Phaser.Scene {
 		this.game.textProgress(this);
 
 		//JUGADOR//
-		//this.wolf = this.game.spawnPlayer(this, 0, 919, this.groundLayer);
-		this.wolf = this.game.spawnPlayer(this, 1900, 919, this.groundLayer); //TESTING
+		this.wolf = this.game.spawnPlayer(this, 0, 919, this.groundLayer);
 
 		//colisiones del jugador
 		this.collider = this.physics.add.collider(this.wolf, this.groundLayer);
