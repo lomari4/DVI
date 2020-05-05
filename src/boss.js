@@ -23,7 +23,6 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.scene.physics.add.existing(this); //enable body
 		this.body.setCollideWorldBounds(true);
 		this.body.allowGravity = false;
-		this.body.syncBounds = true; //para sincronizar sprite con el collider box
 	}
 
 	createAnims() {
@@ -99,6 +98,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 	}
 
 	preUpdate(t, dt) {
+		this.body.setSize(137, 189); //ajustar el collider
 		if (!this.winGame && this.invincible) {
 			super.preUpdate(t, dt);
 
