@@ -141,7 +141,7 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
+            this.scene.start("Level4"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
@@ -393,7 +393,7 @@ export default class Game extends Phaser.Scene {
     //DAÑAR AL JUGADOR//
     knockBack(player, enemy) {
         //knock-back al jugador
-        if (!player.invincible && !enemy.hurtflag) {
+        if (!player.invincible && !enemy.hurtflag && player.isAlive()) {
             player.hurtflag = true;
             if (player.body.touching.down) {
                 player.body.setVelocityY(-player.knockBackUP);
@@ -415,7 +415,7 @@ export default class Game extends Phaser.Scene {
 
     }
     hitBeam(player, beam) {
-        if (!player.invincible) {
+        if (!player.invincible && player.isAlive()) {
             beam.destroy();
             player.beamHit = true;
         }
@@ -443,6 +443,11 @@ export default class Game extends Phaser.Scene {
                 enemy.hurtflag = false;
             },
         });
+    }
+    hitBoss(slash, enemy){
+        slash.destroy();
+        if(!enemy.invincible)
+                enemy.health -=1;
     }
 
     //SPAWN//

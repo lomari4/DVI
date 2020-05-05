@@ -23,7 +23,7 @@ var config = {
     },
     //scene: [Menu, Game],
     scene: [Game, Help, Level1, Level2, Level3, Level4, GameOver],
-    physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: false } }
+    physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: true } }
 
 };
 new Phaser.Game(config);

@@ -66,7 +66,7 @@ export default class Level4 extends Phaser.Scene {
 		this.enemies = this.physics.add.group();
 
 		//spawn boss
-		this.game.spawnBoss(this, 2800, 719, this.enemies);
+		this.game.spawnBoss(this, 3200, 719, this.enemies);
 
 		//colisiones de los enemigos
 		this.physics.add.collider(this.enemies, this.groundLayer);
@@ -80,12 +80,13 @@ export default class Level4 extends Phaser.Scene {
 
 		//OVERLAPS//
 		this.physics.add.overlap(this.wolf, this.enemies, this.game.knockBack, this.game.overlapcallback, this);
-		this.physics.add.overlap(this.enemies, this.slash, this.game.stunEnemy, null, this);
+		this.physics.add.overlap(this.enemies, this.slash, this.game.hitBoss, null, this);
 		this.physics.add.overlap(this.wolf, this.projectiles, this.game.knockBack, this.game.hitBeam, this.game.overlapcallback, this);
 
 	}
 
 	update(time, delta) {
+		this.numEnemies = 0;
 		if (!this.wolf.winGame) {
 			//update del jugador
 			this.wolf.update(this.game);
@@ -101,6 +102,8 @@ export default class Level4 extends Phaser.Scene {
 			this.enemies.getChildren().forEach(function (item) {
 				if (!item.invincible)
 					this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
+
+				this.numEnemies++;
 			}, this);
 
 			//ataque de los enemigos al juagdor
@@ -124,10 +127,8 @@ export default class Level4 extends Phaser.Scene {
 		this.game.showProgress(this.counter, this.checkWin);
 
 		//COMPRUEBA SI HA GANADO (SI EL BOSS HA MUERTO Y SI NIVEL ESTA DESCONGELADO)
-		this.enemies.getChildren().forEach(function (item) {
-			if (!item.isAlive())
-				this.game.checkIfWin(this, this.counter, this.checkWin, this.wolf, this.enemies, this.game, this.level);
-		}, this);
+		if (this.numEnemies === 0)
+			this.game.checkIfWin(this, this.counter, this.checkWin, this.wolf, this.enemies, this.game, this.level);
 
 		//COMPRUEBA SI HA PERDIDO
 		if (!this.wolf.loseGame)
