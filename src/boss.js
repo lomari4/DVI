@@ -8,13 +8,13 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.maxCharge = 900;
 		this.charge = 900;
 		this.health = 6;
+		this.winGame = false;
 		this.invincible = true;
 		this.hurtFlag = false;
 		this.invincibleCounter = 3000;
-		this.stunDelay = 250;
 		this.distSpawnBeamX = 100;
 		this.distSpawnBeamY = 80;
-		this.setScale(1.5);
+		this.setScale(2);
 		this.maxcoolDown = 200;
 		this.coolDown = 200;
 	}
@@ -49,7 +49,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				end: 13,
 				zeroPad: 2
 			}),
-			frameRate: 10,
+			frameRate: 5,
 			repeat: -1,
 
 		});
@@ -99,39 +99,41 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 	}
 
 	preUpdate(t, dt) {
-		if (!this.winGame && this.invincible && !this.hurtFlag) {
+		if (!this.winGame) {
 			super.preUpdate(t, dt);
 
-			this.body.setSize(137, 189); //ajustar el collider
-			if (this.body.velocity.y === 0) {
-				this.body.setVelocityY(-this.vel);
+			if (this.invincible && !this.hurtFlag) {
+				this.body.setSize(137, 179); //ajustar el collider
+				if (this.body.velocity.y === 0) {
+					this.body.setVelocityY(-this.vel);
+				}
+				if (this.body.blocked.down) {
+					this.body.setVelocityY(-this.vel);
+				}
+				else if (this.body.blocked.up) {
+					this.body.setVelocityY(this.vel);
+				}
 			}
-			if (this.body.blocked.down) {
-				this.body.setVelocityY(-this.vel);
+			else if (this.hurtFlag && this.isAlive()) {
+				this.body.setSize(137, 190); //ajustar el collider
+				this.play('hurtboss', false);
+				this.body.setVelocityY(0);
 			}
-			else if (this.body.blocked.up) {
-				this.body.setVelocityY(this.vel);
-			}
-		}
-		else if (!this.winGame && this.hurtFlag && this.isAlive()) {
-			this.body.setSize(137, 200); //ajustar el collider
-			this.play('hurtboss', false);
-			this.body.setVelocityY(0);
 		}
 
 	}
 
 	checkAttack(wolf, game) {
-		if(this.isAlive()){
+		if (this.isAlive()) {
 			if (wolf.isAlive() && wolf.inZone) {
 				if (this.charge <= 0 && !this.hurtFlag) { //tiene que cargar
-					this.body.setSize(137, 160); //ajustar el collider
+					this.body.setSize(137, 150); //ajustar el collider
 					this.body.setVelocityY(0);
 					this.invincible = false;
 					this.play('vulnerableboss', true);
 					this.body.setVelocityY(this.velFall);
 					this.coolDown = this.maxcoolDown;
-					this.scene.time.addEvent({ //TO DO: CANCELAR ESTO CUANDO this.hurtFlag. Si no se puede, hay que hacerlo con un contador o algo
+					this.scene.time.addEvent({ 
 						delay: this.chargeDelay, //tiempo que el boss es vulnerable y esta cargando
 						callback: () => {
 							this.invincible = true;
@@ -144,20 +146,29 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 				else if (this.coolDown >= this.maxcoolDown && !this.hurtFlag) {
 					this.play('attackboss', true);
 					let beam = game.spawnBeam(this.scene, this.x - this.distSpawnBeamX, this.y + this.distSpawnBeamY, this);
-					beam.setScale(1.3);
+					beam.setScale(1.2);
 					beam.play('beamAnim', true);
 					this.coolDown = 0;
 				}
+
+				//cada vez que le quita una vida el jugador, el boss dispara mas rapido
+				switch (this.health) {
+					case 1: this.maxcoolDown = 100; this.vel = 390; break;
+					case 2: this.maxcoolDown = 130; this.vel = 370; break;
+					case 3: this.maxcoolDown = 150; this.vel = 350; break;
+					case 4: this.maxcoolDown = 160; this.vel = 340; break;
+					case 5: this.maxcoolDown = 180; this.vel = 320; break;
+				}
+
 				this.charge--;
 				this.coolDown++;
 			}
 			else
 				this.walk();
 		}
-		else{
+		else {
 			this.play('dissapearboss', true);
-			if(this.anims.currentFrame.index === 9)
-			{
+			if (this.anims.currentFrame.index === 9) {
 				this.destroy();
 				wolf.killedBoss = true;
 			}
