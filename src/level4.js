@@ -110,7 +110,7 @@ export default class Level4 extends Phaser.Scene {
 			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
 
 			//ZONA BOSS
-			if (this.wolf.x > this.zoneX && !this.inZone) {
+			if (this.wolf.x > this.zoneX && !this.inZone && this.numEnemies > 0) {
 				this.wolf.inZone = true;
 				//bloquear camara
 				this.cameraStop();
@@ -127,8 +127,11 @@ export default class Level4 extends Phaser.Scene {
 		this.game.showProgress(this.counter, this.checkWin);
 
 		//COMPRUEBA SI HA GANADO (SI EL BOSS HA MUERTO Y SI NIVEL ESTA DESCONGELADO)
-		if (this.numEnemies === 0)
+		if (this.numEnemies === 0) {
 			this.game.checkIfWin(this, this.counter, this.checkWin, this.wolf, this.enemies, this.game, this.level);
+			this.physics.world.removeCollider(this.collider);
+			this.game.addCamera(this, this.wolf, this.groundLayer);
+		}
 
 		//COMPRUEBA SI HA PERDIDO
 		if (!this.wolf.loseGame)
