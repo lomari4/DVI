@@ -153,8 +153,8 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		}
 		else{
 			this.play('dissapearboss', true);
-			this.scene.time.addEvent({ //TO DO: CANCELAR ESTO CUANDO this.hurtFlag. Si no se puede, hay que hacerlo con un contador o algo
-				delay: this.destroyDelay, //tiempo que el boss es vulnerable y esta cargando
+			this.scene.time.addEvent({ 
+				delay: this.destroyDelay,
 				callback: () => {
 					this.destroy();
 				},
