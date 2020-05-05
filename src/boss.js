@@ -2,7 +2,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 
 	constructor(scene, x, y) {
 		super(scene, x, y, 'boss');
-		this.vel = 100;
+		this.vel = 300;
 		this.velFall = 200;
 		this.chargeDelay = 4000;
 		this.maxCharge = 900;
@@ -13,9 +13,9 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.stunDelay = 250;
 		this.distSpawnBeamX = 200;
 		this.distSpawnBeamY = 80;
-		this.setScale(2);
-		this.maxcoolDown = 100;
-		this.coolDown = 100;
+		this.setScale(1.5);
+		this.maxcoolDown = 200;
+		this.coolDown = 200;
 	}
 
 	addPhysics() {
