@@ -71,20 +71,14 @@ export default class Level4 extends Phaser.Scene {
 			//update del jugador
 			this.wolf.update(this.game);
 
-			//update de los enemigos (ver si pueden atacar)
+			//ver si enemigo puede atacar
 			this.game.enemyUpdate(this, this.enemies, this.wolf);
 
 			//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
 			this.counter += this.game.checkIfMelt(this.wolf, this.game, this.groundLayer);
-
+			
 			//ATAQUES
-			//ataque del jugador. Solo efectivo si boss no es invencible
-			this.enemies.getChildren().forEach(function (item) {
-				if (!item.invincible)
-					this.game.checkPlayerAttack(this, this.slash, this.enemies, this.game);
-			}, this);
-
-			//ataque de los enemigos al juagdor
+			//ver si jugador esta dañado
 			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
 
 			//ZONA BOSS
@@ -94,7 +88,7 @@ export default class Level4 extends Phaser.Scene {
 				this.game.BossCameraStop(this);
 				//audio
 				this.music = this.game.addSoundtrack(this.level, this);
-				this.music.setVolume(0.2);
+				this.music.setVolume(0.3);
 				this.music.setLoop(true);
 				this.music.play();
 				//nueva capa de collision para que el jugador no pueda escapar del boss
