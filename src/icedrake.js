@@ -115,6 +115,7 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 	checkAttack(wolf, game) {
 		if (wolf.isAlive() && this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y dragon mirandolo
 			if (this.coolDown > this.maxcoolDown) {
+				this.body.setVelocityX(0);
 				this.isAttacking = true;
 				this.play('attackicedrake', true);
 				let beam;
@@ -125,7 +126,6 @@ export default class Icedrake extends Phaser.GameObjects.Sprite {
 				beam.play('beamAnim', true);
 				game.audio_dragonbreath();
 				this.coolDown = 0;
-				this.body.setVelocityX(0);
 			}
 		}
 		if (this.anims.currentFrame.index === 5 && this.isAttacking) {

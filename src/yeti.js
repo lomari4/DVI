@@ -120,8 +120,8 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 	checkAttack(wolf, game) {
 		if (wolf.isAlive() && this.playerInRange(wolf) && (this.x > wolf.x && !this.flipX || this.x < wolf.x && this.flipX)) { //jugador en rango y yeti mirandolo
 			if (this.coolDown > this.maxcoolDown) {
-				this.play('attackyeti', true);
 				this.body.setVelocityX(0);
+				this.play('attackyeti', true);
 				this.coolDown = 0;
 				this.isAttacking = true;
 			}
