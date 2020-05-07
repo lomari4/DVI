@@ -17,6 +17,8 @@ export default class Game extends Phaser.Scene {
         this.heightAdded = 250;
         this.tileIndex = 6;
         this.posHud = 10;
+        this.bossposHudX = 1175;
+        this.bossposHudY = 10;
         this.textProgressX = 10;
         this.textProgressY = 70;
         this.tileSize = 64;
@@ -77,11 +79,19 @@ export default class Game extends Phaser.Scene {
         this.load.audio("boss_hit", "./assets/music/effects/boss_hit.wav");
 
         //GENERAL
-        //añadimos imagen de las vidas
+        //hud de las vidas del jugador
         this.load.image('hud_full', './assets/hud/hud1.png');
         this.load.image('hud_2left', './assets/hud/hud2.png');
         this.load.image('hud_1left', './assets/hud/hud3.png');
         this.load.image('hud_empty', './assets/hud/hud4.png');
+        //hud de las vidas del boss
+        this.load.image('boss_hud_full', './assets/hud/bosshud1.png');
+        this.load.image('boss_hud_5left', './assets/hud/bosshud2.png');
+        this.load.image('boss_hud_4left', './assets/hud/bosshud3.png');
+        this.load.image('boss_hud_3left', './assets/hud/bosshud4.png');
+        this.load.image('boss_hud_2left', './assets/hud/bosshud5.png');
+        this.load.image('boss_hud_1left', './assets/hud/bosshud6.png');
+
         //slash player
         this.load.image("slash", "./assets/mainCharacter/attackWolf.png");
 
@@ -390,12 +400,13 @@ export default class Game extends Phaser.Scene {
     }
 
     //HUD//
+    //hud de vidas del jugador
     addHud(scene) {
         this.hud = scene.add.sprite(this.posHud, this.posHud, "hud_full").setOrigin(0).setDepth(2);
         this.hud.setTexture("hud_full");
         this.hud.setScrollFactor(0);
     }
-    updateHealthHud(player, scene) {
+    updateHealthHud(player) {
         switch (player.health) {
             case 3:
                 this.hud.setTexture("hud_full");
@@ -408,6 +419,37 @@ export default class Game extends Phaser.Scene {
                 break;
             default:
                 this.hud.setTexture("hud_empty");
+                break;
+        }
+    }
+    //hud de vidas del boss
+    boss_addHud(scene) {
+        this.bosshud = scene.add.sprite(this.bossposHudX, this.bossposHudY, "boss_hud_full").setOrigin(0).setDepth(2);
+        this.bosshud.setTexture("boss_hud_full");
+        this.bosshud.setScrollFactor(0);
+    }
+    updateBossHealthHud(bosshealth) {
+        switch (bosshealth) {
+            case 6:
+                this.bosshud.setTexture("boss_hud_full");
+                break;
+            case 5:
+                this.bosshud.setTexture("boss_hud_5left");
+                break;
+            case 4:
+                this.bosshud.setTexture("boss_hud_4left");
+                break;
+            case 3:
+                this.bosshud.setTexture("boss_hud_3left");
+                break;
+            case 2:
+                this.bosshud.setTexture("boss_hud_2left");
+                break;
+            case 1:
+                this.bosshud.setTexture("boss_hud_1left");
+                break;
+            default:
+                this.bosshud.destroy();
                 break;
         }
     }
@@ -477,6 +519,7 @@ export default class Game extends Phaser.Scene {
                 this.sound.add("boss_hit", { volume: 0.6, }).play();
             }
         }
+        this.game.updateBossHealthHud(enemy.health);
     }
 
     //SPAWN//
@@ -632,7 +675,7 @@ export default class Game extends Phaser.Scene {
     checkPlayerisAttacked(scene, player, game) {
         if (player.hurtflag) {
             game.hurtPlayer(scene, player);
-            game.updateHealthHud(player, scene);
+            game.updateHealthHud(player);
 
             //audios
             if (player.beamHit) {

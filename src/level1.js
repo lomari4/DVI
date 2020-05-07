@@ -30,7 +30,7 @@ export default class Level1 extends Phaser.Scene {
 		this.checkWin = this.game.countTotalTiles(this.map, this.groundLayer);
 
 		//HUD de vidas
-		this.hud = this.game.addHud(this);
+		this.game.addHud(this);
 
 		//Progreso en el juego
 		this.game.textProgress(this);

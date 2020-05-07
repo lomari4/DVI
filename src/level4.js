@@ -26,8 +26,8 @@ export default class Level4 extends Phaser.Scene {
 		//Cuenta el numero de tiles que hay en el mapa
 		this.checkWin = this.game.countTotalTiles(this.map, this.groundLayer);
 
-		//HUD de vidas
-		this.hud = this.game.addHud(this);
+		//HUD de vidas del jugador
+		this.game.addHud(this);
 
 		//Progreso en el juego
 		this.game.textProgress(this);
@@ -83,6 +83,8 @@ export default class Level4 extends Phaser.Scene {
 
 			//ZONA BOSS
 			if (this.wolf.x > this.zoneX && !this.wolf.inZone) {
+				//HUD de vidas del boss
+				this.game.boss_addHud(this);
 				this.wolf.inZone = true;
 				//bloquear camara
 				this.game.BossCameraStop(this);
