@@ -54,6 +54,7 @@ export default class Game extends Phaser.Scene {
         //WIN SCREEN
         this.load.image("win", "./assets/backgrounds/backgroundColorForest_extended.png");
         this.load.image("gameWin", "./assets/gameWin.png");
+        this.load.image("winBoard", "./assets/gameWinBoard.png");
 
         //LEVELS//
         //AUDIO
@@ -614,6 +615,7 @@ export default class Game extends Phaser.Scene {
             case 1: this.scene.start('Level2'); break;
             case 2: this.scene.start('Level3'); break;
             case 3: this.scene.start('Level4'); break;
+            case 4: this.scene.start('GameWin'); break;
             default: this.scene.start('Game'); break;
         }
     }
