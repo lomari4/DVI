@@ -519,8 +519,9 @@ export default class Game extends Phaser.Scene {
             if (enemy.health != 0) {
                 this.sound.add("boss_hit", { volume: 0.6, }).play();
             }
+            this.game.updateBossHealthHud(enemy.health);
         }
-        this.game.updateBossHealthHud(enemy.health);
+        
     }
 
     //SPAWN//
