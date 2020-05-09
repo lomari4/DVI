@@ -151,7 +151,7 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
+            this.scene.start("Level4"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
@@ -510,7 +510,7 @@ export default class Game extends Phaser.Scene {
         if (!enemy.invincible) {
             enemy.health -= 1;
             enemy.invincible = true;
-            enemy.hurtFlag = true;
+            enemy.hurtflag = true;
             if (enemy.health != 0) {
                 this.sound.add("boss_hit", { volume: 0.6, }).play();
             }
@@ -656,7 +656,7 @@ export default class Game extends Phaser.Scene {
     enemyUpdate(scene, enemies, player) {
         enemies.getChildren().forEach(function (item) {
             //Funcion atacar
-            if (!item.hurtflag)
+            if (!item.hurtflag || item.texture.key === 'boss') //boss caso especial que siempre ataca o esta cargando
                 item.checkAttack(player, this, scene);
         }, this);
     }

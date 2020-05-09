@@ -10,7 +10,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.health = 6;
 		this.winGame = false;
 		this.invincible = true;
-		this.hurtFlag = false;
+		this.hurtflag = false;
 		this.invincibleCounter = 3000;
 		this.distSpawnBeamX = 100;
 		this.distSpawnBeamY = 100;
@@ -103,7 +103,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		if (!this.winGame) {
 			super.preUpdate(t, dt);
 
-			if (this.invincible && !this.hurtFlag) {
+			if (this.invincible && !this.hurtflag) {
 				this.body.setSize(137, 179); //ajustar el collider
 				if (this.body.velocity.y === 0) {
 					this.body.setVelocityY(-this.vel);
@@ -115,7 +115,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 					this.body.setVelocityY(this.vel);
 				}
 			}
-			else if (this.hurtFlag && this.isAlive()) {
+			else if (this.hurtflag && this.isAlive()) {
 				this.body.setSize(137, 190); //ajustar el collider
 				this.play('hurtboss', false);
 				this.body.setVelocityY(0);
@@ -127,7 +127,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 	checkAttack(wolf, game) {
 		if (this.isAlive()) {
 			if (wolf.isAlive() && wolf.inZone) {
-				if (this.charge <= 0 && !this.hurtFlag) { //tiene que cargar
+				if (this.charge <= 0 && !this.hurtflag) { //tiene que cargar
 					this.body.setSize(137, 150); //ajustar el collider
 					this.body.setVelocityY(0);
 					this.invincible = false;
@@ -138,13 +138,13 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 						delay: this.chargeDelay, //tiempo que el boss es vulnerable y esta cargando
 						callback: () => {
 							this.invincible = true;
-							this.hurtFlag = false;
+							this.hurtflag = false;
 							this.charge = this.maxCharge;
 						},
 					});
 
 				}
-				else if (this.coolDown >= this.maxcoolDown && !this.hurtFlag) {
+				else if (this.coolDown >= this.maxcoolDown && !this.hurtflag) {
 					this.play('attackboss', true);
 					let beam = game.spawnBeam(this.scene, this.x - this.distSpawnBeamX, this.y + this.distSpawnBeamY, this);
 					game.audio_bossBeam();
@@ -170,6 +170,7 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		else {
 			this.body.setVelocityY(-60);
 			this.play('dissapearboss', true);
+			this.hurtflag = true;
 			if (!this.dieSound) {
 				game.audio_bossDie();
 				this.dieSound = true;
