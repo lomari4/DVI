@@ -93,12 +93,6 @@ export default class Game extends Phaser.Scene {
         this.load.image('boss_hud_2left', './assets/hud/bosshud5.png');
         this.load.image('boss_hud_1left', './assets/hud/bosshud6.png');
 
-        //slash player
-        this.load.image("slash", "./assets/mainCharacter/attackWolf.png");
-
-        //ice Yeti
-        this.load.image("ice", "./assets/enemies/yeti_sprites/ice.png");
-
         //MAPAS
         //cargamos el tilemap
         this.load.image('tiles', './assets/tiles/tilemap.png');
@@ -114,12 +108,13 @@ export default class Game extends Phaser.Scene {
 
         //SPRITESHEETS
         //cargamos el spritesheet del jugador
-        //this.load.atlas('wolf', 'assets/mainCharacter/wolf_sprites/wolf.png', 'assets/mainCharacter/wolf_sprites/wolf.json');
         this.load.atlas('wolf', './assets/mainCharacter/wolf_sprites/wolf.png', './assets/mainCharacter/wolf_sprites/wolf.json');
+        this.load.atlas('slash', './assets/mainCharacter/slash_sprites/slash.png', './assets/mainCharacter/slash_sprites/slash.json');
         //cargamos el spritesheet de los enemigos
         this.load.atlas('swub', './assets/enemies/swub_sprites/swub.png', './assets/enemies/swub_sprites/swub.json');
         this.load.atlas('boar', './assets/enemies/boar_sprites/boar.png', './assets/enemies/boar_sprites/boar.json');
         this.load.atlas('yeti', './assets/enemies/yeti_sprites/yeti.png', './assets/enemies/yeti_sprites/yeti.json');
+        this.load.atlas('ice', './assets/enemies/yeti_sprites/ice_sprites/ice.png', './assets/enemies/yeti_sprites/ice_sprites/ice.json');
         this.load.atlas('icedrake', './assets/enemies/icedrake_sprites/icedrake.png', './assets/enemies/icedrake_sprites/icedrake.json');
         this.load.atlas('boss', './assets/enemies/boss_sprites/boss.png', './assets/enemies/boss_sprites/boss.json');
 
@@ -561,10 +556,12 @@ export default class Game extends Phaser.Scene {
     }
     spawnSlash(scene, x, y, player) {
         let slash = new Slash(scene, x, y, player);
+        slash.createAnims();
         return slash;
     }
     spawnIce(scene, x, y, enemy) {
         let ice = new Ice(scene, x, y, enemy);
+        ice.createAnims();
         return ice;
     }
     spawnBoss(scene, x, y, enemies) {

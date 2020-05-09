@@ -13,7 +13,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 		this.rangeY = 5;
 		this.maxcoolDown = 200;
 		this.distSpawnIce = 200;
-		this.distSpawnIceY = 60;
+		this.distSpawnIceY = 80;
 		this.isAttacking = false;
 		this.winGame = false;
 	}
@@ -139,6 +139,7 @@ export default class Yeti extends Phaser.GameObjects.Sprite {
 			else {
 				ice = game.spawnIce(this.scene, this.x - this.distSpawnIce, this.y + this.distSpawnIceY, this);
 			}
+			ice.play('iceAnim', false);
 			game.audio_hityeti();
 		}
 		this.coolDown++;

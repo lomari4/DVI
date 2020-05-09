@@ -1,0 +1,40 @@
+{
+"frames": {
+	"slash_01.png": {
+		"frame": {"x":0, "y":75, "w":27, "h":26},
+		"spriteSourceSize": {"x":6,"y":0,"w":41,"h":67},
+		"sourceSize": {"w":41,"h":67}
+	},
+	"slash_02.png": {
+		"frame": {"x":31, "y":68, "w":30, "h":40},
+		"spriteSourceSize": {"x":6,"y":0,"w":41,"h":67},
+		"sourceSize": {"w":41,"h":67}
+	},
+	"slash_03.png": {
+		"frame": {"x":42, "y":0, "w":41, "h":67},
+		"spriteSourceSize": {"x":0,"y":0,"w":41,"h":67},
+		"sourceSize": {"w":41,"h":67}
+	},
+	"slash_04.png": {
+		"frame": {"x":0, "y":0, "w":41, "h":44},
+		"spriteSourceSize": {"x":0,"y":23,"w":41,"h":67},
+		"sourceSize": {"w":41,"h":67}
+	},
+	"slash_05.png": {
+		"frame": {"x":0, "y":45, "w":35, "h":18},
+		"spriteSourceSize": {"x":0,"y":49,"w":41,"h":67},
+		"sourceSize": {"w":41,"h":67}
+	},
+	"slash_06.png": {
+		"frame": {"x":0, "y":64, "w":30, "h":10},
+		"spriteSourceSize": {"x":0,"y":57,"w":41,"h":67},
+		"sourceSize": {"w":41,"h":67}
+	}
+
+},
+"meta": {
+	"image": "slash.png",
+	"size": {"w": 84, "h": 109},
+	"scale": "1"
+}
+}

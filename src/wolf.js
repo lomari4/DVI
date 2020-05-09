@@ -13,7 +13,7 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         this.hurtflag = false;
         this.cursors = this.scene.input.keyboard.addKeys('W, A, D, SPACE');
         this.invincible = false;
-        this.slashHeight = 10;
+        this.slashHeight = 28;
         this.slashWidth = 135;
         this.vel = 300;
         this.jumpvel = -420;
@@ -108,40 +108,55 @@ export default class Wolf extends Phaser.GameObjects.Sprite {
         }
     }
 
+    attackAnimDone(){
+        if (this.anims.currentAnim.key == 'attackwolf')
+        {
+            if(this.anims.currentFrame.index === 7)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
     update(game) {
         //izquierda
-        if (this.cursors.A.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.isAlive() && !this.winGame) {
+        if (this.cursors.A.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf' && this.attackAnimDone())) && this.isAlive() && !this.winGame) {
             this.body.setVelocityX(-this.vel);
             if (this.body.onFloor()) {
                 this.play('runwolf', true);
             }
         }
         //derecha
-        else if (this.cursors.D.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf')) && this.isAlive() && !this.winGame) {
+        else if (this.cursors.D.isDown && (!this.anims.isPlaying || (this.body.onFloor() && this.anims.isPlaying && this.anims.currentAnim.key !== 'hurtwolf' && this.attackAnimDone())) && this.isAlive() && !this.winGame) {
             this.body.setVelocityX(this.vel);
             if (this.body.onFloor()) {
                 this.play('runwolf', true);
             }
         }
-        //atacar. No se puede spamear
-        else if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE) && this.body.onFloor() && this.isAlive() && !this.winGame) {
+        //idle
+        else if (this.cursors.A.isUp && this.cursors.D.isUp && (!this.anims.isPlaying || (this.anims.isPlaying && this.anims.currentAnim.key === 'runwolf'))) {
             this.body.setVelocityX(0);
-            this.play('attackwolf', false);
-            if (this.flipX)
-                game.spawnSlash(this.scene, this.x + this.slashWidth, this.y + this.slashHeight, this);
-            else
-                game.spawnSlash(this.scene, this.x - this.slashWidth, this.y + this.slashHeight, this);
-
-            game.audio_playerAttack();
-        }
-        else if (this.cursors.A.isUp && this.cursors.D.isUp && this.cursors.W.isUp && (!this.anims.isPlaying || (this.anims.isPlaying && this.anims.currentAnim.key === 'runwolf'))) {
-            this.body.setVelocityX(0);
-            //idle
             if (this.body.onFloor())
                 this.play('idlewolf', true);
         }
+
+        //atacar. No se puede spamear
+        if (Phaser.Input.Keyboard.JustDown(this.cursors.SPACE) && this.body.onFloor() && this.isAlive() && !this.winGame && (this.anims.currentAnim.key === 'runwolf' || this.anims.currentAnim.key === 'idlewolf')) {
+            this.body.setVelocityX(0);
+            this.play('attackwolf', false);
+            let slash;
+            if (this.flipX)
+                slash = game.spawnSlash(this.scene, this.x + this.slashWidth, this.y + this.slashHeight, this);
+            else
+                slash = game.spawnSlash(this.scene, this.x - this.slashWidth, this.y + this.slashHeight, this);
+
+            slash.play('slashAnim', true);
+            game.audio_playerAttack();
+        }
+        
         //saltar
-        if (this.cursors.W.isDown && this.body.onFloor() && this.isAlive() && !this.winGame) {
+        if (this.cursors.W.isDown && this.body.onFloor() && this.isAlive() && !this.winGame && this.attackAnimDone()) {
             this.body.setVelocityY(this.jumpvel);
             this.play('jumpwolf', true);
             if (this.body.onFloor())
