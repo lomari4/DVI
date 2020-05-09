@@ -15,8 +15,8 @@ export default class Boss extends Phaser.GameObjects.Sprite {
 		this.distSpawnBeamX = 100;
 		this.distSpawnBeamY = 100;
 		this.setScale(2);
-		this.maxcoolDown = 50;
-		this.coolDown = 50;
+		this.maxcoolDown = 100;
+		this.coolDown = 100;
 		this.dieSound = false;
 	}
 
