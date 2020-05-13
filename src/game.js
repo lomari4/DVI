@@ -352,9 +352,10 @@ export default class Game extends Phaser.Scene {
         s.play();
     }
 
+    //PAUSAR EL JUEGO//
     updatePauseResume(scene, nivel, key){
         if(Phaser.Input.Keyboard.JustDown(key)){
-            switch (nivel) { //ver en que nivel estamos
+            switch (nivel) {
                 case 1: this.scene.pause("Level1"); break;
                 case 2: this.scene.pause("Level2"); break;
                 case 3: this.scene.pause("Level3"); break;
