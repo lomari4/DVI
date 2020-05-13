@@ -17,6 +17,8 @@ export default class Level4 extends Phaser.Scene {
 		this.winFlag = false;
 		this.inZone = false;
 
+		this.key = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
 		//MAPA//
 		this.map = this.game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
 		this.background = this.game.addBackground(this, this.level);
@@ -75,7 +77,7 @@ export default class Level4 extends Phaser.Scene {
 			this.game.enemyUpdate(this, this.enemies, this.wolf);
 
 			//ver si ha pausado el juego
-			this.game.updatePauseResume(this, this.level);
+			this.game.updatePauseResume(this, this.level, this.key);
 
 			//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
 			this.counter += this.game.checkIfMelt(this.wolf, this.game, this.groundLayer);

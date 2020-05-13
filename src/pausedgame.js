@@ -25,7 +25,7 @@ export default class PausedGame extends Phaser.Scene {
 
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - this.heighttoPauseGame, "pause").setDepth(1);
         
-        this.key = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+        this.key = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
         let font = this.add.renderTexture(0, 0, this.game.renderer.width, this.game.renderer.height);
         font.fill(0x000000, 0.5);
     }
@@ -41,7 +41,6 @@ export default class PausedGame extends Phaser.Scene {
         if (this.key.isDown) {
             this.scene.resume(this.levelKey);
             this.escena.paused = false;
-            this.escena.scale.startFullscreen();
             this.escena.music.resume();
             this.scene.stop();
         }

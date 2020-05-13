@@ -16,6 +16,8 @@ export default class Level1 extends Phaser.Scene {
 		this.winFlag = false;
 		this.paused = false;
 
+		this.key = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
 		//añadimos el sonido
 		this.music = this.game.addSoundtrack(this.level, this);
 		this.music.setLoop(true);
@@ -81,7 +83,7 @@ export default class Level1 extends Phaser.Scene {
 			this.game.enemyUpdate(this, this.enemies, this.wolf);
 
 			//ver si ha pausado el juego
-			this.game.updatePauseResume(this, this.level);
+			this.game.updatePauseResume(this, this.level, this.key);
 
 			//FUNCION DE CONGELAR EL SUELO DE LOS SWUB
 			this.counter -= this.game.checkIfFreeze(this, this.enemies, this.wolf, this.game, this.groundLayer);
