@@ -14,13 +14,11 @@ export default class Level1 extends Phaser.Scene {
 		this.counter = 0; //contador del numero de tiles que has cambiado
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		this.winFlag = false;
-
+		//tecla de pausa
 		this.key = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
 		//añadimos el sonido
 		this.music = this.game.addSoundtrack(this.level, this);
-		this.music.setLoop(true);
-		this.music.play();
 
 		//MAPA//
 		this.map = this.game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
@@ -33,6 +31,9 @@ export default class Level1 extends Phaser.Scene {
 
 		//HUD de vidas
 		this.game.addHud(this);
+
+		//icono para mutear musica
+		this.game.addIconAudio(this);
 
 		//Progreso en el juego
 		this.game.textProgress(this);

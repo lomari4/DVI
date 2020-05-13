@@ -21,7 +21,10 @@ export default class Game extends Phaser.Scene {
         this.bossposHudY = 10;
         this.textProgressX = 10;
         this.textProgressY = 70;
+        this.audioIconX = 38;
+        this.audioIconY = 145;
         this.tileSize = 64;
+        this.musicOn = true;
     }
 
     //PRELOAD DE TODO EL JUEGO//
@@ -38,6 +41,8 @@ export default class Game extends Phaser.Scene {
         this.load.image("helpButton", "./assets/help_button.png");
         this.load.image("playButton_hover", "./assets/play_button_hover.png");
         this.load.image("helpButton_hover", "./assets/help_button_hover.png");
+        this.load.image("musicOn", "./assets/musicOn.png");
+        this.load.image("musicOff", "./assets/musicOff.png");
         //letras de game paused
         this.load.image("pause", "./assets/Pause.png");
         //seccion ayuda
@@ -128,10 +133,12 @@ export default class Game extends Phaser.Scene {
         this.add.image(this.game.renderer.width / 2, this.game.renderer.width * 0.19, "logo").setDepth(1);
         let clickButton = this.add.image(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "playButton").setDepth(1).setInteractive();
         let helpButton = this.add.image(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "helpButton").setDepth(1).setInteractive();
+        let audioButton = this.add.image(10, 10, "musicOn").setOrigin(0).setDepth(2).setInteractive();
 
-        this.sound.pauseOnBlur = false;
         let sounds = this.sound.add("menuSound");
         sounds.play();
+        sounds.setLoop(true);
+        this.sound.pauseOnBlur = false;
 
         let menuSelect = this.sound.add("menu_select_sound", {
             volume: 0.40,
@@ -170,6 +177,20 @@ export default class Game extends Phaser.Scene {
 
         helpButton.on("pointerout", () => {
             helpButton.setTexture('helpButton');
+        });
+
+        //Si pulsa boton para mutear
+        audioButton.on("pointerup", () => {
+            if (this.musicOn) {
+                audioButton.setTexture("musicOff");
+                this.musicOn = false;
+                sounds.pause();
+            }
+            else {
+                audioButton.setTexture("musicOn");
+                this.musicOn = true;
+                sounds.resume();
+            }
         });
     }
 
@@ -215,10 +236,10 @@ export default class Game extends Phaser.Scene {
             case 4: bg = scene.add.image(0, -950, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
         }
         bg.on('pointerup', function () {
-            if (scene.scale.isFullscreen){
+            if (scene.scale.isFullscreen) {
                 scene.scale.stopFullscreen();
             }
-            else{
+            else {
                 scene.scale.startFullscreen();
             }
         }, scene);
@@ -282,7 +303,8 @@ export default class Game extends Phaser.Scene {
         }
         this.sound.pauseOnBlur = false;
         s = scene.sound.add(name);
-        s.loop = true;
+        s.setLoop(true);
+        s.play();
         return s;
     }
     audio_playerJump() {
@@ -353,8 +375,8 @@ export default class Game extends Phaser.Scene {
     }
 
     //PAUSAR EL JUEGO//
-    updatePauseResume(scene, nivel, key){
-        if(Phaser.Input.Keyboard.JustDown(key)){
+    updatePauseResume(scene, nivel, key) {
+        if (Phaser.Input.Keyboard.JustDown(key)) {
             switch (nivel) {
                 case 1: this.scene.pause("Level1"); break;
                 case 2: this.scene.pause("Level2"); break;
@@ -534,7 +556,7 @@ export default class Game extends Phaser.Scene {
             }
             this.game.updateBossHealthHud(enemy.health);
         }
-        
+
     }
 
     //SPAWN//
@@ -667,6 +689,31 @@ export default class Game extends Phaser.Scene {
     showProgress(score, total) {
         this.texts.setText("PROGRESS: " + score + "/" + total);
         this.texts.setFill("red");
+    }
+
+    //AUDIO ICONS//
+    addIconAudio(scene) {
+        let b;
+        if (this.musicOn) 
+            b = scene.add.image(this.audioIconX, this.audioIconY, "musicOn").setDepth(2).setInteractive();
+        else{
+            b = scene.add.image(this.audioIconX, this.audioIconY, "musicOff").setDepth(2).setInteractive();
+            scene.music.pause();
+        }
+            
+        b.on("pointerup", () => {
+            if (this.musicOn) {
+                b.setTexture("musicOff");
+                this.musicOn = false;
+                scene.music.pause();
+            }
+            else {
+                b.setTexture("musicOn");
+                this.musicOn = true;
+                scene.music.resume();
+            }
+        });
+        b.setScrollFactor(0);
     }
 
     //CHECKS//

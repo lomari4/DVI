@@ -16,8 +16,13 @@ export default class Level4 extends Phaser.Scene {
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		this.winFlag = false;
 		this.inZone = false;
-
+		//tecla de pausa
 		this.key = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+
+		//añadimos el sonido
+		this.music = this.game.addSoundtrack(this.level, this);
+		this.music.setVolume(0.3);
+		this.music.pause();
 
 		//MAPA//
 		this.map = this.game.addMap(this, this.level); //hay que pasarle el nivel como segundo arg
@@ -30,6 +35,9 @@ export default class Level4 extends Phaser.Scene {
 
 		//HUD de vidas del jugador
 		this.game.addHud(this);
+
+		//icono para mutear musica
+		this.game.addIconAudio(this);
 
 		//Progreso en el juego
 		this.game.textProgress(this);
@@ -94,10 +102,8 @@ export default class Level4 extends Phaser.Scene {
 				//bloquear camara
 				this.game.BossCameraStop(this);
 				//audio
-				this.music = this.game.addSoundtrack(this.level, this);
-				this.music.setVolume(0.3);
-				this.music.setLoop(true);
-				this.music.play();
+				if(this.game.musicOn)
+					this.music.resume();
 				//nueva capa de collision para que el jugador no pueda escapar del boss
 				this.collider = this.physics.add.collider(this.wolf, this.collisionLayer);
 			}

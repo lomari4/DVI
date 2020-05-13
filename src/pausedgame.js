@@ -29,7 +29,8 @@ export default class PausedGame extends Phaser.Scene {
     update(){
         if (this.key.isDown) {
             this.scene.resume(this.levelKey);
-            this.escena.music.resume();
+            if(this.escena.game.musicOn)
+                this.escena.music.resume();
             this.scene.stop();
         }
     }
