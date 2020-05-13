@@ -83,6 +83,9 @@ export default class Level3 extends Phaser.Scene {
 			//update de los enemigos (ver si pueden atacar)
 			this.game.enemyUpdate(this, this.enemies, this.wolf);
 
+			//
+			this.game.updatePauseResume(this.wolf, this.enemies, this, this.level, this.slash);
+
 			//FUNCION DE CONGELAR EL SUELO DE LOS SWUB
 			this.counter -= this.game.checkIfFreeze(this, this.enemies, this.wolf, this.game, this.groundLayer);
 

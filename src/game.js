@@ -38,6 +38,9 @@ export default class Game extends Phaser.Scene {
         this.load.image("helpButton", "./assets/help_button.png");
         this.load.image("playButton_hover", "./assets/play_button_hover.png");
         this.load.image("helpButton_hover", "./assets/help_button_hover.png");
+        //Boton pause Y resume
+        this.load.image("pause", "./assets/Pause.png");
+        this.load.image("resume", "./assets/Resume.png");
         //seccion ayuda
         this.load.image("helpBoard", "./assets/helpBoard.png");
         //sonido al pulsar boton
@@ -151,7 +154,7 @@ export default class Game extends Phaser.Scene {
         clickButton.on("pointerup", () => {
             menuSelect.play();
             this.scale.startFullscreen();
-            this.scene.start("Level1"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
+            this.scene.start("Level2"); //PARA TESTEAR, CAMBIAR EL NIVEL AQUI//
             sounds.destroy();
         });
         //Si se pulsa el botón de help
@@ -213,10 +216,10 @@ export default class Game extends Phaser.Scene {
             case 4: bg = scene.add.image(0, -950, "bg").setOrigin(0).setDepth(-1).setInteractive(); break;
         }
         bg.on('pointerup', function () {
-            if (scene.scale.isFullscreen)
+            if (scene.scale.isFullscreen){
                 scene.scale.stopFullscreen();
-            else
-                scene.scale.startFullscreen();
+                scene.paused = true;
+            }
         }, scene);
     }
 
@@ -346,6 +349,19 @@ export default class Game extends Phaser.Scene {
             volume: 0.55,
         });
         s.play();
+    }
+
+    updatePauseResume(player, enemies, scene, nivel, slash){
+        if(scene.paused){
+            switch (nivel) { //ver en que nivel estamos para elegir bg
+                case 1: this.scene.pause("Level1"); break;
+                case 2: this.scene.pause("Level2"); break;
+                case 3: this.scene.pause("Level3"); break;
+                case 4: this.scene.pause("Level4"); break;
+            }
+            scene.music.pause();
+            this.scene.launch('PausedGame', { level: nivel, escena: scene });
+        }
     }
 
     //DESCONGELAR TERRENO//

@@ -14,6 +14,7 @@ export default class Level1 extends Phaser.Scene {
 		this.counter = 0; //contador del numero de tiles que has cambiado
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		this.winFlag = false;
+		this.paused = false;
 
 		//añadimos el sonido
 		this.music = this.game.addSoundtrack(this.level, this);
@@ -78,6 +79,9 @@ export default class Level1 extends Phaser.Scene {
 
 			//update de los enemigos (ver si pueden atacar)
 			this.game.enemyUpdate(this, this.enemies, this.wolf);
+
+			//
+			this.game.updatePauseResume(this.wolf, this.enemies, this, this.level, this.slash);
 
 			//FUNCION DE CONGELAR EL SUELO DE LOS SWUB
 			this.counter -= this.game.checkIfFreeze(this, this.enemies, this.wolf, this.game, this.groundLayer);
