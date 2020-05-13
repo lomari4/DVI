@@ -44,7 +44,7 @@ export default class Game extends Phaser.Scene {
         this.load.image("musicOn", "./assets/musicOn.png");
         this.load.image("musicOff", "./assets/musicOff.png");
         //letras de game paused
-        this.load.image("pause", "./assets/Pause.png");
+        this.load.image("pause", "./assets/pause.png");
         //seccion ayuda
         this.load.image("helpBoard", "./assets/helpBoard.png");
         //sonido al pulsar boton
