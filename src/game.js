@@ -217,7 +217,6 @@ export default class Game extends Phaser.Scene {
         bg.on('pointerup', function () {
             if (scene.scale.isFullscreen){
                 scene.scale.stopFullscreen();
-                scene.paused = true;
             }
             else{
                 scene.scale.startFullscreen();
@@ -354,7 +353,7 @@ export default class Game extends Phaser.Scene {
     }
 
     updatePauseResume(scene, nivel, key){
-        if(scene.paused || Phaser.Input.Keyboard.JustDown(key)){
+        if(Phaser.Input.Keyboard.JustDown(key)){
             switch (nivel) { //ver en que nivel estamos
                 case 1: this.scene.pause("Level1"); break;
                 case 2: this.scene.pause("Level2"); break;

@@ -14,7 +14,6 @@ export default class Level1 extends Phaser.Scene {
 		this.counter = 0; //contador del numero de tiles que has cambiado
 		this.checkWin = 0; //contador del numero de tiles totales en el mapa
 		this.winFlag = false;
-		this.paused = false;
 
 		this.key = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
 
