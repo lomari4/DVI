@@ -38,7 +38,7 @@ export default class Game extends Phaser.Scene {
         this.load.image("helpButton", "./assets/help_button.png");
         this.load.image("playButton_hover", "./assets/play_button_hover.png");
         this.load.image("helpButton_hover", "./assets/help_button_hover.png");
-        //Boton pause Y resume
+        //letras de game paused
         this.load.image("pause", "./assets/Pause.png");
         //seccion ayuda
         this.load.image("helpBoard", "./assets/helpBoard.png");
