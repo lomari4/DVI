@@ -4,7 +4,7 @@ export default class PausedGame extends Phaser.Scene {
         super({ key: 'PausedGame' });
         this.widthAdded = 150;
         this.heightAdded = 40;
-        this.heighttoGameOver = 55;
+        this.heighttoPauseGame = 150;
     }
 
     init(dato) {
@@ -23,33 +23,11 @@ export default class PausedGame extends Phaser.Scene {
             volume: 2,
         });
 
-        this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - this.heighttoGameOver, "gameOver").setDepth(1);
-        let botonPause = this.add.image(this.game.renderer.width / 2 - this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "pause").setDepth(1).setInteractive();
-        botonPause.on("pointerup", () => {
-            this.scene.resume(this.levelKey);
-            this.escena.paused = false;
-            this.escena.scale.startFullscreen();
-            this.escena.music.resume();
-            this.scene.stop();
-        });
-
-        let botonLevel = this.add.image(this.game.renderer.width / 2 + this.widthAdded, this.game.renderer.height / 2 + this.heightAdded, "retry_Button").setDepth(1).setInteractive();
-        botonLevel.on("pointerover", () => {
-            menuHover.play();
-            botonLevel.setTexture('retry_Button_hover');
-        });
-        botonLevel.on("pointerout", () => {
-            botonLevel.setTexture('retry_Button');
-        });
-        botonLevel.on("pointerup", () => {
-            menuSelect.play();
-            this.scene.start(this.levelKey);
-            this.escena.scale.startFullscreen();
-            this.scene.resume(this.levelKey);
-            this.escena.paused = false;
-        });
-
-
+        this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 - this.heighttoPauseGame, "pause").setDepth(1);
+        
+        this.key = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+        let font = this.add.renderTexture(0, 0, this.game.renderer.width, this.game.renderer.height);
+        font.fill(0x000000, 0.5);
     }
     checkLevel() {
         switch (this.level) {
@@ -57,6 +35,15 @@ export default class PausedGame extends Phaser.Scene {
             case 2: this.levelKey = 'Level2'; break;
             case 3: this.levelKey = 'Level3'; break;
             case 4: this.levelKey = 'Level4'; break;
+        }
+    }
+    update(){
+        if (this.key.isDown) {
+            this.scene.resume(this.levelKey);
+            this.escena.paused = false;
+            this.escena.scale.startFullscreen();
+            this.escena.music.resume();
+            this.scene.stop();
         }
     }
 

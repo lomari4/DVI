@@ -40,7 +40,6 @@ export default class Game extends Phaser.Scene {
         this.load.image("helpButton_hover", "./assets/help_button_hover.png");
         //Boton pause Y resume
         this.load.image("pause", "./assets/Pause.png");
-        this.load.image("resume", "./assets/Resume.png");
         //seccion ayuda
         this.load.image("helpBoard", "./assets/helpBoard.png");
         //sonido al pulsar boton
@@ -220,6 +219,9 @@ export default class Game extends Phaser.Scene {
                 scene.scale.stopFullscreen();
                 scene.paused = true;
             }
+            else{
+                scene.scale.startFullscreen();
+            }
         }, scene);
     }
 
@@ -351,9 +353,9 @@ export default class Game extends Phaser.Scene {
         s.play();
     }
 
-    updatePauseResume(player, enemies, scene, nivel, slash){
+    updatePauseResume(scene, nivel){
         if(scene.paused){
-            switch (nivel) { //ver en que nivel estamos para elegir bg
+            switch (nivel) { //ver en que nivel estamos
                 case 1: this.scene.pause("Level1"); break;
                 case 2: this.scene.pause("Level2"); break;
                 case 3: this.scene.pause("Level3"); break;
