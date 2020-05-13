@@ -166,8 +166,8 @@ export default class Game extends Phaser.Scene {
         //Si se pulsa el botón de help
         helpButton.on("pointerup", () => {
             menuSelect.play();
-            this.scene.start("Help");
-            sounds.destroy();
+            this.scene.pause("Game");
+            this.scene.launch("Help");
         });
 
         helpButton.on("pointerover", () => {

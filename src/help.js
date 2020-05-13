@@ -19,7 +19,8 @@ export default class Help extends Phaser.Scene {
         let b = this.add.image(this.game.renderer.width / 2 + this.widthPlus, this.game.renderer.height / 2 + this.heightPlus, "menu_Button").setDepth(1).setInteractive();
         b.on("pointerup", () => {
             menuSelect.play();
-            this.scene.start("Game"); //menu
+            this.scene.stop();
+            this.scene.resume("Game"); //menu
         });
         b.on("pointerover", () => {
             menuHover.play();
