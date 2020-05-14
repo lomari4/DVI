@@ -85,7 +85,7 @@ export default class Level4 extends Phaser.Scene {
 			this.game.enemyUpdate(this, this.enemies, this.wolf);
 
 			//ver si ha pausado el juego
-			this.game.updatePauseResume(this, this.level, this.key);
+			this.game.updatePauseResume(this, this.level, this.key, this.wolf);
 
 			//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
 			this.counter += this.game.checkIfMelt(this.wolf, this.game, this.groundLayer);

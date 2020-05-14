@@ -83,7 +83,7 @@ export default class Level1 extends Phaser.Scene {
 			this.game.enemyUpdate(this, this.enemies, this.wolf);
 
 			//ver si ha pausado el juego
-			this.game.updatePauseResume(this, this.level, this.key);
+			this.game.updatePauseResume(this, this.level, this.key, this.wolf);
 
 			//FUNCION DE CONGELAR EL SUELO DE LOS SWUB
 			this.counter -= this.game.checkIfFreeze(this, this.enemies, this.wolf, this.game, this.groundLayer);

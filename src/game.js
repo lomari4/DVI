@@ -375,7 +375,7 @@ export default class Game extends Phaser.Scene {
     }
 
     //PAUSAR EL JUEGO//
-    updatePauseResume(scene, nivel, key) {
+    updatePauseResume(scene, nivel, key, wolf) {
         if (Phaser.Input.Keyboard.JustDown(key)) {
             switch (nivel) {
                 case 1: this.scene.pause("Level1"); break;
@@ -383,6 +383,9 @@ export default class Game extends Phaser.Scene {
                 case 3: this.scene.pause("Level3"); break;
                 case 4: this.scene.pause("Level4"); break;
             }
+            wolf.cursors.D.reset();
+            wolf.cursors.A.reset();
+            wolf.cursors.W.reset();
             scene.music.pause();
             this.scene.launch('PausedGame', { level: nivel, escena: scene });
         }
