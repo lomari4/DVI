@@ -29,7 +29,7 @@ El juego se puede pausar con la tecla P en cualquier momento. También se puede 
 
 ## 2.1. Personaje principal
 
-Elegimos un lobo que es medio árbol para caracterizar a la naturaleza, ya que es un guardián del bosque y tiene poderes para derretir la nieve y hacer que salga hierba del suelo. El sprite es original, hecho por nosotros.
+Elegimos un lobo que es medio árbol para caracterizar a la naturaleza, ya que es un guardián del bosque y tiene poderes para derretir la nieve y hacer que salga hierba del suelo. El sprite y todas sus animaciones están hechas por nosotros.
 
 ![wolf](https://s5.gifyu.com/images/wolf_run.gif)![wolfattack](https://i.imgur.com/P12Xq70.png)
 
