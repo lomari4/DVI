@@ -22,7 +22,8 @@ Para pasar al siguiente nivel, el personaje tendrá que recorrerlo entero para p
 
 ## 1.4. Controles básicos
 
-Se juega con el teclado, usando las teclas WAD o las flechas para moverte de un lado a otro y saltar. Se usará el espacio para atacar. 
+Se juega con el teclado, usando las teclas WAD o las flechas para moverte de un lado a otro y saltar. Se usará el espacio para atacar.
+El juego se puede pausar con la tecla P en cualquier momento. También se puede desactivar el soundrack del juego dandole click a un icono de una nota musical en pantalla.
 
 # 2. Personajes
 
@@ -62,23 +63,34 @@ Un jabalí que embestirá al personaje. Corre hacia el jugador.
 
 ### 2.2.4. Jefe Final
 
-Una especie de golem volador, responsable de prolongar el invierno eternamente. Por ahora, tiene un ataque de rango. Para derrotarle, hay que atacarle hasta que se le acabe su vida, que se le mostrará al jugador en la parte de arriba a la derecha.
+Una especie de golem volador, responsable de prolongar el invierno eternamente. Tiene un ataque a rango, al igual que el Ice Drake. Para derrotarle, hay que esquivar todos sus ataques hasta que pare a recargar, y ahí sera vulnerable. Se le atacará hasta que se le acaben sus 6 vidas, que se mostrarán al jugador en la parte de arriba a la derecha. 
 
 ![boss](https://vignette.wikia.nocookie.net/maplestory/images/6/62/Mob_Opachu.png/revision/latest?cb=20080126055504)
 
 # 3. Niveles
-Por ahora serán cuatro niveles, el ultimo siendo el del boss final. Cada nivel tendrá diferentes alturas y la cámara seguirá al jugador por todas ellas:
+Son cuatro niveles, el ultimo siendo el del boss final. Cada nivel tendrá diferentes alturas y la cámara seguirá al jugador por todas ellas, excepto en el ultimo nivel, en que la camara se bloqueará cuando el jefe final esté a la vista.
 
 ![levelexample](https://i.imgur.com/AoEkvVk.png)
 
 ## Primer nivel
-Aparecerán los enemigos Swub y Ice Drake. Dos alturas. 
+Aparecerán los enemigos Swub y Ice Drake. Dos alturas.
+
+![l1](https://i.imgur.com/YNEWtuP.png)
+
 ## Segundo nivel
-Aparecerán Swub, Ice Drake y Boar. Tres alturas. 
+Aparecerán Swub, Ice Drake y Boar. Tres alturas.
+
+![l2](https://i.imgur.com/Z3N85qS.png)
+
 ## Tercer nivel
-Aparecerán todos los enemigos. Cuatro alturas 
+Aparecerán todos los enemigos. Cuatro alturas. 
+
+![l3](https://i.imgur.com/H6177uX.png)
+
 ## Nivel final
-Aparecerá el boss final. Mecánicas todavía por ver.
+Aparecerá el boss final. Hay dos plataformas para esquivar más facilmente sus ataques. El resto del nivel es plano.
+
+![l4](https://i.imgur.com/YiFoyKF.png)
 
 # 4. Arte
 Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel.  Los assets de los enemigos los hemos sacado de 'The Spriters Resource' y los tiles de Kenney.nl, aunque hemos tenido que hacer modificaciones para que todo esté mismo estilo de arte, dibujándoles contornos negros. El personaje principal lo hemos creado y animado nosotros.
