@@ -51,7 +51,7 @@ Monstruito peludo que se arrastra sobre el suelo y puede volver a congelarlo, de
 
 ### 2.2.3. Yeti
 
-Un yeti que golpea el suelo para levantar pinchos helados en frente de él. Anda lentamente de un lado a otro. Los pinchos helados con sus animaciones está hecho por nosotros.
+Un yeti que golpea el suelo para levantar pinchos helados en frente de él. Anda lentamente de un lado a otro. Los pinchos helados con sus animaciones están hechos por nosotros.
 
 ![yeti](https://vignette.wikia.nocookie.net/maplestory/images/b/bd/Mob_Yeti.png/revision/latest/scale-to-width-down/340?cb=20100814143115)![yetiattack](https://i.imgur.com/gqJPqRv.png)
 
