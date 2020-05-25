@@ -59,7 +59,7 @@ Un yeti que golpea el suelo para levantar pinchos helados en frente de él. Anda
 
 Un jabalí que embestirá al personaje. Corre hacia el jugador. Los ojos rojos del jabalí cuando corre están hechos por nosotros.
 
-![boar](https://www.spriters-resource.com/resources/sheet_icons/20/21685.png)![boarattack](https://i.imgur.com/qx3G2RU.png)
+![boar](https://i.imgur.com/KXpxnoP.png)![boarattack](https://i.imgur.com/qx3G2RU.png)
 
 ### 2.2.4. Jefe Final
 
