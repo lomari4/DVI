@@ -22,8 +22,10 @@ Para pasar al siguiente nivel, el personaje tendrá que recorrerlo entero para p
 
 ## 1.4. Controles básicos
 
-Todos los controles se pueden ver en la seccion de 'Help' en el menu principal. Se juega con el teclado, usando las teclas WAD o las flechas para moverte de un lado a otro y saltar. Se usará el espacio para atacar.
+Todos los controles se pueden ver en la seccion de 'Help' en el menu principal del juego. Se juega con el teclado, usando las teclas WAD o las flechas para moverte de un lado a otro y saltar. Se usará el espacio para atacar.
 El juego se puede pausar con la tecla P en cualquier momento. También se puede desactivar el soundrack del juego dandole click a un icono de una nota musical en pantalla.
+
+![h](https://i.imgur.com/LUoMkFu.png)
 
 # 2. Personajes
 
