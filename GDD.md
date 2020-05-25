@@ -31,7 +31,7 @@ El juego se puede pausar con la tecla P en cualquier momento. También se puede 
 
 Elegimos un lobo que es medio árbol para caracterizar a la naturaleza, ya que es un guardián del bosque y tiene poderes para derretir la nieve y hacer que salga hierba del suelo. El sprite es original, hecho por nosotros.
 
-![wolf](https://s5.gifyu.com/images/wolf_run.gif)
+![wolf](https://s5.gifyu.com/images/wolf_run.gif)![wolfattack](https://i.imgur.com/P12Xq70.png)
 
 
 ## 2.2. Enemigos
@@ -41,7 +41,7 @@ Cuando el jugador es dañado, ya sea por tocar a un enemigo o por un ataque, se 
 
 Enemigo que podrá andar de un lado a otro y escupir hielo. Será un ataque de rango y llegará hasta el final del nivel o hasta que golpee al personaje.
 
-![ice drake](https://vignette.wikia.nocookie.net/maplestory/images/9/94/Mob_Ice_Drake.png/revision/latest/scale-to-width-down/340?cb=20080126051117)
+![ice drake](https://vignette.wikia.nocookie.net/maplestory/images/9/94/Mob_Ice_Drake.png/revision/latest/scale-to-width-down/340?cb=20080126051117)![ice drakeattack](https://i.imgur.com/24qMyhL.png)
 
 ### 2.2.2. Swub
 
@@ -51,21 +51,21 @@ Monstruito peludo que se arrastra sobre el suelo y puede volver a congelarlo, de
 
 ### 2.2.3. Yeti
 
-Un yeti que golpea el suelo para levantar pinchos helados en frente de él. Anda lentamente de un lado a otro.
+Un yeti que golpea el suelo para levantar pinchos helados en frente de él. Anda lentamente de un lado a otro. Los pinchos helados con animaciones están hechos por nosotros.
 
-![yeti](https://vignette.wikia.nocookie.net/maplestory/images/b/bd/Mob_Yeti.png/revision/latest/scale-to-width-down/340?cb=20100814143115)
+![yeti](https://vignette.wikia.nocookie.net/maplestory/images/b/bd/Mob_Yeti.png/revision/latest/scale-to-width-down/340?cb=20100814143115)![yetiattack](https://i.imgur.com/YvJhL5t.png)
 
 ### 2.2.4. Boar
 
-Un jabalí que embestirá al personaje. Corre hacia el jugador.
+Un jabalí que embestirá al personaje. Corre hacia el jugador. Los ojos rojos del jabalí cuando corre están hechos por nosotros.
 
-![boar](https://www.spriters-resource.com/resources/sheet_icons/20/21685.png)
+![boar](https://www.spriters-resource.com/resources/sheet_icons/20/21685.png)![boarattack](https://i.imgur.com/kaNRxuL.png)
 
 ### 2.2.4. Jefe Final
 
 Una especie de golem volador, responsable de prolongar el invierno eternamente. Tiene un ataque a rango, al igual que el Ice Drake. Para derrotarle, hay que esquivar todos sus ataques hasta que pare a recargar, y ahí sera vulnerable. Se le atacará hasta que se le acaben sus 6 vidas, que se mostrarán al jugador en la parte de arriba a la derecha. 
 
-![boss](https://vignette.wikia.nocookie.net/maplestory/images/6/62/Mob_Opachu.png/revision/latest?cb=20080126055504)
+![boss](https://vignette.wikia.nocookie.net/maplestory/images/6/62/Mob_Opachu.png/revision/latest?cb=20080126055504)![bossattack](https://i.imgur.com/jmctplo.png)
 
 # 3. Niveles
 Son cuatro niveles, el ultimo siendo el del boss final. Cada nivel tendrá diferentes alturas y la cámara seguirá al jugador por todas ellas, excepto en el ultimo nivel, en que la camara se bloqueará cuando el jefe final esté a la vista.
