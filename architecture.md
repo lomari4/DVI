@@ -31,7 +31,7 @@ Los siguientes ficheros tienen propias animaciones y su propia programación que
 - **'iceYeti.js'** es el que define los pinchos de hielo que crea el "yeti" desde el suelo cuando el jugador esta cerca y el "yeti" mirándole.
 - **'slash.js'** es el sprite que crea el jugador cuando ataca, es la forma de stunear a los enemigos y quitarle vida al "boss".
 - **'wolf.js'** personaje principal del juego, el cual puede saltar, moverse y atacar.  Además tiene todas las animaciones de los movimientos descritos anteriormente y de estar quieto, perder vida y morir.
-- ** 'swub.js'** el sprite que congela el suelo. No se le ha programado ningún ataque.
+- **'swub.js'** el sprite que congela el suelo. No se le ha programado ningún ataque.
 - **'icedrake.js'** es un dragón que se le ha programado una función de que si el personaje principal esta más o menos a la misma altura y con poca distancia, dispare el "beam".
 - **'yeti.js'** es un yeti que se le ha programado una función de que si el personaje principal esta más o menos a la misma altura y con poca distancia, cree unos pinchos de hielo (que están en "iceYeti.js").
 - **'boar.js'** es un jabalí que se le ha programado una función de que si el personaje principal esta más o menos a la misma altura y con poca distancia, corra mucho más rápido hacia el personaje.
