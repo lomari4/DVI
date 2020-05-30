@@ -69,7 +69,8 @@ Un jabalí que embestirá al personaje. Corre hacia el jugador. Los ojos rojos d
 
 Una especie de golem volador, responsable de prolongar el invierno eternamente. Tiene un ataque a rango, al igual que el Ice Drake. Para derrotarle, hay que esquivar todos sus ataques hasta que pare a recargar, y ahí sera vulnerable. Se le atacará hasta que se le acaben sus 6 vidas, que se mostrarán al jugador en la parte de arriba a la derecha. 
 
-![boss](https://vignette.wikia.nocookie.net/maplestory/images/6/62/Mob_Opachu.png/revision/latest?cb=20080126055504)![bossattack](https://i.imgur.com/jmctplo.png)![blives](https://i.imgur.com/42G1Z2L.png)
+![boss](https://vignette.wikia.nocookie.net/maplestory/images/6/62/Mob_Opachu.png/revision/latest?cb=20080126055504)![bossattack](https://i.imgur.com/jmctplo.png)
+![blives](https://i.imgur.com/42G1Z2L.png)
 
 # 3. Niveles
 Son cuatro niveles, el ultimo siendo el del boss final. Cada nivel tendrá diferentes alturas y la cámara seguirá al jugador por todas ellas, excepto en el ultimo nivel, en que la camara se bloqueará cuando el jefe final esté a la vista.
