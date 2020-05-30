@@ -95,7 +95,8 @@ Aparecerá el boss final. Hay dos plataformas para esquivar más facilmente sus 
 ![l4](https://i.imgur.com/YiFoyKF.png)
 
 # 4. Arte
-Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel.  Los assets de los enemigos los hemos sacado de 'The Spriters Resource' y los tiles de Kenney.nl, aunque hemos tenido que hacer modificaciones para que todo esté mismo estilo de arte, dibujándoles contornos negros. El personaje principal lo hemos creado y animado nosotros.
+Los escenarios de este juego serán bosques nevados que evolucionarán según el personaje vaya completando el nivel.
+Los assets de los enemigos los hemos sacado de 'The Spriters Resource' y los tiles de Kenney.nl, aunque hemos tenido que hacer modificaciones para que todo esté mismo estilo de arte, dibujándoles contornos negros. El personaje principal lo hemos creado y animado nosotros, al igual que algunas animaciones que ya han sido mencionadas en el apartado de los enemigos.
 La evolución del nivel se puede ver en la siguiente imagen:
 ![transicion](https://i.imgur.com/RhrzzTT.png)
 
