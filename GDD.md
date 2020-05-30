@@ -16,6 +16,8 @@ El objetivo principal es derretir toda la nieve del nivel para poder pasar al si
 
 Además de descongelar el suelo con tocarlo, nuestro personaje podrá atacar a melee para aturdir a los enemigos, pero no podrá matarlos. Por el contrario, los enemigos sí podrán matar a nuestro personaje, que tendrá tres vidas.
 
+![lives](https://i.imgur.com/MZS3AAW.png)
+
 Nuestro personaje podrá saltar, como es lo normal en los juegos de plataformas, y correr de un lado a otro. La cámara seguirá al personaje por el nivel.
 
 Para pasar al siguiente nivel, el personaje tendrá que recorrerlo entero para poder descongelarlo, evitando a los enemigos. Si las 3 vidas del personaje se acaban, el jugador tendrá que volver al principio y el nivel se reiniciará.
@@ -67,7 +69,7 @@ Un jabalí que embestirá al personaje. Corre hacia el jugador. Los ojos rojos d
 
 Una especie de golem volador, responsable de prolongar el invierno eternamente. Tiene un ataque a rango, al igual que el Ice Drake. Para derrotarle, hay que esquivar todos sus ataques hasta que pare a recargar, y ahí sera vulnerable. Se le atacará hasta que se le acaben sus 6 vidas, que se mostrarán al jugador en la parte de arriba a la derecha. 
 
-![boss](https://vignette.wikia.nocookie.net/maplestory/images/6/62/Mob_Opachu.png/revision/latest?cb=20080126055504)![bossattack](https://i.imgur.com/jmctplo.png)
+![boss](https://vignette.wikia.nocookie.net/maplestory/images/6/62/Mob_Opachu.png/revision/latest?cb=20080126055504)![bossattack](https://i.imgur.com/jmctplo.png)![blives](https://i.imgur.com/42G1Z2L.png)
 
 # 3. Niveles
 Son cuatro niveles, el ultimo siendo el del boss final. Cada nivel tendrá diferentes alturas y la cámara seguirá al jugador por todas ellas, excepto en el ultimo nivel, en que la camara se bloqueará cuando el jefe final esté a la vista.
