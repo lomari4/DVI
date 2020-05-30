@@ -1,4 +1,4 @@
-## DESCRIPCIÓN GENERAL DEL PROYECTO
+## DESCRIPCIÓN DEL REPOSITORIO
 
 #### **Carpetas**
 - **assets**: Esta carpeta contiene todas las imagenes, sonidos que se van a utilizar para el juego, dentro de esta hay otras carpetas que dividen las imagenes (carpeta de enemigos, del personaje principal).
