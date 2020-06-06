@@ -14,7 +14,7 @@ El objetivo principal es derretir toda la nieve del nivel para poder pasar al si
 
 ## 1.3. Principales mecánicas
 
-Además de descongelar el suelo con tocarlo, nuestro personaje podrá atacar a melee para aturdir a los enemigos, pero no podrá matarlos. Por el contrario, los enemigos sí podrán matar a nuestro personaje, que tendrá tres vidas.
+Además de descongelar el suelo con tocarlo, nuestro personaje podrá atacar a melee para aturdir a los enemigos, pero no podrá matarlos (exceptuando al jefe final, que sí se puede matar y tiene 6 vidas). Los enemigos podrán matar a nuestro personaje, que tendrá tres vidas.
 
 ![lives](https://i.imgur.com/MZS3AAW.png)
 
@@ -67,7 +67,8 @@ Un jabalí que embestirá al personaje. Corre hacia el jugador. Los ojos rojos d
 
 ### 2.2.4. Jefe Final
 
-Una especie de golem volador, responsable de prolongar el invierno eternamente. Tiene un ataque a rango, al igual que el Ice Drake. Para derrotarle, hay que esquivar todos sus ataques hasta que pare a recargar, y ahí sera vulnerable. Se le atacará hasta que se le acaben sus 6 vidas, que se mostrarán al jugador en la parte de arriba a la derecha. 
+Una especie de golem volador, responsable de prolongar el invierno eternamente. Tiene un ataque a rango, al igual que el Ice Drake. Para derrotarle, hay que esquivar todos sus ataques hasta que pare a recargar, y ahí sera vulnerable. Se le atacará hasta que se le acaben sus 6 vidas, que se mostrarán al jugador en la parte de arriba a la derecha.
+Cuanta menos vida tenga el jefe, más rápido atacará y se moverá.
 
 ![boss](https://vignette.wikia.nocookie.net/maplestory/images/6/62/Mob_Opachu.png/revision/latest?cb=20080126055504)![bossattack](https://i.imgur.com/jmctplo.png)
 
