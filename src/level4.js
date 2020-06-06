@@ -89,7 +89,7 @@ export default class Level4 extends Phaser.Scene {
 
 			//FUNCION DE DESCONGELAR EL SUELO DEL JUGADOR
 			this.counter += this.game.checkIfMelt(this.wolf, this.game, this.groundLayer);
-			
+
 			//ATAQUES
 			//ver si jugador esta dañado
 			this.game.checkPlayerisAttacked(this, this.wolf, this.game);
@@ -102,7 +102,7 @@ export default class Level4 extends Phaser.Scene {
 				//bloquear camara
 				this.game.BossCameraStop(this);
 				//audio
-				if(this.game.musicOn)
+				if (this.game.musicOn)
 					this.music.resume();
 				//nueva capa de collision para que el jugador no pueda escapar del boss
 				this.collider = this.physics.add.collider(this.wolf, this.collisionLayer);
@@ -113,7 +113,7 @@ export default class Level4 extends Phaser.Scene {
 		this.game.showProgress(this.counter, this.checkWin);
 
 		//COMPRUEBA SI HA GANADO (SI EL BOSS HA MUERTO Y SI NIVEL ESTA DESCONGELADO)
-		if (this.wolf.killedBoss){
+		if (this.wolf.killedBoss) {
 			this.music.stop();
 			this.game.checkIfWin(this, this.counter, this.checkWin, this.wolf, this.enemies, this.game, this.level);
 			this.physics.world.removeCollider(this.collider);

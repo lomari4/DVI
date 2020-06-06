@@ -24,7 +24,6 @@ var config = {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    //scene: [Menu, Game],
     scene: [Game, Help, Level1, Level2, Level3, Level4, GameOver, GameWin, PausedGame],
     physics: { default: 'arcade', arcade: { gravity: { y: 400 }, debug: false } }
 

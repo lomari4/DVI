@@ -41,7 +41,7 @@ export default class Ice extends Phaser.GameObjects.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
         this.body.setSize(this.w, this.h);
-        this.setOrigin(0.5,1);
+        this.setOrigin(0.5, 1);
         if (this.coolDown > this.coolDownMax)
             this.destroy();
         this.coolDown++;

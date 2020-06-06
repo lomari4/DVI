@@ -697,13 +697,13 @@ export default class Game extends Phaser.Scene {
     //AUDIO ICONS//
     addIconAudio(scene) {
         let b;
-        if (this.musicOn) 
+        if (this.musicOn)
             b = scene.add.image(this.audioIconX, this.audioIconY, "musicOn").setDepth(2).setInteractive();
-        else{
+        else {
             b = scene.add.image(this.audioIconX, this.audioIconY, "musicOff").setDepth(2).setInteractive();
             scene.music.pause();
         }
-            
+
         b.on("pointerup", () => {
             if (this.musicOn) {
                 b.setTexture("musicOff");
